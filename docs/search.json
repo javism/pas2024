@@ -1,535 +1,5 @@
 [
   {
-    "objectID": "tema01-introduccion/tema01-software-libre.html",
-    "href": "tema01-introduccion/tema01-software-libre.html",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "",
-    "text": "Primera generación (1945-1955)\n\nOrdenadores muy voluminosos, tarjetas perforadas.\nNo necesitaban Sistema Operativo (SO), el operario introducía la tarjeta con el código correspondiente.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFuente: https://es.wikipedia.org/wiki/Error_de_software\nFuente: https://en.wikipedia.org/wiki/Patch_%28computing%29\n\n\n\n\nSegunda generación (1955-1968)\n\nAparecen los transistores, los ordenadores disminuyen de tamaño y se puede empezar a pensar en SOs.\nLenguaje de Control de Tareas (JCL).\nLenguajes de alto nivel y de bajo nivel (assembler).\nSe comienza a hablar de superusuarios y de usuarios.\nDispositivos de entrada/salida (cintas magnéticas…).\n\n\n\n\nTercera generación (1968-1981)\n\nAparecen los circuitos integrados (Large Scale Integration, LSI), que incluyen multitud de componentes electrónicos.\nComienzan a aparecer equipos de propósito general.\nNuevos conceptos: escalabilidad, multiprogramación, discos duros.\nMultiprogramación \\(\\rightarrow\\) buffering, gestión de procesos en el SO…\nInfrautilización de los ciclos de CPU \\(\\rightarrow\\) sistemas de tiempo compartido.\n\n\n\n\nCuarta generación (1981-2001)\n\nAparecen los Very Large Scale Integration, VLSI, y los microprocesadores: ORDENADOR PERSONAL.\nConectividad de dispositivos (Plug and play).\nAplicaciones cliente/servidor.\nMáquinas virtuales, porciones virtuales…\n\nQuinta generación\n\nTendencia a que los ordenadores los puedan manejar personas no expertas en la informática.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#generaciones-de-los-sistemas-operativos",
-    "href": "tema01-introduccion/tema01-software-libre.html#generaciones-de-los-sistemas-operativos",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "",
-    "text": "Primera generación (1945-1955)\n\nOrdenadores muy voluminosos, tarjetas perforadas.\nNo necesitaban Sistema Operativo (SO), el operario introducía la tarjeta con el código correspondiente.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFuente: https://es.wikipedia.org/wiki/Error_de_software\nFuente: https://en.wikipedia.org/wiki/Patch_%28computing%29",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#generaciones-de-los-sistemas-operativos-1",
-    "href": "tema01-introduccion/tema01-software-libre.html#generaciones-de-los-sistemas-operativos-1",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "",
-    "text": "Segunda generación (1955-1968)\n\nAparecen los transistores, los ordenadores disminuyen de tamaño y se puede empezar a pensar en SOs.\nLenguaje de Control de Tareas (JCL).\nLenguajes de alto nivel y de bajo nivel (assembler).\nSe comienza a hablar de superusuarios y de usuarios.\nDispositivos de entrada/salida (cintas magnéticas…).",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#generaciones-de-los-sistemas-operativos-2",
-    "href": "tema01-introduccion/tema01-software-libre.html#generaciones-de-los-sistemas-operativos-2",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "",
-    "text": "Tercera generación (1968-1981)\n\nAparecen los circuitos integrados (Large Scale Integration, LSI), que incluyen multitud de componentes electrónicos.\nComienzan a aparecer equipos de propósito general.\nNuevos conceptos: escalabilidad, multiprogramación, discos duros.\nMultiprogramación \\(\\rightarrow\\) buffering, gestión de procesos en el SO…\nInfrautilización de los ciclos de CPU \\(\\rightarrow\\) sistemas de tiempo compartido.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#generaciones-de-los-sistemas-operativos-3",
-    "href": "tema01-introduccion/tema01-software-libre.html#generaciones-de-los-sistemas-operativos-3",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "",
-    "text": "Cuarta generación (1981-2001)\n\nAparecen los Very Large Scale Integration, VLSI, y los microprocesadores: ORDENADOR PERSONAL.\nConectividad de dispositivos (Plug and play).\nAplicaciones cliente/servidor.\nMáquinas virtuales, porciones virtuales…\n\nQuinta generación\n\nTendencia a que los ordenadores los puedan manejar personas no expertas en la informática.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#sistemas-operativos-históricos",
-    "href": "tema01-introduccion/tema01-software-libre.html#sistemas-operativos-históricos",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Sistemas operativos históricos",
-    "text": "Sistemas operativos históricos\n\n\n\nUNIX: Es un sistema operativo, multitarea y multiusuario; desarrollado en principio por un grupo de empleados de los laboratorios Bell de AT&T.\nMac OS: es el nombre del primer sistema operativo de Apple para los ordenadores Macintosh.\nWindows: Es un sistema operativo gráfico para ordenadores personales cuyo propietario es la empresa Microsoft.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#sistemas-operativos-actuales",
-    "href": "tema01-introduccion/tema01-software-libre.html#sistemas-operativos-actuales",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Sistemas operativos actuales",
-    "text": "Sistemas operativos actuales",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#cuotas-sistemas-operativos",
-    "href": "tema01-introduccion/tema01-software-libre.html#cuotas-sistemas-operativos",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Cuotas sistemas operativos",
-    "text": "Cuotas sistemas operativos",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#historia",
-    "href": "tema01-introduccion/tema01-software-libre.html#historia",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Historia",
-    "text": "Historia\nLos albores de la informática...\nAños 60-70\n\nPocas Computadoras:\n\nGrandes computadoras o mainframes\nMuy pocos y muy caros\n\nSe desarrolla software artesanal:\n\nEl negocio estaba en el hardware\nPoca variedad de software \\(\\Rightarrow\\) muy específico\nSe dispone del código fuente y los desarrolladores de software compartían libremente sus programas unos con otros",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#la-reacción-años-80",
-    "href": "tema01-introduccion/tema01-software-libre.html#la-reacción-años-80",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "…la reacción… Años 80",
-    "text": "…la reacción… Años 80\n\n\n\n\n\n. . .\n\nAparecen las computadoras más modernas y más baratas \\(\\Rightarrow\\) necesidad de software.\nEl software privativo se hace fuerte (Vídeo: Piratas Silicon Valley):\n\nImpiden a los usuarios modificar el software\nEn caso de encontrar un error \\(\\Rightarrow\\) comunicar a la empresa desarrolladora de ese software\n\n\n\nFuente History of Microsoft",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#la-revolución",
-    "href": "tema01-introduccion/tema01-software-libre.html#la-revolución",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "…la revolución…",
-    "text": "…la revolución…\n\n\nAños 80: Emerge Richard Stallman\n\n1984: comenzó a trabajar en el proyecto GNU.\n1985: funda la Free Software Foundation (FSF). Se introdujeron los conceptos de:\n\nFree Software (as in speech)\nCopyleft\n\nNace el movimiento social del software libre.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#el-sistema-se-completa-gnulinux",
-    "href": "tema01-introduccion/tema01-software-libre.html#el-sistema-se-completa-gnulinux",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "…el sistema se completa: GNU/Linux",
-    "text": "…el sistema se completa: GNU/Linux\n\n\nAños 90: en 1991 Linus Torvalds crea el primer núcleo del sistema operativo GNU/Linux.\n\n\n\n\n\n\n\nControversia: http://es.wikipedia.org/wiki/Controversia_por_la_denominaci%C3%B3n_GNU/Linux",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#el-software-libre-en-la-educación",
-    "href": "tema01-introduccion/tema01-software-libre.html#el-software-libre-en-la-educación",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "El software libre en la educación",
-    "text": "El software libre en la educación\n\n\nFuente: https://www.gnu.org/education/education.es.html",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#las-4-libertades",
-    "href": "tema01-introduccion/tema01-software-libre.html#las-4-libertades",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Las 4 libertades",
-    "text": "Las 4 libertades\n\n\n\nLibertad 0: usar el programa, con cualquier propósito.\nLibertad 1: estudiar cómo funciona el programa, y adaptarlo a tus necesidades.\nLibertad 2: distribuir copias, con lo que puedes ayudar a tu vecino.\nLibertad 3: mejorar el programa y hacer públicas las mejoras a los demás, de modo que toda la comunidad se beneficie.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#el-copyleft",
-    "href": "tema01-introduccion/tema01-software-libre.html#el-copyleft",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "El copyleft",
-    "text": "El copyleft\n\n¿Y si alguien toma parte de mi software y lo utiliza de forma privativa?\n\n\ncopyleft: Restricción que se añade al software libre que impide que alguien distribuya copias o modificaciones restringiendo las 4 libertades",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#tipos-de-software",
-    "href": "tema01-introduccion/tema01-software-libre.html#tipos-de-software",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Tipos de software",
-    "text": "Tipos de software\nLicencias libres (choosealicense.com)\n\nGarantizar las libertades\n\nSe utilizan licencias\nSe apoyan en el sistema de copyrigth (que pretenden reemplazar)\nNecesidad práctica no ideal\n\n\n\n\n\nCon copyleft:\n\nGPL/AGPL: GNU General Public License\nMPL: Mozilla Public License\nCC-sa: Creative Commons-Share Alike\n\n\nSin copyleft:\n\nBSD: Berkeley Software Distribution\nMIT: Massachusetts Institute of Technology\nCC: Creative Commons",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#tipos-de-software-1",
-    "href": "tema01-introduccion/tema01-software-libre.html#tipos-de-software-1",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Tipos de software",
-    "text": "Tipos de software",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#qué-es-software-libre",
-    "href": "tema01-introduccion/tema01-software-libre.html#qué-es-software-libre",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "¿Qué es software libre?",
-    "text": "¿Qué es software libre?\nSegún la Free Software Foundation se entiende por software libre aquél que concede cuatro libertades a sus usuarios:\n\nLibertad 0: La libertad de usar el programa, con cualquier propósito. De modo que uno puede instalarlo en cuantas computadoras desee, sin pagar licencias, por tiempo ilimitado y para cualquier tipo de uso, incluyendo comerciales.\nLibertad 1: La libertad de estudiar cómo funciona el programa, y adaptarlo a sus necesidades. Así pues uno puede traducirlo a su idioma, corregir algún fallo o añadir alguna funcionalidad. No se depende de los intereses del productor original, sino que puede hacerlo uno mismo o encargárselo a alguien que tenga los conocimientos para hacerlo. Requiere el acceso al código.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#qué-es-software-libre-1",
-    "href": "tema01-introduccion/tema01-software-libre.html#qué-es-software-libre-1",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "¿Qué es software libre?",
-    "text": "¿Qué es software libre?\n\nLibertad 2: La libertad de distribuir copias, con lo que un profesor puede dar copias del software a sus alumnos, y éstos copiárselo a sus amigos. Las copias no tienen porqué ser gratuitas, sino que es lícito cobrar por ellas. Al difundir el programa estaremos ayudando no sólo a otras personas, sino también al autor: su programa llega a más gente, y esto hace que reciba más sugerencias para mejorarlo, y más gente dispuesta a ayudarle en el desarrollo.\nLibertad 3: La libertad de mejorar el programa y hacer públicas las mejoras a los demás, de modo que toda la comunidad se beneficie. El acceso al código fuente también es un requisito para ello. Lo más habitual es enviar las mejoras a los autores originales para que las incorporen al programa. Así llegan a todos los usuarios y no hay que volver a hacer las modificaciones en futuras versiones.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#qué-es-software-libre-2",
-    "href": "tema01-introduccion/tema01-software-libre.html#qué-es-software-libre-2",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "¿Qué es software libre?",
-    "text": "¿Qué es software libre?\nEstas cuatro libertades son las que definen el modelo del software libre, y todas sus demás características son consecuencia de ellas.\nPara que un programa sea considerado software libre, debe facilitar todas y cada una de estas libertades.\nEl software que no es libre suele designarse con los términos “software privativo” o “software propietario”. Tanto el software libre como el privativo puede ser, o no ser, comercial.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#qué-no-es-software-libre-i",
-    "href": "tema01-introduccion/tema01-software-libre.html#qué-no-es-software-libre-i",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "¿Qué no es software libre? (I)",
-    "text": "¿Qué no es software libre? (I)\n\nSoftware de dominio público: Se denomina software de dominio público a aquél que no tiene copyright (derechos de autor), porque el autor ha renunciado a ellos. En caso de que el código fuente del programa fuera también de dominio público, se trataría de un tipo de software libre. Sin embargo, la inmensa mayoría del software libre sí tiene derechos de autor, si bien los autores autorizan los usos descritos anteriormente.\nSoftware semilibre: El software semilibre es aquel que proporciona las mismas libertades que el software libre, siempre y cuando sea usado sin ánimo de lucro. Un ejemplo es el sistema de cifrado PGP.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#qué-no-es-software-libre-ii",
-    "href": "tema01-introduccion/tema01-software-libre.html#qué-no-es-software-libre-ii",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "¿Qué no es software libre? (II)",
-    "text": "¿Qué no es software libre? (II)\n\nFreeware o software gratuito: Existen muchos programas que se pueden descargar gratuitamente de Internet. Estos programas son gratuitos, pero no libres. Normalmente no dan acceso al “código fuente”, por lo que no pueden modificarse, traducirse, etc. Con frecuencia también se prohíbe vender una copia a alguien dispuesto a comprarla. Por otra parte, el software libre no tiene porqué ser gratuito y se puede cobrar la cantidad que estime oportuna por proporcionar una copia. Dos ejemplos de freeware son Microsoft Edge (anterior Internet Explorer) y Adobe Reader.\nShareware: programas que el autor permite utilizar, pero condicionando su uso. Por ejemplo, puede exigir que se pague por él si se emplea más allá de un determinado periodo de evaluación. A veces se distribuye una versión reducida de los programas y hay que pagar para poder disfrutar del programa en toda su capacidad. Normalmente tampoco se ofrece el código fuente. El compresor de ficheros WinRAR, o el programa de chat mIRC son shareware.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#qué-no-es-software-libre-iii",
-    "href": "tema01-introduccion/tema01-software-libre.html#qué-no-es-software-libre-iii",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "¿Qué no es software libre? (III)",
-    "text": "¿Qué no es software libre? (III)\n\nSoftware con fuentes: Con algunos programas se entrega el código fuente, para que el usuario pueda comprobar que no hace nada malicioso, pero eso no los hace libres, si su licencia no permite su modificación y redistribución sin condiciones excesivamente restrictivas. Las primeras versiones de Unix, bajo licencia de AT&T, incluían el código fuente, pero quedaba prohibida su redistribución a terceras partes. Además, a veces puede ser difícil asegurar que el código publicado corresponde al ejecutable.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#cronología-de-gnulinux",
-    "href": "tema01-introduccion/tema01-software-libre.html#cronología-de-gnulinux",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Cronología de GNU/Linux",
-    "text": "Cronología de GNU/Linux\n\nEn agosto de 1991, el estudiante finlandés Linus Torvals, presenta en Internet la versión 0.01 del kernel de un nuevo SO, inspirado en MINIX (aunque sin código de MINIX).\nEsta primera versión tenía poco más de 10.000 líneas de código.\nEn 1992, Linux se libera bajo licencia GPL. A través de Internet, muchos programadores se unieron al proyecto.\nEn 1994 Linux alcanzó la versión 1.0.\nEn 2003, llegamos a la versión 2.6, con casi 6 millones de líneas de código.\nEn 2008 nace Android basado en el kernel de Linux.\nEn 2022, versión 6.1: www.kernel.org",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#qué-es-gnulinux",
-    "href": "tema01-introduccion/tema01-software-libre.html#qué-es-gnulinux",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "¿Qué es GNU/Linux?",
-    "text": "¿Qué es GNU/Linux?\n\n\n\nEs un Sistema Operativo libre.\n\nSurgió como reimplementación y reelaboración de UNIX.\nSe acoge al estándar POSIX.\nNo es la única alternativa libre a UNIX (FreeBSD, OpenBSD, NetBSD...), pero si la más popular.\n\nCreado y mantenido por una comunidad de desarrolladoras/es.\nCódigo libre GPL\\(\\rightarrow\\) Se puede conocer, modificar y extender.\nGratuito.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#si-es-gratis...",
-    "href": "tema01-introduccion/tema01-software-libre.html#si-es-gratis...",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Si es gratis...",
-    "text": "Si es gratis...\n¿Quién piensas que desarrolla el Kernel de Linux?\n. . .\n\nFuente: Who actually develops Linux? The answer might surprise you",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#distribuciones-de-gnulinux",
-    "href": "tema01-introduccion/tema01-software-libre.html#distribuciones-de-gnulinux",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Distribuciones de GNU/Linux",
-    "text": "Distribuciones de GNU/Linux\n\nDistribución GNU/Linux: Colección de software que forma un S.O. basado en el kernel Linux. Normalmente incluye:\n\nEl kernel Linux + las aplicaciones GNU,\nsoftware de terceros, libre o propietario: escritorio,servidores, utilidades,...\n\nLas distribuciones difieren en el empaquetado de los programas (rpm, deb, tgz), el programa de instalación y las herramientas específicas:\n\nLista de distribuciones en Wikipedia: http://en.wikipedia.org/wiki/List_of_Linux_distributions\nInformación interesante en http://www.distrowatch.com\n\nAlgunas de las más populares son Debian, Red Hat (Fedora), Arch, SuSE, Gentoo, Ubuntu, Guadalinex, Alpinelinux…",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#distribuciones-de-gnulinux-debian",
-    "href": "tema01-introduccion/tema01-software-libre.html#distribuciones-de-gnulinux-debian",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Distribuciones de GNU/Linux: Debian",
-    "text": "Distribuciones de GNU/Linux: Debian\n\n\nDistribución totalmente libre, sin fines comerciales.\nTres ramas en la distribución:\n\nStable: destinada a entornos de producción. Soporte 3 + 2 años LTS, versión actual 11.0 bullseye (curiosidad).\nTesting: software más nuevo, en fase de prueba (actualmente bookworm).\nUnstable: en fase de desarrollo (siempre sid).\n\nAlgunas características:\n\nGran número de aplicaciones disponibles.\nPotente formato de empaquetado: paquetes deb y herramienta apt.\nPionera en instalación y cambio de versiones a través de red.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#distribuciones-de-gnulinux-ubuntu",
-    "href": "tema01-introduccion/tema01-software-libre.html#distribuciones-de-gnulinux-ubuntu",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Distribuciones de GNU/Linux: Ubuntu",
-    "text": "Distribuciones de GNU/Linux: Ubuntu\n\n\nEnfocada a ordenadores de escritorio (Desktop/laptop Computers), aunque existe la versión para servidores. Filosofía Ubuntu.\nBasada en Debian, Ubuntu concentra su objetivo en la usabilidad, lanzamientos regulares y facilidad en la instalación.\nPatrocinado por Canonical Ltd., una empresa privada fundada y financiada por el empresario sudafricano Mark Shuttleworth.\n\nLTS (Long Term Support): soporte a largo plazo, Long Time Support (5 años).\nno-LTS: soporte &lt;9 meses.\n\nProyectos: kubuntu, edubuntu, xubuntu, lubuntu, mint…",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#distribuciones-de-gnulinux-red-hat",
-    "href": "tema01-introduccion/tema01-software-libre.html#distribuciones-de-gnulinux-red-hat",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Distribuciones de GNU/Linux: Red Hat",
-    "text": "Distribuciones de GNU/Linux: Red Hat\n\n\nGran firma comercial del mundo GNU/Linux (1994).\nIntroduce el formato de empaquetado rpm (RedHat Package Manager).\nDesde 2002, orientado en exclusiva al mercado corporativo, solamente a suscriptores de pago (RHEL):\n\nCede la última distribución personal (RH 9) a la comunidad \\(\\Rightarrow\\) aparecen los proyectos Fedora/CentOS.\n\nDistribuciones libres que clonan RHEL: CentOS, Scientific Linux, ClearOS, etc.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#ventajas-del-sl",
-    "href": "tema01-introduccion/tema01-software-libre.html#ventajas-del-sl",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Ventajas del SL",
-    "text": "Ventajas del SL\n\nLibertad de uso, estudio, redistribución y modificación:\n\npodemos instalarlo en tantas máquinas como queramos.\npodemos adaptarlo a nuestras necesidades o las del cliente.\npodemos revisar el código y corregir errores sin esperar a que lo haga el desarrollador.\ncorrección mas rápida y eficiente de fallos, y rápida resolución de dudas y problemas, gracias al modelo bazar y a las fuertes comunidades que tiene detrás.\n\nIndependencia tecnológica: no nos atamos a ningún proveedor en particular.\nAusencia de secretismo tecnológico y de patentes (seguridad jurídica).\nFiabilidad y rendimiento.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#ventajas-del-sl-1",
-    "href": "tema01-introduccion/tema01-software-libre.html#ventajas-del-sl-1",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Ventajas del SL",
-    "text": "Ventajas del SL\n\n\nFormatos estándar: facilitan la interoperabilidad.\nMétodos simples y unificados de gestión de software (p.ej apt): las distribuciones evitan tener que acudir a buscar software de fuentes dudosas.\nInmensa variedad de soluciones muy maduras: el software libre es popular en entornos de servidores.\nDemanda de técnicos FLOSS en expansión, gracias a la creciente adopción por parte de las AAPP y de grandes empresas tecnológicas (Google, IBM, Sun/Oracle, etc.).\nSistemas potencialmente más seguros: hackers y empresas de seguridad de todo el mundo puedan auditar los programas.\nAspectos económicos: más de mil millones de euros en licencias de Microsoft en España anuales (2006).",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#uso-de-sl-en-administración-de-sistemas",
-    "href": "tema01-introduccion/tema01-software-libre.html#uso-de-sl-en-administración-de-sistemas",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Uso de SL en administración de sistemas",
-    "text": "Uso de SL en administración de sistemas\n\nEl mercado suele medirse por unidades vendidas o por beneficios.\nDifícil de de evaluar para el caso del FLOSS: sistemas libres son a menudo obtenidos sin coste e instalados sin contratar soporte.\nMuchas veces se instalan en máquinas que no fueron compradas con software libre precargado.\nEl método que se usa suele ser mediante acceso a máquinas públicamente accesibles (como servidores web).\nProblema: este método no contempla las máquinas no accesibles públicamente.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#uso-de-software-libre-en-administración-de-sistemas",
-    "href": "tema01-introduccion/tema01-software-libre.html#uso-de-software-libre-en-administración-de-sistemas",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Uso de software libre en administración de sistemas",
-    "text": "Uso de software libre en administración de sistemas\n\nSoftware libre en servidores web.\n\nFuente: http://en.wikipedia.org/wiki/Usage_share_of_operating_systems\nSoftware libre en la administración pública. http://es.wikipedia.org/wiki/Software_libre_en_la_Administraci%C3%B3n_P%C3%BAblica",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#uso-de-software-libre-en-equipos-informáticos",
-    "href": "tema01-introduccion/tema01-software-libre.html#uso-de-software-libre-en-equipos-informáticos",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Uso de software libre en equipos informáticos",
-    "text": "Uso de software libre en equipos informáticos\n Fuente: http://en.wikipedia.org/wiki/Usage_share_of_operating_systems",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#desventajas-del-software-libre",
-    "href": "tema01-introduccion/tema01-software-libre.html#desventajas-del-software-libre",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Desventajas del software libre",
-    "text": "Desventajas del software libre\n\nNecesidad de una formación especializada: la gente se suele (o solía) formar con SO privativos.\nAlgunas herramientas incorporan interfaces visuales con más funcionalidad privativas.\nNo siempre hay soporte para todo tipo de hardware (patentes, drivers y especificaciones privativas).\n¿Mayor mercado laboral en sistemas privativos? (en otros sectores, no en administración de sistemas).",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#interfaces-gráficas-de-usuario",
-    "href": "tema01-introduccion/tema01-software-libre.html#interfaces-gráficas-de-usuario",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Interfaces gráficas de usuario",
-    "text": "Interfaces gráficas de usuario\n\nMuchas distribuciones traen GUIs o herramientas visuales propias.\n\nSon útiles y facilitan las tareas, sobre todo para sysadmins noveles.\nSuelen ser propietarias.\nO nos hacen dependientes de una distribución en concreto.\nA veces poseen oscuros detalles en la forma de gestionar los recursos.\n\nVamos a estudiar siempre la tecnología y métodos subyacentes, incluyendo ficheros de configuración, comandos, etc…\n\nEstos suelen ser comunes a todas las distribuciones, incluso a todos los sistemas Unix.\nLa configuración manual es mejor: más rápida, más flexible, más fiable, más potente y más scriptable.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#inciso-cómo-promover-el-software-libre",
-    "href": "tema01-introduccion/tema01-software-libre.html#inciso-cómo-promover-el-software-libre",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Inciso: ¿cómo promover el software libre?",
-    "text": "Inciso: ¿cómo promover el software libre?\n\nLa gratuidad no es el punto fuerte del software libre.\nInsistir en la gratuidad supone minusvalorar el resto de ventajas (y es injusto para la gente que lo crea y lo mantiene).\nNo se debe comenzar hablando de dinero a los que toman las decisiones.\nNo hablar del FLOSS en abstracto (“Linux es mejor”): mejor estudiar costes de migración y tratar de cubrir necesidades concretas que no están cubiertas o mejorar lo que hay.\nNo hay que ser impaciente: dejar que el software libre crezca con los clientes, introduciendo mejoras de forma progresiva.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#el-superusuario-o-administrador",
-    "href": "tema01-introduccion/tema01-software-libre.html#el-superusuario-o-administrador",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "El superusuario o administrador",
-    "text": "El superusuario o administrador\n\nEl administrador o superusuario es el usuario que tiene siempre todos los privilegios sobre cualquier fichero, instrucción u orden del sistema.\nEn GNU/Linux ese usuario es root, que pertenece al grupo root:\n\nDirectorio HOME: /root (o / en modo monousuario).\nSi estamos en el sistema utilizando cualquier otro usuario ¿cómo podemos convertirnos en administrador?\n\nSalir de la sesión y entrar utilizando root como nombre de usuario (deshabilitado por defecto en algunos entornos).\nUtilizar el comando su \\(\\rightarrow\\) nos pedirá la contraseña de root y abrirá una shell donde tendremos privilegios de administración.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#el-superusuario-o-administrador-1",
-    "href": "tema01-introduccion/tema01-software-libre.html#el-superusuario-o-administrador-1",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "El superusuario o administrador",
-    "text": "El superusuario o administrador\npas@debianpas:~$ whoami\npas\npas@debianpas:~$ su\nContraseña: \nroot@debianpas:/home/debianpas# whoami\nroot",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#la-herramienta-sudo",
-    "href": "tema01-introduccion/tema01-software-libre.html#la-herramienta-sudo",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "La herramienta sudo",
-    "text": "La herramienta sudo\n\nsudo permite a otros usuarios ejecutar órdenes como si fuesen el administrador.\n\n/etc/sudoers \\(\\Rightarrow\\) fichero de configuración\n\nFichero de solo lectura, incluso para root.\nEn él estableceremos “quién puede ejecutar qué y cómo” desde sudo.\nEn la mayoría de distribuciones basta con que el usuario pertenezca al grupo sudo.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#la-herramienta-sudo-1",
-    "href": "tema01-introduccion/tema01-software-libre.html#la-herramienta-sudo-1",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "La herramienta sudo",
-    "text": "La herramienta sudo\n\nvisudo \\(\\Rightarrow\\) orden para modificar el fichero de configuración /etc/sudoers.\n\n# Especificación de privilegios de usuario\nroot    ALL=(ALL:ALL) ALL\n# Los miembros del grupo sudo podrán ejecutar cualquier comando\n%sudo   ALL=(ALL:ALL) ALL\n\nsudo orden \\(\\Rightarrow\\) pide contraseña del usuario.",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#comunicación-con-el-resto-de-usuarios",
-    "href": "tema01-introduccion/tema01-software-libre.html#comunicación-con-el-resto-de-usuarios",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Comunicación con el resto de usuarios",
-    "text": "Comunicación con el resto de usuarios\n\nEl administrador debe comunicarse con el resto de usuarios (algunos en desuso):\n\nwrite: enviar un mensaje a un usuario\ntalk: conversar con un usuario, incluso aunque esté en otra máquina GNU/Linux.\nmesg [y/n]: habilitar/deshabilitar la llegada de mensajes al terminal.\nwall: mandar un mensaje a todos los usuarios del sistema.\nFichero /etc/motd: contiene el mensaje del día que se imprime justo después de entrar al sistema (en modo texto).\n\nFichero $HOME/.hushlogin \\(\\Rightarrow\\) permite evitar el mensaje del día.\n\nFichero /etc/issue: contiene el mensaje que se muestra antes del login, normalmente muestra la versión de Linux (en modo texto).",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#referencias",
-    "href": "tema01-introduccion/tema01-software-libre.html#referencias",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Referencias",
-    "text": "Referencias\n\n\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 1. Where to Start. Addison-Wesley. 5th Edition. 2018.\nAeleen Frisch. Essential system administration. Capítulo 1. Introduction to System Administration. O’Reilly and Associates. Tercera edición. 2002.\nMiguel Vidal y José Castro El software libre y la administración de sistemas\nInitial Server Setup with Ubuntu 22.04",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#ejercicios",
-    "href": "tema01-introduccion/tema01-software-libre.html#ejercicios",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Ejercicios",
-    "text": "Ejercicios\n\nWeb Debian: netinstall vs imagen. Opcionalmente Ubuntu será equivalente para casi todo.\nCrear VM + disco + conectar .iso\n\n1-2GB RAM + 5GB de disco es suficiente para trabajar sin entorno gráfico\n\nVamos a instalar sin entorno gráfico\nEn el particionado utilizaremos el por defecto de momento.\nNos piden cosas básicas: ssh, entorno gráfico…\n\nYa tenemos nuestra máquina lista:\n\nCambiar contraseña por defecto (en imágenes de VPS/nubes)\nTerminamos: no hay ni sudo, vim, etc.\nComo root:\n\nInstalar sudo:\n\napt install sudo\n\nEliminar el CD/ISO de las fuentes de software:\n\nnano /etc/apt/sources.list\n\nAñadir usuario para la administración sudo:\n\nadduser adminpas\nsudo usermod -aG sudo adminpas\n\n¡Ya hemos terminado con root!\n\nCon el usuario adminpas probamos algún comando, por ejemplo: sudo cat /etc/shadow\n¿Qué hace sudo !!?\nExplorar la máquina:\n\nDisco libre, particiones y memoria: df, fdisk -l, free (quizás necesites sudo para alguno)\nProcesadores y núcleos: cat /proc/cpuinfo\nHerramienta apt y repositorios: APT: el comando básico que debes conocer para usar Linux\n\n¿Cómo apagar o reiniciar desde el terminal de Linux?",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-software-libre.html#extra-configuración-de-la-máquina",
-    "href": "tema01-introduccion/tema01-software-libre.html#extra-configuración-de-la-máquina",
-    "title": "Tema 1: Introducción al software libre y GNU/Linux",
-    "section": "Extra configuración de la máquina",
-    "text": "Extra configuración de la máquina\nPuedes echar un vistazo a las guías de Digital Ocean:\nhttps://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04\nhttps://www.digitalocean.com/community/tutorials/a-linux-command-line-primer\nhttps://www.digitalocean.com/community/tutorials?q=%5BLinux%20Basics%5D",
-    "crumbs": [
-      "Tema 1: Software Libre y GNU/Linux"
-    ]
-  },
-  {
-    "objectID": "enlaces.html",
-    "href": "enlaces.html",
-    "title": "Programación y Administración de Sistemas (2023-2024)",
-    "section": "",
-    "text": "How To Create And Use NAT Network In VirtualBox\nVirtualBox Network Settings: Complete Guide",
-    "crumbs": [
-      "Enlaces"
-    ]
-  },
-  {
-    "objectID": "enlaces.html#virtual-box-y-redes-virtuales",
-    "href": "enlaces.html#virtual-box-y-redes-virtuales",
-    "title": "Programación y Administración de Sistemas (2023-2024)",
-    "section": "",
-    "text": "How To Create And Use NAT Network In VirtualBox\nVirtualBox Network Settings: Complete Guide",
-    "crumbs": [
-      "Enlaces"
-    ]
-  },
-  {
-    "objectID": "enlaces.html#auditoría-básica",
-    "href": "enlaces.html#auditoría-básica",
-    "title": "Programación y Administración de Sistemas (2023-2024)",
-    "section": "Auditoría básica",
-    "text": "Auditoría básica\nhttps://cisofy.com/lynis/",
-    "crumbs": [
-      "Enlaces"
-    ]
-  },
-  {
-    "objectID": "enlaces.html#escalado-de-privilegios",
-    "href": "enlaces.html#escalado-de-privilegios",
-    "title": "Programación y Administración de Sistemas (2023-2024)",
-    "section": "Escalado de privilegios",
-    "text": "Escalado de privilegios\nIncluye enlaces a scripts de auditoría: Privilege Escalation on Linux\nAlgunos ejemplos básicos de explotación de errores de configuración (permisos, grupos, usuarios, etc.): Linux Privilege Escalation: Three Easy Ways to Get a Root Shell",
-    "crumbs": [
-      "Enlaces"
-    ]
-  },
-  {
-    "objectID": "enlaces.html#fork-bomb-y-protecciones",
-    "href": "enlaces.html#fork-bomb-y-protecciones",
-    "title": "Programación y Administración de Sistemas (2023-2024)",
-    "section": "Fork bomb y protecciones",
-    "text": "Fork bomb y protecciones\nUnderstanding Bash fork() Bomb :(){ :|:& };: code. https://www.cyberciti.biz/faq/understanding-bash-fork-bomb/\nHow to: Prevent a fork bomb by limiting user process. https://www.cyberciti.biz/tips/linux-limiting-user-process.html\nFork Bomb y el apocalipsis zombie en GNU/Linux. https://juncotic.com/fork-bomb-el-apocalipsis-zombie-en-linux/",
-    "crumbs": [
-      "Enlaces"
-    ]
-  },
-  {
-    "objectID": "enlaces.html#trucos-vim",
-    "href": "enlaces.html#trucos-vim",
-    "title": "Programación y Administración de Sistemas (2023-2024)",
-    "section": "Trucos VIM",
-    "text": "Trucos VIM\nGuardar con sudo un fichero que hemos abierto sin sudo (y añadir un atajo permanente): TL;DR: :w !sudo tee %\nhttps://www.cyberciti.biz/faq/vim-vi-text-editor-save-file-without-root-permission/",
-    "crumbs": [
-      "Enlaces"
-    ]
-  },
-  {
-    "objectID": "enlaces.html#cifrado",
-    "href": "enlaces.html#cifrado",
-    "title": "Programación y Administración de Sistemas (2023-2024)",
-    "section": "Cifrado:",
-    "text": "Cifrado:\nDiferencias de seguridad bcrypt vs SHA\nNIST Post-Quantum Cryptography Standardization",
-    "crumbs": [
-      "Enlaces"
-    ]
-  },
-  {
     "objectID": "tema00-presentacion/presentacion.html",
     "href": "tema00-presentacion/presentacion.html",
     "title": "Tema 0: Presentación",
@@ -770,6 +240,776 @@
     ]
   },
   {
+    "objectID": "enlaces.html",
+    "href": "enlaces.html",
+    "title": "Programación y Administración de Sistemas (2023-2024)",
+    "section": "",
+    "text": "How To Create And Use NAT Network In VirtualBox\nVirtualBox Network Settings: Complete Guide",
+    "crumbs": [
+      "Enlaces"
+    ]
+  },
+  {
+    "objectID": "enlaces.html#virtual-box-y-redes-virtuales",
+    "href": "enlaces.html#virtual-box-y-redes-virtuales",
+    "title": "Programación y Administración de Sistemas (2023-2024)",
+    "section": "",
+    "text": "How To Create And Use NAT Network In VirtualBox\nVirtualBox Network Settings: Complete Guide",
+    "crumbs": [
+      "Enlaces"
+    ]
+  },
+  {
+    "objectID": "enlaces.html#auditoría-básica",
+    "href": "enlaces.html#auditoría-básica",
+    "title": "Programación y Administración de Sistemas (2023-2024)",
+    "section": "Auditoría básica",
+    "text": "Auditoría básica\nhttps://cisofy.com/lynis/",
+    "crumbs": [
+      "Enlaces"
+    ]
+  },
+  {
+    "objectID": "enlaces.html#escalado-de-privilegios",
+    "href": "enlaces.html#escalado-de-privilegios",
+    "title": "Programación y Administración de Sistemas (2023-2024)",
+    "section": "Escalado de privilegios",
+    "text": "Escalado de privilegios\nIncluye enlaces a scripts de auditoría: Privilege Escalation on Linux\nAlgunos ejemplos básicos de explotación de errores de configuración (permisos, grupos, usuarios, etc.): Linux Privilege Escalation: Three Easy Ways to Get a Root Shell",
+    "crumbs": [
+      "Enlaces"
+    ]
+  },
+  {
+    "objectID": "enlaces.html#fork-bomb-y-protecciones",
+    "href": "enlaces.html#fork-bomb-y-protecciones",
+    "title": "Programación y Administración de Sistemas (2023-2024)",
+    "section": "Fork bomb y protecciones",
+    "text": "Fork bomb y protecciones\nUnderstanding Bash fork() Bomb :(){ :|:& };: code. https://www.cyberciti.biz/faq/understanding-bash-fork-bomb/\nHow to: Prevent a fork bomb by limiting user process. https://www.cyberciti.biz/tips/linux-limiting-user-process.html\nFork Bomb y el apocalipsis zombie en GNU/Linux. https://juncotic.com/fork-bomb-el-apocalipsis-zombie-en-linux/",
+    "crumbs": [
+      "Enlaces"
+    ]
+  },
+  {
+    "objectID": "enlaces.html#trucos-vim",
+    "href": "enlaces.html#trucos-vim",
+    "title": "Programación y Administración de Sistemas (2023-2024)",
+    "section": "Trucos VIM",
+    "text": "Trucos VIM\nGuardar con sudo un fichero que hemos abierto sin sudo (y añadir un atajo permanente): TL;DR: :w !sudo tee %\nhttps://www.cyberciti.biz/faq/vim-vi-text-editor-save-file-without-root-permission/",
+    "crumbs": [
+      "Enlaces"
+    ]
+  },
+  {
+    "objectID": "enlaces.html#cifrado",
+    "href": "enlaces.html#cifrado",
+    "title": "Programación y Administración de Sistemas (2023-2024)",
+    "section": "Cifrado:",
+    "text": "Cifrado:\nDiferencias de seguridad bcrypt vs SHA\nNIST Post-Quantum Cryptography Standardization",
+    "crumbs": [
+      "Enlaces"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html",
+    "href": "tema01-introduccion/tema01b-software-libre.html",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "",
+    "text": "Primera generación (1945-1955)\n\nOrdenadores muy voluminosos, tarjetas perforadas.\nNo necesitaban Sistema Operativo (SO), el operario introducía la tarjeta con el código correspondiente.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFuente: https://es.wikipedia.org/wiki/Error_de_software\nFuente: https://en.wikipedia.org/wiki/Patch_%28computing%29\n\n\n\n\nSegunda generación (1955-1968)\n\nAparecen los transistores, los ordenadores disminuyen de tamaño y se puede empezar a pensar en SOs.\nLenguaje de Control de Tareas (JCL).\nLenguajes de alto nivel y de bajo nivel (assembler).\nSe comienza a hablar de superusuarios y de usuarios.\nDispositivos de entrada/salida (cintas magnéticas…).\n\n\n\n\nTercera generación (1968-1981)\n\nAparecen los circuitos integrados (Large Scale Integration, LSI), que incluyen multitud de componentes electrónicos.\nComienzan a aparecer equipos de propósito general.\nNuevos conceptos: escalabilidad, multiprogramación, discos duros.\nMultiprogramación \\(\\rightarrow\\) buffering, gestión de procesos en el SO…\nInfrautilización de los ciclos de CPU \\(\\rightarrow\\) sistemas de tiempo compartido.\n\n\n\n\nCuarta generación (1981-2001)\n\nAparecen los Very Large Scale Integration, VLSI, y los microprocesadores: ORDENADOR PERSONAL.\nConectividad de dispositivos (Plug and play).\nAplicaciones cliente/servidor.\nMáquinas virtuales, porciones virtuales…\n\nQuinta generación\n\nTendencia a que los ordenadores los puedan manejar personas no expertas en la informática.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#generaciones-de-los-sistemas-operativos",
+    "href": "tema01-introduccion/tema01b-software-libre.html#generaciones-de-los-sistemas-operativos",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "",
+    "text": "Primera generación (1945-1955)\n\nOrdenadores muy voluminosos, tarjetas perforadas.\nNo necesitaban Sistema Operativo (SO), el operario introducía la tarjeta con el código correspondiente.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFuente: https://es.wikipedia.org/wiki/Error_de_software\nFuente: https://en.wikipedia.org/wiki/Patch_%28computing%29",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#generaciones-de-los-sistemas-operativos-1",
+    "href": "tema01-introduccion/tema01b-software-libre.html#generaciones-de-los-sistemas-operativos-1",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "",
+    "text": "Segunda generación (1955-1968)\n\nAparecen los transistores, los ordenadores disminuyen de tamaño y se puede empezar a pensar en SOs.\nLenguaje de Control de Tareas (JCL).\nLenguajes de alto nivel y de bajo nivel (assembler).\nSe comienza a hablar de superusuarios y de usuarios.\nDispositivos de entrada/salida (cintas magnéticas…).",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#generaciones-de-los-sistemas-operativos-2",
+    "href": "tema01-introduccion/tema01b-software-libre.html#generaciones-de-los-sistemas-operativos-2",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "",
+    "text": "Tercera generación (1968-1981)\n\nAparecen los circuitos integrados (Large Scale Integration, LSI), que incluyen multitud de componentes electrónicos.\nComienzan a aparecer equipos de propósito general.\nNuevos conceptos: escalabilidad, multiprogramación, discos duros.\nMultiprogramación \\(\\rightarrow\\) buffering, gestión de procesos en el SO…\nInfrautilización de los ciclos de CPU \\(\\rightarrow\\) sistemas de tiempo compartido.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#generaciones-de-los-sistemas-operativos-3",
+    "href": "tema01-introduccion/tema01b-software-libre.html#generaciones-de-los-sistemas-operativos-3",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "",
+    "text": "Cuarta generación (1981-2001)\n\nAparecen los Very Large Scale Integration, VLSI, y los microprocesadores: ORDENADOR PERSONAL.\nConectividad de dispositivos (Plug and play).\nAplicaciones cliente/servidor.\nMáquinas virtuales, porciones virtuales…\n\nQuinta generación\n\nTendencia a que los ordenadores los puedan manejar personas no expertas en la informática.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#sistemas-operativos-históricos",
+    "href": "tema01-introduccion/tema01b-software-libre.html#sistemas-operativos-históricos",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Sistemas operativos históricos",
+    "text": "Sistemas operativos históricos\n\n\n\nUNIX: Es un sistema operativo, multitarea y multiusuario; desarrollado en principio por un grupo de empleados de los laboratorios Bell de AT&T.\nMac OS: es el nombre del primer sistema operativo de Apple para los ordenadores Macintosh.\nWindows: Es un sistema operativo gráfico para ordenadores personales cuyo propietario es la empresa Microsoft.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#sistemas-operativos-actuales",
+    "href": "tema01-introduccion/tema01b-software-libre.html#sistemas-operativos-actuales",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Sistemas operativos actuales",
+    "text": "Sistemas operativos actuales",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#cuotas-sistemas-operativos",
+    "href": "tema01-introduccion/tema01b-software-libre.html#cuotas-sistemas-operativos",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Cuotas sistemas operativos",
+    "text": "Cuotas sistemas operativos",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#historia",
+    "href": "tema01-introduccion/tema01b-software-libre.html#historia",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Historia",
+    "text": "Historia\nLos albores de la informática...\nAños 60-70\n\nPocas Computadoras:\n\nGrandes computadoras o mainframes\nMuy pocos y muy caros\n\nSe desarrolla software artesanal:\n\nEl negocio estaba en el hardware\nPoca variedad de software \\(\\Rightarrow\\) muy específico\nSe dispone del código fuente y los desarrolladores de software compartían libremente sus programas unos con otros",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#la-reacción-años-80",
+    "href": "tema01-introduccion/tema01b-software-libre.html#la-reacción-años-80",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "…la reacción… Años 80",
+    "text": "…la reacción… Años 80\n\n\n\n\n\n. . .\n\nAparecen las computadoras más modernas y más baratas \\(\\Rightarrow\\) necesidad de software.\nEl software privativo se hace fuerte (Vídeo: Piratas Silicon Valley):\n\nImpiden a los usuarios modificar el software\nEn caso de encontrar un error \\(\\Rightarrow\\) comunicar a la empresa desarrolladora de ese software\n\n\n\nFuente History of Microsoft",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#la-revolución",
+    "href": "tema01-introduccion/tema01b-software-libre.html#la-revolución",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "…la revolución…",
+    "text": "…la revolución…\n\n\nAños 80: Emerge Richard Stallman\n\n1984: comenzó a trabajar en el proyecto GNU.\n1985: funda la Free Software Foundation (FSF). Se introdujeron los conceptos de:\n\nFree Software (as in speech)\nCopyleft\n\nNace el movimiento social del software libre.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#el-sistema-se-completa-gnulinux",
+    "href": "tema01-introduccion/tema01b-software-libre.html#el-sistema-se-completa-gnulinux",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "…el sistema se completa: GNU/Linux",
+    "text": "…el sistema se completa: GNU/Linux\n\n\nAños 90: en 1991 Linus Torvalds crea el primer núcleo del sistema operativo GNU/Linux.\n\n\n\n\n\n\n\nControversia: http://es.wikipedia.org/wiki/Controversia_por_la_denominaci%C3%B3n_GNU/Linux",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#el-software-libre-en-la-educación",
+    "href": "tema01-introduccion/tema01b-software-libre.html#el-software-libre-en-la-educación",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "El software libre en la educación",
+    "text": "El software libre en la educación\n\n\nFuente: https://www.gnu.org/education/education.es.html",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#las-4-libertades",
+    "href": "tema01-introduccion/tema01b-software-libre.html#las-4-libertades",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Las 4 libertades",
+    "text": "Las 4 libertades\n\n\n\nLibertad 0: usar el programa, con cualquier propósito.\nLibertad 1: estudiar cómo funciona el programa, y adaptarlo a tus necesidades.\nLibertad 2: distribuir copias, con lo que puedes ayudar a tu vecino.\nLibertad 3: mejorar el programa y hacer públicas las mejoras a los demás, de modo que toda la comunidad se beneficie.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#el-copyleft",
+    "href": "tema01-introduccion/tema01b-software-libre.html#el-copyleft",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "El copyleft",
+    "text": "El copyleft\n\n¿Y si alguien toma parte de mi software y lo utiliza de forma privativa?\n\n\ncopyleft: Restricción que se añade al software libre que impide que alguien distribuya copias o modificaciones restringiendo las 4 libertades",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#tipos-de-software",
+    "href": "tema01-introduccion/tema01b-software-libre.html#tipos-de-software",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Tipos de software",
+    "text": "Tipos de software\nLicencias libres (choosealicense.com)\n\nGarantizar las libertades\n\nSe utilizan licencias\nSe apoyan en el sistema de copyrigth (que pretenden reemplazar)\nNecesidad práctica no ideal\n\n\n\n\n\nCon copyleft:\n\nGPL/AGPL: GNU General Public License\nMPL: Mozilla Public License\nCC-sa: Creative Commons-Share Alike\n\n\nSin copyleft:\n\nBSD: Berkeley Software Distribution\nMIT: Massachusetts Institute of Technology\nCC: Creative Commons",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#tipos-de-software-1",
+    "href": "tema01-introduccion/tema01b-software-libre.html#tipos-de-software-1",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Tipos de software",
+    "text": "Tipos de software",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#las-4-libertades-lectura-complementaria-opcional",
+    "href": "tema01-introduccion/tema01b-software-libre.html#las-4-libertades-lectura-complementaria-opcional",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Las 4 libertades [LECTURA COMPLEMENTARIA OPCIONAL]",
+    "text": "Las 4 libertades [LECTURA COMPLEMENTARIA OPCIONAL]\nSegún la Free Software Foundation se entiende por software libre aquél que concede cuatro libertades a sus usuarios:\n\nLibertad 0: La libertad de usar el programa, con cualquier propósito. De modo que uno puede instalarlo en cuantas computadoras desee, sin pagar licencias, por tiempo ilimitado y para cualquier tipo de uso, incluyendo comerciales.\nLibertad 1: La libertad de estudiar cómo funciona el programa, y adaptarlo a sus necesidades. Así pues uno puede traducirlo a su idioma, corregir algún fallo o añadir alguna funcionalidad. No se depende de los intereses del productor original, sino que puede hacerlo uno mismo o encargárselo a alguien que tenga los conocimientos para hacerlo. Requiere el acceso al código.\nLibertad 2: La libertad de distribuir copias, con lo que un profesor puede dar copias del software a sus alumnos, y éstos copiárselo a sus amigos. Las copias no tienen porqué ser gratuitas, sino que es lícito cobrar por ellas. Al difundir el programa estaremos ayudando no sólo a otras personas, sino también al autor: su programa llega a más gente, y esto hace que reciba más sugerencias para mejorarlo, y más gente dispuesta a ayudarle en el desarrollo.\nLibertad 3: La libertad de mejorar el programa y hacer públicas las mejoras a los demás, de modo que toda la comunidad se beneficie. El acceso al código fuente también es un requisito para ello. Lo más habitual es enviar las mejoras a los autores originales para que las incorporen al programa. Así llegan a todos los usuarios y no hay que volver a hacer las modificaciones en futuras versiones.\n\nEstas cuatro libertades son las que definen el modelo del software libre, y todas sus demás características son consecuencia de ellas.\nPara que un programa sea considerado software libre, debe facilitar todas y cada una de estas libertades.\nEl software que no es libre suele designarse con los términos “software privativo” o “software propietario”. Tanto el software libre como el privativo puede ser, o no ser, comercial.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#qué-no-es-software-libre-lectura-complementaria-opcional",
+    "href": "tema01-introduccion/tema01b-software-libre.html#qué-no-es-software-libre-lectura-complementaria-opcional",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "¿Qué no es software libre? [LECTURA COMPLEMENTARIA OPCIONAL]",
+    "text": "¿Qué no es software libre? [LECTURA COMPLEMENTARIA OPCIONAL]\n\nSoftware de dominio público: Se denomina software de dominio público a aquél que no tiene copyright (derechos de autor), porque el autor ha renunciado a ellos. En caso de que el código fuente del programa fuera también de dominio público, se trataría de un tipo de software libre. Sin embargo, la inmensa mayoría del software libre sí tiene derechos de autor, si bien los autores autorizan los usos descritos anteriormente.\nSoftware semilibre: El software semilibre es aquel que proporciona las mismas libertades que el software libre, siempre y cuando sea usado sin ánimo de lucro. Un ejemplo es el sistema de cifrado PGP.\nFreeware o software gratuito: Existen muchos programas que se pueden descargar gratuitamente de Internet. Estos programas son gratuitos, pero no libres. Normalmente no dan acceso al “código fuente”, por lo que no pueden modificarse, traducirse, etc. Con frecuencia también se prohíbe vender una copia a alguien dispuesto a comprarla. Por otra parte, el software libre no tiene porqué ser gratuito y se puede cobrar la cantidad que estime oportuna por proporcionar una copia. Dos ejemplos de freeware son Microsoft Edge (anterior Internet Explorer) y Adobe Reader.\nShareware: programas que el autor permite utilizar, pero condicionando su uso. Por ejemplo, puede exigir que se pague por él si se emplea más allá de un determinado periodo de evaluación. A veces se distribuye una versión reducida de los programas y hay que pagar para poder disfrutar del programa en toda su capacidad. Normalmente tampoco se ofrece el código fuente. El compresor de ficheros WinRAR, o el programa de chat mIRC son shareware.\nSoftware con fuentes: Con algunos programas se entrega el código fuente, para que el usuario pueda comprobar que no hace nada malicioso, pero eso no los hace libres, si su licencia no permite su modificación y redistribución sin condiciones excesivamente restrictivas. Las primeras versiones de Unix, bajo licencia de AT&T, incluían el código fuente, pero quedaba prohibida su redistribución a terceras partes. Además, a veces puede ser difícil asegurar que el código publicado corresponde al ejecutable.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#cronología-de-gnulinux",
+    "href": "tema01-introduccion/tema01b-software-libre.html#cronología-de-gnulinux",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Cronología de GNU/Linux",
+    "text": "Cronología de GNU/Linux\n\nEn agosto de 1991, el estudiante finlandés Linus Torvals, presenta en Internet la versión 0.01 del kernel de un nuevo SO, inspirado en MINIX (aunque sin código de MINIX).\nEsta primera versión tenía poco más de 10.000 líneas de código.\nEn 1992, Linux se libera bajo licencia GPL. A través de Internet, muchos programadores se unieron al proyecto.\nEn 1994 Linux alcanzó la versión 1.0.\nEn 2003, llegamos a la versión 2.6, con casi 6 millones de líneas de código.\nEn 2008 nace Android basado en el kernel de Linux.\nEn 2022, versión 6.1: www.kernel.org",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#qué-es-gnulinux",
+    "href": "tema01-introduccion/tema01b-software-libre.html#qué-es-gnulinux",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "¿Qué es GNU/Linux?",
+    "text": "¿Qué es GNU/Linux?\n\n\n\nEs un Sistema Operativo libre.\n\nSurgió como reimplementación y reelaboración de UNIX.\nSe acoge al estándar POSIX.\nNo es la única alternativa libre a UNIX (FreeBSD, OpenBSD, NetBSD...), pero si la más popular.\n\nCreado y mantenido por una comunidad de desarrolladoras/es.\nCódigo libre GPL\\(\\rightarrow\\) Se puede conocer, modificar y extender.\nGratuito.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#si-es-gratis...",
+    "href": "tema01-introduccion/tema01b-software-libre.html#si-es-gratis...",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Si es gratis...",
+    "text": "Si es gratis...\n¿Quién piensas que desarrolla el Kernel de Linux?\n. . .\n\nFuente: Who actually develops Linux? The answer might surprise you",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#distribuciones-de-gnulinux",
+    "href": "tema01-introduccion/tema01b-software-libre.html#distribuciones-de-gnulinux",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Distribuciones de GNU/Linux",
+    "text": "Distribuciones de GNU/Linux\n\nDistribución GNU/Linux: Colección de software que forma un S.O. basado en el kernel Linux. Normalmente incluye:\n\nEl kernel Linux + las aplicaciones GNU,\nsoftware de terceros, libre o propietario: escritorio,servidores, utilidades,...\n\nLas distribuciones difieren en el empaquetado de los programas (rpm, deb, tgz), el programa de instalación y las herramientas específicas:\n\nLista de distribuciones en Wikipedia: http://en.wikipedia.org/wiki/List_of_Linux_distributions\nInformación interesante en http://www.distrowatch.com\n\nAlgunas de las más populares son Debian, Red Hat (Fedora), Arch, SuSE, Gentoo, Ubuntu, Guadalinex, Alpinelinux…",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#distribuciones-de-gnulinux-debian",
+    "href": "tema01-introduccion/tema01b-software-libre.html#distribuciones-de-gnulinux-debian",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Distribuciones de GNU/Linux: Debian",
+    "text": "Distribuciones de GNU/Linux: Debian\n\n\nDistribución totalmente libre, sin fines comerciales.\nTres ramas en la distribución:\n\nStable: destinada a entornos de producción. Soporte 3 + 2 años LTS, versión actual 12.0 “bookworm” (curiosidad).\nTesting: software más nuevo, en fase de prueba (actualmente bookworm).\nUnstable: en fase de desarrollo (siempre sid).\n\nAlgunas características:\n\nGran número de aplicaciones disponibles.\nPotente formato de empaquetado: paquetes deb y herramienta apt.\nPionera en instalación y cambio de versiones a través de red.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#ventajas-del-sl",
+    "href": "tema01-introduccion/tema01b-software-libre.html#ventajas-del-sl",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Ventajas del SL",
+    "text": "Ventajas del SL\n\nLibertad de uso, estudio, redistribución y modificación:\n\npodemos instalarlo en tantas máquinas como queramos.\npodemos adaptarlo a nuestras necesidades o las del cliente.\npodemos revisar el código y corregir errores sin esperar a que lo haga el desarrollador.\ncorrección mas rápida y eficiente de fallos, y rápida resolución de dudas y problemas, gracias al modelo bazar y a las fuertes comunidades que tiene detrás.\n\nIndependencia tecnológica: no nos atamos a ningún proveedor en particular.\nAusencia de secretismo tecnológico y de patentes (seguridad jurídica).\nFiabilidad y rendimiento.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#ventajas-del-sl-1",
+    "href": "tema01-introduccion/tema01b-software-libre.html#ventajas-del-sl-1",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Ventajas del SL",
+    "text": "Ventajas del SL\n\n\nFormatos estándar: facilitan la interoperabilidad.\nMétodos simples y unificados de gestión de software (p.ej apt): las distribuciones evitan tener que acudir a buscar software de fuentes dudosas.\nInmensa variedad de soluciones muy maduras: el software libre es popular en entornos de servidores.\nDemanda de técnicos FLOSS en expansión, gracias a la creciente adopción por parte de las AAPP y de grandes empresas tecnológicas (Google, IBM, Sun/Oracle, etc.).\nSistemas potencialmente más seguros: hackers y empresas de seguridad de todo el mundo puedan auditar los programas.\nAspectos económicos: más de mil millones de euros en licencias de Microsoft en España anuales (2006).",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#uso-de-sl-en-administración-de-sistemas-lectura-complementaria-opcional",
+    "href": "tema01-introduccion/tema01b-software-libre.html#uso-de-sl-en-administración-de-sistemas-lectura-complementaria-opcional",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Uso de SL en administración de sistemas [LECTURA COMPLEMENTARIA OPCIONAL]",
+    "text": "Uso de SL en administración de sistemas [LECTURA COMPLEMENTARIA OPCIONAL]\n\nEl mercado suele medirse por unidades vendidas o por beneficios.\nDifícil de de evaluar para el caso del FLOSS: sistemas libres son a menudo obtenidos sin coste e instalados sin contratar soporte.\nMuchas veces se instalan en máquinas que no fueron compradas con software libre precargado.\nEl método que se usa suele ser mediante acceso a máquinas públicamente accesibles (como servidores web).\nProblema: este método no contempla las máquinas no accesibles públicamente.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#uso-de-software-libre-en-administración-de-sistemas-lectura-complementaria-opcional",
+    "href": "tema01-introduccion/tema01b-software-libre.html#uso-de-software-libre-en-administración-de-sistemas-lectura-complementaria-opcional",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Uso de software libre en administración de sistemas [LECTURA COMPLEMENTARIA OPCIONAL]",
+    "text": "Uso de software libre en administración de sistemas [LECTURA COMPLEMENTARIA OPCIONAL]\n\nSoftware libre en servidores web.\n\nFuente: http://en.wikipedia.org/wiki/Usage_share_of_operating_systems\nSoftware libre en la administración pública. http://es.wikipedia.org/wiki/Software_libre_en_la_Administraci%C3%B3n_P%C3%BAblica",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#uso-de-software-libre-en-equipos-informáticos-lectura-complementaria-opcional",
+    "href": "tema01-introduccion/tema01b-software-libre.html#uso-de-software-libre-en-equipos-informáticos-lectura-complementaria-opcional",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Uso de software libre en equipos informáticos [LECTURA COMPLEMENTARIA OPCIONAL]",
+    "text": "Uso de software libre en equipos informáticos [LECTURA COMPLEMENTARIA OPCIONAL]\n Fuente: http://en.wikipedia.org/wiki/Usage_share_of_operating_systems",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#desventajas-del-software-libre-lectura-complementaria-opcional",
+    "href": "tema01-introduccion/tema01b-software-libre.html#desventajas-del-software-libre-lectura-complementaria-opcional",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Desventajas del software libre [LECTURA COMPLEMENTARIA OPCIONAL]",
+    "text": "Desventajas del software libre [LECTURA COMPLEMENTARIA OPCIONAL]\n\nNecesidad de una formación especializada: la gente se suele (o solía) formar con SO privativos.\nAlgunas herramientas incorporan interfaces visuales con más funcionalidad privativas.\nNo siempre hay soporte para todo tipo de hardware (patentes, drivers y especificaciones privativas).\n¿Mayor mercado laboral en sistemas privativos? (en otros sectores, no en administración de sistemas).",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#interfaces-gráficas-de-usuario-lectura-complementaria-opcional",
+    "href": "tema01-introduccion/tema01b-software-libre.html#interfaces-gráficas-de-usuario-lectura-complementaria-opcional",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Interfaces gráficas de usuario [LECTURA COMPLEMENTARIA OPCIONAL]",
+    "text": "Interfaces gráficas de usuario [LECTURA COMPLEMENTARIA OPCIONAL]\n\nMuchas distribuciones traen GUIs o herramientas visuales propias.\n\nSon útiles y facilitan las tareas, sobre todo para sysadmins noveles.\nSuelen ser propietarias.\nO nos hacen dependientes de una distribución en concreto.\nA veces poseen oscuros detalles en la forma de gestionar los recursos.\n\nVamos a estudiar siempre la tecnología y métodos subyacentes, incluyendo ficheros de configuración, comandos, etc…\n\nEstos suelen ser comunes a todas las distribuciones, incluso a todos los sistemas Unix.\nLa configuración manual es mejor: más rápida, más flexible, más fiable, más potente y más scriptable.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#inciso-cómo-promover-el-software-libre-lectura-complementaria-opcional",
+    "href": "tema01-introduccion/tema01b-software-libre.html#inciso-cómo-promover-el-software-libre-lectura-complementaria-opcional",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Inciso: ¿cómo promover el software libre? [LECTURA COMPLEMENTARIA OPCIONAL]",
+    "text": "Inciso: ¿cómo promover el software libre? [LECTURA COMPLEMENTARIA OPCIONAL]\n\nLa gratuidad no es el punto fuerte del software libre.\nInsistir en la gratuidad supone minusvalorar el resto de ventajas (y es injusto para la gente que lo crea y lo mantiene).\nNo se debe comenzar hablando de dinero a los que toman las decisiones.\nNo hablar del FLOSS en abstracto (“Linux es mejor”): mejor estudiar costes de migración y tratar de cubrir necesidades concretas que no están cubiertas o mejorar lo que hay.\nNo hay que ser impaciente: dejar que el software libre crezca con los clientes, introduciendo mejoras de forma progresiva.",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01b-software-libre.html#referencias",
+    "href": "tema01-introduccion/tema01b-software-libre.html#referencias",
+    "title": "Tema 1.b: Introducción al software libre y GNU/Linux",
+    "section": "Referencias",
+    "text": "Referencias\n\n\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 1. Where to Start. Addison-Wesley. 5th Edition. 2018.\nAeleen Frisch. Essential system administration. Capítulo 1. Introduction to System Administration. O’Reilly and Associates. Tercera edición. 2002.\nMiguel Vidal y José Castro El software libre y la administración de sistemas",
+    "crumbs": [
+      "Tema 1: Software Libre y GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html",
+    "href": "tema01-introduccion/tema01c-proyecto.html",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "",
+    "text": "Esquema anticuado pero bueno",
+    "crumbs": [
+      "Tema 1: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#esquema-general-de-virtual-box",
+    "href": "tema01-introduccion/tema01c-proyecto.html#esquema-general-de-virtual-box",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "",
+    "text": "Esquema anticuado pero bueno",
+    "crumbs": [
+      "Tema 1: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#el-superusuario-o-administrador",
+    "href": "tema01-introduccion/tema01c-proyecto.html#el-superusuario-o-administrador",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "El superusuario o administrador",
+    "text": "El superusuario o administrador\n\nEl administrador o superusuario es el usuario que tiene siempre todos los privilegios sobre cualquier fichero, instrucción u orden del sistema.\nEn GNU/Linux ese usuario es root, que pertenece al grupo root:\n\nDirectorio HOME: /root (o / en modo monousuario).\nSi estamos en el sistema utilizando cualquier otro usuario ¿cómo podemos convertirnos en administrador?\n\nSalir de la sesión y entrar utilizando root como nombre de usuario (deshabilitado por defecto en algunos entornos).\nUtilizar el comando su \\(\\rightarrow\\) nos pedirá la contraseña de root y abrirá una shell donde tendremos privilegios de administración.",
+    "crumbs": [
+      "Tema 1: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#el-superusuario-o-administrador-1",
+    "href": "tema01-introduccion/tema01c-proyecto.html#el-superusuario-o-administrador-1",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "El superusuario o administrador",
+    "text": "El superusuario o administrador\npas@debianpas:~$ whoami\npas\npas@debianpas:~$ su\nContraseña: \nroot@debianpas:/home/debianpas# whoami\nroot",
+    "crumbs": [
+      "Tema 1: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#la-herramienta-sudo",
+    "href": "tema01-introduccion/tema01c-proyecto.html#la-herramienta-sudo",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "La herramienta sudo",
+    "text": "La herramienta sudo\n\nsudo permite a otros usuarios ejecutar órdenes como si fuesen el administrador.\n\n/etc/sudoers \\(\\Rightarrow\\) fichero de configuración\n\nFichero de solo lectura, incluso para root.\nEn él estableceremos “quién puede ejecutar qué y cómo” desde sudo.\nEn la mayoría de distribuciones basta con que el usuario pertenezca al grupo sudo:\n\n\n\nsudo usermod -aG sudo usuario",
+    "crumbs": [
+      "Tema 1: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#la-herramienta-sudo-1",
+    "href": "tema01-introduccion/tema01c-proyecto.html#la-herramienta-sudo-1",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "La herramienta sudo",
+    "text": "La herramienta sudo\n\nvisudo \\(\\Rightarrow\\) orden para modificar el fichero de configuración /etc/sudoers.\n\n# Especificación de privilegios de usuario\nroot    ALL=(ALL:ALL) ALL\n# Los miembros del grupo sudo podrán ejecutar cualquier comando\n%sudo   ALL=(ALL:ALL) ALL\n\nsudo orden \\(\\Rightarrow\\) pide contraseña del usuario.",
+    "crumbs": [
+      "Tema 1: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#ejercicios",
+    "href": "tema01-introduccion/tema01c-proyecto.html#ejercicios",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "Ejercicios",
+    "text": "Ejercicios\n\nWeb Debian: netinstall vs imagen. Opcionalmente Ubuntu será equivalente para casi todo.\nCrear VM + disco + conectar .iso\n\n1-2GB RAM + 5GB de disco es suficiente para trabajar sin entorno gráfico\n\nVamos a instalar sin entorno gráfico\nEn el particionado utilizaremos el por defecto de momento.\nNos piden cosas básicas: ssh (marcar), entorno gráfico (desmarcar todos)…\n\nYa tenemos nuestra máquina lista:\n\nCambiar contraseña por defecto (en imágenes de VPS/nubes)\nTerminamos: no hay ni sudo, vim, etc.\nComo root:\n\nInstalar sudo:\n\napt install sudo\n\nEliminar el CD/ISO de las fuentes de software:\n\nnano /etc/apt/sources.list\n\nAñadir usuario para la administración sudo:\n\nadduser adminpas\nsudo usermod -aG sudo adminpas\n\n¡Ya hemos terminado con root!\n\nCon el usuario adminpas probamos algún comando, por ejemplo: sudo cat /etc/shadow\n¿Qué hace sudo !!?\nExplorar la máquina:\n\nDisco libre, particiones y memoria: df, fdisk -l, free (quizás necesites sudo para alguno)\nProcesadores y núcleos: cat /proc/cpuinfo\nHerramienta apt y repositorios: APT: el comando básico que debes conocer para usar Linux\nActualizarla: apt update && apt upgrade.\n\n¿Cómo apagar o reiniciar desde el terminal de Linux?",
+    "crumbs": [
+      "Tema 1: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#extra-configuración-de-la-máquina",
+    "href": "tema01-introduccion/tema01c-proyecto.html#extra-configuración-de-la-máquina",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "Extra configuración de la máquina",
+    "text": "Extra configuración de la máquina\nPuedes echar un vistazo a las guías de Digital Ocean:\nhttps://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04\nhttps://www.digitalocean.com/community/tutorials/a-linux-command-line-primer\nhttps://www.digitalocean.com/community/tutorials?q=%5BLinux%20Basics%5D",
+    "crumbs": [
+      "Tema 1: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html",
+    "href": "tema01-introduccion/tema01a-introduccion.html",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "",
+    "text": "Definir el sistema informático de una organización.\nDefinir el Departamento de Informática, sus funciones y su organización.\nDefinir el rol del administrador de sistemas dentro de una organización.\nEnumerar las tareas típicas del administrador de sistemas, incluyendo tareas a nivel hardware, mantenimiento software y documentación, soporte a usuarios, servicios, seguridad y copias de seguridad.\nDefinir estrategias y consejos genéricos en administración de sistemas.\n\n\n\n\n\nDistinguir entre las distintas generaciones de sistemas operativos y cómo va surgiendo la necesidad de administrar dichos sistemas operativos o servicios.\nEnumerar los sistemas operativos más usuales.\nExplicar qué es GNULinux, cómo surge, su filosofía y las principales distribuciones de las que disponemos, destacando las más adecuadas para administración de sistemas.\nDefinir qué es el software libre y dar ejemplos de software que no sea libre.\nEnumerar las ventajas del software libre para la administración de sistemas.\nIdentificar el nivel de calado del software libre en administración de sistemas.\nEnumerar desventajas del software libre.\nEnumerar ventajas y desventajas del uso de interfaces gráficas de usuario en administración de sistemas.\nSaber qué es un superusuario y cómo se pueden realizar tareas como superusuario mediante la herramienta sudo.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#objetivos-del-aprendizaje-i",
+    "href": "tema01-introduccion/tema01a-introduccion.html#objetivos-del-aprendizaje-i",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "",
+    "text": "Definir el sistema informático de una organización.\nDefinir el Departamento de Informática, sus funciones y su organización.\nDefinir el rol del administrador de sistemas dentro de una organización.\nEnumerar las tareas típicas del administrador de sistemas, incluyendo tareas a nivel hardware, mantenimiento software y documentación, soporte a usuarios, servicios, seguridad y copias de seguridad.\nDefinir estrategias y consejos genéricos en administración de sistemas.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#objetivos-del-aprendizaje-ii",
+    "href": "tema01-introduccion/tema01a-introduccion.html#objetivos-del-aprendizaje-ii",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "",
+    "text": "Distinguir entre las distintas generaciones de sistemas operativos y cómo va surgiendo la necesidad de administrar dichos sistemas operativos o servicios.\nEnumerar los sistemas operativos más usuales.\nExplicar qué es GNULinux, cómo surge, su filosofía y las principales distribuciones de las que disponemos, destacando las más adecuadas para administración de sistemas.\nDefinir qué es el software libre y dar ejemplos de software que no sea libre.\nEnumerar las ventajas del software libre para la administración de sistemas.\nIdentificar el nivel de calado del software libre en administración de sistemas.\nEnumerar desventajas del software libre.\nEnumerar ventajas y desventajas del uso de interfaces gráficas de usuario en administración de sistemas.\nSaber qué es un superusuario y cómo se pueden realizar tareas como superusuario mediante la herramienta sudo.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#el-sistema-informático",
+    "href": "tema01-introduccion/tema01a-introduccion.html#el-sistema-informático",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "El sistema informático",
+    "text": "El sistema informático\n\nÓpticas posibles del Sistema Informático de una organización\n\nPara la organización: es un departamento como cualquier otro, con unos recursos disponibles para el resto de departamentos.\nPara los informáticos: es un conjunto de servidores, redes y ordenadores personales para “hacer cosas”.\nPara los usuarios: es una herramienta más que proporciona la organización para mejorar su tarea.\nPara la dirección: lo usan como una gran base de datos para hacer consultas que pueden ayudarles en la toma de decisiones.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#el-departamento-de-informática",
+    "href": "tema01-introduccion/tema01a-introduccion.html#el-departamento-de-informática",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "El Departamento de Informática",
+    "text": "El Departamento de Informática\n\nEl Departamento de Informática (o Departamento de Tecnologías de la Información, término algo más general), se encarga de mantener y gestionar el Sistema Informático.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#tareas-del-departamento-de-informática",
+    "href": "tema01-introduccion/tema01a-introduccion.html#tareas-del-departamento-de-informática",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Tareas del Departamento de Informática",
+    "text": "Tareas del Departamento de Informática\n\n\nSistema Informático Físico: Hardware:\n\nServidores: múltiples servidores especializados \\(\\rightarrow\\) + control, - riesgo de fallos.\nOrdenadores Personales y dispositivos móviles: prácticamente uno por trabajador.\nCableado y electrónica de red (concentradores, encaminadores, cortafuegos y conmutadores).\n[Centro de datos]: sala con condiciones físicas y de seguridad para los servidores.\n\nSoftware:\n\nSistemas Operativos: se debe hacer distinción entre el SO/servicios de los servidores/nube y el de los PCs.\nSoftware empresarial de base.\nAplicaciones específicas.\n\nPersonal: Responsable de Informática y Personal Técnico.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática",
+    "href": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Funciones del Dept. de Informática",
+    "text": "Funciones del Dept. de Informática",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática-1",
+    "href": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática-1",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Funciones del Dept. de Informática",
+    "text": "Funciones del Dept. de Informática\nAlgunos ejemplos de tareas:\n\nAdministración de servidores\n\nInstalar, mantener y reparar los servidores que prestan los servicios del sistema informático de la organización.\n\n\n\nAdministración de usuarios\n\nAtención de las necesidades de los usuarios.\nMantenimiento de sus equipos de sobremesa (microinformática).\nParte más “visible” de sus funciones.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática-2",
+    "href": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática-2",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Funciones del Dept. de Informática",
+    "text": "Funciones del Dept. de Informática\n\nAdministración de la red\n\nResponsabilidad sobre la parte física de la red.\nAsegurar que se encuentra en buen funcionamiento y que llega, de forma óptima, a todos los puntos de la organización.\n\n\n\nAdministración de los datos\n\nMantener la integridad de la información de la organización.\nLa información debería de estar en los servidores (aunque a veces se encuentra distribuida por todo el sistema).\n¿Minería de datos?.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática-3",
+    "href": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática-3",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Funciones del Dept. de Informática",
+    "text": "Funciones del Dept. de Informática\n\nAdministración de la web:\n\nMantenimiento del servidor web y, muchas veces, del contenido de la web.\nHomogeneidad global.\n\n\n\nAdministración de la seguridad\n\nLa seguridad informática es compleja:\n\nDesde la seguridad de la información existente,\nhasta la protección física contra robos, incendios…\n\nTarea presente en todas las funciones.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática-4",
+    "href": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática-4",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Funciones del Dept. de Informática",
+    "text": "Funciones del Dept. de Informática\n\nDesarrollo\n\nUna organización suele necesitar software específico.\nA veces, en lugar de comprarlo, se desarrolla. Ejemplos de aplicaciones en la UCO.\nEsta asignatura no cubre este aspecto, en todo caso, cubriría su implantación.\n\n\n\nResponsable de Informática\n\nEs el enlace entre:\n\nlas necesidades de la empresa,\ny el trabajo que se lleva a cabo en el departamento.\n\nDecide: qué software comprar (o si se hace a medida y cómo), servidores necesarios, ordenadores y red de comunicaciones…",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática-5",
+    "href": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática-5",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Funciones del Dept. de Informática",
+    "text": "Funciones del Dept. de Informática\nUCO: Servicio de Informática\n\nSistemas y Comunicaciones: servidores, correo, comunicaciones, infraestructura…\nDesarrollo y Explotación: aplicaciones propias y externas.\nSoporte: administración electrónica, docencia…\nÁrea de Gestión: usuarios, licencias de software, web, sigma…",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#interdependencia",
+    "href": "tema01-introduccion/tema01a-introduccion.html#interdependencia",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Interdependencia",
+    "text": "Interdependencia\n\n\nInterdependencia\n\nCada función \\(\\rightarrow\\) tareas definidas.\nSin embargo, no son independientes, sino que tienen que trabajar coordinadas.\nLas funciones tienen intersecciones en algunos puntos.\nAlgunas tareas tienen que estar mezcladas para conseguir una gestión, un servicio y una atención al usuario en las mejores condiciones posibles.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática-6",
+    "href": "tema01-introduccion/tema01a-introduccion.html#funciones-del-dept.-de-informática-6",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Funciones del Dept. de Informática",
+    "text": "Funciones del Dept. de Informática\n\n\n¿Dar de alta a un usuario en los servicios es una tarea para el administrador de usuarios o para el administrador de servidores?\n\nSi es la misma persona quien hace las dos funciones, no hay problema.\nSi no lo es, se tiene que decidir quién se encarga:\n\nEn caso de que lo haga la persona que administra los servidores, se ha dividido la tarea de dar de alta a los usuarios (y todo lo que comporta) en diversas personas. Hay que valorar si vale la pena.\nSi sólo lo hace la persona que administra a los usuarios, entonces “manipulará” los servidores para hacerlo. Hay que valorar si ello es prudente.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#rol-de-administración-de-sistemas",
+    "href": "tema01-introduccion/tema01a-introduccion.html#rol-de-administración-de-sistemas",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Rol de administración de sistemas",
+    "text": "Rol de administración de sistemas\n\nUn Administrador/a de Sistemas es la persona que tiene la responsabilidad de implementar, configurar, mantener, monitorizar, documentar y asegurar el correcto funcionamiento de un sistema informático, o algún aspecto de éste.\n\n\nEl Administrador/a del Sistemas tiene por objeto garantizar el tiempo de actividad (uptime), rendimiento, uso de recursos y la seguridad de los servidores que administra de forma proactiva.\n\nFuente: http://es.wikipedia.org/wiki/Administrador_de_sistemas\nDentro vídeo: The IT crowd",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#rol-de-administración-de-sistemas-1",
+    "href": "tema01-introduccion/tema01a-introduccion.html#rol-de-administración-de-sistemas-1",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Rol de administración de sistemas",
+    "text": "Rol de administración de sistemas\n\n\nPersona con el poder y la responsabilidad de establecer:\n\nacciones,\nprocedimientos,\ny normas, para lograr que el sistema informático sea:\neficiente,\nseguro,\nfiable,\ny amigable.\n\nCualidades:Autoridad + responsabilidad + servicio + cooperación",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#rol-de-administración-de-sistemas-2",
+    "href": "tema01-introduccion/tema01a-introduccion.html#rol-de-administración-de-sistemas-2",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Rol de administración de sistemas",
+    "text": "Rol de administración de sistemas\n\n¿Qué se espera del administrador?\n\nAmplios conocimientos de todo el sistema: hardware, software, datos, usuarios…\nCapacidad reconocida para tomar decisiones.\nAmbición y espíritu de superación.\nEficacia y moral irreprochables.\nResponsabilidad: se trabaja con datos muy importantes, hay un jefe por encima…",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-nivel-más-hardware",
+    "href": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-nivel-más-hardware",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Tareas detalladas: nivel más hardware",
+    "text": "Tareas detalladas: nivel más hardware\n\nPlanificar y administrar el entorno físico:\n\nDiseñar la habitación, especificar el sistema de refrigeración, las conexiones de energía, el control del entorno (alarma contraincendios, seguridad física…).\n\nPlanificar los cortes de suministro para realizar actualizaciones o para administrar los dispositivos.\nLocalizar, reparar y reemplazar componentes hardware defectuosos.\nConfigurar y mantener la conectividad entre los hosts (redes):\n\nMonitorización, Resolución de problemas, Calidad de servicio…\n\nInstalar y mantener dispositivos del sistema, hardware y drivers. Especificar dispositivos soportados.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-mantenimiento-software-y-documentación",
+    "href": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-mantenimiento-software-y-documentación",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Tareas detalladas: mantenimiento software y documentación",
+    "text": "Tareas detalladas: mantenimiento software y documentación\n\nMantenimiento software:\n\nInstalación y configuración de sistemas operativos.\nDetección de problemas en el software y reparación.\nConfigurar y mantener aplicaciones de negocio:\n\nAplicaciones propias (p.ej. Sigma en la UCO).\ne-mail.\nAgendas, calendarios…\n\n\nDocumentación:\n\nDocumentar todo el sistema.\nMantener documentos sobre configuraciones locales y políticas locales.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-soporte-a-usuarios",
+    "href": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-soporte-a-usuarios",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Tareas detalladas: soporte a usuarios",
+    "text": "Tareas detalladas: soporte a usuarios\n\n\nFormar a los usuarios en el manejo del software y en seguridad.\nAyudar a los usuarios y proporcionar soporte.\nEstablecer un sistema de rastreo de problemas para contestar las cuestiones de los usuarios (sistema Hermes de la UCO para notificación de incidencias).\nAsegurar que los usuarios tiene acceso a toda la documentación.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-servicios",
+    "href": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-servicios",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Tareas detalladas: servicios",
+    "text": "Tareas detalladas: servicios\n\nInstalar y mantener las cuentas de usuario, desarrollar políticas de uso aceptables y de nombrado de usuarios, instalar/configurar/administrar servicio de nombres, manejar las licencias de software…\nDeterminar los requisitos software, los parches a instalar, los servicios a proporcionar y cuáles deshabilitar.\nConfigurar los servicios de red (con sus políticas y sus requisitos de seguridad):\n\nImpresión, ficheros compartidos, servicio de nombres…\n\nInstalar, configurar y administrar servidores web.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-seguridad",
+    "href": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-seguridad",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Tareas detalladas: seguridad",
+    "text": "Tareas detalladas: seguridad\n\n\n\nDeterminar cuotas de disco, políticas de manejo del espacio y monitorizar los ficheros de log.\n\n\n \n\n\n\nConfigurar y manejar la seguridad del sistema:\n\nSeguridad para aplicaciones de negocio.\nLectura de listas de correo de seguridad y de alertas CERT (https://cert.europa.eu/), SNORT (reglas firewall liberadas, pago por alertas inmediatas).\nInstalar y configurar firewall para limitar el acceso de intrusos.\nRecabar evidencias en caso de intrusión y limpiar el rastro.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-copias-de-seguridad",
+    "href": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-copias-de-seguridad",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Tareas detalladas: copias de seguridad",
+    "text": "Tareas detalladas: copias de seguridad",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-copias-de-seguridad-1",
+    "href": "tema01-introduccion/tema01a-introduccion.html#tareas-detalladas-copias-de-seguridad-1",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Tareas detalladas: copias de seguridad",
+    "text": "Tareas detalladas: copias de seguridad\n\nConfigurar y mantener backups del sistema:\n\nDeterminar la estrategia y las políticas de copias de seguridad.\nConfigurar el software de copia.\nRealizar/automatizar copias.\nMantener logs.\nDeterminar planes de supervivencia a catástrofes.\nRealizar restauraciones.\nComprobar la integridad de las copias.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#estrategia-general",
+    "href": "tema01-introduccion/tema01a-introduccion.html#estrategia-general",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Estrategia general",
+    "text": "Estrategia general\n\nEstrategia al realizar una tarea:\n\nPlanearlo antes de hacer los cambios, haciendo un estudio detallado de los pasos que hay que realizar.\nHacer los cambios reversibles, haciendo copia de seguridad del sistema o de los ficheros de configuración a modificar.\nRealizar los cambios de forma incremental, probándolos si fuese posible (más fácil localizar los fallos).\nProbarlo, probarlo, probarlo, …, antes de hacerlo público.\nConocer realmente cómo trabajan las cosas.\n\nCuando se realice cualquier modificación:\n\nPrecaución antes de… probarlo después de…\n\nCuaderno de bitácora.",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#tareas-de-soporte-a-organización-y-tareas-devops",
+    "href": "tema01-introduccion/tema01a-introduccion.html#tareas-de-soporte-a-organización-y-tareas-devops",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Tareas de soporte a organización y tareas DevOps",
+    "text": "Tareas de soporte a organización y tareas DevOps\n\n\n\n\nDespués del perfil “clásico” de administración de sistemas que hemos visto como soporte a una organización resulta pertinente echar un vistazo al de soporte al desarrollo y despliegue de aplicaciones.\nDevOps (acrónimo del inglés): es un conjunto de prácticas que agrupan el desarrollo de software ( Dev ) y las operaciones de TI (Ops ) roadmap.sh/devops",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#tecnologías-y-productos-para-devops",
+    "href": "tema01-introduccion/tema01a-introduccion.html#tecnologías-y-productos-para-devops",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Tecnologías y productos para DevOps",
+    "text": "Tecnologías y productos para DevOps",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#vale-pero-por-dónde-empezar",
+    "href": "tema01-introduccion/tema01a-introduccion.html#vale-pero-por-dónde-empezar",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Vale, ¿pero por dónde empezar?",
+    "text": "Vale, ¿pero por dónde empezar?\n\nInstalar GNU/Linux:\n\nIdeal: Uso cotidiano como sistema operativo de tu PC\nMenos ideal: Máquina virtual\n\nAprende a “vivir en la terminal”:\n\nEl Arte del Terminal.\n\nAprende algún editor de texto para el terminal:\n\nFácil: nano\nIntermedio-productivo: vi/vim viene instalado en todas las distribuciones de GNU/Linux y *BSD\nDifícil-Pro: emacs: “emacs está bien como sistema operativo pero le falta un buen editor de texto”",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01a-introduccion.html#vim-vs-emacs",
+    "href": "tema01-introduccion/tema01a-introduccion.html#vim-vs-emacs",
+    "title": "Tema 1.a: Introducción a la administración de sistemas",
+    "section": "Vim vs Emacs",
+    "text": "Vim vs Emacs",
+    "crumbs": [
+      "Tema 1: Introducción"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Programación y Administración de Sistemas",
@@ -784,7 +1024,7 @@
     "href": "index.html#contenido-en-pdf",
     "title": "Programación y Administración de Sistemas",
     "section": "Contenido en PDF",
-    "text": "Contenido en PDF\nPuedes acceder también al contenido de esta asignatura en formato PDF imprimible:\n\nInicio\nTema 0: Presentación",
+    "text": "Contenido en PDF\nPuedes acceder también al contenido de esta asignatura en formato PDF imprimible:\n\nInicio\nTema 0: Presentación\nTema 1.a: Introducción\nTema 1.b: Software Libre y GNU/Linux”\nTema 1.c: Virtual Box, Debian y configuración básica",
     "crumbs": [
       "Inicio"
     ]
@@ -798,257 +1038,5 @@
     "crumbs": [
       "Inicio"
     ]
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html",
-    "href": "tema01-introduccion/tema01-introduccion.html",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "",
-    "text": "Definir el sistema informático de una organización.\nDefinir el Departamento de Informática, sus funciones y su organización.\nDefinir el rol del administrador de sistemas dentro de una organización.\nEnumerar las tareas típicas del administrador de sistemas, incluyendo tareas a nivel hardware, mantenimiento software y documentación, soporte a usuarios, servicios, seguridad y copias de seguridad.\nDefinir estrategias y consejos genéricos en administración de sistemas.\n\n\n\n\n\nDistinguir entre las distintas generaciones de sistemas operativos y cómo va surgiendo la necesidad de administrar dichos sistemas operativos o servicios.\nEnumerar los sistemas operativos más usuales.\nExplicar qué es GNULinux, cómo surge, su filosofía y las principales distribuciones de las que disponemos, destacando las más adecuadas para administración de sistemas.\nDefinir qué es el software libre y dar ejemplos de software que no sea libre.\nEnumerar las ventajas del software libre para la administración de sistemas.\nIdentificar el nivel de calado del software libre en administración de sistemas.\nEnumerar desventajas del software libre.\nEnumerar ventajas y desventajas del uso de interfaces gráficas de usuario en administración de sistemas.\nSaber qué es un superusuario y cómo se pueden realizar tareas como superusuario mediante la herramienta sudo."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#objetivos-del-aprendizaje-i",
-    "href": "tema01-introduccion/tema01-introduccion.html#objetivos-del-aprendizaje-i",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "",
-    "text": "Definir el sistema informático de una organización.\nDefinir el Departamento de Informática, sus funciones y su organización.\nDefinir el rol del administrador de sistemas dentro de una organización.\nEnumerar las tareas típicas del administrador de sistemas, incluyendo tareas a nivel hardware, mantenimiento software y documentación, soporte a usuarios, servicios, seguridad y copias de seguridad.\nDefinir estrategias y consejos genéricos en administración de sistemas."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#objetivos-del-aprendizaje-ii",
-    "href": "tema01-introduccion/tema01-introduccion.html#objetivos-del-aprendizaje-ii",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "",
-    "text": "Distinguir entre las distintas generaciones de sistemas operativos y cómo va surgiendo la necesidad de administrar dichos sistemas operativos o servicios.\nEnumerar los sistemas operativos más usuales.\nExplicar qué es GNULinux, cómo surge, su filosofía y las principales distribuciones de las que disponemos, destacando las más adecuadas para administración de sistemas.\nDefinir qué es el software libre y dar ejemplos de software que no sea libre.\nEnumerar las ventajas del software libre para la administración de sistemas.\nIdentificar el nivel de calado del software libre en administración de sistemas.\nEnumerar desventajas del software libre.\nEnumerar ventajas y desventajas del uso de interfaces gráficas de usuario en administración de sistemas.\nSaber qué es un superusuario y cómo se pueden realizar tareas como superusuario mediante la herramienta sudo."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#generaciones-de-los-sistemas-operativos",
-    "href": "tema01-introduccion/tema01-introduccion.html#generaciones-de-los-sistemas-operativos",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Generaciones de los sistemas operativos",
-    "text": "Generaciones de los sistemas operativos\nPrimera generación (1945-1955)\n\nOrdenadores muy voluminosos, tarjetas perforadas.\nNo necesitaban Sistema Operativo (SO), el operario introducía la tarjeta con el código correspondiente.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFuente: https://es.wikipedia.org/wiki/Error_de_software\nFuente: https://en.wikipedia.org/wiki/Patch_%28computing%29"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#generaciones-de-los-sistemas-operativos-1",
-    "href": "tema01-introduccion/tema01-introduccion.html#generaciones-de-los-sistemas-operativos-1",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Generaciones de los sistemas operativos",
-    "text": "Generaciones de los sistemas operativos\nSegunda generación (1955-1968)\n\nAparecen los transistores, los ordenadores disminuyen de tamaño y se puede empezar a pensar en SOs.\nLenguaje de Control de Tareas (JCL).\nLenguajes de alto nivel y de bajo nivel (assembler).\nSe comienza a hablar de superusuarios y de usuarios.\nDispositivos de entrada/salida (cintas magnéticas…)."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#generaciones-de-los-sistemas-operativos-2",
-    "href": "tema01-introduccion/tema01-introduccion.html#generaciones-de-los-sistemas-operativos-2",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Generaciones de los sistemas operativos",
-    "text": "Generaciones de los sistemas operativos\nTercera generación (1968-1981)\n\nAparecen los circuitos integrados (Large Scale Integration, LSI), que incluyen multitud de componentes electrónicos.\nComienzan a aparecer equipos de propósito general.\nNuevos conceptos: escalabilidad, multiprogramación, discos duros.\nMultiprogramación \\(\\rightarrow\\) buffering, gestión de procesos en el SO…\nInfrautilización de los ciclos de CPU \\(\\rightarrow\\) sistemas de tiempo compartido."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#generaciones-de-los-sistemas-operativos-3",
-    "href": "tema01-introduccion/tema01-introduccion.html#generaciones-de-los-sistemas-operativos-3",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Generaciones de los sistemas operativos",
-    "text": "Generaciones de los sistemas operativos\nCuarta generación (1981-2001)\n\nAparecen los Very Large Scale Integration, VLSI, y los microprocesadores: ORDENADOR PERSONAL.\nConectividad de dispositivos (Plug and play).\nAplicaciones cliente/servidor.\nMáquinas virtuales, porciones virtuales…\n\nQuinta generación\n\nTendencia a que los ordenadores los puedan manejar personas no expertas en la informática."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#sistemas-operativos-históricos",
-    "href": "tema01-introduccion/tema01-introduccion.html#sistemas-operativos-históricos",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Sistemas operativos históricos",
-    "text": "Sistemas operativos históricos\n\n\n\nUNIX: Es un sistema operativo, multitarea y multiusuario; desarrollado en principio por un grupo de empleados de los laboratorios Bell de AT&T.\nMac OS: es el nombre del primer sistema operativo de Apple para los ordenadores Macintosh.\nWindows: Es un sistema operativo gráfico para ordenadores personales cuyo propietario es la empresa Microsoft."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#sistemas-operativos-actuales",
-    "href": "tema01-introduccion/tema01-introduccion.html#sistemas-operativos-actuales",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Sistemas operativos actuales",
-    "text": "Sistemas operativos actuales"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#cuotas-sistemas-operativos",
-    "href": "tema01-introduccion/tema01-introduccion.html#cuotas-sistemas-operativos",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Cuotas sistemas operativos",
-    "text": "Cuotas sistemas operativos"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#el-sistema-informático",
-    "href": "tema01-introduccion/tema01-introduccion.html#el-sistema-informático",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "El sistema informático",
-    "text": "El sistema informático\n\nÓpticas posibles del Sistema Informático de una organización\n\nPara la organización: es un departamento como cualquier otro, con unos recursos disponibles para el resto de departamentos.\nPara los informáticos: es un conjunto de servidores, redes y ordenadores personales para “hacer cosas”.\nPara los usuarios: es una herramienta más que proporciona la organización para mejorar su tarea.\nPara la dirección: lo usan como una gran base de datos para hacer consultas que pueden ayudarles en la toma de decisiones."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#el-departamento-de-informática",
-    "href": "tema01-introduccion/tema01-introduccion.html#el-departamento-de-informática",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "El Departamento de Informática",
-    "text": "El Departamento de Informática\n\nEl Departamento de Informática (o Departamento de Tecnologías de la Información, término algo más general), se encarga de mantener y gestionar el Sistema Informático."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#tareas-del-departamento-de-informática",
-    "href": "tema01-introduccion/tema01-introduccion.html#tareas-del-departamento-de-informática",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Tareas del Departamento de Informática",
-    "text": "Tareas del Departamento de Informática\n\n\nSistema Informático Físico: Hardware:\n\nServidores: múltiples servidores especializados \\(\\rightarrow\\) + control, - riesgo de fallos.\nOrdenadores Personales y dispositivos móviles: prácticamente uno por trabajador.\nCableado y electrónica de red (concentradores, encaminadores, cortafuegos y conmutadores).\n[Centro de datos]: sala con condiciones físicas y de seguridad para los servidores.\n\nSoftware:\n\nSistemas Operativos: se debe hacer distinción entre el SO/servicios de los servidores/nube y el de los PCs.\nSoftware empresarial de base.\nAplicaciones específicas.\n\nPersonal: Responsable de Informática y Personal Técnico."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática",
-    "href": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Funciones del Dept. de Informática",
-    "text": "Funciones del Dept. de Informática"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática-1",
-    "href": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática-1",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Funciones del Dept. de Informática",
-    "text": "Funciones del Dept. de Informática\nAlgunos ejemplos de tareas:\n\nAdministración de servidores\n\nInstalar, mantener y reparar los servidores que prestan los servicios del sistema informático de la organización.\n\n\n\nAdministración de usuarios\n\nAtención de las necesidades de los usuarios.\nMantenimiento de sus equipos de sobremesa (microinformática).\nParte más “visible” de sus funciones."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática-2",
-    "href": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática-2",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Funciones del Dept. de Informática",
-    "text": "Funciones del Dept. de Informática\n\nAdministración de la red\n\nResponsabilidad sobre la parte física de la red.\nAsegurar que se encuentra en buen funcionamiento y que llega, de forma óptima, a todos los puntos de la organización.\n\n\n\nAdministración de los datos\n\nMantener la integridad de la información de la organización.\nLa información debería de estar en los servidores (aunque a veces se encuentra distribuida por todo el sistema).\n¿Minería de datos?."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática-3",
-    "href": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática-3",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Funciones del Dept. de Informática",
-    "text": "Funciones del Dept. de Informática\n\nAdministración de la web:\n\nMantenimiento del servidor web y, muchas veces, del contenido de la web.\nHomogeneidad global.\n\n\n\nAdministración de la seguridad\n\nLa seguridad informática es compleja:\n\nDesde la seguridad de la información existente,\nhasta la protección física contra robos, incendios…\n\nTarea presente en todas las funciones."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática-4",
-    "href": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática-4",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Funciones del Dept. de Informática",
-    "text": "Funciones del Dept. de Informática\n\nDesarrollo\n\nUna organización suele necesitar software específico.\nA veces, en lugar de comprarlo, se desarrolla. Ejemplos de aplicaciones en la UCO.\nEsta asignatura no cubre este aspecto, en todo caso, cubriría su implantación.\n\n\n\nResponsable de Informática\n\nEs el enlace entre:\n\nlas necesidades de la empresa,\ny el trabajo que se lleva a cabo en el departamento.\n\nDecide: qué software comprar (o si se hace a medida y cómo), servidores necesarios, ordenadores y red de comunicaciones…"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática-5",
-    "href": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática-5",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Funciones del Dept. de Informática",
-    "text": "Funciones del Dept. de Informática\nUCO: Servicio de Informática\n\nSistemas y Comunicaciones: servidores, correo, comunicaciones, infraestructura…\nDesarrollo y Explotación: aplicaciones propias y externas.\nSoporte: administración electrónica, docencia…\nÁrea de Gestión: usuarios, licencias de software, web, sigma…"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#interdependencia",
-    "href": "tema01-introduccion/tema01-introduccion.html#interdependencia",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Interdependencia",
-    "text": "Interdependencia\n\n\nInterdependencia\n\nCada función \\(\\rightarrow\\) tareas definidas.\nSin embargo, no son independientes, sino que tienen que trabajar coordinadas.\nLas funciones tienen intersecciones en algunos puntos.\nAlgunas tareas tienen que estar mezcladas para conseguir una gestión, un servicio y una atención al usuario en las mejores condiciones posibles."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática-6",
-    "href": "tema01-introduccion/tema01-introduccion.html#funciones-del-dept.-de-informática-6",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Funciones del Dept. de Informática",
-    "text": "Funciones del Dept. de Informática\n\n\n¿Dar de alta a un usuario en los servicios es una tarea para el administrador de usuarios o para el administrador de servidores?\n\nSi es la misma persona quien hace las dos funciones, no hay problema.\nSi no lo es, se tiene que decidir quién se encarga:\n\nEn caso de que lo haga la persona que administra los servidores, se ha dividido la tarea de dar de alta a los usuarios (y todo lo que comporta) en diversas personas. Hay que valorar si vale la pena.\nSi sólo lo hace la persona que administra a los usuarios, entonces “manipulará” los servidores para hacerlo. Hay que valorar si ello es prudente."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#rol-de-administración-de-sistemas",
-    "href": "tema01-introduccion/tema01-introduccion.html#rol-de-administración-de-sistemas",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Rol de administración de sistemas",
-    "text": "Rol de administración de sistemas\n\nUn Administrador/a de Sistemas es la persona que tiene la responsabilidad de implementar, configurar, mantener, monitorizar, documentar y asegurar el correcto funcionamiento de un sistema informático, o algún aspecto de éste.\n\n\nEl Administrador/a del Sistemas tiene por objeto garantizar el tiempo de actividad (uptime), rendimiento, uso de recursos y la seguridad de los servidores que administra de forma proactiva.\n\nFuente: http://es.wikipedia.org/wiki/Administrador_de_sistemas\nDentro vídeo: The IT crowd"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#rol-de-administración-de-sistemas-1",
-    "href": "tema01-introduccion/tema01-introduccion.html#rol-de-administración-de-sistemas-1",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Rol de administración de sistemas",
-    "text": "Rol de administración de sistemas\n\n\nPersona con el poder y la responsabilidad de establecer:\n\nacciones,\nprocedimientos,\ny normas, para lograr que el sistema informático sea:\neficiente,\nseguro,\nfiable,\ny amigable.\n\nCualidades:Autoridad + responsabilidad + servicio + cooperación"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#rol-de-administración-de-sistemas-2",
-    "href": "tema01-introduccion/tema01-introduccion.html#rol-de-administración-de-sistemas-2",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Rol de administración de sistemas",
-    "text": "Rol de administración de sistemas\n\n¿Qué se espera del administrador?\n\nAmplios conocimientos de todo el sistema: hardware, software, datos, usuarios…\nCapacidad reconocida para tomar decisiones.\nAmbición y espíritu de superación.\nEficacia y moral irreprochables.\nResponsabilidad: se trabaja con datos muy importantes, hay un jefe por encima…"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-nivel-más-hardware",
-    "href": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-nivel-más-hardware",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Tareas detalladas: nivel más hardware",
-    "text": "Tareas detalladas: nivel más hardware\n\nPlanificar y administrar el entorno físico:\n\nDiseñar la habitación, especificar el sistema de refrigeración, las conexiones de energía, el control del entorno (alarma contraincendios, seguridad física…).\n\nPlanificar los cortes de suministro para realizar actualizaciones o para administrar los dispositivos.\nLocalizar, reparar y reemplazar componentes hardware defectuosos.\nConfigurar y mantener la conectividad entre los hosts (redes):\n\nMonitorización, Resolución de problemas, Calidad de servicio…\n\nInstalar y mantener dispositivos del sistema, hardware y drivers. Especificar dispositivos soportados."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-mantenimiento-software-y-documentación",
-    "href": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-mantenimiento-software-y-documentación",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Tareas detalladas: mantenimiento software y documentación",
-    "text": "Tareas detalladas: mantenimiento software y documentación\n\nMantenimiento software:\n\nInstalación y configuración de sistemas operativos.\nDetección de problemas en el software y reparación.\nConfigurar y mantener aplicaciones de negocio:\n\nAplicaciones propias (p.ej. Sigma en la UCO).\ne-mail.\nAgendas, calendarios…\n\n\nDocumentación:\n\nDocumentar todo el sistema.\nMantener documentos sobre configuraciones locales y políticas locales."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-soporte-a-usuarios",
-    "href": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-soporte-a-usuarios",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Tareas detalladas: soporte a usuarios",
-    "text": "Tareas detalladas: soporte a usuarios\n\n\nFormar a los usuarios en el manejo del software y en seguridad.\nAyudar a los usuarios y proporcionar soporte.\nEstablecer un sistema de rastreo de problemas para contestar las cuestiones de los usuarios (sistema Hermes de la UCO para notificación de incidencias).\nAsegurar que los usuarios tiene acceso a toda la documentación."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-servicios",
-    "href": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-servicios",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Tareas detalladas: servicios",
-    "text": "Tareas detalladas: servicios\n\nInstalar y mantener las cuentas de usuario, desarrollar políticas de uso aceptables y de nombrado de usuarios, instalar/configurar/administrar servicio de nombres, manejar las licencias de software…\nDeterminar los requisitos software, los parches a instalar, los servicios a proporcionar y cuáles deshabilitar.\nConfigurar los servicios de red (con sus políticas y sus requisitos de seguridad):\n\nImpresión, ficheros compartidos, servicio de nombres…\n\nInstalar, configurar y administrar servidores web."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-seguridad",
-    "href": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-seguridad",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Tareas detalladas: seguridad",
-    "text": "Tareas detalladas: seguridad\n\n\n\nDeterminar cuotas de disco, políticas de manejo del espacio y monitorizar los ficheros de log.\n\n\n \n\n\n\nConfigurar y manejar la seguridad del sistema:\n\nSeguridad para aplicaciones de negocio.\nLectura de listas de correo de seguridad y de alertas CERT (https://cert.europa.eu/), SNORT (reglas firewall liberadas, pago por alertas inmediatas).\nInstalar y configurar firewall para limitar el acceso de intrusos.\nRecabar evidencias en caso de intrusión y limpiar el rastro."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-copias-de-seguridad",
-    "href": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-copias-de-seguridad",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Tareas detalladas: copias de seguridad",
-    "text": "Tareas detalladas: copias de seguridad"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-copias-de-seguridad-1",
-    "href": "tema01-introduccion/tema01-introduccion.html#tareas-detalladas-copias-de-seguridad-1",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Tareas detalladas: copias de seguridad",
-    "text": "Tareas detalladas: copias de seguridad\n\nConfigurar y mantener backups del sistema:\n\nDeterminar la estrategia y las políticas de copias de seguridad.\nConfigurar el software de copia.\nRealizar/automatizar copias.\nMantener logs.\nDeterminar planes de supervivencia a catástrofes.\nRealizar restauraciones.\nComprobar la integridad de las copias."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#estrategia-general",
-    "href": "tema01-introduccion/tema01-introduccion.html#estrategia-general",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Estrategia general",
-    "text": "Estrategia general\n\nEstrategia al realizar una tarea:\n\nPlanearlo antes de hacer los cambios, haciendo un estudio detallado de los pasos que hay que realizar.\nHacer los cambios reversibles, haciendo copia de seguridad del sistema o de los ficheros de configuración a modificar.\nRealizar los cambios de forma incremental, probándolos si fuese posible (más fácil localizar los fallos).\nProbarlo, probarlo, probarlo, …, antes de hacerlo público.\nConocer realmente cómo trabajan las cosas.\n\nCuando se realice cualquier modificación:\n\nPrecaución antes de… probarlo después de…\n\nCuaderno de bitácora."
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#tareas-de-soporte-a-organización-y-tareas-devops",
-    "href": "tema01-introduccion/tema01-introduccion.html#tareas-de-soporte-a-organización-y-tareas-devops",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Tareas de soporte a organización y tareas DevOps",
-    "text": "Tareas de soporte a organización y tareas DevOps\n\n\n\n\nDespués del perfil “clásico” de administración de sistemas que hemos visto como soporte a una organización resulta pertinente echar un vistazo al de soporte al desarrollo y despliegue de aplicaciones.\nDevOps (acrónimo del inglés): es un conjunto de prácticas que agrupan el desarrollo de software ( Dev ) y las operaciones de TI (Ops ) roadmap.sh/devops"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#tecnologías-y-productos-para-devops",
-    "href": "tema01-introduccion/tema01-introduccion.html#tecnologías-y-productos-para-devops",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Tecnologías y productos para DevOps",
-    "text": "Tecnologías y productos para DevOps"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#vale-pero-por-dónde-empezar",
-    "href": "tema01-introduccion/tema01-introduccion.html#vale-pero-por-dónde-empezar",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Vale, ¿pero por dónde empezar?",
-    "text": "Vale, ¿pero por dónde empezar?\n\nInstalar GNU/Linux:\n\nIdeal: Uso cotidiano como sistema operativo de tu PC\nMenos ideal: Máquina virtual\n\nAprende a “vivir en la terminal”:\n\nEl Arte del Terminal.\n\nAprende algún editor de texto para el terminal:\n\nFácil: nano\nIntermedio-productivo: vi/vim viene instalado en todas las distribuciones de GNU/Linux y *BSD\nDifícil-Pro: emacs: “emacs está bien como sistema operativo pero le falta un buen editor de texto”"
-  },
-  {
-    "objectID": "tema01-introduccion/tema01-introduccion.html#vim-vs-emacs",
-    "href": "tema01-introduccion/tema01-introduccion.html#vim-vs-emacs",
-    "title": "Tema 1: Introducción a la administración de sistemas",
-    "section": "Vim vs Emacs",
-    "text": "Vim vs Emacs"
   }
 ]
