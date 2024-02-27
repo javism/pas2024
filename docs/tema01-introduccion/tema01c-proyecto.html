@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -143,7 +143,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tema01-introduccion/tema01c-proyecto.html">Tema 1: Virtual Box, Debian y configuración básica</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tema01-introduccion/tema01c-proyecto.html">Tema 1.c: Virtual Box, Debian y configuración básica</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -183,19 +183,19 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tema01-introduccion/tema01a-introduccion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tema 1: Introducción</span></a>
+ <span class="menu-text">Tema 1.a: Introducción</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tema01-introduccion/tema01b-software-libre.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tema 1: Software Libre y GNU/Linux</span></a>
+ <span class="menu-text">Tema 1.b: Software Libre y GNU/Linux</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tema01-introduccion/tema01c-proyecto.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Tema 1: Virtual Box, Debian y configuración básica</span></a>
+ <span class="menu-text">Tema 1.c: Virtual Box, Debian y configuración básica</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -256,7 +256,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">26 de febrero de 2024</p>
+      <p class="date">27 de febrero de 2024</p>
     </div>
   </div>
   
@@ -349,10 +349,11 @@ window.Quarto = {
 <li>Crear VM + disco + conectar .iso
 <ul>
 <li>1-2GB RAM + 5GB de disco es suficiente para trabajar sin entorno gráfico</li>
+<li><strong>Importante</strong>: Desmarcar “Instalación desatendida”</li>
 </ul></li>
 <li>Vamos a instalar sin entorno gráfico</li>
 <li>En el particionado utilizaremos el por defecto de momento.</li>
-<li>Nos piden cosas básicas: ssh (marcar), entorno gráfico (desmarcar todos)…</li>
+<li>Nos piden cosas básicas que podemos elegir con la barra de espacio: <strong>ssh (marcar)</strong>, entorno gráfico (desmarcar todos)…</li>
 </ol>
 <p>Ya tenemos nuestra máquina lista:</p>
 <ol type="1">
@@ -374,9 +375,14 @@ window.Quarto = {
 <li><code>sudo usermod -aG sudo adminpas</code></li>
 </ol></li>
 <li>¡Ya hemos terminado con <code>root</code>!</li>
+<li>Debemos salir e iniciar sesión de nuevo con <code>adminpas</code> para que los cambios hagan efecto.</li>
 </ol></li>
 <li>Con el usuario <code>adminpas</code> probamos algún comando, por ejemplo: <code>sudo cat /etc/shadow</code></li>
 <li>¿Qué hace <code>sudo !!</code>?</li>
+<li>Configurar SSH y su acceso a través de Virtual Box:
+<ol type="1">
+<li>Configuración de máquina -&gt; Red -&gt; Avanzada -&gt; Reenvío de puertos (2222 en anfitrión al 22 huesped)</li>
+</ol></li>
 <li>Explorar la máquina:
 <ol type="1">
 <li>Disco libre, particiones y memoria: <code>df</code>, <code>fdisk -l</code>, <code>free</code> (quizás necesites <code>sudo</code> para alguno)</li>
@@ -384,12 +390,13 @@ window.Quarto = {
 <li>Herramienta apt y repositorios: <a href="https://www.softzone.es/linux/programas/comando-apt/">APT: el comando básico que debes conocer para usar Linux</a></li>
 <li>Actualizarla: <code>apt update &amp;&amp; apt upgrade</code>.</li>
 </ol></li>
+<li>Prueba a repetir la exploración de disco, etc. conectándote a ts.uco.es: <code>ssh usuario@ts.uco.es</code>.</li>
 <li><a href="https://duckduckgo.com/?t=ffab&amp;q=%C2%BFC%C3%B3mo+apagar+o+reiniciar+desde+el+terminal+de+Linux&amp;ia=web">¿Cómo apagar o reiniciar desde el terminal de Linux?</a></li>
 </ol>
 </section>
 <section id="extra-configuración-de-la-máquina" class="level2 scrollable" data-background-color="lightgreen">
 <h2 class="scrollable anchored" data-background-color="lightgreen" data-anchor-id="extra-configuración-de-la-máquina">Extra configuración de la máquina</h2>
-<p>Puedes echar un vistazo a las guías de Digital Ocean:</p>
+<p>Puedes echar un vistazo a las guías de Digital Ocean para qué hacer después de instalar una nueva máquina:</p>
 <p><a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04" class="uri">https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04</a></p>
 <p><a href="https://www.digitalocean.com/community/tutorials/a-linux-command-line-primer" class="uri">https://www.digitalocean.com/community/tutorials/a-linux-command-line-primer</a></p>
 <p><a href="https://www.digitalocean.com/community/tutorials?q=%5BLinux%20Basics%5D" class="uri">https://www.digitalocean.com/community/tutorials?q=%5BLinux%20Basics%5D</a></p>
