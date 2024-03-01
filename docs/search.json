@@ -1,5 +1,355 @@
 [
   {
+    "objectID": "tema00-presentacion/presentacion.html",
+    "href": "tema00-presentacion/presentacion.html",
+    "title": "Tema 0: Presentación",
+    "section": "",
+    "text": "Todo el material mínimo y opcional de la asignatura está disponible en la plataforma Moodle de la UCO:\n\nhttp://moodle.uco.es/m2324\nCurso: Programación y Administración de Sistemas ( GIINF-2-101390-1-1)\n\n\n\n\n\nCordinación y teoría: Javier Sánchez Monedero\n\n\nPrácticas:\n\nPrácticas 1-3: María Isabel Jiménez Velasco y Víctor Manuel Vargas Yun\nPráctica 4: Enrique García Salcines\n\n\nHorarios de tutoría y datos de contacto en Moodle.\n\n\n\nEl uso de los móviles en la educación puede tener tanto efectos positivos como negativos.\n\n\n\n\n\n\nEfectos positivos:\n\n\n\n\nFacilita el acceso a la información y recursos educativos en línea.\nMejora la colaboración y el trabajo en equipo a través de aplicaciones y herramientas en línea\nFomenta la independencia y el aprendizaje autónomo.\nAumenta la motivación y el interés por el aprendizaje.\n\n\n\n\n\n\n\n\n\n\n\n\nEfectos negativos:\n\n\n\n\nDistracción y pérdida de concentración en la clase.\nUso inadecuado y poco ético, como la trampa en exámenes o el acceso a contenido no apropiado.\nAdicción a los dispositivos y dependencia en la tecnología.\nDesigualdades socioeconómicas, ya que no todos los estudiantes tienen acceso a dispositivos de alta calidad o a una conexión a Internet confiable.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#moodle",
+    "href": "tema00-presentacion/presentacion.html#moodle",
+    "title": "Tema 0: Presentación",
+    "section": "",
+    "text": "Todo el material mínimo y opcional de la asignatura está disponible en la plataforma Moodle de la UCO:\n\nhttp://moodle.uco.es/m2324\nCurso: Programación y Administración de Sistemas ( GIINF-2-101390-1-1)",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#profesorado",
+    "href": "tema00-presentacion/presentacion.html#profesorado",
+    "title": "Tema 0: Presentación",
+    "section": "",
+    "text": "Cordinación y teoría: Javier Sánchez Monedero\n\n\nPrácticas:\n\nPrácticas 1-3: María Isabel Jiménez Velasco y Víctor Manuel Vargas Yun\nPráctica 4: Enrique García Salcines\n\n\nHorarios de tutoría y datos de contacto en Moodle.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-12",
+    "href": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-12",
+    "title": "Tema 0: Presentación",
+    "section": "",
+    "text": "El uso de los móviles en la educación puede tener tanto efectos positivos como negativos.\n\n\n\n\n\n\nEfectos positivos:\n\n\n\n\nFacilita el acceso a la información y recursos educativos en línea.\nMejora la colaboración y el trabajo en equipo a través de aplicaciones y herramientas en línea\nFomenta la independencia y el aprendizaje autónomo.\nAumenta la motivación y el interés por el aprendizaje.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-22",
+    "href": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-22",
+    "title": "Tema 0: Presentación",
+    "section": "",
+    "text": "Efectos negativos:\n\n\n\n\nDistracción y pérdida de concentración en la clase.\nUso inadecuado y poco ético, como la trampa en exámenes o el acceso a contenido no apropiado.\nAdicción a los dispositivos y dependencia en la tecnología.\nDesigualdades socioeconómicas, ya que no todos los estudiantes tienen acceso a dispositivos de alta calidad o a una conexión a Internet confiable.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#actividad-en-clase",
+    "href": "tema00-presentacion/presentacion.html#actividad-en-clase",
+    "title": "Tema 0: Presentación",
+    "section": "Actividad en clase",
+    "text": "Actividad en clase\nEn buscadores genéricos o de empleo busca “administrador/a de sistemas”, “devops”, “sysadmin”\nEjemplos:\n\nhttps://www.linkedin.com/jobs/search/?currentJobId=3825905330&keywords=sysadmin\nhttps://www.infojobs.net/ofertas-trabajo/administrador-a-de-sistemas-informaticos",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#administradora-de-sistemas",
+    "href": "tema00-presentacion/presentacion.html#administradora-de-sistemas",
+    "title": "Tema 0: Presentación",
+    "section": "Administrador/a de sistemas",
+    "text": "Administrador/a de sistemas\n\n\nSegún Wikipedia:\n\nUn Administrador/a de Sistemas es la persona que tiene la responsabilidad de implementar, configurar, mantener, monitorizar, documentar y asegurar el correcto funcionamiento de un sistema informático, o algún aspecto de éste.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#memes",
+    "href": "tema00-presentacion/presentacion.html#memes",
+    "title": "Tema 0: Presentación",
+    "section": "Memes",
+    "text": "Memes\n\nFuente: we are hiring.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#tareas",
+    "href": "tema00-presentacion/presentacion.html#tareas",
+    "title": "Tema 0: Presentación",
+    "section": "Tareas",
+    "text": "Tareas\n\n\nMantener el Sistema Informático de una empresa/institución.\nA nivel software:\n\nInstalar servicios utilizados por la empresa.\nInterconectar servicios (mismo login y contraseña para todo).\nMantener servicios (p.ej. Moodle, servidor de correo…).\nRealizar copias de respaldo de los datos.\nControlar la seguridad.\n\n¿A nivel hardware?",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#software-libre",
+    "href": "tema00-presentacion/presentacion.html#software-libre",
+    "title": "Tema 0: Presentación",
+    "section": "Software libre",
+    "text": "Software libre\nAunque en el escritorio el software privativo sea líder el software libre y los sistemas Linux, FreeBSD, etc. son la opción mayoritaria servidores y supercomputadores.\n\nFuente: Usage share of operating systems en Wikipedia.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#por-qué-software-libre",
+    "href": "tema00-presentacion/presentacion.html#por-qué-software-libre",
+    "title": "Tema 0: Presentación",
+    "section": "¿Por qué software libre?",
+    "text": "¿Por qué software libre?\n\n\n\nEntorno empresarial y de investigación cooperativo.\nAdopción de estándares.\nFlexibilidad, fiabilidad, seguridad, transparencia.\nIndependencia de proveedores.\nÉtica y compromiso social.\nMás económico (¿?)\n\nhttps://www.uco.es/aulasoftwarelibre",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#objetivo",
+    "href": "tema00-presentacion/presentacion.html#objetivo",
+    "title": "Tema 0: Presentación",
+    "section": "Objetivo",
+    "text": "Objetivo\n\nEl objetivo fundamental es que el alumnado que curse la asignatura adquiera los conocimientos básicos y domine las técnicas fundamentales de la Administración de Sistemas Operativos.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#objetivos-concretos",
+    "href": "tema00-presentacion/presentacion.html#objetivos-concretos",
+    "title": "Tema 0: Presentación",
+    "section": "Objetivos concretos",
+    "text": "Objetivos concretos\n\n\n\nConocer los comandos básicos y las secuencias de pasos necesarias para instalar y administrar sistemas.\nConocer y manejar los ficheros de configuración de los sistemas.\nAdquirir conocimientos básicos sobre lenguajes de scripting y de programación de la Shell.\nComprender cómo se organiza el sistema operativo y los subsistemas POSIX para poder escribir aplicaciones que interaccionen con los mismos.\nInstalar y mantener servicios en Sistemas Distribuidos.\nAdquirir conceptos teóricos y prácticos de rendimiento y seguridad en sistemas.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#temario",
+    "href": "tema00-presentacion/presentacion.html#temario",
+    "title": "Tema 0: Presentación",
+    "section": "Temario",
+    "text": "Temario\n\nIntroducción a la administración de sistemas.\nOrganización de un sistema operativo GNU/Linux.\nGestión de usuarios.\nArranque y parada del sistema y servicios.\nMonitorización y gestión de recursos.\nOrganización de sistemas de ficheros y discos.\nAdministración de sistemas de ficheros y discos.\nRestauración y copias de seguridad\nGestión de las comunicaciones.\nVirtualización.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#temario-prácticas",
+    "href": "tema00-presentacion/presentacion.html#temario-prácticas",
+    "title": "Tema 0: Presentación",
+    "section": "Temario prácticas",
+    "text": "Temario prácticas\n\nBloque I:\n\nProgramación de la shell.\nExpresiones regulares para la programación de la shell.\n\n\n\nBloque II:\n\nProgramación en POSIX.\nAdministración de servidores web: Apache.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#planificación-asignatura",
+    "href": "tema00-presentacion/presentacion.html#planificación-asignatura",
+    "title": "Tema 0: Presentación",
+    "section": "Planificación asignatura",
+    "text": "Planificación asignatura\nCalendario aproximado teoría\nCalendario aproximado prácticas\nProvisional: seminarios aulas y/o profesionales.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#bibliografía-1",
+    "href": "tema00-presentacion/presentacion.html#bibliografía-1",
+    "title": "Tema 0: Presentación",
+    "section": "Bibliografía",
+    "text": "Bibliografía\nBásica para seguir la asignatura:\n\nUNIX and Linux System Administration Handbook, 5th Edition. Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley and Dan Mackin. Addison-Wesley. 2018.\nEssential System Administration (3a ed.). Aeleen Frisch. O’Reilly & Associates. 2002.\nEl Arte del Terminal, Joshua Levy, 2023.\n\nAdicional:\n\nAdministración de sistemas Linux. Adelstein, Tom. Lubanovic, Bill. Anaya multimedia, O Reilly. 2007.\nUnix shell programming, 3a Edición. Kochan, Wood. Sams Publishing. 2003.\nLPI Linux Certification in a Nutshell, Third Edition. Adam Haeder, Stephen Addison Schneiter, Bruno Gomes Pessanha, and James Stanger. 2010.\nK. A. Robbind, S. Robbins. Unix Systems Programming. Prentice Hall, 2003",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#evaluación-1",
+    "href": "tema00-presentacion/presentacion.html#evaluación-1",
+    "title": "Tema 0: Presentación",
+    "section": "Evaluación",
+    "text": "Evaluación\n\nLeer detenidamente la guı́a docente.\nLa evaluación de la asignatura se divide en dos partes, parte teórica y parte práctica (Teorı́a 50 % + Práctica 50 %).\nPara aprobar la asignatura es necesario obtener al menos 5 sobre 10 puntos en la parte de prácticas y 5 sobre 10 puntos en la parte de teorı́a. En caso contrario, la asignatura se considera suspensa.\nSi se aprueba solo la teorı́a o solo la práctica, la nota correspondiente se guarda hasta la convocatoria de septiembre.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas",
+    "href": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas",
+    "title": "Tema 0: Presentación",
+    "section": "Evaluación: exámenes y pruebas",
+    "text": "Evaluación: exámenes y pruebas\nLa parte de teorı́a (50 % de la nota) se evaluará con un examen final teórico que estará compuesto de:\n\nPruebas objetivas tipo test (20 %, mı́nimo 5 sobre 10).\nPruebas de respuesta corta con supuestos prácticos que versen sobre los contenido teóricos dados en clase (30 %, mı́nimo 5 sobre 10).\n\nLa parte de prácticas (50 % de la nota) se organiza en dos bloques. Consta de:\n\nExamen práctico de programación y administración de sistemas 50 %, mı́nimo 5 sobre 10). Existen dos posibilidades:\n\nExámenes prácticos parciales realizados durante el curso (eliminan materia de cara al examen final).\nExamen práctico final realizado durante el periodo de exámenes.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas-1",
+    "href": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas-1",
+    "title": "Tema 0: Presentación",
+    "section": "Evaluación: exámenes y pruebas",
+    "text": "Evaluación: exámenes y pruebas\n\nPara aprobar las prácticas es necesario aprobar cada Bloque por separado con 5 sobre 10 puntos.\nPara presentarse a las prácticas en la convocatoria de junio es necesario haber asistido a un 80 % de las sesiones de prácticas.\nPara la convocatoria de julio y de septiembre, la asistencia a las prácticas no es requisito.\nLas calificaciones parciales no se guardan de un curso a otro.\nSe guardan calificaciones parciales (bloques de prácticas o teorı́a) dentro de las convocatorias del mismo curso académico.\nLos alumnos a tiempo parcial deben ponerse en contacto con el profesor.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#tareas-de-administración-i",
+    "href": "tema00-presentacion/presentacion.html#tareas-de-administración-i",
+    "title": "Tema 0: Presentación",
+    "section": "Tareas de administración (I)",
+    "text": "Tareas de administración (I)\n\nResolución de ejercicios teóricos y/o prácticos propuestos y anunciados.\nLas alumnas/os podrán proponer tareas similares a las propuestas.\nEsta nota se guardará para todas las convocatorias del curso académico. Las tareas pueden llegar a valorarse hasta 2 puntos en el examen de teorı́a (sobre 5 puntos). Se tendrá en cuenta para aumentar nota una vez aprobado el examen.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#tareas-de-administración-ii",
+    "href": "tema00-presentacion/presentacion.html#tareas-de-administración-ii",
+    "title": "Tema 0: Presentación",
+    "section": "Tareas de administración (II)",
+    "text": "Tareas de administración (II)\n\nSe deberá redactar un guión donde se detalle paso a paso los comandos y operaciones necesarios para llevar a cabo la tarea, acompañados de capturas cuando ası́ se requiera. El documento deberá ser autocontenido y explicativo y todo se deberá realizar sobre una imagen virtual de un sistema operativo GNU/Linux. Se presentará en clase durante un tiempo aproximado de 10-15 minutos.",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#devops-1",
+    "href": "tema00-presentacion/presentacion.html#devops-1",
+    "title": "Tema 0: Presentación",
+    "section": "DevOps",
+    "text": "DevOps\nroadmap.sh/devops",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema00-presentacion/presentacion.html#dinamización-de-clases",
+    "href": "tema00-presentacion/presentacion.html#dinamización-de-clases",
+    "title": "Tema 0: Presentación",
+    "section": "Dinamización de clases",
+    "text": "Dinamización de clases\n\nIdeal: aula de prácticas para ir probando lo que hacemos…\nQuizz: 1 por tema (cada 2 clases)\nTareas administración\nResolución de casos prácticos\nMemes\n…",
+    "crumbs": [
+      "Tema 0: Presentación"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ejercicios.html",
+    "href": "tema02-organizacion/tema02-ejercicios.html",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux (Ejercicios)",
+    "section": "",
+    "text": "Crea tres usuarios, dos de ellos tendrán un grupo común. Suponiendo que nuestro usuario de administración es pas, lo añadimos al grupo sudo como root:\n/sbin/usermod -aG sudo pas\nCreamos un grupo para la clase y tres usuarios de ejemplo, los dos primeros tendrá como grupo principal clase y el tercero no:\nsudo addgroup clase\nsudo adduser usuario1 --ingroup clase\nsudo adduser usuario2 --ingroup clase\nsudo adduser usuario3\n\n\n\nCon usuario1 Crear un archivo con el contenido HOLA!, utilizando la orden echo, y asignarle permisos para que solo puede ser consultado por su propietario y por los miembros del grupo clase.\nNOTA: Puede ser una buena idea tener varios terminales abiertos con cada usuario del sistema para probar que los permisos son efectivos.\n\n\n\nModifica los permisos por defecto con umask para que los ficheros creados:\n\nno puedan ser leídos por el resto de usuarios y los directorios no puedan ser listados.\npuedan ser leídos y escritos por el grupo.\n\nComprueba que tienen efecto creado ficheros y directorios de ejemplo.\nBusca cómo hacer permanentes en cada usuario los permisos umask.\n\n\n\n\nTransformar los siguientes permisos simbólicos en absolutos:\n\nrwxr-xr-x    r-xr--r--  rw-r-----  r-x--x--x\n\nTransformar los siguientes permisos absolutos en simbólicos:\n\n644    755    610    631\n\nFijar, en modo simbólico, los permisos de arch1 en modo 754.\nFijar, en modo absoluto, los permisos de arch1 en modo rwxr-x--x.\nFijar los permisos del directorio dir1 de modo que todos lo puedan leer y entrar, pero sólo el dueño pueda modificar sus archivos: 1) en modo simbólico; 2) en modo absoluto.\nModificar para que el grupo también pueda modificar archivos.\nFijar en modo simbólico los permisos del archivo ejecutable exec.tar para que sea ejecutable por todos, legible por el dueño y el grupo, y modificable solo por el dueño. Repetir en modo absoluto.\nFijar en modo absoluto los permisos del directorio dir1 de modo que sólo el dueño y el grupo lo puedan recorrer y leer, y sólo el dueño pueda grabar y borrar en él. Repetir en modo simbólico.\n\n\n\n\nSea la siguiente salida del comando ls -l:\n-rwSr-xr-x 1 pagutierrez docentes 29024 ene 1  16:29  controlar\n-rw-rw-r-- 1 pagutierrez docentes 2300  may 18 09:37  borrador.txt\n-rw-r--r-- 1 pagutierrez docentes 5895  may 15 12:08  index.htm\n-rwxr-xr-x 1 pagutierrez docentes 29024 ene 1  16:29  revisar\n-rwxr--r-- 1 pagutierrez docentes 29024 ene 1  16:29  mostrar\n  drwxrwxrwt 2 pagutierrez tecnicos 1024  may 1  17:23  trabajos\n  drwxr-xr-x 2 pagutierrez tecnicos 1024  oct 16  1998  netscape3\n  drwxrwx--x 2 pagutierrez tecnicos 1024  may 11  7:29  finanzas\n  drwxrwxr-x 2 pagutierrez tecnicos 1024  jul 7   6:54  redes\n  drwxr-xr-x 2 jsanchezm   docentes 1024  jun 17 19:35  corporacion\nEl usuario jsanchezm, del grupo docentes, tiene acceso al presente directorio. Indicar, si los hay:\n\nArchivos de los que puede mostrar contenido.\nArchivos que puede ejecutar como programa.\nArchivos en los que puede modificar contenido.\nSubdirectorios en los que puede ingresar.\nSubdirectorios en que puede crear/eliminar ficheros propios.\nSubdirectorios en los que puede borrar archivos de otros.\nSubdirectorios en los que puede entrar y ejecutar programas contenidos en ellos, pero no ver nombres de archivos.\nArchivos que puede ejecutar como programa con permisos del usuario pagutierrez.\n\n\n\n\nSea la siguiente salida del comando ls -l (suponemos que pagutierrez pertenece a staff):\n-rw-r--r--  1  root        root       33280 jun 12 19:40 Carta.doc\n  drwxrwxrwx 5  pagutierrez staff       1024 dic  4  1999 step\n  drwxrwxr-x 22 pagutierrez staff       1024 nov 20  1999 Office51\n  drwxr-x--- 6  pagutierrez staff       1024 may 7  16:43 argos\n  drwxrwxr-- 21 pagutierrez staff       1024 jul 11 18:22 bajados\n-rw-rw---- 3  root        root         542 jul 13 11:26 boor.exe\n  drwxrwxrwt 3  pagutierrez staff       1024 may 25 10:02 borrador\n-rwSrwSr-x 1  root        root        9218 jun 12 19:41 pph3\n  drwxrwx--x 2  pagutierrez pagutierrez 1024 may 7  16:47 cdir\n-rw-rw-r-- 3  root        root         542 jul 13 11:26 mysql-doc\n-rw-r-xr-- 3  pagutierrez staff       1084 ago 1  10:01 ver.exe\n-rwxr-xr-x 3  pagutierrez staff       1084 ago 1  10:01 ver\n  drwxr-xr-x 7  pagutierrez pagutierrez 1024 jul 25 11:48 lit\nIndicar, si los hay:\n\ndirectorios públicos (todo el mundo puede entrar, listar y borrar archivos);\narchivos que tienen enlaces hard o físicos;\narchivos ejecutables por el usuario pagutierrez;\ndirectorios navegables por todo el mundo;\ndirectorios donde miembros del grupo staff puede borrar archivos;\narchivos que son enlaces simbólicos.\narchivos ejecutables que adquieren permisos de usuario root.\n\n\n\n\nMarca todos los tipos de enlace que pueden establecerse en los siguientes casos (físico, simbólico o ambos).\n\nenlace hacia un archivo en el mismo directorio.\nenlace hacia un archivo en otro sistema de archivos.\nenlace hacia un directorio en el mismo sistema de archivos.\nenlace hacia un directorio en otro sistema de archivos.",
+    "crumbs": [
+      "Tema 2: Ejercicios permisos"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ejercicios.html#usuarios-y-grupos-de-ejemplo",
+    "href": "tema02-organizacion/tema02-ejercicios.html#usuarios-y-grupos-de-ejemplo",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux (Ejercicios)",
+    "section": "",
+    "text": "Crea tres usuarios, dos de ellos tendrán un grupo común. Suponiendo que nuestro usuario de administración es pas, lo añadimos al grupo sudo como root:\n/sbin/usermod -aG sudo pas\nCreamos un grupo para la clase y tres usuarios de ejemplo, los dos primeros tendrá como grupo principal clase y el tercero no:\nsudo addgroup clase\nsudo adduser usuario1 --ingroup clase\nsudo adduser usuario2 --ingroup clase\nsudo adduser usuario3",
+    "crumbs": [
+      "Tema 2: Ejercicios permisos"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ejercicios.html#permisos",
+    "href": "tema02-organizacion/tema02-ejercicios.html#permisos",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux (Ejercicios)",
+    "section": "",
+    "text": "Con usuario1 Crear un archivo con el contenido HOLA!, utilizando la orden echo, y asignarle permisos para que solo puede ser consultado por su propietario y por los miembros del grupo clase.\nNOTA: Puede ser una buena idea tener varios terminales abiertos con cada usuario del sistema para probar que los permisos son efectivos.",
+    "crumbs": [
+      "Tema 2: Ejercicios permisos"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ejercicios.html#permisos-1",
+    "href": "tema02-organizacion/tema02-ejercicios.html#permisos-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux (Ejercicios)",
+    "section": "",
+    "text": "Modifica los permisos por defecto con umask para que los ficheros creados:\n\nno puedan ser leídos por el resto de usuarios y los directorios no puedan ser listados.\npuedan ser leídos y escritos por el grupo.\n\nComprueba que tienen efecto creado ficheros y directorios de ejemplo.\nBusca cómo hacer permanentes en cada usuario los permisos umask.",
+    "crumbs": [
+      "Tema 2: Ejercicios permisos"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ejercicios.html#algunos-ejercicios-de-permisos",
+    "href": "tema02-organizacion/tema02-ejercicios.html#algunos-ejercicios-de-permisos",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux (Ejercicios)",
+    "section": "",
+    "text": "Transformar los siguientes permisos simbólicos en absolutos:\n\nrwxr-xr-x    r-xr--r--  rw-r-----  r-x--x--x\n\nTransformar los siguientes permisos absolutos en simbólicos:\n\n644    755    610    631\n\nFijar, en modo simbólico, los permisos de arch1 en modo 754.\nFijar, en modo absoluto, los permisos de arch1 en modo rwxr-x--x.\nFijar los permisos del directorio dir1 de modo que todos lo puedan leer y entrar, pero sólo el dueño pueda modificar sus archivos: 1) en modo simbólico; 2) en modo absoluto.\nModificar para que el grupo también pueda modificar archivos.\nFijar en modo simbólico los permisos del archivo ejecutable exec.tar para que sea ejecutable por todos, legible por el dueño y el grupo, y modificable solo por el dueño. Repetir en modo absoluto.\nFijar en modo absoluto los permisos del directorio dir1 de modo que sólo el dueño y el grupo lo puedan recorrer y leer, y sólo el dueño pueda grabar y borrar en él. Repetir en modo simbólico.",
+    "crumbs": [
+      "Tema 2: Ejercicios permisos"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ejercicios.html#interpretar-salida-ls--l",
+    "href": "tema02-organizacion/tema02-ejercicios.html#interpretar-salida-ls--l",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux (Ejercicios)",
+    "section": "",
+    "text": "Sea la siguiente salida del comando ls -l:\n-rwSr-xr-x 1 pagutierrez docentes 29024 ene 1  16:29  controlar\n-rw-rw-r-- 1 pagutierrez docentes 2300  may 18 09:37  borrador.txt\n-rw-r--r-- 1 pagutierrez docentes 5895  may 15 12:08  index.htm\n-rwxr-xr-x 1 pagutierrez docentes 29024 ene 1  16:29  revisar\n-rwxr--r-- 1 pagutierrez docentes 29024 ene 1  16:29  mostrar\n  drwxrwxrwt 2 pagutierrez tecnicos 1024  may 1  17:23  trabajos\n  drwxr-xr-x 2 pagutierrez tecnicos 1024  oct 16  1998  netscape3\n  drwxrwx--x 2 pagutierrez tecnicos 1024  may 11  7:29  finanzas\n  drwxrwxr-x 2 pagutierrez tecnicos 1024  jul 7   6:54  redes\n  drwxr-xr-x 2 jsanchezm   docentes 1024  jun 17 19:35  corporacion\nEl usuario jsanchezm, del grupo docentes, tiene acceso al presente directorio. Indicar, si los hay:\n\nArchivos de los que puede mostrar contenido.\nArchivos que puede ejecutar como programa.\nArchivos en los que puede modificar contenido.\nSubdirectorios en los que puede ingresar.\nSubdirectorios en que puede crear/eliminar ficheros propios.\nSubdirectorios en los que puede borrar archivos de otros.\nSubdirectorios en los que puede entrar y ejecutar programas contenidos en ellos, pero no ver nombres de archivos.\nArchivos que puede ejecutar como programa con permisos del usuario pagutierrez.",
+    "crumbs": [
+      "Tema 2: Ejercicios permisos"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ejercicios.html#interpretar-salida-ls--l-1",
+    "href": "tema02-organizacion/tema02-ejercicios.html#interpretar-salida-ls--l-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux (Ejercicios)",
+    "section": "",
+    "text": "Sea la siguiente salida del comando ls -l (suponemos que pagutierrez pertenece a staff):\n-rw-r--r--  1  root        root       33280 jun 12 19:40 Carta.doc\n  drwxrwxrwx 5  pagutierrez staff       1024 dic  4  1999 step\n  drwxrwxr-x 22 pagutierrez staff       1024 nov 20  1999 Office51\n  drwxr-x--- 6  pagutierrez staff       1024 may 7  16:43 argos\n  drwxrwxr-- 21 pagutierrez staff       1024 jul 11 18:22 bajados\n-rw-rw---- 3  root        root         542 jul 13 11:26 boor.exe\n  drwxrwxrwt 3  pagutierrez staff       1024 may 25 10:02 borrador\n-rwSrwSr-x 1  root        root        9218 jun 12 19:41 pph3\n  drwxrwx--x 2  pagutierrez pagutierrez 1024 may 7  16:47 cdir\n-rw-rw-r-- 3  root        root         542 jul 13 11:26 mysql-doc\n-rw-r-xr-- 3  pagutierrez staff       1084 ago 1  10:01 ver.exe\n-rwxr-xr-x 3  pagutierrez staff       1084 ago 1  10:01 ver\n  drwxr-xr-x 7  pagutierrez pagutierrez 1024 jul 25 11:48 lit\nIndicar, si los hay:\n\ndirectorios públicos (todo el mundo puede entrar, listar y borrar archivos);\narchivos que tienen enlaces hard o físicos;\narchivos ejecutables por el usuario pagutierrez;\ndirectorios navegables por todo el mundo;\ndirectorios donde miembros del grupo staff puede borrar archivos;\narchivos que son enlaces simbólicos.\narchivos ejecutables que adquieren permisos de usuario root.",
+    "crumbs": [
+      "Tema 2: Ejercicios permisos"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ejercicios.html#enlaces",
+    "href": "tema02-organizacion/tema02-ejercicios.html#enlaces",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux (Ejercicios)",
+    "section": "",
+    "text": "Marca todos los tipos de enlace que pueden establecerse en los siguientes casos (físico, simbólico o ambos).\n\nenlace hacia un archivo en el mismo directorio.\nenlace hacia un archivo en otro sistema de archivos.\nenlace hacia un directorio en el mismo sistema de archivos.\nenlace hacia un directorio en otro sistema de archivos.",
+    "crumbs": [
+      "Tema 2: Ejercicios permisos"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-webuco.html",
+    "href": "tema02-organizacion/tema02-webuco.html",
+    "title": "1 Cómo configurar tu cuenta para tu web personal en la UCO",
+    "section": "",
+    "text": "Antes de comenzar, repasa apuntes sobre permisos de ficheros y directorios en Linux. Hay muchos muy claros, como por ejemplo este de softzone.\nConexión remota gráfica a los servidores Linux de la Universidad de Córdoba: Thinstation Remoto.\nConexión SSH (sin interfaz gráfica) a los servidores de la UCO. Necesitas un cliente SSH, que viene de forma nativa en Linux y Mac, pero no en Windows (puedes usar Putty).\n\nssh login@ts.uco.es\nssh -X login@ts.uco.es exporta la salida gráfica a tu ordenador Linux (no funciona en Windows). Con esto podrás usar el Spyder de la UCO sin tener que instalar nada más.\n\nCómo conectarte a tu carpeta para enviar y descargar archivos:\n\nDe forma nativa a partir de Windows 10: How to map SFTP as a drive on Windows 10\nCon FileZilla: https://filezilla-project.org/\n\n\n\n\n\nAbre un terminal. En este tutorial usaremos de ejemplo el login i02samoj. Deberás cambiar este por el tuyo.\nCrea el directorio www-docs:\nmkdir www-docs\nAsigna permisos de ejecución a tu carpeta de usuario. Esto permitirá al servidor web (otros usuarios) pasar por esta carpeta sin listar ni acceder al contenido:\ncd ..\nchmod o+x i02samoj/\nVuelve a tu carpeta home y asigna los mismos permisos a www-docs:\ncd\nchmod  o+x www-docs\nVamos a comprobar que los permisos están bien configurados:\nEntra en la carpeta y crea un fichero llamado index.html:\ncd www-docs\ngedit index.html\nEsto creará el fichero. Introduce el siguiente contenido, guarda y cierra el editor:\n&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Web de ejemplo&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n    &lt;p&gt;¡Hola Mundo!&lt;/p&gt;\n&lt;/body&gt;\n&lt;/html&gt;\nTodos los ficheros bajo www-docs o sus subdirectorios deberán tener los permisos o+r para que el servidor web pueda leerlos. Por ejemplo, para el index.html:\nchmod o+r index.html\nTodos los subdirectorios que cuelguen de www-docs deberán tener los mismos permisos o+x.\nAhora abre la web https://www.uco.es/users/TULOGIN o alternativamente https://www.uco.es/~TULOGIN. Ejemplo https://www.uco.es/~i02samoj.\nSi todo va bien deberías ver una página web en blanco con el mensaje “¡Hola Mundo!”. Si obtienes algún error revisa los pasos y permisos.\nSi tienes curiosidad por HTML, el lenguaje de programación básico de páginas webs, puedes empezar por este tutorial de HTML de W3Schools.",
+    "crumbs": [
+      "Tema 2: Ejercicios web personal en la UCO"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-webuco.html#recursos-y-enlaces",
+    "href": "tema02-organizacion/tema02-webuco.html#recursos-y-enlaces",
+    "title": "1 Cómo configurar tu cuenta para tu web personal en la UCO",
+    "section": "",
+    "text": "Antes de comenzar, repasa apuntes sobre permisos de ficheros y directorios en Linux. Hay muchos muy claros, como por ejemplo este de softzone.\nConexión remota gráfica a los servidores Linux de la Universidad de Córdoba: Thinstation Remoto.\nConexión SSH (sin interfaz gráfica) a los servidores de la UCO. Necesitas un cliente SSH, que viene de forma nativa en Linux y Mac, pero no en Windows (puedes usar Putty).\n\nssh login@ts.uco.es\nssh -X login@ts.uco.es exporta la salida gráfica a tu ordenador Linux (no funciona en Windows). Con esto podrás usar el Spyder de la UCO sin tener que instalar nada más.\n\nCómo conectarte a tu carpeta para enviar y descargar archivos:\n\nDe forma nativa a partir de Windows 10: How to map SFTP as a drive on Windows 10\nCon FileZilla: https://filezilla-project.org/",
+    "crumbs": [
+      "Tema 2: Ejercicios web personal en la UCO"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-webuco.html#pasos",
+    "href": "tema02-organizacion/tema02-webuco.html#pasos",
+    "title": "1 Cómo configurar tu cuenta para tu web personal en la UCO",
+    "section": "",
+    "text": "Abre un terminal. En este tutorial usaremos de ejemplo el login i02samoj. Deberás cambiar este por el tuyo.\nCrea el directorio www-docs:\nmkdir www-docs\nAsigna permisos de ejecución a tu carpeta de usuario. Esto permitirá al servidor web (otros usuarios) pasar por esta carpeta sin listar ni acceder al contenido:\ncd ..\nchmod o+x i02samoj/\nVuelve a tu carpeta home y asigna los mismos permisos a www-docs:\ncd\nchmod  o+x www-docs\nVamos a comprobar que los permisos están bien configurados:\nEntra en la carpeta y crea un fichero llamado index.html:\ncd www-docs\ngedit index.html\nEsto creará el fichero. Introduce el siguiente contenido, guarda y cierra el editor:\n&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Web de ejemplo&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n    &lt;p&gt;¡Hola Mundo!&lt;/p&gt;\n&lt;/body&gt;\n&lt;/html&gt;\nTodos los ficheros bajo www-docs o sus subdirectorios deberán tener los permisos o+r para que el servidor web pueda leerlos. Por ejemplo, para el index.html:\nchmod o+r index.html\nTodos los subdirectorios que cuelguen de www-docs deberán tener los mismos permisos o+x.\nAhora abre la web https://www.uco.es/users/TULOGIN o alternativamente https://www.uco.es/~TULOGIN. Ejemplo https://www.uco.es/~i02samoj.\nSi todo va bien deberías ver una página web en blanco con el mensaje “¡Hola Mundo!”. Si obtienes algún error revisa los pasos y permisos.\nSi tienes curiosidad por HTML, el lenguaje de programación básico de páginas webs, puedes empezar por este tutorial de HTML de W3Schools.",
+    "crumbs": [
+      "Tema 2: Ejercicios web personal en la UCO"
+    ]
+  },
+  {
     "objectID": "tema01-introduccion/tema01a-introduccion.html",
     "href": "tema01-introduccion/tema01a-introduccion.html",
     "title": "Tema 1.a: Introducción a la administración de sistemas",
@@ -287,6 +637,86 @@
     "text": "Vim vs Emacs",
     "crumbs": [
       "Tema 1.a: Introducción"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html",
+    "href": "tema01-introduccion/tema01c-proyecto.html",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "",
+    "text": "Esquema anticuado pero bueno",
+    "crumbs": [
+      "Tema 1.c: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#esquema-general-de-virtual-box",
+    "href": "tema01-introduccion/tema01c-proyecto.html#esquema-general-de-virtual-box",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "",
+    "text": "Esquema anticuado pero bueno",
+    "crumbs": [
+      "Tema 1.c: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#el-superusuario-o-administrador",
+    "href": "tema01-introduccion/tema01c-proyecto.html#el-superusuario-o-administrador",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "El superusuario o administrador",
+    "text": "El superusuario o administrador\n\nEl administrador o superusuario es el usuario que tiene siempre todos los privilegios sobre cualquier fichero, instrucción u orden del sistema.\nEn GNU/Linux ese usuario es root, que pertenece al grupo root:\n\nDirectorio HOME: /root (o / en modo monousuario).\nSi estamos en el sistema utilizando cualquier otro usuario ¿cómo podemos convertirnos en administrador?\n\nSalir de la sesión y entrar utilizando root como nombre de usuario (deshabilitado por defecto en algunos entornos).\nUtilizar el comando su \\(\\rightarrow\\) nos pedirá la contraseña de root y abrirá una shell donde tendremos privilegios de administración.",
+    "crumbs": [
+      "Tema 1.c: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#el-superusuario-o-administrador-1",
+    "href": "tema01-introduccion/tema01c-proyecto.html#el-superusuario-o-administrador-1",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "El superusuario o administrador",
+    "text": "El superusuario o administrador\npas@debianpas:~$ whoami\npas\npas@debianpas:~$ su\nContraseña: \nroot@debianpas:/home/debianpas# whoami\nroot",
+    "crumbs": [
+      "Tema 1.c: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#la-herramienta-sudo",
+    "href": "tema01-introduccion/tema01c-proyecto.html#la-herramienta-sudo",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "La herramienta sudo",
+    "text": "La herramienta sudo\n\nsudo permite a otros usuarios ejecutar órdenes como si fuesen el administrador.\n\n/etc/sudoers \\(\\Rightarrow\\) fichero de configuración\n\nFichero de solo lectura, incluso para root.\nEn él estableceremos “quién puede ejecutar qué y cómo” desde sudo.\nEn la mayoría de distribuciones basta con que el usuario pertenezca al grupo sudo:\n\n\n\nsudo usermod -aG sudo usuario\n# en algunas distribuciones hay que poner\nsudo /sbin/usermod -aG sudo usuario",
+    "crumbs": [
+      "Tema 1.c: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#la-herramienta-sudo-1",
+    "href": "tema01-introduccion/tema01c-proyecto.html#la-herramienta-sudo-1",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "La herramienta sudo",
+    "text": "La herramienta sudo\n\nvisudo \\(\\Rightarrow\\) orden para modificar el fichero de configuración /etc/sudoers.\n\n# Especificación de privilegios de usuario\nroot    ALL=(ALL:ALL) ALL\n# Los miembros del grupo sudo podrán ejecutar cualquier comando\n%sudo   ALL=(ALL:ALL) ALL\n\nsudo orden \\(\\Rightarrow\\) pide contraseña del usuario.",
+    "crumbs": [
+      "Tema 1.c: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#ejercicios",
+    "href": "tema01-introduccion/tema01c-proyecto.html#ejercicios",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "Ejercicios",
+    "text": "Ejercicios\n\nWeb Debian: netinstall vs imagen. Opcionalmente Ubuntu será equivalente para casi todo.\nCrear VM + disco + conectar .iso\n\n1-2GB RAM + 5GB de disco es suficiente para trabajar sin entorno gráfico\nImportante: Desmarcar “Instalación desatendida”\n\nVamos a instalar sin entorno gráfico\nEn el particionado utilizaremos el por defecto de momento.\nNos piden cosas básicas que podemos elegir con la barra de espacio: ssh (marcar), entorno gráfico (desmarcar todos)…\n\nYa tenemos nuestra máquina lista:\n\nCambiar contraseña por defecto (en imágenes de VPS/nubes)\nTerminamos: no hay ni sudo, vim, etc.\nComo root:\n\nInstalar sudo:\n\napt install sudo\n\nEliminar el CD/ISO de las fuentes de software:\n\nnano /etc/apt/sources.list\n\nAñadir usuario para la administración sudo:\n\nadduser adminpas\nsudo /sbin/usermod -aG sudo adminpas\n\n¡Ya hemos terminado con root!\nDebemos salir e iniciar sesión de nuevo con adminpas para que los cambios hagan efecto.\n\nCon el usuario adminpas probamos algún comando, por ejemplo: sudo cat /etc/shadow\n¿Qué hace sudo !!?\nConfigurar SSH y su acceso a través de Virtual Box:\n\nConfiguración de máquina -&gt; Red -&gt; Avanzada -&gt; Reenvío de puertos (2222 en anfitrión al 22 huesped)\nVamos a conectarnos a nuestra máquina a través de ssh (debes tener acceso en Windows, WSL y Linux): ssh adminpas@localhost -p 2222\n\nExplorar la máquina:\n\nDisco libre, particiones y memoria: df, fdisk -l, free (quizás necesites sudo para alguno)\nProcesadores y núcleos: cat /proc/cpuinfo\nHerramienta apt y repositorios: APT: el comando básico que debes conocer para usar Linux\nActualizarla: apt update && apt upgrade.\n\nPrueba a repetir la exploración de disco, etc. conectándote a ts.uco.es: ssh usuario@ts.uco.es.\n¿Cómo apagar o reiniciar desde el terminal de Linux?",
+    "crumbs": [
+      "Tema 1.c: Virtual Box, Debian y configuración básica"
+    ]
+  },
+  {
+    "objectID": "tema01-introduccion/tema01c-proyecto.html#extra-configuración-de-la-máquina",
+    "href": "tema01-introduccion/tema01c-proyecto.html#extra-configuración-de-la-máquina",
+    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "section": "Extra configuración de la máquina",
+    "text": "Extra configuración de la máquina\nPuedes echar un vistazo a las guías de Digital Ocean para qué hacer después de instalar una nueva máquina:\nhttps://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04\nhttps://www.digitalocean.com/community/tutorials/a-linux-command-line-primer\nhttps://www.digitalocean.com/community/tutorials?q=%5BLinux%20Basics%5D",
+    "crumbs": [
+      "Tema 1.c: Virtual Box, Debian y configuración básica"
     ]
   },
   {
@@ -620,276 +1050,6 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Programación y Administración de Sistemas",
-    "section": "",
-    "text": "Bienvenid[o|a|e] a la web de la asignatura “Programación y Administración de Sistemas (curso 2023-2024)”. Estos apuntes son una actualización progresiva de los apuntes del profesor Pedro A. Gutiérrez de cursos anteriores.\nAquí encontrarás progresivamente el material de teoría de la asignatura en formato HTML navegando por el menú de la izquierda. El resto del material lo tienes disponible en la plataforma moodle de la UCO.\nAl final de cada tema hay una sección sobre el proyecto de la asignatura de construcción de un sistema informático con GNU/Linux.",
-    "crumbs": [
-      "Inicio"
-    ]
-  },
-  {
-    "objectID": "index.html#contenido-en-pdf",
-    "href": "index.html#contenido-en-pdf",
-    "title": "Programación y Administración de Sistemas",
-    "section": "Contenido en PDF",
-    "text": "Contenido en PDF\nPuedes acceder también al contenido de esta asignatura en formato PDF imprimible:\n\nInicio\nTema 0: Presentación\nTema 1.a: Introducción\nTema 1.b: Software Libre y GNU/Linux”\nTema 1.c: Virtual Box, Debian y configuración básica",
-    "crumbs": [
-      "Inicio"
-    ]
-  },
-  {
-    "objectID": "index.html#evi-nemeth",
-    "href": "index.html#evi-nemeth",
-    "title": "Programación y Administración de Sistemas",
-    "section": "Evi Nemeth",
-    "text": "Evi Nemeth\nEvi Tribute at admin.com.\n\n\n\nEvi Nemeth retired from the Computer Science faculty at the University of Colorado in 2001. She explored the Pacific on her 40-foot sailboat named Wonderland for many years before becoming lost at sea in 2013. Fuente http://www.techfestival.org/evi-nemeth\n\n\n\n\n\nEvi Nemeth and Dennis Ritchie at the Phoenix 1987 USENIX conference. Evi, a UNIX engineer, author, and teacher, famous for one of the UNIX/Linux sys admin “bibles”. Dennis Ritchie co-developed UNIX and also the C programming language. Fuente @bioreconstruct",
-    "crumbs": [
-      "Inicio"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html",
-    "href": "tema00-presentacion/presentacion.html",
-    "title": "Tema 0: Presentación",
-    "section": "",
-    "text": "Todo el material mínimo y opcional de la asignatura está disponible en la plataforma Moodle de la UCO:\n\nhttp://moodle.uco.es/m2324\nCurso: Programación y Administración de Sistemas ( GIINF-2-101390-1-1)\n\n\n\n\n\nCordinación y teoría: Javier Sánchez Monedero\n\n\nPrácticas:\n\nPrácticas 1-3: María Isabel Jiménez Velasco y Víctor Manuel Vargas Yun\nPráctica 4: Enrique García Salcines\n\n\nHorarios de tutoría y datos de contacto en Moodle.\n\n\n\nEl uso de los móviles en la educación puede tener tanto efectos positivos como negativos.\n\n\n\n\n\n\nEfectos positivos:\n\n\n\n\nFacilita el acceso a la información y recursos educativos en línea.\nMejora la colaboración y el trabajo en equipo a través de aplicaciones y herramientas en línea\nFomenta la independencia y el aprendizaje autónomo.\nAumenta la motivación y el interés por el aprendizaje.\n\n\n\n\n\n\n\n\n\n\n\n\nEfectos negativos:\n\n\n\n\nDistracción y pérdida de concentración en la clase.\nUso inadecuado y poco ético, como la trampa en exámenes o el acceso a contenido no apropiado.\nAdicción a los dispositivos y dependencia en la tecnología.\nDesigualdades socioeconómicas, ya que no todos los estudiantes tienen acceso a dispositivos de alta calidad o a una conexión a Internet confiable.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#moodle",
-    "href": "tema00-presentacion/presentacion.html#moodle",
-    "title": "Tema 0: Presentación",
-    "section": "",
-    "text": "Todo el material mínimo y opcional de la asignatura está disponible en la plataforma Moodle de la UCO:\n\nhttp://moodle.uco.es/m2324\nCurso: Programación y Administración de Sistemas ( GIINF-2-101390-1-1)",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#profesorado",
-    "href": "tema00-presentacion/presentacion.html#profesorado",
-    "title": "Tema 0: Presentación",
-    "section": "",
-    "text": "Cordinación y teoría: Javier Sánchez Monedero\n\n\nPrácticas:\n\nPrácticas 1-3: María Isabel Jiménez Velasco y Víctor Manuel Vargas Yun\nPráctica 4: Enrique García Salcines\n\n\nHorarios de tutoría y datos de contacto en Moodle.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-12",
-    "href": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-12",
-    "title": "Tema 0: Presentación",
-    "section": "",
-    "text": "El uso de los móviles en la educación puede tener tanto efectos positivos como negativos.\n\n\n\n\n\n\nEfectos positivos:\n\n\n\n\nFacilita el acceso a la información y recursos educativos en línea.\nMejora la colaboración y el trabajo en equipo a través de aplicaciones y herramientas en línea\nFomenta la independencia y el aprendizaje autónomo.\nAumenta la motivación y el interés por el aprendizaje.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-22",
-    "href": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-22",
-    "title": "Tema 0: Presentación",
-    "section": "",
-    "text": "Efectos negativos:\n\n\n\n\nDistracción y pérdida de concentración en la clase.\nUso inadecuado y poco ético, como la trampa en exámenes o el acceso a contenido no apropiado.\nAdicción a los dispositivos y dependencia en la tecnología.\nDesigualdades socioeconómicas, ya que no todos los estudiantes tienen acceso a dispositivos de alta calidad o a una conexión a Internet confiable.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#actividad-en-clase",
-    "href": "tema00-presentacion/presentacion.html#actividad-en-clase",
-    "title": "Tema 0: Presentación",
-    "section": "Actividad en clase",
-    "text": "Actividad en clase\nEn buscadores genéricos o de empleo busca “administrador/a de sistemas”, “devops”, “sysadmin”\nEjemplos:\n\nhttps://www.linkedin.com/jobs/search/?currentJobId=3825905330&keywords=sysadmin\nhttps://www.infojobs.net/ofertas-trabajo/administrador-a-de-sistemas-informaticos",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#administradora-de-sistemas",
-    "href": "tema00-presentacion/presentacion.html#administradora-de-sistemas",
-    "title": "Tema 0: Presentación",
-    "section": "Administrador/a de sistemas",
-    "text": "Administrador/a de sistemas\n\n\nSegún Wikipedia:\n\nUn Administrador/a de Sistemas es la persona que tiene la responsabilidad de implementar, configurar, mantener, monitorizar, documentar y asegurar el correcto funcionamiento de un sistema informático, o algún aspecto de éste.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#memes",
-    "href": "tema00-presentacion/presentacion.html#memes",
-    "title": "Tema 0: Presentación",
-    "section": "Memes",
-    "text": "Memes\n\nFuente: we are hiring.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#tareas",
-    "href": "tema00-presentacion/presentacion.html#tareas",
-    "title": "Tema 0: Presentación",
-    "section": "Tareas",
-    "text": "Tareas\n\n\nMantener el Sistema Informático de una empresa/institución.\nA nivel software:\n\nInstalar servicios utilizados por la empresa.\nInterconectar servicios (mismo login y contraseña para todo).\nMantener servicios (p.ej. Moodle, servidor de correo…).\nRealizar copias de respaldo de los datos.\nControlar la seguridad.\n\n¿A nivel hardware?",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#software-libre",
-    "href": "tema00-presentacion/presentacion.html#software-libre",
-    "title": "Tema 0: Presentación",
-    "section": "Software libre",
-    "text": "Software libre\nAunque en el escritorio el software privativo sea líder el software libre y los sistemas Linux, FreeBSD, etc. son la opción mayoritaria servidores y supercomputadores.\n\nFuente: Usage share of operating systems en Wikipedia.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#por-qué-software-libre",
-    "href": "tema00-presentacion/presentacion.html#por-qué-software-libre",
-    "title": "Tema 0: Presentación",
-    "section": "¿Por qué software libre?",
-    "text": "¿Por qué software libre?\n\n\n\nEntorno empresarial y de investigación cooperativo.\nAdopción de estándares.\nFlexibilidad, fiabilidad, seguridad, transparencia.\nIndependencia de proveedores.\nÉtica y compromiso social.\nMás económico (¿?)\n\nhttps://www.uco.es/aulasoftwarelibre",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#objetivo",
-    "href": "tema00-presentacion/presentacion.html#objetivo",
-    "title": "Tema 0: Presentación",
-    "section": "Objetivo",
-    "text": "Objetivo\n\nEl objetivo fundamental es que el alumnado que curse la asignatura adquiera los conocimientos básicos y domine las técnicas fundamentales de la Administración de Sistemas Operativos.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#objetivos-concretos",
-    "href": "tema00-presentacion/presentacion.html#objetivos-concretos",
-    "title": "Tema 0: Presentación",
-    "section": "Objetivos concretos",
-    "text": "Objetivos concretos\n\n\n\nConocer los comandos básicos y las secuencias de pasos necesarias para instalar y administrar sistemas.\nConocer y manejar los ficheros de configuración de los sistemas.\nAdquirir conocimientos básicos sobre lenguajes de scripting y de programación de la Shell.\nComprender cómo se organiza el sistema operativo y los subsistemas POSIX para poder escribir aplicaciones que interaccionen con los mismos.\nInstalar y mantener servicios en Sistemas Distribuidos.\nAdquirir conceptos teóricos y prácticos de rendimiento y seguridad en sistemas.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#temario",
-    "href": "tema00-presentacion/presentacion.html#temario",
-    "title": "Tema 0: Presentación",
-    "section": "Temario",
-    "text": "Temario\n\nIntroducción a la administración de sistemas.\nOrganización de un sistema operativo GNU/Linux.\nGestión de usuarios.\nArranque y parada del sistema y servicios.\nMonitorización y gestión de recursos.\nOrganización de sistemas de ficheros y discos.\nAdministración de sistemas de ficheros y discos.\nRestauración y copias de seguridad\nGestión de las comunicaciones.\nVirtualización.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#temario-prácticas",
-    "href": "tema00-presentacion/presentacion.html#temario-prácticas",
-    "title": "Tema 0: Presentación",
-    "section": "Temario prácticas",
-    "text": "Temario prácticas\n\nBloque I:\n\nProgramación de la shell.\nExpresiones regulares para la programación de la shell.\n\n\n\nBloque II:\n\nProgramación en POSIX.\nAdministración de servidores web: Apache.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#planificación-asignatura",
-    "href": "tema00-presentacion/presentacion.html#planificación-asignatura",
-    "title": "Tema 0: Presentación",
-    "section": "Planificación asignatura",
-    "text": "Planificación asignatura\nCalendario aproximado teoría\nCalendario aproximado prácticas\nProvisional: seminarios aulas y/o profesionales.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#bibliografía-1",
-    "href": "tema00-presentacion/presentacion.html#bibliografía-1",
-    "title": "Tema 0: Presentación",
-    "section": "Bibliografía",
-    "text": "Bibliografía\nBásica para seguir la asignatura:\n\nUNIX and Linux System Administration Handbook, 5th Edition. Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley and Dan Mackin. Addison-Wesley. 2018.\nEssential System Administration (3a ed.). Aeleen Frisch. O’Reilly & Associates. 2002.\nEl Arte del Terminal, Joshua Levy, 2023.\n\nAdicional:\n\nAdministración de sistemas Linux. Adelstein, Tom. Lubanovic, Bill. Anaya multimedia, O Reilly. 2007.\nUnix shell programming, 3a Edición. Kochan, Wood. Sams Publishing. 2003.\nLPI Linux Certification in a Nutshell, Third Edition. Adam Haeder, Stephen Addison Schneiter, Bruno Gomes Pessanha, and James Stanger. 2010.\nK. A. Robbind, S. Robbins. Unix Systems Programming. Prentice Hall, 2003",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#evaluación-1",
-    "href": "tema00-presentacion/presentacion.html#evaluación-1",
-    "title": "Tema 0: Presentación",
-    "section": "Evaluación",
-    "text": "Evaluación\n\nLeer detenidamente la guı́a docente.\nLa evaluación de la asignatura se divide en dos partes, parte teórica y parte práctica (Teorı́a 50 % + Práctica 50 %).\nPara aprobar la asignatura es necesario obtener al menos 5 sobre 10 puntos en la parte de prácticas y 5 sobre 10 puntos en la parte de teorı́a. En caso contrario, la asignatura se considera suspensa.\nSi se aprueba solo la teorı́a o solo la práctica, la nota correspondiente se guarda hasta la convocatoria de septiembre.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas",
-    "href": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas",
-    "title": "Tema 0: Presentación",
-    "section": "Evaluación: exámenes y pruebas",
-    "text": "Evaluación: exámenes y pruebas\nLa parte de teorı́a (50 % de la nota) se evaluará con un examen final teórico que estará compuesto de:\n\nPruebas objetivas tipo test (20 %, mı́nimo 5 sobre 10).\nPruebas de respuesta corta con supuestos prácticos que versen sobre los contenido teóricos dados en clase (30 %, mı́nimo 5 sobre 10).\n\nLa parte de prácticas (50 % de la nota) se organiza en dos bloques. Consta de:\n\nExamen práctico de programación y administración de sistemas 50 %, mı́nimo 5 sobre 10). Existen dos posibilidades:\n\nExámenes prácticos parciales realizados durante el curso (eliminan materia de cara al examen final).\nExamen práctico final realizado durante el periodo de exámenes.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas-1",
-    "href": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas-1",
-    "title": "Tema 0: Presentación",
-    "section": "Evaluación: exámenes y pruebas",
-    "text": "Evaluación: exámenes y pruebas\n\nPara aprobar las prácticas es necesario aprobar cada Bloque por separado con 5 sobre 10 puntos.\nPara presentarse a las prácticas en la convocatoria de junio es necesario haber asistido a un 80 % de las sesiones de prácticas.\nPara la convocatoria de julio y de septiembre, la asistencia a las prácticas no es requisito.\nLas calificaciones parciales no se guardan de un curso a otro.\nSe guardan calificaciones parciales (bloques de prácticas o teorı́a) dentro de las convocatorias del mismo curso académico.\nLos alumnos a tiempo parcial deben ponerse en contacto con el profesor.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#tareas-de-administración-i",
-    "href": "tema00-presentacion/presentacion.html#tareas-de-administración-i",
-    "title": "Tema 0: Presentación",
-    "section": "Tareas de administración (I)",
-    "text": "Tareas de administración (I)\n\nResolución de ejercicios teóricos y/o prácticos propuestos y anunciados.\nLas alumnas/os podrán proponer tareas similares a las propuestas.\nEsta nota se guardará para todas las convocatorias del curso académico. Las tareas pueden llegar a valorarse hasta 2 puntos en el examen de teorı́a (sobre 5 puntos). Se tendrá en cuenta para aumentar nota una vez aprobado el examen.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#tareas-de-administración-ii",
-    "href": "tema00-presentacion/presentacion.html#tareas-de-administración-ii",
-    "title": "Tema 0: Presentación",
-    "section": "Tareas de administración (II)",
-    "text": "Tareas de administración (II)\n\nSe deberá redactar un guión donde se detalle paso a paso los comandos y operaciones necesarios para llevar a cabo la tarea, acompañados de capturas cuando ası́ se requiera. El documento deberá ser autocontenido y explicativo y todo se deberá realizar sobre una imagen virtual de un sistema operativo GNU/Linux. Se presentará en clase durante un tiempo aproximado de 10-15 minutos.",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#devops-1",
-    "href": "tema00-presentacion/presentacion.html#devops-1",
-    "title": "Tema 0: Presentación",
-    "section": "DevOps",
-    "text": "DevOps\nroadmap.sh/devops",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html#dinamización-de-clases",
-    "href": "tema00-presentacion/presentacion.html#dinamización-de-clases",
-    "title": "Tema 0: Presentación",
-    "section": "Dinamización de clases",
-    "text": "Dinamización de clases\n\nIdeal: aula de prácticas para ir probando lo que hacemos…\nQuizz: 1 por tema (cada 2 clases)\nTareas administración\nResolución de casos prácticos\nMemes\n…",
-    "crumbs": [
-      "Tema 0: Presentación"
-    ]
-  },
-  {
     "objectID": "enlaces.html",
     "href": "enlaces.html",
     "title": "Programación y Administración de Sistemas (2023-2024)",
@@ -960,83 +1120,453 @@
     ]
   },
   {
-    "objectID": "tema01-introduccion/tema01c-proyecto.html",
-    "href": "tema01-introduccion/tema01c-proyecto.html",
-    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "objectID": "enlaces.html#sobre-protecciones-de-memoria-lenguajes-y-sistemas-operativos",
+    "href": "enlaces.html#sobre-protecciones-de-memoria-lenguajes-y-sistemas-operativos",
+    "title": "Programación y Administración de Sistemas (2023-2024)",
+    "section": "Sobre protecciones de memoria, lenguajes y sistemas operativos",
+    "text": "Sobre protecciones de memoria, lenguajes y sistemas operativos\nPRESS RELEASE: Future Software Should Be Memory Safe\nhttps://www.whitehouse.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/\nNSA recommends that organizations use memory safe languages when possible and bolster protection through code-hardening defenses such as compiler options, tool options, and operating system configurations.\nhttps://www.nsa.gov/Press-Room/News-Highlights/Article/Article/3215760/nsa-releases-guidance-on-how-to-protect-against-software-memory-safety-issues/\n\n\n\nalt text\n\n\nhttps://security.googleblog.com/2022/12/memory-safe-languages-in-android-13.html",
+    "crumbs": [
+      "Enlaces"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html",
+    "href": "tema02-organizacion/tema02-ficheros.html",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
     "section": "",
-    "text": "Esquema anticuado pero bueno",
+    "text": "Describir los elementos fundamentales de organización del sistema operativo GNU/Linux.\nIdentificar la importancia de los ficheros en GNU/Linux (“si algo no es un fichero, entonces es un proceso”).\nDescribir en líneas generales cómo se organiza el sistema de ficheros y qué son los nodos-i.\nDefinir qué papel tienen el usuario y el grupo propietario de un fichero y cómo pueden modificarse.\nInterpretar una cadena de permisos de GNU/Linux.\nCambiar los permisos de un fichero, tanto en modo simbólico como en modo absoluto.\nExplicar el objetivo de los permisos especiales (sticky bit, suid y sgid).\nUtilizar la máscara umask para cambiar los permisos por defecto con los que se crean los archivos y directorios.\nExplicar cómo se aplican los bits de permisos a la hora de decidir si un usuario puede realizar una determinada acción sobre un fichero.\nDistinguir todos los tipos de ficheros que se pueden utilizar en GNU/Linux y diferenciar claramente entre enlaces simbólicos y enlace físicos.\nDefinir el rol de los procesos en GNU/Linux, cuáles son sus atributos y qué tipos de procesos existen.\nExplicar cómo se represan los dispositivos en GNU/Linux.\nEnumerar las carpetas fundamentales de la estructura genérica del sistema de ficheros en GNU/Linux.\nDiferenciar entre contenidos estáticos y dinámicos y contenidos compartibles y no compartibles.\n\n\n\n\n\nCuestionarios objetivos.\nPruebas de respuesta libre.",
     "crumbs": [
-      "Tema 1.c: Virtual Box, Debian y configuración básica"
+      "Tema 2: Organización de GNU/Linux"
     ]
   },
   {
-    "objectID": "tema01-introduccion/tema01c-proyecto.html#esquema-general-de-virtual-box",
-    "href": "tema01-introduccion/tema01c-proyecto.html#esquema-general-de-virtual-box",
-    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
+    "objectID": "tema02-organizacion/tema02-ficheros.html#objetivos",
+    "href": "tema02-organizacion/tema02-ficheros.html#objetivos",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
     "section": "",
-    "text": "Esquema anticuado pero bueno",
+    "text": "Describir los elementos fundamentales de organización del sistema operativo GNU/Linux.\nIdentificar la importancia de los ficheros en GNU/Linux (“si algo no es un fichero, entonces es un proceso”).\nDescribir en líneas generales cómo se organiza el sistema de ficheros y qué son los nodos-i.\nDefinir qué papel tienen el usuario y el grupo propietario de un fichero y cómo pueden modificarse.\nInterpretar una cadena de permisos de GNU/Linux.\nCambiar los permisos de un fichero, tanto en modo simbólico como en modo absoluto.\nExplicar el objetivo de los permisos especiales (sticky bit, suid y sgid).\nUtilizar la máscara umask para cambiar los permisos por defecto con los que se crean los archivos y directorios.\nExplicar cómo se aplican los bits de permisos a la hora de decidir si un usuario puede realizar una determinada acción sobre un fichero.\nDistinguir todos los tipos de ficheros que se pueden utilizar en GNU/Linux y diferenciar claramente entre enlaces simbólicos y enlace físicos.\nDefinir el rol de los procesos en GNU/Linux, cuáles son sus atributos y qué tipos de procesos existen.\nExplicar cómo se represan los dispositivos en GNU/Linux.\nEnumerar las carpetas fundamentales de la estructura genérica del sistema de ficheros en GNU/Linux.\nDiferenciar entre contenidos estáticos y dinámicos y contenidos compartibles y no compartibles.",
     "crumbs": [
-      "Tema 1.c: Virtual Box, Debian y configuración básica"
+      "Tema 2: Organización de GNU/Linux"
     ]
   },
   {
-    "objectID": "tema01-introduccion/tema01c-proyecto.html#el-superusuario-o-administrador",
-    "href": "tema01-introduccion/tema01c-proyecto.html#el-superusuario-o-administrador",
-    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
-    "section": "El superusuario o administrador",
-    "text": "El superusuario o administrador\n\nEl administrador o superusuario es el usuario que tiene siempre todos los privilegios sobre cualquier fichero, instrucción u orden del sistema.\nEn GNU/Linux ese usuario es root, que pertenece al grupo root:\n\nDirectorio HOME: /root (o / en modo monousuario).\nSi estamos en el sistema utilizando cualquier otro usuario ¿cómo podemos convertirnos en administrador?\n\nSalir de la sesión y entrar utilizando root como nombre de usuario (deshabilitado por defecto en algunos entornos).\nUtilizar el comando su \\(\\rightarrow\\) nos pedirá la contraseña de root y abrirá una shell donde tendremos privilegios de administración.",
+    "objectID": "tema02-organizacion/tema02-ficheros.html#evaluación",
+    "href": "tema02-organizacion/tema02-ficheros.html#evaluación",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "",
+    "text": "Cuestionarios objetivos.\nPruebas de respuesta libre.",
     "crumbs": [
-      "Tema 1.c: Virtual Box, Debian y configuración básica"
+      "Tema 2: Organización de GNU/Linux"
     ]
   },
   {
-    "objectID": "tema01-introduccion/tema01c-proyecto.html#el-superusuario-o-administrador-1",
-    "href": "tema01-introduccion/tema01c-proyecto.html#el-superusuario-o-administrador-1",
-    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
-    "section": "El superusuario o administrador",
-    "text": "El superusuario o administrador\npas@debianpas:~$ whoami\npas\npas@debianpas:~$ su\nContraseña: \nroot@debianpas:/home/debianpas# whoami\nroot",
+    "objectID": "tema02-organizacion/tema02-ficheros.html#ficheros",
+    "href": "tema02-organizacion/tema02-ficheros.html#ficheros",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Ficheros",
+    "text": "Ficheros\n\nEn GNU/Linux, todo son ficheros (“si algo no es un fichero, entonces es un proceso”):\n\nLos programas u órdenes son ficheros: /bin/ls, /usr/bin/find…\nLos dispositivos I/O son ficheros: /dev/sda, /dev/fd0, /dev/tty0…\nComunicación entre procesos: sockets o tuberías (pipes).\nDirectorios, ficheros de datos, ficheros de configuración…\nEl propio núcleo del sistema operativo (kernel).\n\nGNU/Linux tiene una estructura jerárquica de directorios, conocida como sistema de archivos:\n\n/ \\(\\rightarrow\\) directorio raíz.\nPuede estar compuesto por varias particiones pertenecientes a varios dispositivos (discos duros, CDs, DVDs...).\nTodos disponibles desde la jerarquía de directorios.",
     "crumbs": [
-      "Tema 1.c: Virtual Box, Debian y configuración básica"
+      "Tema 2: Organización de GNU/Linux"
     ]
   },
   {
-    "objectID": "tema01-introduccion/tema01c-proyecto.html#la-herramienta-sudo",
-    "href": "tema01-introduccion/tema01c-proyecto.html#la-herramienta-sudo",
-    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
-    "section": "La herramienta sudo",
-    "text": "La herramienta sudo\n\nsudo permite a otros usuarios ejecutar órdenes como si fuesen el administrador.\n\n/etc/sudoers \\(\\Rightarrow\\) fichero de configuración\n\nFichero de solo lectura, incluso para root.\nEn él estableceremos “quién puede ejecutar qué y cómo” desde sudo.\nEn la mayoría de distribuciones basta con que el usuario pertenezca al grupo sudo:\n\n\n\nsudo usermod -aG sudo usuario",
+    "objectID": "tema02-organizacion/tema02-ficheros.html#sistema-de-ficheros-1",
+    "href": "tema02-organizacion/tema02-ficheros.html#sistema-de-ficheros-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Sistema de ficheros",
+    "text": "Sistema de ficheros\n\nGuarda los ficheros del sistema.\nSe organiza de manera jerárquica, en directorios.\nNo hay unidades.",
     "crumbs": [
-      "Tema 1.c: Virtual Box, Debian y configuración básica"
+      "Tema 2: Organización de GNU/Linux"
     ]
   },
   {
-    "objectID": "tema01-introduccion/tema01c-proyecto.html#la-herramienta-sudo-1",
-    "href": "tema01-introduccion/tema01c-proyecto.html#la-herramienta-sudo-1",
-    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
-    "section": "La herramienta sudo",
-    "text": "La herramienta sudo\n\nvisudo \\(\\Rightarrow\\) orden para modificar el fichero de configuración /etc/sudoers.\n\n# Especificación de privilegios de usuario\nroot    ALL=(ALL:ALL) ALL\n# Los miembros del grupo sudo podrán ejecutar cualquier comando\n%sudo   ALL=(ALL:ALL) ALL\n\nsudo orden \\(\\Rightarrow\\) pide contraseña del usuario.",
+    "objectID": "tema02-organizacion/tema02-ficheros.html#sistema-de-ficheros-nodos-i",
+    "href": "tema02-organizacion/tema02-ficheros.html#sistema-de-ficheros-nodos-i",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Sistema de ficheros: nodos-i",
+    "text": "Sistema de ficheros: nodos-i\n\nAunque a nivel lógico, el sistema de ficheros parece un árbol, en realidad los ficheros se almacenan desorganizados por el disco duro.\nUn fichero puede tener sectores a lo largo de toda la superficie.\nLos nodos-i son metadatos sobre los ficheros que nos proporcionan información sobre aspectos como su tamaño, sus permisos, la posición de sus sectores, número de enlaces... ¿nombre? ls -i\nCada fichero tiene un nodo-i.\nTodos están localizados en un área del disco duro, que está limitada (nº máximo de nodos-i).\n\n\n¿Por qué enseñar el concepto de i-nodo en administración de sistemas?",
     "crumbs": [
-      "Tema 1.c: Virtual Box, Debian y configuración básica"
+      "Tema 2: Organización de GNU/Linux"
     ]
   },
   {
-    "objectID": "tema01-introduccion/tema01c-proyecto.html#ejercicios",
-    "href": "tema01-introduccion/tema01c-proyecto.html#ejercicios",
-    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
-    "section": "Ejercicios",
-    "text": "Ejercicios\n\nWeb Debian: netinstall vs imagen. Opcionalmente Ubuntu será equivalente para casi todo.\nCrear VM + disco + conectar .iso\n\n1-2GB RAM + 5GB de disco es suficiente para trabajar sin entorno gráfico\nImportante: Desmarcar “Instalación desatendida”\n\nVamos a instalar sin entorno gráfico\nEn el particionado utilizaremos el por defecto de momento.\nNos piden cosas básicas que podemos elegir con la barra de espacio: ssh (marcar), entorno gráfico (desmarcar todos)…\n\nYa tenemos nuestra máquina lista:\n\nCambiar contraseña por defecto (en imágenes de VPS/nubes)\nTerminamos: no hay ni sudo, vim, etc.\nComo root:\n\nInstalar sudo:\n\napt install sudo\n\nEliminar el CD/ISO de las fuentes de software:\n\nnano /etc/apt/sources.list\n\nAñadir usuario para la administración sudo:\n\nadduser adminpas\nsudo usermod -aG sudo adminpas\n\n¡Ya hemos terminado con root!\nDebemos salir e iniciar sesión de nuevo con adminpas para que los cambios hagan efecto.\n\nCon el usuario adminpas probamos algún comando, por ejemplo: sudo cat /etc/shadow\n¿Qué hace sudo !!?\nConfigurar SSH y su acceso a través de Virtual Box:\n\nConfiguración de máquina -&gt; Red -&gt; Avanzada -&gt; Reenvío de puertos (2222 en anfitrión al 22 huesped)\n\nExplorar la máquina:\n\nDisco libre, particiones y memoria: df, fdisk -l, free (quizás necesites sudo para alguno)\nProcesadores y núcleos: cat /proc/cpuinfo\nHerramienta apt y repositorios: APT: el comando básico que debes conocer para usar Linux\nActualizarla: apt update && apt upgrade.\n\nPrueba a repetir la exploración de disco, etc. conectándote a ts.uco.es: ssh usuario@ts.uco.es.\n¿Cómo apagar o reiniciar desde el terminal de Linux?",
+    "objectID": "tema02-organizacion/tema02-ficheros.html#gestión-del-acceso-propietarios-y-permisos",
+    "href": "tema02-organizacion/tema02-ficheros.html#gestión-del-acceso-propietarios-y-permisos",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Gestión del acceso: propietarios y permisos",
+    "text": "Gestión del acceso: propietarios y permisos\nCada fichero tiene dos propietarios: usuario y grupo.\nls -l images | head -n 3 # esto filtra las 3 primeas líneas\nchown \\(\\rightarrow\\) cambia el usuario propietario (se necesitan privilegios de root):\nsudo chown javi fichero\nsudo chown javi:profesores fichero\nsudo chown -R javi directorio\nchgrp \\(\\rightarrow\\) cambia el grupo propietario (puede hacerlo el propietario del fichero, el que pertenezca al grupo, o root).\nsudo chgrp profesores fichero\nsudo chgrp -R profesores directorio",
     "crumbs": [
-      "Tema 1.c: Virtual Box, Debian y configuración básica"
+      "Tema 2: Organización de GNU/Linux"
     ]
   },
   {
-    "objectID": "tema01-introduccion/tema01c-proyecto.html#extra-configuración-de-la-máquina",
-    "href": "tema01-introduccion/tema01c-proyecto.html#extra-configuración-de-la-máquina",
-    "title": "Tema 1.c: Virtual Box, Instalación de Debian y configuración básica",
-    "section": "Extra configuración de la máquina",
-    "text": "Extra configuración de la máquina\nPuedes echar un vistazo a las guías de Digital Ocean para qué hacer después de instalar una nueva máquina:\nhttps://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04\nhttps://www.digitalocean.com/community/tutorials/a-linux-command-line-primer\nhttps://www.digitalocean.com/community/tutorials?q=%5BLinux%20Basics%5D",
+    "objectID": "tema02-organizacion/tema02-ficheros.html#gestión-del-acceso-propietarios-y-permisos-1",
+    "href": "tema02-organizacion/tema02-ficheros.html#gestión-del-acceso-propietarios-y-permisos-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Gestión del acceso: propietarios y permisos",
+    "text": "Gestión del acceso: propietarios y permisos\nListado con detalles y ficheros ocultos:\nls -la /boot/|head -n 8",
     "crumbs": [
-      "Tema 1.c: Virtual Box, Debian y configuración básica"
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#gestión-del-acceso-propietarios-y-permisos-2",
+    "href": "tema02-organizacion/tema02-ficheros.html#gestión-del-acceso-propietarios-y-permisos-2",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Gestión del acceso: propietarios y permisos",
+    "text": "Gestión del acceso: propietarios y permisos\nPermisos simbólicos y absolutos (Estos ejemplos son diferentes):",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#gestión-del-acceso-propietarios-y-permisos-3",
+    "href": "tema02-organizacion/tema02-ficheros.html#gestión-del-acceso-propietarios-y-permisos-3",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Gestión del acceso: propietarios y permisos",
+    "text": "Gestión del acceso: propietarios y permisos\n\nEl acceso a los ficheros se gestiona de la siguiente forma:\n\n\n\nAcceso\nFichero\nDirectorio\n\n\n\n\nr\nVer el contenido\nListar el contenido\n\n\nw\nModificar el contenido\nCrear/eliminar ficheros\n\n\nx\nEjecutar el fichero\nEntrar en el directorio\n\n\n\nSe establecen independientemente para: el usuario propietario (u), usuarios del grupo propietario (g) y resto de usuarios (o).\n\nchmod u+r fichero                 # Modo simbólico\nchmod -R u+rwx,go-rwx directorio  # Modo simbólico\nchmod 740 fichero                 # Modo absoluto u+rwx,g+r,g-wx,o-rwx\n\nOtros comandos: adduser, addgroup...",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#ejercicio-permisos",
+    "href": "tema02-organizacion/tema02-ficheros.html#ejercicio-permisos",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Ejercicio permisos",
+    "text": "Ejercicio permisos\n\nEjercicio (probar en modo simbólico y absoluto):\n\nEstablezca permisos de escritura para el fichero ejemplo sólo para el usuario propietario, de lectura para todos y de ejecución para el usuario y grupo propietarios.\nEstablezca permisos de escritura para el fichero ejemplo sólo para el usuario propietario, y de ejecución para el usuario y grupo propietarios y ninguno para el resto.",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#gestión-del-acceso-propietarios-y-permisos-4",
+    "href": "tema02-organizacion/tema02-ficheros.html#gestión-del-acceso-propietarios-y-permisos-4",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Gestión del acceso: propietarios y permisos",
+    "text": "Gestión del acceso: propietarios y permisos\n\n\n\nActual\nchmod\nResultado\nDescripción\n\n\n\n\nrw-------\na+x\n`rwx–x-\n-xAgregar a todos (all`) permiso de ejecución.\n\n\nrwx--x--x\ngo-x\n`rwx——\n` Se elimina permiso de ejecución para grupo y otros.\n\n\nrwxr-xr-x\nu-x,go-r\nrw---x--x\nAl usuario se le quita ejecución, al grupo y a otros se les quita lectura.\n\n\nrwxrwxrwx\nu-x,go-rwx\nrw-------\nAl usuario se le elimina ejecución, al grupo y a otros se les eliminan todos los permisos.\n\n\nr--------\na+r,u+w\n`rw-r–\nr–` A todos se les agrega lectura, al usuario se le agrega escritura.\n\n\nrw-r-----\nu-rw,g+w,o+x\n`—rw—\nx` Al usuario se le eliminan lectura y escritura, al grupo se le agrega escritura y a otros se les agrega ejecución.",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#permisos-especiales-sticky-bit",
+    "href": "tema02-organizacion/tema02-ficheros.html#permisos-especiales-sticky-bit",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Permisos especiales: sticky bit",
+    "text": "Permisos especiales: sticky bit\nTres tipos de permisos especiales: sticky bit, suid y sgid. Más sobre sticky bit.\nt: sticky bit, chmod o+t fichero.\n\nEl comando ls lo representa como una t en el noveno bit (según mayúscula/minúscula, t\\(\\rightarrow\\) o+x, T\\(\\rightarrow\\) o-x).\nPara ejecutables \\(\\rightarrow\\) mantener la imagen del fichero en la memoria de intercambio después de finalizar la ejecución del mismo (en desuso).\nPara directorios \\(\\rightarrow\\) solo root o el propietario de un fichero (o de la carpeta) pueden borrar o renombrar el fichero, aunque tengan permiso de escritura en la carpeta.",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#permisos-especiales-sticky-bit-1",
+    "href": "tema02-organizacion/tema02-ficheros.html#permisos-especiales-sticky-bit-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Permisos especiales: sticky bit",
+    "text": "Permisos especiales: sticky bit\nmkdir -p  carpeta && cd carpeta\ntouch fichero\nls -la fichero \nchmod o+w+t fichero \nls -la fichero \n\n¿Qué sentido tiene el sticky bit en este ejemplo?\n\nls -ld /tmp/",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#permisos-especiales-suid",
+    "href": "tema02-organizacion/tema02-ficheros.html#permisos-especiales-suid",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Permisos especiales: suid",
+    "text": "Permisos especiales: suid\ns: para usuarios, suid, chmod u+s fichero.\n\nEl comando ls lo representa como una s en el tercer bit (según mayúscula/minúscula, s\\(\\rightarrow\\) u+x, S\\(\\rightarrow\\) u-x(estado inconsistente)).\nPara ejecutables \\(\\rightarrow\\) cambio de dominio a nivel de usuario. Durante la ejecución, el usuario efectivo del proceso es el propietario del fichero y no el usuario que lo ejecutó.\nPara directorios \\(\\rightarrow\\) Ignorado.\n\n# El ejecutable \"gestorbd\" lee el fichero \"basedatos\":\n-rwxr--r-x root root /opt/bin/gestorbd\n-rwx------ root root /opt/datos/basedatos\n# El usuario pagutierrez puede ejecutar \"gestorbd\", pero ese programa\n# NO podrá leer \"basedatos\"\n# El programa si podrá leer \"basedatos\" si \"gestorbd\" tiene los permisos:\n-rwsr--r-x root root /opt/bin/gestorbd",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#permisos-especiales-suid-1",
+    "href": "tema02-organizacion/tema02-ficheros.html#permisos-especiales-suid-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Permisos especiales: suid",
+    "text": "Permisos especiales: suid\n\n¿Cómo es posible que cambiemos la contraseña desde un usuario corriente?\nEjecuta en tu máquina:\nls -l /etc/passwd /etc/shadow /usr/bin/passwd \n\n. . .\n$ ls -l /etc/passwd /etc/shadow /usr/bin/passwd \n-rw-r--r-- 1 root root    2941 feb 13 10:21 /etc/passwd\n-rw-r----- 1 root shadow  1827 feb 13 10:21 /etc/shadow\n-rwsr-xr-x 1 root root   59640 nov 29 13:25 /usr/bin/passwd\nVeamos el código de passwd",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#permisos-especiales-sgid",
+    "href": "tema02-organizacion/tema02-ficheros.html#permisos-especiales-sgid",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Permisos especiales: sgid,",
+    "text": "Permisos especiales: sgid,\ns: para grupos, sgid, chmod g+s fichero.\n\nEl comando ls lo representa como una s en el sexto bit (según mayúscula/minúscula, s\\(\\rightarrow\\) g+x, S\\(\\rightarrow\\) g-x (estado inconsistente)).\nPara ejecutables \\(\\rightarrow\\) cambio de dominio a nivel de grupo. Durante la ejecución, el grupo efectivo del proceso es el grupo propietario del fichero y no el del usuario que lo ejecutó.\nPara directorios \\(\\rightarrow\\) al crear un fichero en su interior, el grupo propietario del nuevo fichero es el grupo del directorio y no del usuario que ejecuta la orden.",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#ejemplo-sgid",
+    "href": "tema02-organizacion/tema02-ficheros.html#ejemplo-sgid",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Ejemplo sgid",
+    "text": "Ejemplo sgid\nEl ejecutable “gestorbd” lee el fichero “basedatos”:\n-rwxr-xr-x root root /opt/bin/gestorbd\n-rwxr----- root root /opt/datos/basedatos\nGrupo “alumnos”: pueden ejecutar “gestorbd” pero NO leer “basedatos” El programa si podrá leer “basedatos” si “gestorbd” tiene los permisos:\n-rwxr-Sr-x root root /opt/bin/gestorbd\nEl usuario “pagutierrez” sólo pertenece al grupo “profesores”\nSe tiene el directorio\ndrwxr-sr-x pagutierrez alumnos /practicas\nSi “pagutierrez” ejecuta cp tema2.pdf /practicas entonces el fichero copiado pertenecerá al grupo “alumnos”:\n-rw-r--r-- pagutierrez alumnos /practicas/tema2.pdf",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#coda-máscara-de-permisos-umask",
+    "href": "tema02-organizacion/tema02-ficheros.html#coda-máscara-de-permisos-umask",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "CODA: Máscara de permisos (umask)",
+    "text": "CODA: Máscara de permisos (umask)\n\nCuando un fichero nuevo se crea, se le asignan permisos.\nLos permisos se deciden aplicando una máscara de permisos a los permisos base (que se puede consultar/modificar utilizando el comando umask):\n\n$ umask\n0002\n\nLa máscara de bits indica con un 1 aquellos bits que deberán ser 0 en la cadena de permisos, es decir, indica qué permisos están restringidos.\nLos permisos base para directorios son 777; para ficheros, 666.",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#coda-máscara-de-permisos-umask-1",
+    "href": "tema02-organizacion/tema02-ficheros.html#coda-máscara-de-permisos-umask-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "CODA: Máscara de permisos (umask)",
+    "text": "CODA: Máscara de permisos (umask)\n\n\n¿Podremos especificar una máscara que permita crear ficheros con permisos de ejecución?\nIntenta deducir qué pasará con los siguientes pasos:\n\n\n\n\numask\nmkdir -p /tmp/prueba1\nls -ld /tmp/prueba1\ntouch /tmp/prueba1/a \nls -l /tmp/prueba1/\n\n$ umask\n$ mkdir -p /tmp/prueba1\n$ ls -ld /tmp/prueba1\ndrwxr-x--- 2 clase javi 4096 May 16 09:43 /tmp/prueba1\n$ touch /tmp/prueba1/a \n$ ls -l /tmp/prueba1/\ntotal 0\n-rw-r----- 1 clase javi 0 May 16 09:47 a\n\n\numask 027\nmkdir -p /tmp/prueba2\nls -ld /tmp/prueba2\ntouch /tmp/prueba2/a \nls -l /tmp/prueba2/",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#tipos-de-ficheros-ls--l",
+    "href": "tema02-organizacion/tema02-ficheros.html#tipos-de-ficheros-ls--l",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Tipos de ficheros (ls -l)",
+    "text": "Tipos de ficheros (ls -l)\n\nNormal.\nDirectorio (d): son ficheros que contienen enlaces a otros ficheros (ya sean directorios o archivos normales).\nEspecial de bloque (b): fichero especial para interactuar con un dispositivo basado en bloques.\nEspecial de carácter (c): fichero especial para interactuar con un dispositivo basado en caracteres.\nNamed Pipes (p): tubería FIFO con nombre (comunicación de procesos de diferentes usuarios con tuberías).\nSocket (s): como los pipes pero con comunicación duplex (ambos sentidos, ej. /tmp/.X11-unix/X0).\nEnlace físico.\nEnlace simbólico (l).",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#tipos-de-ficheros-enlaces",
+    "href": "tema02-organizacion/tema02-ficheros.html#tipos-de-ficheros-enlaces",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Tipos de ficheros: enlaces",
+    "text": "Tipos de ficheros: enlaces\n\n\n\nEnlaces: Archivos especiales que permiten que varios nombres (enlaces) se asocien a un único e idéntico archivo.\nVarias instancias de un mismo archivo en diversos lugares de la estructura jerárquica sin necesidad de copiarlos.\nAyuda a asegurar la coherencia y ahorrar espacio en el disco.\nGrupo de personas trabajando sobre un mismo fichero (modificaciones centralizadas).",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#tipos-de-ficheros-enlaces-1",
+    "href": "tema02-organizacion/tema02-ficheros.html#tipos-de-ficheros-enlaces-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Tipos de ficheros: enlaces",
+    "text": "Tipos de ficheros: enlaces\n\nEnlaces físicos (ln archivo-real enlace-físico):\n\nRepresentan un nombre alternativo para un archivo (dos nombres de fichero apuntando al mismo nodo-i).\nSi eliminamos un enlace físico, no eliminamos el archivo original. Mientras quede al menos un enlace físico, el archivo no se elimina.\nSólo es posible entre ficheros que estén en la misma partición.\nNo se pueden realizar a directorios.",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#tipos-de-ficheros-enlaces-2",
+    "href": "tema02-organizacion/tema02-ficheros.html#tipos-de-ficheros-enlaces-2",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Tipos de ficheros: enlaces",
+    "text": "Tipos de ficheros: enlaces\n\nEnlaces simbólicos (ln -s archivo-real enlace-simb):\n\nEs un puntero virtual al archivo real (acceso directo).\nFichero de texto (con su nodo-i independiente) que contiene la ruta del archivo al que apunta.\nSi se elimina el enlace simbólico, no se elimina el fichero original.",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#ejemplo-enlaces-físicos-y-simbólicos",
+    "href": "tema02-organizacion/tema02-ficheros.html#ejemplo-enlaces-físicos-y-simbólicos",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Ejemplo enlaces físicos y simbólicos",
+    "text": "Ejemplo enlaces físicos y simbólicos\n# Observad conteo de referencias (tercera columna, después de permisos).\ncd /tmp/\ntouch prueba\nln prueba enlace_fisico\nls -li prueba enlace_fisico\nln -s prueba enlace_simbolico\nls -li prueba enlace_simbolico\nResultado ejecución:\n$ touch prueba\n$ ln prueba enlace_fisico\n$ ls -li prueba enlace_fisico\n12481313 -rw-rw-r-- 2 javi javi 0 feb 23 23:00 enlace_fisico\n12481313 -rw-rw-r-- 2 javi javi 0 feb 23 23:00 prueba\n$ ln -s prueba enlace_simbolico\n$ ls -li prueba enlace_simbolico enlace_fisico \n12481313 -rw-rw-r-- 2 javi javi 0 feb 23 23:00 enlace_fisico\n12481314 lrwxrwxrwx 1 javi javi 6 feb 23 23:00 enlace_simbolico -&gt; prueba\n12481313 -rw-rw-r-- 2 javi javi 0 feb 23 23:00 prueba",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#procesos-1",
+    "href": "tema02-organizacion/tema02-ficheros.html#procesos-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Procesos",
+    "text": "Procesos",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#procesos-2",
+    "href": "tema02-organizacion/tema02-ficheros.html#procesos-2",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Procesos",
+    "text": "Procesos\n\nProcesos: son programas en ejecución.\nLos atributos de un proceso son:\n\nPID \\(\\Rightarrow\\) identificador del proceso.\nPPID \\(\\Rightarrow\\) identificador del proceso padre.\nNice number \\(\\Rightarrow\\) prioridad asignada al ejecutarlo.\nTTY \\(\\Rightarrow\\) terminal en el que se está ejecutando.\nRUID \\(\\Rightarrow\\) identificador del usuario real, el que lo ejecutó.\nEUID \\(\\Rightarrow\\) identificador del usuario efectivo, si hay cambio de dominio se refleja aquí (permiso suid).\nRGID \\(\\Rightarrow\\) identificador del grupo real, el grupo del usuario que lo ejecutó.\nEGID \\(\\Rightarrow\\) identificador del grupo efectivo, si hay cambio de dominio se refleja aquí (permiso sgid).",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#procesos-3",
+    "href": "tema02-organizacion/tema02-ficheros.html#procesos-3",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Procesos",
+    "text": "Procesos\n\nAtributos de un proceso: ps -Fl PID\nTipos de procesos:\n\nInteractivos: hay alguien conectado al sistema que los inicia (primer o segundo plano &).\nEncolados: procesos que se mandan a un buffer para ser ejecutados (en una fecha concreta o cuando la carga del sistema sea baja).\nDemonios: programas ejecutados en segundo plano durante el arranque, que esperan de forma continua un determinado evento.\n\n\n\nPrueba a añadir -a:\nps -Fla",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#dispositivos-1",
+    "href": "tema02-organizacion/tema02-ficheros.html#dispositivos-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Dispositivos",
+    "text": "Dispositivos\nLos dispositivos se representan/manejan como ficheros:\n\nFicheros especiales de caracteres: representan a dispositivos de caracteres (cinta magnética, puerto paralelo, puerto serie...)\nFicheros especiales de bloques: representan a dispositivos de bloques (disquete, partición de un disco duro o un pendrive...)\nEscribir/leer en un dispositivo se convierte en escribir/leer en el fichero correspondiente.\n\n\nHow to List Your Computer’s Devices From the Linux Terminal",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#dispositivos-ejemplos",
+    "href": "tema02-organizacion/tema02-ficheros.html#dispositivos-ejemplos",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Dispositivos: ejemplos",
+    "text": "Dispositivos: ejemplos\n\nEsos ficheros se almacenan en el directorio /dev:\n\n/dev/sda \\(\\Rightarrow\\) primer disco duro (sin considerar particiones).\n/dev/sda1 \\(\\Rightarrow\\) primera partición del primer disco.\n/dev/sdb \\(\\Rightarrow\\) segundo disco duro.\n/dev/sdc \\(\\Rightarrow\\) disco USB (primer nombre de dipositivo libre).\n/dev/tty1 \\(\\Rightarrow\\) primera terminal de consola (tty2 segunda).\n/dev/lp0 \\(\\Rightarrow\\) primer puerto paralelo.\n/dev/fd0 \\(\\Rightarrow\\) disquete de la primera disquetera.",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#dispositivos-de-bloques-lsblk",
+    "href": "tema02-organizacion/tema02-ficheros.html#dispositivos-de-bloques-lsblk",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Dispositivos de bloques: lsblk",
+    "text": "Dispositivos de bloques: lsblk\nDepende de tu distribución quizás necesites instalar:\nsudo apt-get install util-linux\nlsblk |grep -v loop\n$ lsblk |grep -v loop\nNAME        MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINT\nnvme0n1     259:0    0   477G  0 disk  \n├─nvme0n1p1 259:1    0   780M  0 part  /boot/efi\n├─nvme0n1p2 259:2    0     5G  0 part  \n├─nvme0n1p3 259:3    0  78,1G  0 part  /\n└─nvme0n1p4 259:4    0 393,1G  0 part  \n  └─home    253:0    0 393,1G  0 crypt /home",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#qué-esperas-que-haya-en-un-sistema-de-ficheros",
+    "href": "tema02-organizacion/tema02-ficheros.html#qué-esperas-que-haya-en-un-sistema-de-ficheros",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "¿Qué esperas que haya en un sistema de ficheros?",
+    "text": "¿Qué esperas que haya en un sistema de ficheros?\n\n\nFuente Unix and Linux system administration handbook. Chapter 5. The Filesystem. Addison-Wesley. 5th Edition. 2018.\n\n\nRápido: ¿cuál de los siguientes elementos esperarías encontrar en un “sistema de archivos”?\n\nProcesos\nDispositivos de audio\nEstructuras de datos y parámetros de ajuste del núcleo\nCanales de comunicación entre procesos",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-1",
+    "href": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Estructura genérica del sistema de ficheros",
+    "text": "Estructura genérica del sistema de ficheros\n\nFilesystem Hierarchy Standard: Jerarquía Estándar del Sistema de Ficheros.\nEspecificación estándar para sistemas tipo Unix.\nFruto del consenso entre la comunidad (desarrolladores, administradores...).\nVersión 3.0 (2015), especificación disponible en la URL: https://refspecs.linuxfoundation.org/fhs.shtml\nEn Linux, disponible como página de manual: man hier",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-2",
+    "href": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-2",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Estructura genérica del sistema de ficheros",
+    "text": "Estructura genérica del sistema de ficheros\n\nExisten dos tipos de distinciones cuando hablamos del tipo de contenido de un directorio:\nestáticos/dinámicos y compartibles/no compartibles.\n\nEstáticos: Contiene binarios, bibliotecas, documentación y otros ficheros que no cambian sin intervención del administrador. Pueden estar en dispositivos de solo lectura (read-only) y no necesitan que se hagan copias de seguridad tan a menudo como los ficheros dinámicos.\nDinámicos: Contiene ficheros que no son estáticos. Deben de encontrase en dispositivos de lectura-escritura (read-write). Necesitan que se hagan copias de seguridad a menudo.\nCompartibles: Contiene ficheros que se pueden encontrar en un ordenador y utilizarse en otro.\nNo compartibles: Contiene ficheros que no podemos utilizar en distintas máquinas.",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-3",
+    "href": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-3",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Estructura genérica del sistema de ficheros",
+    "text": "Estructura genérica del sistema de ficheros\n\n\nFuente https://linuxconfig.org/filesystem-basics",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-4",
+    "href": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-4",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Estructura genérica del sistema de ficheros",
+    "text": "Estructura genérica del sistema de ficheros\n\n/bin \\(\\Rightarrow\\) ficheros ejecutables básicos compartidos (mv, cp).\n/dev \\(\\Rightarrow\\) ficheros especiales de dispositivos.\n/etc \\(\\Rightarrow\\) la mayoría de los ficheros de configuración locales del sistema (solo archivos de texto).\n/root \\(\\Rightarrow\\) directorio HOME del administrador.\n/sbin \\(\\Rightarrow\\) ficheros ejecutables que, normalmente, sólo el administrador puede ejecutar.\n/home \\(\\Rightarrow\\) los directorios de trabajo de los usuarios.\n/lost+found \\(\\Rightarrow\\) contiene “referencias” a los ficheros marcados como erróneos al chequear el sistema de ficheros.\n/lib \\(\\Rightarrow\\) librerías necesarias para ejecutar los archivos.",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-5",
+    "href": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-5",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Estructura genérica del sistema de ficheros",
+    "text": "Estructura genérica del sistema de ficheros\n\n/proc y /sys \\(\\Rightarrow\\) sistemas de ficheros virtuales, contienen información sobre procesos, núcleo, módulos cargados, dispositivos, sucesos...\n/tmp \\(\\Rightarrow\\) ficheros temporales. Tiene el permiso t activo.\n/var \\(\\Rightarrow\\) ficheros variables: colas de datos (spool) de impresión, e-mail..., ficheros del cron, atd, ficheros de log...\n/boot \\(\\Rightarrow\\) núcleo y ficheros necesarios para cargar el núcleo y ficheros de configuración del gestor de arranque.\n/mnt, /mount ó /media \\(\\Rightarrow\\) montaje de otros sistemas de ficheros: disquetes, cdroms...\n\n/mnt/floppy ó /media/floppy\n/mnt/cdrom ó /media/cdrom\n\n/opt: paquetes de aplicaciones estáticas (no actualizables).",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-6",
+    "href": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-6",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Estructura genérica del sistema de ficheros",
+    "text": "Estructura genérica del sistema de ficheros\n\n/usr \\(\\Rightarrow\\) contiene subdirectorios de solo lectura, que no deben ser específicos de la máquina que los usa (Unix system resources):\n\n/usr/bin \\(\\Rightarrow\\) ficheros ejecutables por todos los usuarios.\n/usr/sbin \\(\\Rightarrow\\) ficheros ejecutables de administración.\n/usr/include \\(\\Rightarrow\\) ficheros cabecera de cabecera estándar para compilación.\n/usr/lib \\(\\Rightarrow\\) librerías binarias.\n/usr/local \\(\\Rightarrow\\) software local específico.\n/usr/share \\(\\Rightarrow\\) datos compartidos (independientes de la arquitectura: imágenes, ficheros de texto...).\n\n/usr/share/man.\n/usr/share/doc.\n\n/usr/src \\(\\Rightarrow\\) código fuente, como el del kernel...",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-7",
+    "href": "tema02-organizacion/tema02-ficheros.html#estructura-genérica-del-sistema-de-ficheros-7",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Estructura genérica del sistema de ficheros",
+    "text": "Estructura genérica del sistema de ficheros\n\nEstáticos: /bin, /sbin, /opt, /boot, /usr/bin...\nDinámicos: /var/mail, /var/spool, /var/run, /var/lock, /home\nCompartibles: /usr/bin, /opt...\nNo compartibles: /etc, /boot, /var/run, /var/lock...",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#proyecto-asignatura-1",
+    "href": "tema02-organizacion/tema02-ficheros.html#proyecto-asignatura-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Proyecto asignatura",
+    "text": "Proyecto asignatura\nHerramientas y conceptos que hemos visto (además de los de los apuntes):\n\nReenvío de puertos (port forwarding) en VirtualBox\nConexiones ssh: ssh usuario@host [-p puerto]\nAutenticación ssh con clave gpg (ssh-copy-id). Importante leer sobre cifrado asimétrico custodia y distribución de tus claves. ssh-copy-id usuario@host [-p puerto]\nHerramienta apt y conceptos y configuración de repositorios",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "tema02-organizacion/tema02-ficheros.html#referencias-1",
+    "href": "tema02-organizacion/tema02-ficheros.html#referencias-1",
+    "title": "Tema 2: Organización de un sistema operativo tipo GNU/Linux",
+    "section": "Referencias",
+    "text": "Referencias\nUnix and Linux system administration handbook. Chapter 4. Process control. Chapter 5. The Filesystem. Addison-Wesley. 5th Edition. 2018.",
+    "crumbs": [
+      "Tema 2: Organización de GNU/Linux"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Programación y Administración de Sistemas",
+    "section": "",
+    "text": "Bienvenid[o|a|e] a la web de la asignatura “Programación y Administración de Sistemas (curso 2023-2024)”. Estos apuntes son una actualización progresiva de los apuntes del profesor Pedro A. Gutiérrez de cursos anteriores.\nAquí encontrarás progresivamente el material de teoría de la asignatura en formato HTML navegando por el menú de la izquierda. El resto del material lo tienes disponible en la plataforma moodle de la UCO.\nAl final de cada tema hay una sección sobre el proyecto de la asignatura de construcción de un sistema informático con GNU/Linux.",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "index.html#contenido-en-pdf",
+    "href": "index.html#contenido-en-pdf",
+    "title": "Programación y Administración de Sistemas",
+    "section": "Contenido en PDF",
+    "text": "Contenido en PDF\nPuedes acceder también al contenido de esta asignatura en formato PDF imprimible:\n\nInicio\nTema 0: Presentación\nTema 1.a: Introducción\nTema 1.b: Software Libre y GNU/Linux”\nTema 1.c: Virtual Box, Debian y configuración básica\nTema 2: Organización de un sistema operativo tipo GNU/Linux\n\nTema 2: Ejercicios permisos\nTema 2: Web personal",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "index.html#evi-nemeth",
+    "href": "index.html#evi-nemeth",
+    "title": "Programación y Administración de Sistemas",
+    "section": "Evi Nemeth",
+    "text": "Evi Nemeth\nEvi Tribute at admin.com.\n\n\n\nEvi Nemeth retired from the Computer Science faculty at the University of Colorado in 2001. She explored the Pacific on her 40-foot sailboat named Wonderland for many years before becoming lost at sea in 2013. Fuente http://www.techfestival.org/evi-nemeth\n\n\n\n\n\nEvi Nemeth and Dennis Ritchie at the Phoenix 1987 USENIX conference. Evi, a UNIX engineer, author, and teacher, famous for one of the UNIX/Linux sys admin “bibles”. Dennis Ritchie co-developed UNIX and also the C programming language. Fuente @bioreconstruct",
+    "crumbs": [
+      "Inicio"
     ]
   }
 ]

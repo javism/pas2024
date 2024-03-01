@@ -8,7 +8,7 @@
 
 <meta name="author" content="Javier Sánchez Monedero">
 
-<title>Programación y Administración de Sistemas (2023-2024) - Tema 0: Presentación</title>
+<title>Programación y Administración de Sistemas (2023-2024) - Tema 2: Organización de un sistema operativo tipo GNU/Linux (Ejercicios)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -80,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tema00-presentacion/presentacion.html">Tema 0: Presentación</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tema02-organizacion/tema02-ejercicios.html">Tema 2: Ejercicios permisos</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -113,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema00-presentacion/presentacion.html" class="sidebar-item-text sidebar-link active">
+  <a href="../tema00-presentacion/presentacion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 0: Presentación</span></a>
   </div>
 </li>
@@ -143,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema02-organizacion/tema02-ejercicios.html" class="sidebar-item-text sidebar-link">
+  <a href="../tema02-organizacion/tema02-ejercicios.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tema 2: Ejercicios permisos</span></a>
   </div>
 </li>
@@ -169,14 +203,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#profesorado-y-moodle" id="toc-profesorado-y-moodle" class="nav-link active" data-scroll-target="#profesorado-y-moodle"><span class="header-section-number">1</span> Profesorado y Moodle</a></li>
-  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos"><span class="header-section-number">2</span> Objetivos</a></li>
-  <li><a href="#objetivos-de-la-asignatura" id="toc-objetivos-de-la-asignatura" class="nav-link" data-scroll-target="#objetivos-de-la-asignatura"><span class="header-section-number">3</span> Objetivos de la asignatura</a></li>
-  <li><a href="#temario-y-programación" id="toc-temario-y-programación" class="nav-link" data-scroll-target="#temario-y-programación"><span class="header-section-number">4</span> Temario y programación</a></li>
-  <li><a href="#bibliografía" id="toc-bibliografía" class="nav-link" data-scroll-target="#bibliografía"><span class="header-section-number">5</span> Bibliografía</a></li>
-  <li><a href="#evaluación" id="toc-evaluación" class="nav-link" data-scroll-target="#evaluación"><span class="header-section-number">6</span> Evaluación</a></li>
-  <li><a href="#devops" id="toc-devops" class="nav-link" data-scroll-target="#devops"><span class="header-section-number">7</span> DevOps</a></li>
-  <li><a href="#sugerencias" id="toc-sugerencias" class="nav-link" data-scroll-target="#sugerencias"><span class="header-section-number">8</span> Sugerencias</a></li>
+  <li><a href="#algunos-ejercicios" id="toc-algunos-ejercicios" class="nav-link active" data-scroll-target="#algunos-ejercicios"><span class="header-section-number">1</span> Algunos ejercicios</a></li>
   </ul>
 </nav>
     </div>
@@ -185,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tema 0: Presentación</h1>
+<h1 class="title">Tema 2: Organización de un sistema operativo tipo GNU/Linux (Ejercicios)</h1>
 <p class="subtitle lead">Programación y Administración de Sistemas <br> (2023-2024)</p>
 </div>
 
@@ -228,305 +255,112 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="profesorado-y-moodle" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Profesorado y Moodle</h1>
-<section id="moodle" class="level2">
-<h2 class="anchored" data-anchor-id="moodle">Moodle</h2>
-<p>Todo el material mínimo y opcional de la asignatura está disponible en la plataforma Moodle de la UCO:</p>
+<section id="algunos-ejercicios" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Algunos ejercicios</h1>
+<section id="usuarios-y-grupos-de-ejemplo" class="level2">
+<h2 class="anchored" data-anchor-id="usuarios-y-grupos-de-ejemplo">Usuarios y grupos de ejemplo</h2>
+<p>Crea tres usuarios, dos de ellos tendrán un grupo común. Suponiendo que nuestro usuario de administración es <code>pas</code>, lo añadimos al grupo sudo como <code>root</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/sbin/usermod</span> <span class="at">-aG</span> sudo pas</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Creamos un grupo para la clase y tres usuarios de ejemplo, los dos primeros tendrá como grupo principal <code>clase</code> y el tercero no:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> addgroup clase</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> adduser usuario1 <span class="at">--ingroup</span> clase</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> adduser usuario2 <span class="at">--ingroup</span> clase</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> adduser usuario3</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="permisos" class="level2">
+<h2 class="anchored" data-anchor-id="permisos">Permisos</h2>
+<p>Con <code>usuario1</code> Crear un archivo con el contenido <code>HOLA!</code>, utilizando la orden <code>echo</code>, y asignarle permisos para que solo puede ser consultado por su propietario y por los miembros del grupo <code>clase</code>.</p>
+<p>NOTA: Puede ser una buena idea tener varios terminales abiertos con cada usuario del sistema para probar que los permisos son efectivos.</p>
+</section>
+<section id="permisos-1" class="level2">
+<h2 class="anchored" data-anchor-id="permisos-1">Permisos</h2>
+<p>Modifica los permisos por defecto con <code>umask</code> para que los ficheros creados:</p>
 <ul>
-<li><p><a href="http://moodle.uco.es/m2324">http://moodle.uco.es/m2324</a></p></li>
-<li><p><a href="https://moodle.uco.es/m2324/course/view.php?id=1335">Curso: Programación y Administración de Sistemas ( GIINF-2-101390-1-1)</a></p></li>
+<li><p>no puedan ser leídos por el resto de usuarios y los directorios no puedan ser listados.</p></li>
+<li><p>puedan ser leídos y escritos por el grupo.</p></li>
+</ul>
+<p>Comprueba que tienen efecto creado ficheros y directorios de ejemplo.</p>
+<p>Busca cómo hacer permanentes en cada usuario los permisos <code>umask</code>.</p>
+</section>
+<section id="algunos-ejercicios-de-permisos" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="algunos-ejercicios-de-permisos">Algunos ejercicios de permisos</h2>
+<ul>
+<li>Transformar los siguientes permisos simbólicos en absolutos:</li>
+</ul>
+<pre><code>rwxr-xr-x    r-xr--r--  rw-r-----  r-x--x--x</code></pre>
+<ul>
+<li>Transformar los siguientes permisos absolutos en simbólicos:</li>
+</ul>
+<pre><code>644    755    610    631</code></pre>
+<ul>
+<li><p>Fijar, en modo simbólico, los permisos de <code>arch1</code> en modo <code>754</code>.</p></li>
+<li><p>Fijar, en modo absoluto, los permisos de <code>arch1</code> en modo <code>rwxr-x--x</code>.</p></li>
+<li><p>Fijar los permisos del directorio <code>dir1</code> de modo que todos lo puedan leer y entrar, pero sólo el dueño pueda modificar sus archivos: 1) en modo simbólico; 2) en modo absoluto.</p></li>
+<li><p>Modificar para que el grupo también pueda modificar archivos.</p></li>
+<li><p>Fijar en modo simbólico los permisos del archivo ejecutable <code>exec.tar</code> para que sea ejecutable por todos, legible por el dueño y el grupo, y modificable solo por el dueño. Repetir en modo absoluto.</p></li>
+<li><p>Fijar en modo absoluto los permisos del directorio <code>dir1</code> de modo que sólo el dueño y el grupo lo puedan recorrer y leer, y sólo el dueño pueda grabar y borrar en él. Repetir en modo simbólico.</p></li>
 </ul>
 </section>
-<section id="profesorado" class="level2">
-<h2 class="anchored" data-anchor-id="profesorado">Profesorado</h2>
-<div class="block">
-<p><strong>Cordinación y teoría:</strong> Javier Sánchez Monedero</p>
-</div>
-<div class="block">
-<p><strong>Prácticas</strong>:</p>
-<ul>
-<li>Prácticas 1-3: María Isabel Jiménez Velasco y Víctor Manuel Vargas Yun</li>
-<li>Práctica 4: Enrique García Salcines</li>
-</ul>
-</div>
-<p>Horarios de tutoría y datos de contacto en Moodle.</p>
-</section>
-<section id="móviles-en-clase-qué-dice-chatgpt-12" class="level2">
-<h2 class="anchored" data-anchor-id="móviles-en-clase-qué-dice-chatgpt-12">Móviles en clase: ¿qué dice ChatGPT? (1/2)</h2>
-<p>El uso de los móviles en la educación puede tener tanto efectos positivos como negativos.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Efectos positivos:
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Facilita el acceso a la información y recursos educativos en línea.</li>
-<li>Mejora la colaboración y el trabajo en equipo a través de aplicaciones y herramientas en línea</li>
-<li>Fomenta la independencia y el aprendizaje autónomo.</li>
-<li>Aumenta la motivación y el interés por el aprendizaje.</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="móviles-en-clase-qué-dice-chatgpt-22" class="level2">
-<h2 class="anchored" data-anchor-id="móviles-en-clase-qué-dice-chatgpt-22">Móviles en clase: ¿qué dice ChatGPT? (2/2)</h2>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Efectos negativos:
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Distracción y pérdida de concentración en la clase.</li>
-<li>Uso inadecuado y poco ético, como la trampa en exámenes o el acceso a contenido no apropiado.</li>
-<li>Adicción a los dispositivos y dependencia en la tecnología.</li>
-<li>Desigualdades socioeconómicas, ya que no todos los estudiantes tienen acceso a dispositivos de alta calidad o a una conexión a Internet confiable.</li>
-</ul>
-</div>
-</div>
-</section>
-</section>
-<section id="objetivos" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Objetivos</h1>
-<section id="actividad-en-clase" class="level2" data-background-color="lightgreen">
-<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="actividad-en-clase">Actividad en clase</h2>
-<p>En buscadores genéricos o de empleo busca “administrador/a de sistemas”, “devops”, “sysadmin”</p>
-<p>Ejemplos:</p>
-<ul>
-<li><p><a href="https://www.linkedin.com/jobs/search/?currentJobId=3825905330&amp;keywords=sysadmin" class="uri">https://www.linkedin.com/jobs/search/?currentJobId=3825905330&amp;keywords=sysadmin</a></p></li>
-<li><p><a href="https://www.infojobs.net/ofertas-trabajo/administrador-a-de-sistemas-informaticos" class="uri">https://www.infojobs.net/ofertas-trabajo/administrador-a-de-sistemas-informaticos</a></p></li>
-</ul>
-</section>
-<section id="administradora-de-sistemas" class="level2">
-<h2 class="anchored" data-anchor-id="administradora-de-sistemas">Administrador/a de sistemas</h2>
-<div class="columns">
-<div class="smaller column" style="width:52%;">
-<p>Según <a href="http://es.wikipedia.org/wiki/Administrador_de_sistemas">Wikipedia</a>:</p>
-<blockquote class="blockquote">
-<p>Un Administrador/a de Sistemas es la persona que tiene la responsabilidad de <strong>implementar, configurar, mantener, monitorizar, documentar y asegurar</strong> el correcto funcionamiento de un sistema informático, o algún aspecto de éste.</p>
-</blockquote>
-</div><div class="column" style="width:48%;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/jc-computer-admin-6389.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Fotografía de una administradora de sistemas conectando cables de fibra óptica" width="400"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="memes" class="level2">
-<h2 class="anchored" data-anchor-id="memes">Memes</h2>
-<p><img src="images/meme_sysadmin.jpg" class="img-fluid"></p>
-<p>Fuente: <a href="https://blog.law.cornell.edu/blog/2013/09/16/were-hiring/">we are hiring</a>.</p>
-</section>
-<section id="tareas" class="level2">
-<h2 class="anchored" data-anchor-id="tareas">Tareas</h2>
-<div style="font-size: 80%">
-<ul>
-<li>Mantener el Sistema Informático de una empresa/institución.</li>
-<li>A nivel <em>software</em>:
-<ul>
-<li>Instalar servicios utilizados por la empresa.</li>
-<li>Interconectar servicios (mismo login y contraseña para todo).</li>
-<li>Mantener servicios (p.ej. Moodle, servidor de correo…).</li>
-<li>Realizar copias de respaldo de los datos.</li>
-<li>Controlar la seguridad.</li>
-</ul></li>
-<li>¿A nivel <em>hardware</em>?</li>
-</ul>
-</div>
-</section>
-<section id="software-libre" class="level2">
-<h2 class="anchored" data-anchor-id="software-libre">Software libre</h2>
-<p>Aunque en el escritorio el software privativo sea líder el <strong>software libre</strong> y los sistemas Linux, FreeBSD, etc. son la opción mayoritaria servidores y supercomputadores.</p>
-<p><img src="images/share-linux.png" class="img-fluid"></p>
-<p>Fuente: <a href="http://en.wikipedia.org/wiki/Usage_share_of_operating_systems">Usage share of operating systems en Wikipedia</a>.</p>
-</section>
-<section id="por-qué-software-libre" class="level2">
-<h2 class="anchored" data-anchor-id="por-qué-software-libre">¿Por qué software libre?</h2>
-<div class="columns">
-<div class="smaller column" style="width:52%;">
-<ul>
-<li>Entorno empresarial y de investigación cooperativo.</li>
-<li>Adopción de estándares.</li>
-<li>Flexibilidad, fiabilidad, seguridad, transparencia.</li>
-<li>Independencia de proveedores.</li>
-<li>Ética y compromiso social.</li>
-<li>Más económico (¿?)</li>
-</ul>
-<p><a href="https://www.uco.es/aulasoftwarelibre" class="uri">https://www.uco.es/aulasoftwarelibre</a></p>
-</div><div class="column" style="width:48%;">
-<p><img src="images/meditate.png" class="quarto-figure quarto-figure-center" alt="The Gnu from GNU meditating" height="250"> <img src="images/Linux_logo.jpg" class="quarto-figure quarto-figure-center" alt="Logotipo Linux" height="250"></p>
-</div>
-</div>
-</section>
-</section>
-<section id="objetivos-de-la-asignatura" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Objetivos de la asignatura</h1>
-<section id="objetivo" class="level2">
-<h2 class="anchored" data-anchor-id="objetivo">Objetivo</h2>
-<div class="alertblock">
-<p>El objetivo fundamental es que el alumnado que curse la asignatura adquiera los conocimientos básicos y domine las técnicas fundamentales de la Administración de Sistemas Operativos.</p>
-</div>
-</section>
-<section id="objetivos-concretos" class="level2" style="font-size: 85%">
-<h2 style="font-size: 85%" class="anchored" data-anchor-id="objetivos-concretos">Objetivos concretos</h2>
-<div class="block">
-<div class="incremental">
-<ol class="incremental" type="1">
-<li>Conocer los comandos básicos y las secuencias de pasos necesarias para instalar y administrar sistemas.</li>
-<li>Conocer y manejar los ficheros de configuración de los sistemas.</li>
-<li>Adquirir conocimientos básicos sobre lenguajes de <em>scripting</em> y de programación de la <em>Shell</em>.</li>
-<li>Comprender cómo se organiza el sistema operativo y los subsistemas POSIX para poder escribir aplicaciones que interaccionen con los mismos.</li>
-<li>Instalar y mantener servicios en Sistemas Distribuidos.</li>
-<li>Adquirir conceptos teóricos y prácticos de rendimiento y seguridad en sistemas.</li>
-</ol>
-</div>
-</div>
-</section>
-</section>
-<section id="temario-y-programación" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Temario y programación</h1>
-<section id="temario" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="temario">Temario</h2>
+<section id="interpretar-salida-ls--l" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="interpretar-salida-ls--l">Interpretar salida <code>ls -l</code></h2>
+<p>Sea la siguiente salida del comando <code>ls -l</code>:</p>
+<pre><code>-rwSr-xr-x 1 pagutierrez docentes 29024 ene 1  16:29  controlar
+-rw-rw-r-- 1 pagutierrez docentes 2300  may 18 09:37  borrador.txt
+-rw-r--r-- 1 pagutierrez docentes 5895  may 15 12:08  index.htm
+-rwxr-xr-x 1 pagutierrez docentes 29024 ene 1  16:29  revisar
+-rwxr--r-- 1 pagutierrez docentes 29024 ene 1  16:29  mostrar
+  drwxrwxrwt 2 pagutierrez tecnicos 1024  may 1  17:23  trabajos
+  drwxr-xr-x 2 pagutierrez tecnicos 1024  oct 16  1998  netscape3
+  drwxrwx--x 2 pagutierrez tecnicos 1024  may 11  7:29  finanzas
+  drwxrwxr-x 2 pagutierrez tecnicos 1024  jul 7   6:54  redes
+  drwxr-xr-x 2 jsanchezm   docentes 1024  jun 17 19:35  corporacion</code></pre>
+<p>El usuario <code>jsanchezm</code>, del grupo <code>docentes</code>, tiene acceso al presente directorio. Indicar, si los hay:</p>
 <ol type="1">
-<li>Introducción a la administración de sistemas.</li>
-<li>Organización de un sistema operativo GNU/Linux.</li>
-<li>Gestión de usuarios.</li>
-<li>Arranque y parada del sistema y servicios.</li>
-<li>Monitorización y gestión de recursos.</li>
-<li>Organización de sistemas de ficheros y discos.</li>
-<li>Administración de sistemas de ficheros y discos.</li>
-<li>Restauración y copias de seguridad</li>
-<li>Gestión de las comunicaciones.</li>
-<li>Virtualización.</li>
+<li><p>Archivos de los que puede mostrar contenido.</p></li>
+<li><p>Archivos que puede ejecutar como programa.</p></li>
+<li><p>Archivos en los que puede modificar contenido.</p></li>
+<li><p>Subdirectorios en los que puede ingresar.</p></li>
+<li><p>Subdirectorios en que puede crear/eliminar ficheros propios.</p></li>
+<li><p>Subdirectorios en los que puede borrar archivos de otros.</p></li>
+<li><p>Subdirectorios en los que puede entrar y ejecutar programas contenidos en ellos, pero no ver nombres de archivos.</p></li>
+<li><p>Archivos que puede ejecutar como programa con permisos del usuario <code>pagutierrez</code>.</p></li>
 </ol>
 </section>
-<section id="temario-prácticas" class="level2">
-<h2 class="anchored" data-anchor-id="temario-prácticas">Temario prácticas</h2>
-<div class="block">
-<p><strong>Bloque I</strong>:</p>
+<section id="interpretar-salida-ls--l-1" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="interpretar-salida-ls--l-1">Interpretar salida <code>ls -l</code></h2>
+<p>Sea la siguiente salida del comando <code>ls -l</code> (suponemos que <code>pagutierrez</code> pertenece a <code>staff</code>):</p>
+<pre><code>-rw-r--r--  1  root        root       33280 jun 12 19:40 Carta.doc
+  drwxrwxrwx 5  pagutierrez staff       1024 dic  4  1999 step
+  drwxrwxr-x 22 pagutierrez staff       1024 nov 20  1999 Office51
+  drwxr-x--- 6  pagutierrez staff       1024 may 7  16:43 argos
+  drwxrwxr-- 21 pagutierrez staff       1024 jul 11 18:22 bajados
+-rw-rw---- 3  root        root         542 jul 13 11:26 boor.exe
+  drwxrwxrwt 3  pagutierrez staff       1024 may 25 10:02 borrador
+-rwSrwSr-x 1  root        root        9218 jun 12 19:41 pph3
+  drwxrwx--x 2  pagutierrez pagutierrez 1024 may 7  16:47 cdir
+-rw-rw-r-- 3  root        root         542 jul 13 11:26 mysql-doc
+-rw-r-xr-- 3  pagutierrez staff       1084 ago 1  10:01 ver.exe
+-rwxr-xr-x 3  pagutierrez staff       1084 ago 1  10:01 ver
+  drwxr-xr-x 7  pagutierrez pagutierrez 1024 jul 25 11:48 lit</code></pre>
+<p>Indicar, si los hay:</p>
 <ol type="1">
-<li>Programación de la shell.</li>
-<li>Expresiones regulares para la programación de la shell.</li>
+<li><p>directorios públicos (todo el mundo puede entrar, listar y borrar archivos);</p></li>
+<li><p>archivos que tienen enlaces hard o físicos;</p></li>
+<li><p>archivos ejecutables por el usuario <code>pagutierrez</code>;</p></li>
+<li><p>directorios navegables por todo el mundo;</p></li>
+<li><p>directorios donde miembros del grupo <code>staff</code> puede borrar archivos;</p></li>
+<li><p>archivos que son enlaces simbólicos.</p></li>
+<li><p>archivos ejecutables que adquieren permisos de usuario <code>root</code>.</p></li>
 </ol>
-</div>
-<div class="block">
-<p><strong>Bloque II</strong>:</p>
-<ol start="3" type="1">
-<li>Programación en POSIX.</li>
-<li>Administración de servidores web: Apache.</li>
-</ol>
-</div>
 </section>
-<section id="planificación-asignatura" class="level2">
-<h2 class="anchored" data-anchor-id="planificación-asignatura">Planificación asignatura</h2>
-<p><a href="https://moodle.uco.es/m2324/mod/resource/view.php?id=238336">Calendario aproximado teoría</a></p>
-<p><a href="https://moodle.uco.es/m2324/mod/resource/view.php?id=238343">Calendario aproximado prácticas</a></p>
-<p><span class="rojo">Provisional</span>: seminarios aulas y/o profesionales.</p>
-</section>
-</section>
-<section id="bibliografía" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Bibliografía</h1>
-<section id="bibliografía-1" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="bibliografía-1">Bibliografía</h2>
-<p>Básica para seguir la asignatura:</p>
+<section id="enlaces" class="level2">
+<h2 class="anchored" data-anchor-id="enlaces">Enlaces</h2>
+<p>Marca todos los tipos de enlace que pueden establecerse en los siguientes casos (físico, simbólico o ambos).</p>
 <ul>
-<li><p>UNIX and Linux System Administration Handbook, 5th Edition. Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley and Dan Mackin. Addison-Wesley. 2018.</p></li>
-<li><p>Essential System Administration (3a ed.). Aeleen Frisch. O’Reilly &amp; Associates. 2002.</p></li>
-<li><p><a href="https://github.com/jlevy/the-art-of-command-line/blob/master/README-es.md">El Arte del Terminal</a>, Joshua Levy, 2023.</p></li>
-</ul>
-<p>Adicional:</p>
-<ul>
-<li>Administración de sistemas Linux. Adelstein, Tom. Lubanovic, Bill. Anaya multimedia, O Reilly. 2007.</li>
-<li>Unix shell programming, 3a Edición. Kochan, Wood. Sams Publishing. 2003.</li>
-<li>LPI Linux Certification in a Nutshell, Third Edition. Adam Haeder, Stephen Addison Schneiter, Bruno Gomes Pessanha, and James Stanger. 2010.</li>
-<li>K. A. Robbind, S. Robbins. Unix Systems Programming. Prentice Hall, 2003</li>
-</ul>
-</section>
-</section>
-<section id="evaluación" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Evaluación</h1>
-<section id="evaluación-1" class="level2">
-<h2 class="anchored" data-anchor-id="evaluación-1">Evaluación</h2>
-<ul>
-<li><strong>Leer detenidamente la guı́a docente</strong>.</li>
-<li>La evaluación de la asignatura se divide en dos partes, parte teórica y parte práctica (Teorı́a 50 % + Práctica 50 %).</li>
-<li>Para aprobar la asignatura es necesario obtener al menos 5 sobre 10 puntos en la parte de prácticas y 5 sobre 10 puntos en la parte de teorı́a. En caso contrario, la asignatura se considera suspensa.</li>
-<li>Si se aprueba solo la teorı́a o solo la práctica, la nota correspondiente se guarda hasta la convocatoria de septiembre.</li>
-</ul>
-</section>
-<section id="evaluación-exámenes-y-pruebas" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="evaluación-exámenes-y-pruebas">Evaluación: exámenes y pruebas</h2>
-<p>La parte de teorı́a (<strong>50 % de la nota</strong>) se evaluará con un examen final teórico que estará compuesto de:</p>
-<ul>
-<li><p>Pruebas objetivas tipo test (<strong>20 %</strong>, mı́nimo 5 sobre 10).</p></li>
-<li><p>Pruebas de respuesta corta con supuestos prácticos que versen sobre los contenido teóricos dados en clase (<strong>30 %</strong>, mı́nimo 5 sobre 10).</p></li>
-</ul>
-<p>La parte de prácticas (<strong>50 %</strong> de la nota) se organiza en dos bloques. Consta de:</p>
-<ul>
-<li>Examen práctico de programación y administración de sistemas <strong>50 %</strong>, mı́nimo 5 sobre 10). Existen dos posibilidades:
-<ul>
-<li><strong>Exámenes prácticos parciales</strong> realizados durante el curso (eliminan materia de cara al examen final).</li>
-<li><strong>Examen práctico final</strong> realizado durante el periodo de exámenes.</li>
-</ul></li>
-</ul>
-</section>
-<section id="evaluación-exámenes-y-pruebas-1" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="evaluación-exámenes-y-pruebas-1">Evaluación: exámenes y pruebas</h2>
-<ul>
-<li>Para aprobar las prácticas es necesario aprobar cada Bloque por separado con <strong>5 sobre 10 puntos</strong>.</li>
-<li>Para presentarse a las prácticas en la convocatoria de <strong>junio</strong> es necesario haber asistido a un 80 % de las sesiones de prácticas.</li>
-<li>Para la convocatoria de <strong>julio</strong> y de <strong>septiembre</strong>, la asistencia a las prácticas no es requisito.</li>
-<li>Las calificaciones parciales no se guardan de un curso a otro.</li>
-<li>Se guardan calificaciones parciales (bloques de prácticas o teorı́a) dentro de las convocatorias del mismo curso académico.</li>
-<li>Los alumnos a tiempo parcial deben ponerse en contacto con el profesor.</li>
-</ul>
-</section>
-<section id="tareas-de-administración-i" class="level2">
-<h2 class="anchored" data-anchor-id="tareas-de-administración-i">Tareas de administración (I)</h2>
-<ul>
-<li>Resolución de <strong>ejercicios teóricos y/o prácticos</strong> propuestos y anunciados.</li>
-<li>Las alumnas/os podrán proponer tareas similares a las propuestas.</li>
-<li>Esta nota se guardará para todas las convocatorias del curso académico. Las tareas pueden llegar a valorarse <strong>hasta 2 puntos</strong> en el examen de teorı́a (sobre 5 puntos). Se tendrá en cuenta para aumentar nota una vez aprobado el examen.</li>
-</ul>
-</section>
-<section id="tareas-de-administración-ii" class="level2">
-<h2 class="anchored" data-anchor-id="tareas-de-administración-ii">Tareas de administración (II)</h2>
-<ul>
-<li>Se deberá redactar un guión donde se detalle paso a paso los comandos y operaciones necesarios para llevar a cabo la tarea, acompañados de capturas cuando ası́ se requiera. El documento deberá ser autocontenido y explicativo y todo se deberá realizar sobre una imagen virtual de un sistema operativo GNU/Linux. Se presentará en clase durante un tiempo aproximado de 10-15 minutos.</li>
-</ul>
-</section>
-</section>
-<section id="devops" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> DevOps</h1>
-<section id="devops-1" class="level2">
-<h2 class="anchored" data-anchor-id="devops-1">DevOps</h2>
-<p><a href="https://roadmap.sh/devops/" data-preview-link="true">roadmap.sh/devops</a></p>
-<p><img src="images/devops.png" class="img-fluid" style="width:50.0%"></p>
-</section>
-</section>
-<section id="sugerencias" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Sugerencias</h1>
-<section id="dinamización-de-clases" class="level2" data-background-color="lightgreen">
-<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="dinamización-de-clases">Dinamización de clases</h2>
-<ul>
-<li>Ideal: aula de prácticas para ir probando lo que hacemos…</li>
-<li>Quizz: 1 por tema (cada 2 clases)</li>
-<li>Tareas administración</li>
-<li>Resolución de casos prácticos</li>
-<li>Memes</li>
-<li>…</li>
+<li><p>enlace hacia un archivo en el mismo directorio.</p></li>
+<li><p>enlace hacia un archivo en otro sistema de archivos.</p></li>
+<li><p>enlace hacia un directorio en el mismo sistema de archivos.</p></li>
+<li><p>enlace hacia un directorio en otro sistema de archivos.</p></li>
 </ul>
 
 
