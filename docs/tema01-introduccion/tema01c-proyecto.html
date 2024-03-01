@@ -200,6 +200,24 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-ficheros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Organización de GNU/Linux</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Ejercicios permisos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-webuco.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Ejercicios web personal en la UCO</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../enlaces.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Enlaces</span></a>
   </div>
@@ -256,7 +274,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">27 de febrero de 2024</p>
+      <p class="date">1 de marzo de 2024</p>
     </div>
   </div>
   
@@ -324,7 +342,9 @@ window.Quarto = {
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> usermod <span class="at">-aG</span> sudo usuario</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> usermod <span class="at">-aG</span> sudo usuario</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># en algunas distribuciones hay que poner</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> /sbin/usermod <span class="at">-aG</span> sudo usuario</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="la-herramienta-sudo-1" class="level2">
 <h2 class="anchored" data-anchor-id="la-herramienta-sudo-1">La herramienta sudo</h2>
@@ -372,7 +392,7 @@ window.Quarto = {
 <li>Añadir usuario para la administración sudo:
 <ol type="1">
 <li><code>adduser adminpas</code></li>
-<li><code>sudo usermod -aG sudo adminpas</code></li>
+<li><code>sudo /sbin/usermod -aG sudo adminpas</code></li>
 </ol></li>
 <li>¡Ya hemos terminado con <code>root</code>!</li>
 <li>Debemos salir e iniciar sesión de nuevo con <code>adminpas</code> para que los cambios hagan efecto.</li>
@@ -382,6 +402,7 @@ window.Quarto = {
 <li>Configurar SSH y su acceso a través de Virtual Box:
 <ol type="1">
 <li>Configuración de máquina -&gt; Red -&gt; Avanzada -&gt; Reenvío de puertos (2222 en anfitrión al 22 huesped)</li>
+<li>Vamos a conectarnos a nuestra máquina a través de <code>ssh</code> (debes tener acceso en Windows, WSL y Linux): <code>ssh adminpas@localhost -p 2222</code></li>
 </ol></li>
 <li>Explorar la máquina:
 <ol type="1">
