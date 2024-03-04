@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -241,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">1 de marzo de 2024</p>
+      <p class="date">4 de marzo de 2024</p>
     </div>
   </div>
   
@@ -260,13 +260,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Antes de comenzar, repasa apuntes sobre permisos de ficheros y directorios en Linux. Hay muchos muy claros, como por ejemplo este de <a href="https://www.softzone.es/linux/tutoriales/permisos-archivos-directorios-linux/">softzone</a>.</p></li>
 <li><p>Conexión remota gráfica a los servidores Linux de la Universidad de Córdoba: <a href="https://www.uco.es/servicios/informatica/thinstation-remoto">Thinstation Remoto</a>.</p></li>
-<li><p>Conexión SSH (sin interfaz gráfica) a los servidores de la UCO. Necesitas un cliente SSH, que viene de forma nativa en Linux y Mac, pero no en Windows (puedes usar <a href="https://putty.org/">Putty</a>).</p>
+<li><p>Conexión SSH (sin interfaz gráfica) a los servidores de la UCO. Necesitas un cliente SSH, que viene de forma nativa en Linux, Windows y Mac:</p>
 <ul>
 <li><code>ssh login@ts.uco.es</code></li>
-<li><code>ssh -X login@ts.uco.es</code> exporta la salida gráfica a tu ordenador Linux (no funciona en Windows). Con esto podrás usar el Spyder de la UCO sin tener que instalar nada más.</li>
+<li><code>ssh -X login@ts.uco.es</code> exporta la salida gráfica a tu ordenador Linux (no funciona en Windows).</li>
 </ul></li>
 <li><p>Cómo conectarte a tu carpeta para enviar y descargar archivos:</p>
 <ul>
+<li>Desde Linux se puede añadir un servidor ssh como carpeta remota.</li>
 <li>De forma nativa a partir de Windows 10: <a href="https://sftptogo.com/blog/how-to-map-sftp-as-a-windows-10-drive/">How to map SFTP as a drive on Windows 10</a></li>
 <li>Con FileZilla: <a href="https://filezilla-project.org/">https://filezilla-project.org/</a></li>
 </ul></li>
@@ -274,19 +275,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="pasos" class="level2">
 <h2 class="anchored" data-anchor-id="pasos">Pasos</h2>
-<p>Abre un terminal. En este tutorial usaremos de ejemplo el login <code>i02samoj</code>. Deberás cambiar este por el tuyo.</p>
+<p>Abre un terminal en un aula o conéctate por ssh. En este tutorial usaremos de ejemplo el login <code>i02samoj</code>. Deberás cambiar este por el tuyo.</p>
 <p>Crea el directorio <code>www-docs</code>:</p>
 <pre><code>mkdir www-docs</code></pre>
 <p>Asigna permisos de ejecución a tu carpeta de usuario. Esto permitirá al servidor web (otros usuarios) pasar por esta carpeta sin listar ni acceder al contenido:</p>
-<pre><code>cd ..
-chmod o+x i02samoj/</code></pre>
-<p>Vuelve a tu carpeta home y asigna los mismos permisos a <code>www-docs</code>:</p>
+<pre><code>chmod o+x ~/</code></pre>
+<p>Desde tu carpeta home y asigna los mismos permisos a <code>www-docs</code>:</p>
 <pre><code>cd
 chmod  o+x www-docs</code></pre>
 <p>Vamos a comprobar que los permisos están bien configurados:</p>
 <p>Entra en la carpeta y crea un fichero llamado <code>index.html</code>:</p>
 <pre><code>cd www-docs
-gedit index.html</code></pre>
+nano index.html</code></pre>
 <p>Esto creará el fichero. Introduce el siguiente contenido, guarda y cierra el editor:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>

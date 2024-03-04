@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -234,11 +234,10 @@ window.Quarto = {
   <ul>
   <li><a href="#objetivos-y-evaluación" id="toc-objetivos-y-evaluación" class="nav-link active" data-scroll-target="#objetivos-y-evaluación"><span class="header-section-number">1</span> Objetivos y evaluación</a></li>
   <li><a href="#sistema-de-ficheros" id="toc-sistema-de-ficheros" class="nav-link" data-scroll-target="#sistema-de-ficheros"><span class="header-section-number">2</span> Sistema de ficheros</a></li>
-  <li><a href="#procesos" id="toc-procesos" class="nav-link" data-scroll-target="#procesos"><span class="header-section-number">3</span> Procesos</a></li>
-  <li><a href="#dispositivos" id="toc-dispositivos" class="nav-link" data-scroll-target="#dispositivos"><span class="header-section-number">4</span> Dispositivos</a></li>
-  <li><a href="#estructura-genérica-del-sistema-de-ficheros" id="toc-estructura-genérica-del-sistema-de-ficheros" class="nav-link" data-scroll-target="#estructura-genérica-del-sistema-de-ficheros"><span class="header-section-number">5</span> Estructura genérica del sistema de ficheros</a></li>
-  <li><a href="#proyecto-asignatura" id="toc-proyecto-asignatura" class="nav-link" data-scroll-target="#proyecto-asignatura"><span class="header-section-number">6</span> Proyecto asignatura</a></li>
-  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">7</span> Referencias</a></li>
+  <li><a href="#dispositivos" id="toc-dispositivos" class="nav-link" data-scroll-target="#dispositivos"><span class="header-section-number">3</span> Dispositivos</a></li>
+  <li><a href="#estructura-genérica-del-sistema-de-ficheros" id="toc-estructura-genérica-del-sistema-de-ficheros" class="nav-link" data-scroll-target="#estructura-genérica-del-sistema-de-ficheros"><span class="header-section-number">4</span> Estructura genérica del sistema de ficheros</a></li>
+  <li><a href="#proyecto-asignatura" id="toc-proyecto-asignatura" class="nav-link" data-scroll-target="#proyecto-asignatura"><span class="header-section-number">5</span> Proyecto asignatura</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">6</span> Referencias</a></li>
   </ul>
 </nav>
     </div>
@@ -278,7 +277,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">1 de marzo de 2024</p>
+      <p class="date">4 de marzo de 2024</p>
     </div>
   </div>
   
@@ -305,7 +304,9 @@ window.Quarto = {
 <li><p>Utilizar la máscara <code>umask</code> para cambiar los <strong>permisos por defecto</strong> con los que se crean los archivos y directorios.</p></li>
 <li><p>Explicar <strong>cómo se aplican los <em>bits</em> de permisos</strong> a la hora de decidir si un usuario puede realizar una determinada acción sobre un fichero.</p></li>
 <li><p>Distinguir todos los <strong>tipos de ficheros</strong> que se pueden utilizar en GNU/Linux y diferenciar claramente entre <strong>enlaces</strong> simbólicos y enlace físicos.</p></li>
-<li><p>Definir el rol de los <strong>procesos</strong> en GNU/Linux, cuáles son sus atributos y qué tipos de procesos existen.</p></li>
+</ul>
+<!-- - Definir el rol de los **procesos** en GNU/Linux, cuáles son sus atributos y qué tipos de procesos existen. -->
+<ul>
 <li><p>Explicar cómo se represan los <strong>dispositivos</strong> en GNU/Linux.</p></li>
 <li><p>Enumerar las <strong>carpetas fundamentales</strong> de la estructura genérica del sistema de ficheros en GNU/Linux.</p></li>
 <li><p>Diferenciar entre contenidos estáticos y dinámicos y contenidos compartibles y no compartibles.</p></li>
@@ -429,58 +430,58 @@ window.Quarto = {
 <ul>
 <li>Ejercicio (probar en modo simbólico y absoluto):
 <ul>
-<li>Establezca permisos de escritura para el fichero <code>ejemplo</code> sólo para el usuario propietario, de lectura para todos y de ejecución para el usuario y grupo propietarios.</li>
-<li>Establezca permisos de escritura para el fichero <code>ejemplo</code> sólo para el usuario propietario, y de ejecución para el usuario y grupo propietarios y ninguno para el resto.</li>
+<li>Establezca permisos de escritura para un fichero <code>ejemplo</code> sólo para el usuario propietario, de lectura para todos y de ejecución para el usuario y grupo propietarios.</li>
+<li>Establezca permisos de escritura para un fichero <code>ejemplo</code> sólo para el usuario propietario, y de ejecución para el usuario y grupo propietarios y ninguno para el resto.</li>
 </ul></li>
 </ul>
 </section>
-<section id="gestión-del-acceso-propietarios-y-permisos-4" class="level2">
-<h2 class="anchored" data-anchor-id="gestión-del-acceso-propietarios-y-permisos-4">Gestión del acceso: propietarios y permisos</h2>
+<section id="gestión-del-acceso-propietarios-y-permisos-4" class="level2 scrollable" data-background-color="lightgreen">
+<h2 class="scrollable anchored" data-background-color="lightgreen" data-anchor-id="gestión-del-acceso-propietarios-y-permisos-4">Gestión del acceso: propietarios y permisos</h2>
 <table class="table">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Actual</th>
-<th style="text-align: left;">chmod</th>
-<th style="text-align: left;">Resultado</th>
-<th style="text-align: left;">Descripción</th>
+<th style="text-align: center;">chmod</th>
+<th style="text-align: right;">Resultado</th>
+<th style="text-align: center;">Descripción</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><code>rw-------</code></td>
-<td style="text-align: left;"><code>a+x</code></td>
-<td style="text-align: left;">`rwx–x-</td>
-<td style="text-align: left;">-x<code>Agregar a todos (</code>all`) permiso de ejecución.</td>
+<td style="text-align: center;"><code>a+x</code></td>
+<td style="text-align: right;"><code>rwx--x--x</code></td>
+<td style="text-align: center;">Agregar a todos (<code>all</code>) permiso de ejecución.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>rwx--x--x</code></td>
-<td style="text-align: left;"><code>go-x</code></td>
-<td style="text-align: left;">`rwx——</td>
-<td style="text-align: left;">` Se elimina permiso de ejecución para grupo y otros.</td>
+<td style="text-align: center;"><code>go-x</code></td>
+<td style="text-align: right;"><code>rwx------</code></td>
+<td style="text-align: center;">Se elimina permiso de ejecución para grupo y otros.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>rwxr-xr-x</code></td>
-<td style="text-align: left;"><code>u-x,go-r</code></td>
-<td style="text-align: left;"><code>rw---x--x</code></td>
-<td style="text-align: left;">Al usuario se le quita ejecución, al grupo y a otros se les quita lectura.</td>
+<td style="text-align: center;"><code>u-x,go-r</code></td>
+<td style="text-align: right;"><code>rw---x--x</code></td>
+<td style="text-align: center;">Al usuario se le quita ejecución, al grupo y a otros se les quita lectura.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>rwxrwxrwx</code></td>
-<td style="text-align: left;"><code>u-x,go-rwx</code></td>
-<td style="text-align: left;"><code>rw-------</code></td>
-<td style="text-align: left;">Al usuario se le elimina ejecución, al grupo y a otros se les eliminan todos los permisos.</td>
+<td style="text-align: center;"><code>u-x,go-rwx</code></td>
+<td style="text-align: right;"><code>rw-------</code></td>
+<td style="text-align: center;">Al usuario se le elimina ejecución, al grupo y a otros se les eliminan todos los permisos.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>r--------</code></td>
-<td style="text-align: left;"><code>a+r,u+w</code></td>
-<td style="text-align: left;">`rw-r–</td>
-<td style="text-align: left;">r–` A todos se les agrega lectura, al usuario se le agrega escritura.</td>
+<td style="text-align: center;"><code>a+r,u+w</code></td>
+<td style="text-align: right;"><code>rw-r--r--</code></td>
+<td style="text-align: center;">A todos se les agrega lectura, al usuario se le agrega escritura.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>rw-r-----</code></td>
-<td style="text-align: left;"><code>u-rw,g+w,o+x</code></td>
-<td style="text-align: left;">`—rw—</td>
-<td style="text-align: left;">x` Al usuario se le eliminan lectura y escritura, al grupo se le agrega escritura y a otros se les agrega ejecución.</td>
+<td style="text-align: center;"><code>u-rw,g+w,o+x</code></td>
+<td style="text-align: right;"><code>---rw---x</code></td>
+<td style="text-align: center;">Al usuario se le eliminan lectura y escritura, al grupo se le agrega escritura y a otros se les agrega ejecución.</td>
 </tr>
 </tbody>
 </table>
@@ -535,7 +536,7 @@ ls -la fichero </code></pre>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span> 1 root root    2941 feb 13 10:21 /etc/passwd</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r-----</span> 1 root shadow  1827 feb 13 10:21 /etc/shadow</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-rwsr-xr-x</span> 1 root root   59640 nov 29 13:25 /usr/bin/passwd</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Veamos <a href="https://github.com/shadow-maint/shadow/blob/master/src/passwd.c#L969">el código de <code>passwd</code></a></p>
+<p>Veamos <a href="https://github.com/shadow-maint/shadow/blob/master/src/passwd.c#L1002">el código de <code>passwd</code></a></p>
 </section>
 <section id="permisos-especiales-sgid" class="level2">
 <h2 class="anchored" data-anchor-id="permisos-especiales-sgid">Permisos especiales: sgid,</h2>
@@ -677,50 +678,57 @@ ls -l /tmp/prueba2/</code></pre>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="ex">12481313</span> <span class="at">-rw-rw-r--</span> 2 javi javi 0 feb 23 23:00 enlace_fisico</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="ex">12481314</span> lrwxrwxrwx 1 javi javi 6 feb 23 23:00 enlace_simbolico <span class="at">-</span><span class="op">&gt;</span> prueba</span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="ex">12481313</span> <span class="at">-rw-rw-r--</span> 2 javi javi 0 feb 23 23:00 prueba</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- 
+# Procesos
+
+## Procesos
+
+![](images/book_process_control.png)
+
+## Procesos {.smaller}
+
+- **Procesos**: son programas en ejecución.
+
+- Los atributos de un proceso son:
+
+  - **PID** $\Rightarrow$ identificador del proceso.
+
+  - **PPID** $\Rightarrow$ identificador del proceso padre.
+
+  - **Nice number** $\Rightarrow$ prioridad asignada al ejecutarlo.
+
+  - **TTY** $\Rightarrow$ terminal en el que se está ejecutando.
+
+  - **RUID** $\Rightarrow$ identificador del usuario real, el que lo ejecutó.
+
+  - **EUID** $\Rightarrow$ identificador del usuario efectivo, si hay cambio de dominio se refleja aquí (permiso **suid**).
+
+  - **RGID** $\Rightarrow$ identificador del grupo real, el grupo del usuario que lo ejecutó.
+
+  - **EGID** $\Rightarrow$ identificador del grupo efectivo, si hay cambio de dominio se refleja aquí (permiso **sgid**).
+
+## Procesos
+
+- Atributos de un proceso: `ps -Fl PID`
+
+- Tipos de procesos:
+
+  - **Interactivos**: hay alguien conectado al sistema que los inicia (primer o segundo plano `&`).
+
+  - **Encolados**: procesos que se mandan a un *buffer* para ser ejecutados (en una fecha concreta o cuando la carga del sistema sea baja).
+
+  - **Demonios**: programas ejecutados en segundo plano durante el arranque, que esperan de forma continua un determinado evento.
+
+::: exampleblock
+Prueba a añadir `-a`: 
+```bash
+ps -Fla
+```
+::: -->
 </section>
 </section>
-<section id="procesos" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Procesos</h1>
-<section id="procesos-1" class="level2">
-<h2 class="anchored" data-anchor-id="procesos-1">Procesos</h2>
-<p><img src="images/book_process_control.png" class="img-fluid"></p>
-</section>
-<section id="procesos-2" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="procesos-2">Procesos</h2>
-<ul>
-<li><p><strong>Procesos</strong>: son programas en ejecución.</p></li>
-<li><p>Los atributos de un proceso son:</p>
-<ul>
-<li><p><strong>PID</strong> <span class="math inline">\(\Rightarrow\)</span> identificador del proceso.</p></li>
-<li><p><strong>PPID</strong> <span class="math inline">\(\Rightarrow\)</span> identificador del proceso padre.</p></li>
-<li><p><strong>Nice number</strong> <span class="math inline">\(\Rightarrow\)</span> prioridad asignada al ejecutarlo.</p></li>
-<li><p><strong>TTY</strong> <span class="math inline">\(\Rightarrow\)</span> terminal en el que se está ejecutando.</p></li>
-<li><p><strong>RUID</strong> <span class="math inline">\(\Rightarrow\)</span> identificador del usuario real, el que lo ejecutó.</p></li>
-<li><p><strong>EUID</strong> <span class="math inline">\(\Rightarrow\)</span> identificador del usuario efectivo, si hay cambio de dominio se refleja aquí (permiso <strong>suid</strong>).</p></li>
-<li><p><strong>RGID</strong> <span class="math inline">\(\Rightarrow\)</span> identificador del grupo real, el grupo del usuario que lo ejecutó.</p></li>
-<li><p><strong>EGID</strong> <span class="math inline">\(\Rightarrow\)</span> identificador del grupo efectivo, si hay cambio de dominio se refleja aquí (permiso <strong>sgid</strong>).</p></li>
-</ul></li>
-</ul>
-</section>
-<section id="procesos-3" class="level2">
-<h2 class="anchored" data-anchor-id="procesos-3">Procesos</h2>
-<ul>
-<li><p>Atributos de un proceso: <code>ps -Fl PID</code></p></li>
-<li><p>Tipos de procesos:</p>
-<ul>
-<li><p><strong>Interactivos</strong>: hay alguien conectado al sistema que los inicia (primer o segundo plano <code>&amp;</code>).</p></li>
-<li><p><strong>Encolados</strong>: procesos que se mandan a un <em>buffer</em> para ser ejecutados (en una fecha concreta o cuando la carga del sistema sea baja).</p></li>
-<li><p><strong>Demonios</strong>: programas ejecutados en segundo plano durante el arranque, que esperan de forma continua un determinado evento.</p></li>
-</ul></li>
-</ul>
-<div class="exampleblock">
-<p>Prueba a añadir <code>-a</code>:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span> <span class="at">-Fla</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="dispositivos" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Dispositivos</h1>
+<section id="dispositivos" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Dispositivos</h1>
 <section id="dispositivos-1" class="level2">
 <h2 class="anchored" data-anchor-id="dispositivos-1">Dispositivos</h2>
 <p>Los dispositivos se representan/manejan como ficheros:</p>
@@ -751,8 +759,8 @@ ls -l /tmp/prueba2/</code></pre>
 <section id="dispositivos-de-bloques-lsblk" class="level2">
 <h2 class="anchored" data-anchor-id="dispositivos-de-bloques-lsblk">Dispositivos de bloques: lsblk</h2>
 <p>Depende de tu distribución quizás necesites instalar:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install util-linux</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">lsblk</span> <span class="kw">|</span><span class="fu">grep</span> <span class="at">-v</span> loop</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install util-linux</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">lsblk</span> <span class="kw">|</span><span class="fu">grep</span> <span class="at">-v</span> loop</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>$ lsblk |grep -v loop
 NAME        MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINT
 nvme0n1     259:0    0   477G  0 disk  
@@ -763,8 +771,8 @@ nvme0n1     259:0    0   477G  0 disk
   └─home    253:0    0 393,1G  0 crypt /home</code></pre>
 </section>
 </section>
-<section id="estructura-genérica-del-sistema-de-ficheros" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Estructura genérica del sistema de ficheros</h1>
+<section id="estructura-genérica-del-sistema-de-ficheros" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Estructura genérica del sistema de ficheros</h1>
 <section id="qué-esperas-que-haya-en-un-sistema-de-ficheros" class="level2">
 <h2 class="anchored" data-anchor-id="qué-esperas-que-haya-en-un-sistema-de-ficheros">¿Qué esperas que haya en un sistema de ficheros?</h2>
 <p><img src="images/book_filesystem.png" class="img-fluid"></p>
@@ -821,7 +829,7 @@ nvme0n1     259:0    0   477G  0 disk
 <li><p><code>/sbin</code> <span class="math inline">\(\Rightarrow\)</span> ficheros ejecutables que, normalmente, sólo el administrador puede ejecutar.</p></li>
 <li><p><code>/home</code> <span class="math inline">\(\Rightarrow\)</span> los directorios de trabajo de los usuarios.</p></li>
 <li><p><code>/lost+found</code> <span class="math inline">\(\Rightarrow\)</span> contiene “referencias” a los ficheros marcados como erróneos al chequear el sistema de ficheros.</p></li>
-<li><p><code>/lib</code> <span class="math inline">\(\Rightarrow\)</span> librerías necesarias para ejecutar los archivos.</p></li>
+<li><p><code>/lib</code> <span class="math inline">\(\Rightarrow\)</span> bibliotecas necesarias para ejecutar los archivos.</p></li>
 </ul>
 </section>
 <section id="estructura-genérica-del-sistema-de-ficheros-5" class="level2 scrollable">
@@ -847,7 +855,7 @@ nvme0n1     259:0    0   477G  0 disk
 <li><p><code>/usr/bin</code> <span class="math inline">\(\Rightarrow\)</span> ficheros ejecutables por todos los usuarios.</p></li>
 <li><p><code>/usr/sbin</code> <span class="math inline">\(\Rightarrow\)</span> ficheros ejecutables de administración.</p></li>
 <li><p><code>/usr/include</code> <span class="math inline">\(\Rightarrow\)</span> ficheros cabecera de cabecera estándar para compilación.</p></li>
-<li><p><code>/usr/lib</code> <span class="math inline">\(\Rightarrow\)</span> librerías binarias.</p></li>
+<li><p><code>/usr/lib</code> <span class="math inline">\(\Rightarrow\)</span> bibliotecas binarias.</p></li>
 <li><p><code>/usr/local</code> <span class="math inline">\(\Rightarrow\)</span> <em>software</em> local específico.</p></li>
 <li><p><code>/usr/share</code> <span class="math inline">\(\Rightarrow\)</span> datos compartidos (independientes de la arquitectura: imágenes, ficheros de texto...).</p>
 <ul>
@@ -868,8 +876,8 @@ nvme0n1     259:0    0   477G  0 disk
 </ul>
 </section>
 </section>
-<section id="proyecto-asignatura" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Proyecto asignatura</h1>
+<section id="proyecto-asignatura" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Proyecto asignatura</h1>
 <section id="proyecto-asignatura-1" class="level2">
 <h2 class="anchored" data-anchor-id="proyecto-asignatura-1">Proyecto asignatura</h2>
 <p>Herramientas y conceptos que hemos visto (además de los de los apuntes):</p>
@@ -881,8 +889,8 @@ nvme0n1     259:0    0   477G  0 disk
 </ul>
 </section>
 </section>
-<section id="referencias" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Referencias</h1>
+<section id="referencias" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Referencias</h1>
 <section id="referencias-1" class="level2">
 <h2 class="anchored" data-anchor-id="referencias-1">Referencias</h2>
 <p><em>Unix and Linux system administration handbook</em>. Chapter 4. Process control. Chapter 5. The Filesystem. Addison-Wesley. 5th Edition. 2018.</p>
