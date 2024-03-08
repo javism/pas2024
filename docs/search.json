@@ -570,6 +570,36 @@
     ]
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Programación y Administración de Sistemas",
+    "section": "",
+    "text": "Bienvenid[o|a|e] a la web de la asignatura “Programación y Administración de Sistemas (curso 2023-2024)”. Estos apuntes son una actualización progresiva de los apuntes del profesor Pedro A. Gutiérrez de cursos anteriores.\nAquí encontrarás progresivamente el material de teoría de la asignatura en formato HTML navegando por el menú de la izquierda. El resto del material lo tienes disponible en la plataforma moodle de la UCO.\nAl final de cada tema hay una sección sobre el proyecto de la asignatura de construcción de un sistema informático con GNU/Linux.",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "index.html#contenido-en-pdf",
+    "href": "index.html#contenido-en-pdf",
+    "title": "Programación y Administración de Sistemas",
+    "section": "Contenido en PDF",
+    "text": "Contenido en PDF\nPuedes acceder también al contenido de esta asignatura en formato PDF imprimible:\n\nInicio\nTema 0: Presentación\nTema 1.a: Introducción\nTema 1.b: Software Libre y GNU/Linux”\nTema 1.c: Virtual Box, Debian y configuración básica\nTema 2: Organización de un sistema operativo tipo GNU/Linux\n\nTema 2: Ejercicios permisos\nTema 2: Web personal",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "index.html#evi-nemeth",
+    "href": "index.html#evi-nemeth",
+    "title": "Programación y Administración de Sistemas",
+    "section": "Evi Nemeth",
+    "text": "Evi Nemeth\nEvi Tribute at admin.com.\n\n\n\nEvi Nemeth retired from the Computer Science faculty at the University of Colorado in 2001. She explored the Pacific on her 40-foot sailboat named Wonderland for many years before becoming lost at sea in 2013. Fuente http://www.techfestival.org/evi-nemeth\n\n\n\n\n\nEvi Nemeth and Dennis Ritchie at the Phoenix 1987 USENIX conference. Evi, a UNIX engineer, author, and teacher, famous for one of the UNIX/Linux sys admin “bibles”. Dennis Ritchie co-developed UNIX and also the C programming language. Fuente @bioreconstruct",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
     "objectID": "tema00-presentacion/presentacion.html",
     "href": "tema00-presentacion/presentacion.html",
     "title": "Tema 0: Presentación",
@@ -810,33 +840,473 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Programación y Administración de Sistemas",
+    "objectID": "tema03-usuarios/tema03-usuarios.html",
+    "href": "tema03-usuarios/tema03-usuarios.html",
+    "title": "Tema 3: Gestión de Usuarios",
     "section": "",
-    "text": "Bienvenid[o|a|e] a la web de la asignatura “Programación y Administración de Sistemas (curso 2023-2024)”. Estos apuntes son una actualización progresiva de los apuntes del profesor Pedro A. Gutiérrez de cursos anteriores.\nAquí encontrarás progresivamente el material de teoría de la asignatura en formato HTML navegando por el menú de la izquierda. El resto del material lo tienes disponible en la plataforma moodle de la UCO.\nAl final de cada tema hay una sección sobre el proyecto de la asignatura de construcción de un sistema informático con GNU/Linux.",
+    "text": "Definir qué son usuarios del sistema, las características de los mismos y sus ficheros de configuración.\nEnumerar y explicar los campos del fichero /etc/passwd y /etc/shadow.\nExplicar las características que deberían tener las contraseñas para los usuarios.\nExplicar el mecanismo de shadow passwords y el mecanismo de cifrado de contraseñas que evita guardar las contraseñas del sistema en texto plano.\nEnumerar los mecanismos de revocación de contraseñas, las restricciones de tiempo en cuanto a la validez de las contraseñas y las herramientas de administración que permiten configurarlas.\nCambiar el intérprete de órdenes por defecto de los usuarios.\nConfigurar cuentas restrictivas para usuarios especiales.\nEnumerar los pasos para añadir un usuario al sistema.\nUtilizar herramientas administrativas para añadir o modificar cuentas de usuario.\nEstablecer el objetivo de los grupos de usuarios, identificar grupo primario y grupo activo de un usuario, enumerar y explicar los campos del fichero /etc/group.\nConfigurar grupos con contraseñas.\nUtilizar las distintas herramientas administrativas para grupos.\nIdentificar usuarios y grupos estándar en un sistema GNU/Linux.\n\n\n\n\n\nCuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.",
     "crumbs": [
-      "Inicio"
+      "Tema 3: Gestión de usuarios"
     ]
   },
   {
-    "objectID": "index.html#contenido-en-pdf",
-    "href": "index.html#contenido-en-pdf",
-    "title": "Programación y Administración de Sistemas",
-    "section": "Contenido en PDF",
-    "text": "Contenido en PDF\nPuedes acceder también al contenido de esta asignatura en formato PDF imprimible:\n\nInicio\nTema 0: Presentación\nTema 1.a: Introducción\nTema 1.b: Software Libre y GNU/Linux”\nTema 1.c: Virtual Box, Debian y configuración básica\nTema 2: Organización de un sistema operativo tipo GNU/Linux\n\nTema 2: Ejercicios permisos\nTema 2: Web personal",
+    "objectID": "tema03-usuarios/tema03-usuarios.html#objetivos-de-aprendizaje",
+    "href": "tema03-usuarios/tema03-usuarios.html#objetivos-de-aprendizaje",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "",
+    "text": "Definir qué son usuarios del sistema, las características de los mismos y sus ficheros de configuración.\nEnumerar y explicar los campos del fichero /etc/passwd y /etc/shadow.\nExplicar las características que deberían tener las contraseñas para los usuarios.\nExplicar el mecanismo de shadow passwords y el mecanismo de cifrado de contraseñas que evita guardar las contraseñas del sistema en texto plano.\nEnumerar los mecanismos de revocación de contraseñas, las restricciones de tiempo en cuanto a la validez de las contraseñas y las herramientas de administración que permiten configurarlas.\nCambiar el intérprete de órdenes por defecto de los usuarios.\nConfigurar cuentas restrictivas para usuarios especiales.\nEnumerar los pasos para añadir un usuario al sistema.\nUtilizar herramientas administrativas para añadir o modificar cuentas de usuario.\nEstablecer el objetivo de los grupos de usuarios, identificar grupo primario y grupo activo de un usuario, enumerar y explicar los campos del fichero /etc/group.\nConfigurar grupos con contraseñas.\nUtilizar las distintas herramientas administrativas para grupos.\nIdentificar usuarios y grupos estándar en un sistema GNU/Linux.",
     "crumbs": [
-      "Inicio"
+      "Tema 3: Gestión de usuarios"
     ]
   },
   {
-    "objectID": "index.html#evi-nemeth",
-    "href": "index.html#evi-nemeth",
-    "title": "Programación y Administración de Sistemas",
-    "section": "Evi Nemeth",
-    "text": "Evi Nemeth\nEvi Tribute at admin.com.\n\n\n\nEvi Nemeth retired from the Computer Science faculty at the University of Colorado in 2001. She explored the Pacific on her 40-foot sailboat named Wonderland for many years before becoming lost at sea in 2013. Fuente http://www.techfestival.org/evi-nemeth\n\n\n\n\n\nEvi Nemeth and Dennis Ritchie at the Phoenix 1987 USENIX conference. Evi, a UNIX engineer, author, and teacher, famous for one of the UNIX/Linux sys admin “bibles”. Dennis Ritchie co-developed UNIX and also the C programming language. Fuente @bioreconstruct",
+    "objectID": "tema03-usuarios/tema03-usuarios.html#evaluación",
+    "href": "tema03-usuarios/tema03-usuarios.html#evaluación",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "",
+    "text": "Cuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.",
     "crumbs": [
-      "Inicio"
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#introducción-1",
+    "href": "tema03-usuarios/tema03-usuarios.html#introducción-1",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Introducción",
+    "text": "Introducción\n\n\nDefinición de usuario\n\nPersona que trabaja en el sistema, editando ficheros, ejecutando programas...\nPseudo-usuario: entidad, que sin ser una persona, puede ejecutar programas o poseer ficheros (se les reserva identificadores de 0 a 499) y se utiliza típicamente para servicios y tareas automatizadas.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#información-mínima-usuario",
+    "href": "tema03-usuarios/tema03-usuarios.html#información-mínima-usuario",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Información mínima usuario",
+    "text": "Información mínima usuario\n\nCaracterísticas básicas de un usuario:\n\nNombre de usuario (logname o username).\nIdentificador de usuario (UID): el sistema trabaja, internamente, con el UID y no con el nombre de usuario.\nIdentificadores de los grupos a los que pertenece (GIDs).",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#ficheros-básicos",
+    "href": "tema03-usuarios/tema03-usuarios.html#ficheros-básicos",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Ficheros básicos",
+    "text": "Ficheros básicos\n\nFicheros de configuración: \\(\\;\\)\n\n/etc/passwd: información de las cuentas de usuarios.\n/etc/shadow: passwords cifradas (hash de las contraseñas) e información de “envejecimiento” de las cuentas.\n/etc/group: definición de los grupos y usuarios miembros.\n/etc/gshadow: passwords de grupos cifradas.\n\n\n\nEjercicio: lista los permisos de todos estos ficheros y trata de entender la política de seguridad.\nls -l /etc/passwd /etc/shadow /etc/group /etc/gshadow",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#fichero-etcpasswd",
+    "href": "tema03-usuarios/tema03-usuarios.html#fichero-etcpasswd",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Fichero /etc/passwd",
+    "text": "Fichero /etc/passwd\n\nContiene la lista de usuarios del sistema y sus contraseñas.\nFormato: nombre:password:uid:gid:gecos:home:shell.\n\nnombre \\(\\rightarrow\\) Nombre del usuario, logname o username.\npassword \\(\\rightarrow\\) contraseña cifrada o:\n\n“*” o “!!” \\(\\rightarrow\\) la cuenta está desactivada o bloqueada.\n“x” \\(\\rightarrow\\) las shadow están activas, la contraseña cifrada se guarda en /etc/shadow.\n\nuid \\(\\rightarrow\\) identificador del usuario.\ngid \\(\\rightarrow\\) identificador del grupo primario al que pertenece.\ngecos \\(\\rightarrow\\) campo de información referente al usuario (nombre, teléfono, ...).\nhome \\(\\rightarrow\\) Path del directorio $HOME del usuario.\nshell \\(\\rightarrow\\) Intérprete de órdenes.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#fichero-etcpasswd-1",
+    "href": "tema03-usuarios/tema03-usuarios.html#fichero-etcpasswd-1",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Fichero /etc/passwd",
+    "text": "Fichero /etc/passwd\n\nEl propietario del fichero es root y el grupo root.\nLos permisos del fichero son rw-r-r-.\nEl programa /usr/sbin/vipw permite editar el fichero manualmente.\nEl programa pwck verifica la integridad de /etc/passwd y /etc/shadow.\nSe permite el acceso al fichero /etc/passwd en modo lectura para poder leer información del usuario, pero no se debería permitir acceso a las passwords (aunque estén cifradas).",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#fichero-etcpasswd-2",
+    "href": "tema03-usuarios/tema03-usuarios.html#fichero-etcpasswd-2",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Fichero /etc/passwd",
+    "text": "Fichero /etc/passwd",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#contraseñas",
+    "href": "tema03-usuarios/tema03-usuarios.html#contraseñas",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Contraseñas",
+    "text": "Contraseñas\n\npasswd &lt;nombre_usuario&gt; \\(\\Rightarrow\\) asignar contraseña a un usuario (o cambiarla).\nElección de una contraseña adecuada\nNo utilizar:\n\nLas contraseñas más usadas\nTu nombre, parte de él, o el de alguien cercano a ti.\nNúmeros significativos para ti o alguien cercano.\nNombre, nº, lugar o persona, relacionados con tu trabajo.\nNombres de gente famosa, lugares, películas, publicidad...\nPalabras que estén en el diccionario (ver cracklib).",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#contraseñas-1",
+    "href": "tema03-usuarios/tema03-usuarios.html#contraseñas-1",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Contraseñas",
+    "text": "Contraseñas\n\nConsejos sin llegar a políticas absurdas:\n\nIntroducir 2 o más caracteres extras, símbolos especiales...\nEscribir mal las palabras.\nUtilizar mayúsculas y minúsculas, pero no de forma evidente.\nConcatenar, embeber o mezclar 2 o más palabras.\nUsar caracteres poco comunes: $, &, #...",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#contraseñas-2",
+    "href": "tema03-usuarios/tema03-usuarios.html#contraseñas-2",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Contraseñas",
+    "text": "Contraseñas\n\nLa contraseña se debe cambiar cuando:\n\nSe sospecha que alguien la ha podido conocer o averiguar.\nSe sospecha que alguien ha conseguido el fichero con las contraseñas (/etc/passwd o /etc/shadow).\nUn usuario se marcha del trabajo \\(\\Rightarrow\\) cambiar todas las que conozca.\nUn administrador del sistema se va \\(\\Rightarrow\\) cambiar TODAS.\nUn intruso ha conseguido entrar en el sistema.\n\nPeriódicamente, se debe forzar a que los usuarios cambien sus contraseñas, incluido el administrador.\n\nPor otro lado, si se obliga a los usuarios a cambiar su contraseña con demasiada frecuencia, lo normal es que elijan malas contraseñas, fáciles de adivinar...",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#herramientas-de-robustez-de-contraseñas",
+    "href": "tema03-usuarios/tema03-usuarios.html#herramientas-de-robustez-de-contraseñas",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Herramientas de robustez de contraseñas",
+    "text": "Herramientas de robustez de contraseñas\npam_cracklib y pam_pwquality son dos herramientas para forzar políticas de seguridad de contraseñas fuertes.\nPuedes ver un mínimo de fortaleza de una contraseña escribiendo por teclado:\ncracklib-check\nó así:\necho \"1234\" | cracklib-check\necho \"micontra\" | cracklib-check\necho \"M1contra$\" | cracklib-check",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#algunos-recursos-web",
+    "href": "tema03-usuarios/tema03-usuarios.html#algunos-recursos-web",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Algunos recursos web",
+    "text": "Algunos recursos web\n\n\ndumbpasswordrules.com\nhaveibeenpwned.com",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#shadow-passwords",
+    "href": "tema03-usuarios/tema03-usuarios.html#shadow-passwords",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Shadow passwords",
+    "text": "Shadow passwords\n\nPermiten que las contraseñas cifradas no se guarden en el fichero /etc/passwd sino en /etc/shadow (más restringido).\n/etc/shadow tiene los permisos rw------, y el usuario y grupo propietario es root.\n\nEn las últimas versiones, tiene permisos rw-r---- y el grupo propietario es shadow (flexibilidad para comprobación de contraseña por usuarios que pertenezcan a dicho grupo).\n\nEste fichero guarda para cada usuario del sistema, la contraseña cifrada junto con su información de envejecimiento.\nSolo para aquellos usuarios que tengan una “x” en /etc/passwd.\nPor defecto, están activas y se actualizan automáticamente.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#shadow-passwords-1",
+    "href": "tema03-usuarios/tema03-usuarios.html#shadow-passwords-1",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Shadow passwords",
+    "text": "Shadow passwords",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#shadow-passwords-2",
+    "href": "tema03-usuarios/tema03-usuarios.html#shadow-passwords-2",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Shadow passwords",
+    "text": "Shadow passwords\nnom:pass:changed:minlife:maxlife:warn:inactive:expired:unused\n\nnom \\(\\Rightarrow\\) nombre del usuario, logname o username.\npass \\(\\Rightarrow\\) contraseña cifrada.\n\nmkpasswd -method=sha-512 contraseña salt\n\nComandos de actualización:\n\npwconv \\(\\Rightarrow\\) crear y actualizar el fichero /etc/shadow.\npwunconv \\(\\Rightarrow\\) desactivar los shadow passwords.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#shadow-passwords-3",
+    "href": "tema03-usuarios/tema03-usuarios.html#shadow-passwords-3",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Shadow passwords",
+    "text": "Shadow passwords\n\nPara cifrar una contraseña, se utilizan algoritmos criptográficos de generación de resumen (función hash, \\(H(\\cdot)\\)).\n\nEl mensaje en este caso es la contraseña (\\(C\\)).\nsalt (\\(S\\)) es una palabra aleatoria que se concatena a los bytes de contraseña \\(\\rightarrow\\) dificulta ataques con diccionarios y tablas de hash precomputadas; añade aleatoriedad al resumen.\nEl sistema concatena \\(C\\) con \\(S\\), \\(\\{C,S\\}\\), calcula el resumen \\(F=H(\\{C,S\\})\\) y almacena \\(S\\) y \\(F\\).\nCuando el usuario introduce una contraseña \\(C'\\), se repite todo el proceso: \\(F'=H(\\{C',S\\})\\).\nSi \\(F=F'\\), entonces el usuario puede entrar al sistema.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#shadow-passwords-4",
+    "href": "tema03-usuarios/tema03-usuarios.html#shadow-passwords-4",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Shadow passwords",
+    "text": "Shadow passwords\n\nPropiedades deseables de las funciones de resumen:\n\nDado \\(C\\), debe ser fácil calcular \\(H(C)\\) \\(\\rightarrow\\) para que el coste computacional no sea alto.\nDado \\(H(C)\\), debe ser extremadamente difícil calcular \\(C\\) \\(\\rightarrow\\) para que las contraseñas originales no se puedan conocer sabiendo el resumen (fugas de información).\nDado \\(C\\), debe ser muy difícil encontrar otro mensaje \\(C'\\) tal que \\(H(C)=H(C')\\) \\(\\rightarrow\\) para que dos usuarios no terminen con la misma contraseña.\n\nEste tipo de funciones se denominan funciones de dispersión de un solo sentido.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#cómo-se-almacena-el-hash-y-salt-en-shadows",
+    "href": "tema03-usuarios/tema03-usuarios.html#cómo-se-almacena-el-hash-y-salt-en-shadows",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "¿Cómo se almacena el hash y salt en shadows?",
+    "text": "¿Cómo se almacena el hash y salt en shadows?\n¿Dónde se guarda la sal? El campo de la contraseña shadow tiene 3 subcampos: $id$salt$hash donde:\n\n$1$ es MD5\n$2a$ es Blowfish\n$2y$ es Blowfish\n$5$ es SHA-256\n$6$ es SHA-512\n\nMás información en:\n\nAdding Salt to Hashing: A Better Way to Store Passwords (con vídeo)\nPassword Storage Tier List: encryption, hashing, salting, bcrypt, and beyond",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#shadow-passwords-algoritmos-de-hash",
+    "href": "tema03-usuarios/tema03-usuarios.html#shadow-passwords-algoritmos-de-hash",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Shadow passwords: Algoritmos de hash",
+    "text": "Shadow passwords: Algoritmos de hash\nDos algoritmos: MD5 y SHA\nMD5 (Message-Digest algorithm 5)\n\nAplica funciones no lineales a los 17 segmentos de 32 bits de un bloque de 512 bits.\nSe obtiene un resumen de 128 bits.\nObtener suma MD5 (GNU/Linux):\n\nmd5sum Fichero.ext &gt; Fichero.md5\n\nChequear suma MD5 (GNU/Linux) (se busca un fichero con el nombre correcto en la carpeta actual):\n\nmd5sum -c Fichero.md5",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#shadow-passwords-algoritmos-de-hash-1",
+    "href": "tema03-usuarios/tema03-usuarios.html#shadow-passwords-algoritmos-de-hash-1",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Shadow passwords: Algoritmos de hash",
+    "text": "Shadow passwords: Algoritmos de hash\n\nSHA (Secure Hash Algorithm):\n\nEstándar del NIST.\nParecido a MD5, pero genera resúmenes más grandes, que lo hacen más seguro contra ataques de fuerza bruta o del cumpleaños.\nSe pueden considerar 160, 224, 256, 384 o 512 bits para el resumen.\nObtener suma SHA (GNU/Linux):\n\nshasum [-anumBits] Fichero.ext &gt; Fichero.sha\n\nChequear suma SHA (GNU/Linux):\n\nshasum -c Fichero.sha\n\nSHA-512 es el algoritmo utilizado por defecto en GNU/Linux para guardar la contraseña.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#ejemplo-sha",
+    "href": "tema03-usuarios/tema03-usuarios.html#ejemplo-sha",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Ejemplo SHA:",
+    "text": "Ejemplo SHA:\nshasum /etc/passwd &gt; resumen_pw.sha \ncat resumen_pw.sha \nshasum -c resumen_pw.sha",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#restricciones-de-tiempo-etcshadow",
+    "href": "tema03-usuarios/tema03-usuarios.html#restricciones-de-tiempo-etcshadow",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Restricciones de tiempo (/etc/shadow)",
+    "text": "Restricciones de tiempo (/etc/shadow)\n\nIntroducir restricciones de tiempo o envejecimiento para la validez de la cuenta o de la contraseña.\n\nchanged \\(\\Rightarrow\\) fecha del último cambio de contraseña.\nminlife \\(\\Rightarrow\\) nº de días que han de pasar para poder cambiar la contraseña.\nmaxlife \\(\\Rightarrow\\) nº de días máximo que puede estar con la misma contraseña sin cambiarla.\nwarn \\(\\Rightarrow\\) cuántos días antes de que la contraseña expire (maxlife) el usuario será informado sobre ello, indicándole que tiene que cambiarla.\ninactive \\(\\Rightarrow\\) nº de días después de que la contraseña expire en que la cuenta se deshabilitará si no ha sido cambiada.\nexpired \\(\\Rightarrow\\) fecha en la que la cuenta expira y se deshabilita de forma automática.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#restricciones-de-tiempo",
+    "href": "tema03-usuarios/tema03-usuarios.html#restricciones-de-tiempo",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Restricciones de tiempo",
+    "text": "Restricciones de tiempo\n\nEl fichero /etc/login.defs tiene los valores por defecto.\nComando chage (administrador):\n\nchage -d ult_día usuario \\(\\Rightarrow\\) último cambio de password.\nchage -m min_días usuario \\(\\Rightarrow\\) nº de días que han de pasar para poder cambiar la contraseña.\nchage -M max_días usuario \\(\\Rightarrow\\) nº de días máximo que puede estar con la misma contraseña sin cambiarla.\nchage -W warn_días usuario \\(\\Rightarrow\\) establece un aviso de que la contraseña expira un número de días antes de que expire.\nchage -I inac_días usuario \\(\\Rightarrow\\) nº de días después de que la contraseña expire que la cuenta se deshabilitará de forma automática si la contraseña no ha sido cambiada.\nchage -E exp_días usuario \\(\\Rightarrow\\) fecha en la que la cuenta expira y se deshabilita de forma automática.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#restricciones-de-tiempo-1",
+    "href": "tema03-usuarios/tema03-usuarios.html#restricciones-de-tiempo-1",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Restricciones de tiempo",
+    "text": "Restricciones de tiempo\nSupongamos que el usuario pagutierrez cambia su contraseña el 1 de marzo y root ejecuta estas órdenes:\nchage -M 20 pagutierrez\nchage -W 6 pagutierrez\nchage -I 5 pagutierrez\nchage -E 2023-10-30 pagutierrez\nLos tiempos quedan fijados de la siguiente manera:\n\nEl 14 de marzo pagutierrez recibirá el primer aviso para que cambie su contraseña.\nEl 20 de marzo, debería haber cambiado su contraseña.\nSi no cambia la contraseña, como se ha fijado el tiempo de inactividad, la cuenta aún no se bloqueará.\nSi el 25 de marzo pagutierrez no ha cambiado su contraseña, la cuenta será bloqueada.\nLa cuenta expira, pase lo que pase, el 30 de octubre.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#ejercicio-restricciones-de-tiempo",
+    "href": "tema03-usuarios/tema03-usuarios.html#ejercicio-restricciones-de-tiempo",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Ejercicio restricciones de tiempo",
+    "text": "Ejercicio restricciones de tiempo\nImportante: no hacer esto sobre el único usuario de entrada al sistema.\n\nConsulta la ayuda del comando lslogin y lista las últimas sesiones de los usuarios.\nConsulta los parámetros de caducidad de algún usuario con: chage -l usuario.\nCambia la caducidad de contraseña de alguna cuenta y comprueba el resultado intentando iniciar sesión con esa cuenta.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#ficheros-de-inicialización",
+    "href": "tema03-usuarios/tema03-usuarios.html#ficheros-de-inicialización",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Ficheros de inicialización",
+    "text": "Ficheros de inicialización\n\nDirectorio /etc/skel/ \\(\\Rightarrow\\) ficheros que se copian automáticamente a cada $HOME.\nLos ficheros de inicialización son scripts shell que realizan tareas como dar valor a variables, nombrar alias, realizar funciones específicas...\nLos ficheros dependen del intérprete de órdenes seleccionado: Bourne shell (sh), Bourne again shell (bash), C shell (csh)...\nIncluyen el PATH, variables de entorno, umask, funciones de inicialización, alias, var. del propio shell...\nLo normal es que lean parte de su contenido de algún fichero global (/etc/profile, /etc/bash.bashrc)",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#ficheros-de-inicialización-y-cierre",
+    "href": "tema03-usuarios/tema03-usuarios.html#ficheros-de-inicialización-y-cierre",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Ficheros de inicialización y cierre",
+    "text": "Ficheros de inicialización y cierre\nSe ejecuta al hacer un login en el sistema por SSH o por terminal real:\n\n.bash_profile en bash / .profile en bash y sh / .login en csh:\n\nCada vez que se ejecuta una shell en bash aunque no conlleve login:\n\n.bashrc / .cshrc en csh:\n\nAl salir del sistema el usuario (al finalizar la sesión):\n\n.bash_logout en bash / .logout en C csh",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#configuración-de-login-de-usuarios",
+    "href": "tema03-usuarios/tema03-usuarios.html#configuración-de-login-de-usuarios",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Configuración de login de usuarios",
+    "text": "Configuración de login de usuarios\nLas política generales de gestión de contraseñas, creación de usuarios, umask por defecto, etc. se definen en: /etc/login.defs.\nPuedes ver un resumen de todo esto en Gestión de política de contraseñas en Linux: login.defs y pam_pwquality&pam_cracklib",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#ejercicio-ficheros-inicialización",
+    "href": "tema03-usuarios/tema03-usuarios.html#ejercicio-ficheros-inicialización",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Ejercicio ficheros inicialización",
+    "text": "Ejercicio ficheros inicialización\n\nPrueba a añadir algún alias útil a tu fichero .bashrc. Por ejemplo un alias para rm que pida siempre confirmación antes de borrar.\nPrueba a cambiar tu prompt y a hacerlo permanente si te gusta:\n\nexport PS1='\\e[33;1m\\u@\\h: \\e[31m\\W\\e[0m\\$ '\n\nPrueba a poner una máscara por defecto para todos los usuarios de nueva creación. Por ejemplo una restrictiva que no deje hacer nada al resto del grupo y usuarios.\nAñade un saludo con una vaca (necesitarás sudo apt install cowsay).",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#selección-de-intérprete-de-órdenes",
+    "href": "tema03-usuarios/tema03-usuarios.html#selección-de-intérprete-de-órdenes",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Selección de intérprete de órdenes",
+    "text": "Selección de intérprete de órdenes\n\nEn el último campo del fichero /etc/passwd, se establece el intérprete de órdenes que se ejecuta al entrar al sistema.\nEn el fichero /etc/shells se indican los shells permitidos.\nUn usuario puede cambiar su shell con chsh:\n\n¡Ojo! Si se prohíbe un shell, no se podrá elegir con chsh, pero los usuarios que ya lo tenían asignado lo podrán seguir usando.\n\nSi un usuario no tiene asignado ningún intérprete de órdenes, se usará el **shell por defecto /bin/sh.\nSi se desea que el usuario no pueda entrar al sistema se le puede asignar /bin/false o /sbin/nologin.\nTambién se puede establecer como shell un fichero ejecutable:\n\nCuando el usuario entre al sistema se ejecuta, y, al finalizar la ejecución, el usuario sale del sistema (no llega a hacer login).",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#cuentas-restrictivas",
+    "href": "tema03-usuarios/tema03-usuarios.html#cuentas-restrictivas",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Cuentas restrictivas",
+    "text": "Cuentas restrictivas\nLas cuentas restrictivas permiten limitar las acciones de los usuarios en el sistema.\nSe pueden crear de dos formas:\n\nAsignar como shell un fichero ejecutable que realice una tarea determinada, y al terminar se sale del sistema:\n\nUsuario para hacer copias de seguridad: como shell tiene un script que hace esa tarea.\nUsuario para apagar el sistema: ejecuta la orden shutdown.\n\nLos usuarios restrictivos de este tipo tienen que tener los permisos necesarios para poder hacer la tarea asignada. Estos permisos se asignan a nivel de identificador de usuario.\n\nPara apagar el sistema, se necesitan permisos de administración.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#cuentas",
+    "href": "tema03-usuarios/tema03-usuarios.html#cuentas",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Cuentas",
+    "text": "Cuentas\nUsando el shell restrictivo /bin/rbash:\n\nrbash es un enlace simbólico a /bin/bash (rbash es equivalente a /bin/bash -r).\nEste intérprete se comporta como un intérprete normal, salvo que el usuario no puede hacer determinadas tareas, como:\n\nCambiar de directorio.\nEstablecer o modificar los valores de $PATH o $HOME.\nEspecificar nombres u órdenes que contengan /.\nUsar redirección.\nUtilizar la orden exec para reemplazar el shell por otro programa.\n\nA estos usuarios hay que limitarles los ficheros que pueden ejecutar, copiándolos a un directorio y que su PATH sea sólo ese directorio. En otro caso, con un PATH “normal”, es casi como si no tuviesen restricciones.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#añadir-nuevos-usuarios-al-sistema-i",
+    "href": "tema03-usuarios/tema03-usuarios.html#añadir-nuevos-usuarios-al-sistema-i",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Añadir nuevos usuarios al sistema (I)",
+    "text": "Añadir nuevos usuarios al sistema (I)\nPasos a realizar (del 1 al 7, automatizados con herramientas):\n\nDecidir el nombre de usuario, el UID, y los grupos a los que va a pertenecer (grupo primario y grupos secundarios).\nIntroducir los datos en los ficheros /etc/passwd y /etc/group (poniendo como contraseña “*”).\nAsignar un password a la nueva cuenta.\nSi las shadow están activas, escribir la contraseña.\nEstablecer los parámetros de envejecimiento de la cuenta.\nCrear el directorio $HOME del nuevo usuario, establecer el propietario y grupo correspondiente y los permisos adecuados.\nCopiar ficheros necesarios por defecto (.bash_profile, .bashrc...) desde /etc/skel/.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#añadir-nuevos-usuarios-al-sistema-ii",
+    "href": "tema03-usuarios/tema03-usuarios.html#añadir-nuevos-usuarios-al-sistema-ii",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Añadir nuevos usuarios al sistema (II)",
+    "text": "Añadir nuevos usuarios al sistema (II)\nPasos opcionales:\n\nEstablecer otras facilidades: quotas, mail, permisos, etc.\nEjecutar cualquier tarea de inicialización propia del sistema.\nProbar la nueva cuenta.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#herramientas-para-crearmodificar-cuentas-de-usuario",
+    "href": "tema03-usuarios/tema03-usuarios.html#herramientas-para-crearmodificar-cuentas-de-usuario",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Herramientas para crear/modificar cuentas de usuario",
+    "text": "Herramientas para crear/modificar cuentas de usuario\nLas herramientas de creación de cuentas de usuario suelen realizar todas las tareas básicas del proceso, a excepción de las específicas (quotas, impresión, etc.).\n\nadduser o useradd \\(\\Rightarrow\\) crear cuentas de usuario, o modificar cuentas ya existentes. Toma los valores por defecto de /etc/default/useradd y de /etc/login.defs.\nuseradd se salta algunos pasos.\nusermod \\(\\Rightarrow\\) modificar cuentas.\ndeluser o userdel \\(\\Rightarrow\\) eliminar cuentas (por defecto no borra el directorio $HOME).\nnewusers \\(\\Rightarrow\\) crea cuentas de usuarios utilizando la información introducida en un fichero de texto (en batch), que ha de tener el formato del fichero /etc/passwd (no copia los ficheros de inicialización).\nusers-admin \\(\\Rightarrow\\) herramienta en modo gráfico.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#grupos-1",
+    "href": "tema03-usuarios/tema03-usuarios.html#grupos-1",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Grupos",
+    "text": "Grupos\n\nGrupos: colecciones de usuarios que comparten recursos o ficheros del sistema. Características: nombre del grupo o groupname e identificador del grupo (GID) \\(\\Rightarrow\\) internamente el sistema identifica al grupo por este número.\nObjetivo: Garantizar permisos concretos para un conjunto de usuarios, sin tener que aplicarlos a cada uno.\nEl fichero de configuración es /etc/group, con el formato: nombre:x:gid:lista de usuarios\n\nnombre \\(\\Rightarrow\\) nombre del grupo.\ngid \\(\\Rightarrow\\) identificador del grupo.\nlista de usuarios que pertenecen al grupo, sep. por “,”.\n\n\npas:x:519:pagutierrez,jsanchezm",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#grupos-2",
+    "href": "tema03-usuarios/tema03-usuarios.html#grupos-2",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Grupos",
+    "text": "Grupos\n\nTipos de grupos:\n\nPrimarios \\(\\Rightarrow\\) grupo especificado en /etc/passwd.\nSecundarios \\(\\Rightarrow\\) otros grupos (indicados en /etc/group).\n\nFuncionamiento de los grupos:\n\nAl crear un fichero se establece como grupo propietario el grupo activo del usuario en ese momento.\nGrupo activo \\(\\Rightarrow\\) grupo primario (salvo que usemos newgrp).\nAl determinar los permisos sobre un fichero, se usan todos los grupos del usuario.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#grupos-contraseñas-opcional",
+    "href": "tema03-usuarios/tema03-usuarios.html#grupos-contraseñas-opcional",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Grupos: contraseñas (opcional)",
+    "text": "Grupos: contraseñas (opcional)\nEsta es una funcionalidad con poco uso en la actualidad.\nLos grupos pueden tener contraseña \\(\\Rightarrow\\) /etc/gshadow:\n\nSi un usuario sabe la contraseña de un grupo, puede usarlo sin pertenecer a él con la orden newgrp.\nInformación en /etc/gshadow: grupo, contraseña, usuarios administradores (pueden cambiar la contraseña y los miembros) y miembros (idea parecida al /etc/shadow).",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#grupos-herramientas",
+    "href": "tema03-usuarios/tema03-usuarios.html#grupos-herramientas",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Grupos: herramientas",
+    "text": "Grupos: herramientas\n\naddgroup grupo \\(\\Rightarrow\\) crear un nuevo grupo.\ngroupmod grupo \\(\\Rightarrow\\) modificar un grupo existente.\ndelgroup grupo \\(\\Rightarrow\\) eliminar un grupo.\ngroups [usuario] \\(\\Rightarrow\\) grupos a los que pertenece un usuario.\nid [usuario] \\(\\Rightarrow\\) lista el identificador del usuario y los grupos a los que pertenece.\ngrpck \\(\\Rightarrow\\) chequea la consistencia del fichero de grupos.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#grupos-herramientas-para-contraseñas-opcional",
+    "href": "tema03-usuarios/tema03-usuarios.html#grupos-herramientas-para-contraseñas-opcional",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Grupos: herramientas para contraseñas (opcional)",
+    "text": "Grupos: herramientas para contraseñas (opcional)\n\nnewgrp grupo \\(\\Rightarrow\\) cambiar de grupo activo (lanza un shell)\ngpasswd grupo \\(\\Rightarrow\\) asignar una contraseña a un grupo:\n\nSi el usuario no pertenece al grupo, pero el grupo tiene contraseña, se le solicita y pasa a ser su grupo activo.\n\ngpasswd -a user grupo \\(\\Rightarrow\\) añadir un usuario a un grupo.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#rangos-del-uid",
+    "href": "tema03-usuarios/tema03-usuarios.html#rangos-del-uid",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Rangos del UID",
+    "text": "Rangos del UID\n\n\\(UID\\in[0,99]\\): Usuarios que representan al propio SO.\n\\(UID\\in[100,499]\\): Usuarios especiales que representan servicios o programas.\n\\(UID\\ge 1000\\): Usuarios normales.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#algunos-usuarios-y-grupos-estándar",
+    "href": "tema03-usuarios/tema03-usuarios.html#algunos-usuarios-y-grupos-estándar",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Algunos usuarios y grupos estándar",
+    "text": "Algunos usuarios y grupos estándar\n\nUsuarios estándar:\n\nroot \\(\\Rightarrow\\) Cuenta del administrador (\\(0\\)).\nbin (utilidades comunes de usuarios, \\(2\\)), daemon (ejecución de demonios, \\(1\\)), lp, sync, shutdown, etc. \\(\\Rightarrow\\) Tradicionalmente usados para poseer ficheros o ejecutar servicios\nmail, news, ftp \\(\\Rightarrow\\) Asociados con herramientas o facilidades.\npostgres, mysql, xfs \\(\\Rightarrow\\) Creados por herramientas instaladas en el sistema para administrar y ejecutar sus servicios.\nnobody o nfsnobody \\(\\Rightarrow\\) Usado por NFS y otras utilidades, usuario sin privilegios.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#algunos-usuarios-y-grupos-estándar-1",
+    "href": "tema03-usuarios/tema03-usuarios.html#algunos-usuarios-y-grupos-estándar-1",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Algunos usuarios y grupos estándar",
+    "text": "Algunos usuarios y grupos estándar\n\nGrupos estándar:\n\nroot, sys.\nbin, daemon, adm, lp, disk, mail, ftp, nobody, etc.\nkmem \\(\\Rightarrow\\) Grupo propietario de los programas para leer la memoria del kernel.\nuser o users \\(\\Rightarrow\\) Grupo de los usuarios normales (no siempre se usa).",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#ejercicio-usuario-y-grupo-para-apache",
+    "href": "tema03-usuarios/tema03-usuarios.html#ejercicio-usuario-y-grupo-para-apache",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Ejercicio usuario y grupo para Apache",
+    "text": "Ejercicio usuario y grupo para Apache\n\nInstala apache en Debian con: apt install apache2.\nExamina qué usuario y grupo utiliza el proceso y carpetas y las características de estos.\nSupón que un usuario no administrador del sistema operativo va a ser el administrador web de esta instancia de Apache. ¿Qué estrategia de permisos y grupos se te ocurren para que sea práctico y seguro? (puedes buscar en internet). Este hilo en stackoverflow sobre establecer permisos adecuados y seguridad en Apache es interesante.",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
+    ]
+  },
+  {
+    "objectID": "tema03-usuarios/tema03-usuarios.html#referencias-1",
+    "href": "tema03-usuarios/tema03-usuarios.html#referencias-1",
+    "title": "Tema 3: Gestión de Usuarios",
+    "section": "Referencias",
+    "text": "Referencias\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley and Dan Mackin. UNIX and Linux System Administration Handbook, 5th Edition. Capítulo 8: User Management. Addison-Wesley. 2018.\nAeleen Frisch. Essential system administration. Capítulo 6. Managing users and groups. O’Reilly and Associates. Tercera edición. 2002.\nPrivilege Escalation on Linux\nLinux Privilege Escalation: Three Easy Ways to Get a Root Shell",
+    "crumbs": [
+      "Tema 3: Gestión de usuarios"
     ]
   },
   {
