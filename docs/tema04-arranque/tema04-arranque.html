@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Javier Sánchez Monedero">
+
+<title>Programación y Administración de Sistemas (2023-2024) - Tema 4: Arranque y parada del sistema y servicios.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Programación y Administración de Sistemas (2023-2024)
+      </li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Programación y Administración de Sistemas (2023-2024)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inicio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema00-presentacion/presentacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 0: Presentación</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01a-introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.a: Introducción</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01b-software-libre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.b: Software Libre y GNU/Linux</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01c-proyecto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.c: Virtual Box, Debian y configuración básica</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-ficheros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Organización de GNU/Linux</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Ejercicios permisos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-webuco.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Ejercicios web personal en la UCO</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema03-usuarios/tema03-usuarios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 3: Gestión de usuarios</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../enlaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Enlaces</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-y-evaluación" id="toc-objetivos-y-evaluación" class="nav-link active" data-scroll-target="#objetivos-y-evaluación"><span class="header-section-number">1</span> Objetivos y evaluación</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2</span> Introducción</a></li>
+  <li><a href="#proceso-de-arranque" id="toc-proceso-de-arranque" class="nav-link" data-scroll-target="#proceso-de-arranque"><span class="header-section-number">3</span> Proceso de arranque</a></li>
+  <li><a href="#gestor-de-arranque-grub" id="toc-gestor-de-arranque-grub" class="nav-link" data-scroll-target="#gestor-de-arranque-grub"><span class="header-section-number">4</span> Gestor de arranque GRUB</a></li>
+  <li><a href="#modo-monousuariomultiusuario" id="toc-modo-monousuariomultiusuario" class="nav-link" data-scroll-target="#modo-monousuariomultiusuario"><span class="header-section-number">5</span> Modo monousuario/multiusuario</a></li>
+  <li><a href="#init-y-systemd" id="toc-init-y-systemd" class="nav-link" data-scroll-target="#init-y-systemd"><span class="header-section-number">6</span> init y systemd</a></li>
+  <li><a href="#resumen-del-proceso-de-arranque" id="toc-resumen-del-proceso-de-arranque" class="nav-link" data-scroll-target="#resumen-del-proceso-de-arranque"><span class="header-section-number">7</span> Resumen del proceso de arranque</a></li>
+  <li><a href="#parada-del-sistema" id="toc-parada-del-sistema" class="nav-link" data-scroll-target="#parada-del-sistema"><span class="header-section-number">8</span> Parada del sistema</a></li>
+  <li><a href="#caídas-del-sistema-y-problemas-de-arranque" id="toc-caídas-del-sistema-y-problemas-de-arranque" class="nav-link" data-scroll-target="#caídas-del-sistema-y-problemas-de-arranque"><span class="header-section-number">9</span> Caídas del sistema y problemas de arranque</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">10</span> Referencias</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tema 4: Arranque y parada del sistema y servicios.</h1>
+<p class="subtitle lead">Programación y Administración de Sistemas <br> (2023-2024)</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Autor/a</div>
+  <div class="quarto-title-meta-heading">Afiliaciones</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Javier Sánchez Monedero </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Depto. Informática y Análisis Numérico
+          </p>
+        <p class="affiliation">
+            Escuela Politécnica Superior
+          </p>
+        <p class="affiliation">
+            Universidad de Córdoba
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">14 de marzo de 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objetivos-y-evaluación" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Objetivos y evaluación</h1>
+<section id="objetivos-de-aprendizaje" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="objetivos-de-aprendizaje">Objetivos de aprendizaje</h2>
+<ul>
+<li><p>Describir todas las <strong>fases del proceso de arranque</strong> del sistema GNU/Linux, estableciendo qué elementos <em>hardware</em> y, sobre todo, <em>software</em> intervienen.</p></li>
+<li><p>Explicar qué misión tienen en el arranque los siguientes <strong>componentes</strong>: iniciador ROM, programa cargador, núcleo del sistema operativo, <code>initrd</code> y proceso <code>Init</code>.</p></li>
+<li><p>Configurar los distintos parámetros del programa cargador <strong>GRUB</strong> y utilizar el modo interactivo.</p></li>
+<li><p>Distinguir la diferencia entre <strong>modo de ejecución monousuario</strong> y multiusuario.</p></li>
+<li><p>Explicar los <strong>problemas de seguridad</strong> asociados al modo monousuario.</p></li>
+<li><p>Conocer <strong>systemd</strong> como sustituto para el <strong>Init</strong> de GNU/Linux</p></li>
+<li><p>Enumerar los pasos necesarios para la <strong>configuración del sistema en modo multiusuario</strong>.</p></li>
+<li><p>Explicar el concepto de <strong>niveles de ejecución</strong> y las funciones típicas de cada nivel.</p></li>
+<li><p>Configurar los <strong>servicios de cada nivel</strong> de ejecución u objetivos.</p></li>
+<li><p>Arrancar, parar, listar, añadir y eliminar <strong>servicios en cada nivel</strong>.</p></li>
+<li><p>Enumerar las acciones que se llevan a cabo durante la <strong>parada</strong> del sistema.</p></li>
+<li><p>Utilizar la herramienta <code>shutdown</code>.</p></li>
+<li><p>Enumerar posibles <strong>causas de caídas</strong> del sistema operativo.</p></li>
+<li><p>Enumerar posibles <strong>problemas durante el arranque</strong> del sistema operativo.</p></li>
+<li><p>Conocer los principales mecanismos para consultar los <strong><em>logs</em> del sistema operativo</strong>.</p></li>
+</ul>
+</section>
+<section id="evaluación" class="level2">
+<h2 class="anchored" data-anchor-id="evaluación">Evaluación:</h2>
+<ul>
+<li><p>Cuestionarios objetivos.</p></li>
+<li><p>Pruebas de respuesta libre.</p></li>
+<li><p>Tareas de administración.</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Como en otros temas, en estos apuntes se dan muchos detalles que por supuesto no hay que memorizar. Si hay que saber en qué directorio se encuentran el/los ficheros de configuración pero no los parámetros de memoria, estos los ponemos aquí para conocer las posibilidades de cada herramienta.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="introducción" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Introducción</h1>
+<section id="arranque-y-parada-del-sistema" class="level2">
+<h2 class="anchored" data-anchor-id="arranque-y-parada-del-sistema">Arranque y parada del sistema</h2>
+<div class="block">
+<p>Procesos de <span class="rojo">arranque</span> y de <span class="rojo">parada</span>:</p>
+<ul>
+<li><p><strong>Arranque</strong>: el sistema se prepara para ser usado por los usuarios.</p></li>
+<li><p><strong>Parada</strong>: el sistema se deja consistente (p.ej. vaciar la caché).</p></li>
+</ul>
+</div>
+<ul>
+<li><p>El <strong>administrador</strong> deberá saber <strong>qué ficheros controlan estos procesos y cómo lo hacen</strong>, para reconocer situaciones de error y solucionarlas.</p></li>
+<li><p>Procesos <strong>sencillos</strong>: se basan en un conjunto de ficheros de configuración y/o de guiones <em>shell</em> que determinan y controlan los procesos.</p></li>
+</ul>
+</section>
+<section id="arranque" class="level2">
+<h2 class="anchored" data-anchor-id="arranque">Arranque</h2>
+<p><img src="images/handbook-boot.png" class="img-fluid"></p>
+<p>Fuente [Nemeth et al., 2018].</p>
+</section>
+</section>
+<section id="proceso-de-arranque" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Proceso de arranque</h1>
+<section id="proceso-de-arranque-1" class="level2">
+<h2 class="anchored" data-anchor-id="proceso-de-arranque-1">Proceso de arranque</h2>
+<p><img src="images/handbook-bootprocess.png" class="img-fluid"></p>
+<p>Fuente [Nemeth et al., 2018].</p>
+</section>
+<section id="proceso-de-arranque-fases" class="level2">
+<h2 class="anchored" data-anchor-id="proceso-de-arranque-fases">Proceso de arranque: fases</h2>
+<ul>
+<li><p>Dos fases:</p>
+<ul>
+<li><p>Arranque del <em>hardware</em>.</p></li>
+<li><p>Arranque del Sistema Operativo (SO).</p></li>
+</ul></li>
+</ul>
+<p><img src="images/arranque.png" class="img-fluid" style="width:80.0%"></p>
+</section>
+<section id="proceso-de-arranque-programa-cargador" class="level2">
+<h2 class="anchored" data-anchor-id="proceso-de-arranque-programa-cargador">Proceso de arranque: programa cargador</h2>
+<ul>
+<li><p>El <strong>programa cargador</strong> (<em>master boot program</em> o <em>boot program</em>) está en los primeros sectores del disco y tiene un tamaño prefijado.</p></li>
+<li><p>Estos sectores se conocen como <em>Master Boot Record</em> (MBR, o <em>Volume Boot Record</em>).</p></li>
+<li><p>Es el encargado de cargar el núcleo (o <em>kernel</em>) del SO y pasarle el control.</p></li>
+<li><p>El <strong>iniciador ROM</strong> y el <strong>SO</strong> tienen un <em>acuerdo</em> sobre el <span class="rojo">programa cargador</span> (ubicación, dirección de arranque y tamaño).</p></li>
+</ul>
+<p><img src="images/iniciadorROM.png" class="img-fluid"></p>
+</section>
+<section id="proceso-de-arranque-diferencia-bios-vs-uefi" class="level2">
+<h2 class="anchored" data-anchor-id="proceso-de-arranque-diferencia-bios-vs-uefi">Proceso de arranque: diferencia BIOS vs UEFI</h2>
+<p><img src="images/boot-bios-vs-uefi.png" class="img-fluid"></p>
+<p>Fuente <a href="https://askubuntu.com/questions/981382/in-a-dual-boot-system-how-does-the-bios-choose-which-bootloader-to-run/981415">Ask Ubuntu</a>.</p>
+<p>Puedes consultar las entradas de arranque UEFI con el siguiente comando: <code>efibootmgr -v</code>.</p>
+<p>En Windows puedes hacer algo similar con: <code>bcdedit /enum firmware</code>.</p>
+</section>
+<section id="proceso-de-arranque-núcleo-del-s.o." class="level2">
+<h2 class="anchored" data-anchor-id="proceso-de-arranque-núcleo-del-s.o.">Proceso de arranque: núcleo del S.O.</h2>
+<ul>
+<li><p><strong>El núcleo del S.O.</strong> continúa el proceso de arranque:</p>
+<ul>
+<li><p>Realiza una comprobación del <em>hardware</em> del sistema.</p></li>
+<li><p>Se prepara a sí mismo para ejecutar el sistema inicializando sus tablas internas, creando estructuras de datos necesarias, etc.</p></li>
+<li><p>A continuación crea el proceso <code>Init</code> y le pasa el control.</p></li>
+</ul></li>
+<li><p>El núcleo (<strong>Linux</strong>) es cargado inicialmente en memoria, y permanece de manera residente durante el funcionamiento del sistema, controlando la ejecución del resto de <em>software</em> (<strong>GNU</strong>).</p></li>
+<li><p>Parte de este código se encuentra en <strong>módulos del núcleo</strong>:</p>
+<ul>
+<li><p>Minimizar la cantidad de código que se carga en memoria.</p></li>
+<li><p>Maximizar la modularidad.</p></li>
+</ul></li>
+</ul>
+<p>Nota: puedes ver los módulos del núcleo activos en Linux con <code>lsmod</code>.</p>
+</section>
+<section id="proceso-de-arranque-initrd" class="level2">
+<h2 class="anchored" data-anchor-id="proceso-de-arranque-initrd">Proceso de arranque: <code>initrd</code></h2>
+<p>Para arrancar el sistema se necesita leer del disco los módulos del kernel que permiten leer el disco.</p>
+<p><img src="images/i-dont-know-how-you-did-that-cartoon.gif" class="img-fluid"></p>
+<!--  -->
+</section>
+<section id="proceso-de-arranque-initrd-1" class="level2">
+<h2 class="anchored" data-anchor-id="proceso-de-arranque-initrd-1">Proceso de arranque: <code>initrd</code></h2>
+<ul>
+<li><p><strong>initrd</strong> (<em>Init RAM Disk</em>):</p>
+<ul>
+<li><p>Las características del arranque pueden implicar que el medio desde el que se carga el núcleo provenga de un sistema de ficheros concreto (p.ej. <code>ext4</code>) o incluso desde la red.</p></li>
+<li><p>Para ello, se necesitarán módulos específicos, alojados en el <strong>initrd</strong>.</p></li>
+<li><p>El programa cargador le dice al núcleo la posición del <strong>initrd</strong>.</p></li>
+<li><p>Funcionamiento:</p>
+<ul>
+<li><p>El núcleo carga primero el <strong>initrd</strong>.</p></li>
+<li><p>Utilizando el <strong>initrd</strong>, se cargan los módulos necesarios.</p></li>
+<li><p>Entonces el núcleo continuará el proceso de arranque.</p></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="proceso-de-arranque-proceso-init" class="level2">
+<h2 class="anchored" data-anchor-id="proceso-de-arranque-proceso-init">Proceso de arranque: proceso <code>Init</code></h2>
+<ul>
+<li><p>El proceso <code>Init</code> (<code>/sbin/init</code> con PID = 1) <strong>termina el proceso de arranque</strong>, dejando el sistema en <strong>modo multiusuario</strong>, preparado para que los usuarios trabajen en él.</p></li>
+<li><p>Usa una serie de <em>scripts</em> que le indican las acciones a realizar.</p></li>
+</ul>
+<div class="incremental">
+<ul class="incremental">
+<li><p>Tareas que realiza el proceso Init:</p>
+<ul class="incremental">
+<li><p>Chequea los sistemas de ficheros.</p></li>
+<li><p>Monta los sistemas de ficheros permanentes.</p></li>
+<li><p>Activa las áreas de <em>swapping</em> o intercambio.</p></li>
+<li><p>Activa los demonios y la red (NFS, NIS, etc.).</p></li>
+<li><p>Limpia los sistemas de ficheros (borra los directorios temporales).</p></li>
+<li><p>Habilita el login a los usuarios del sistema.</p></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="proceso-de-arranque-por-dónde-vamos" class="level2">
+<h2 class="anchored" data-anchor-id="proceso-de-arranque-por-dónde-vamos">Proceso de arranque: por dónde vamos</h2>
+<p><img src="images/EsquemaArranque.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="gestor-de-arranque-grub" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Gestor de arranque GRUB</h1>
+<section id="gestor-de-arranque-grub-1" class="level2">
+<h2 class="anchored" data-anchor-id="gestor-de-arranque-grub-1">Gestor de arranque GRUB</h2>
+<ul>
+<li><p><strong>GRUB: GRand Unified Bootloader</strong>:</p></li>
+<li><p>GRUB se instala en el <em>master boot record</em> (MBR) o como <em>UEFI boot loader</em> y hace de las funciones de <em>master boot program</em> (MBP, programa cargador de arranque).</p></li>
+<li><p><strong>Pregunta qué SO arrancar</strong>: p.ej. Linux o Windows.</p>
+<ul>
+<li><p>Si la respuesta es Linux <span class="math inline">\Rightarrow</span> carga el núcleo solicitado y le pasa el control para que el arranque continúe.</p></li>
+<li><p>Si la respuesta es Windows <span class="math inline">\Rightarrow</span> pasa el control a Windows que realiza su arranque.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="gestor-de-arranque-grub-lo-básico" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="gestor-de-arranque-grub-lo-básico">Gestor de arranque GRUB: lo básico</h2>
+<ul>
+<li><p>Archivo fundamental de configuración: <code>/boot/grub/grub.cfg</code>. <span class="rojo"><strong>¡No editar a mano!</strong></span>.</p></li>
+<li><p>Este archivo se genera a partir del comando <code>sudo update-grub2</code>, utilizando todos los <em>scripts</em> incluidos en la carpeta <code>/etc/grub.d/</code>.</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Reinstalar GRUB (por ejemplo, después de que Windows borre el MBR): <code>sudo grub-install /dev/sda</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A través del cargador de arranque o un USB <em>maligno</em> se pueden ganar privilegios en una máquina</p>
+</div>
+</div>
+</section>
+<section id="opcional-grub-configuración-general" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="opcional-grub-configuración-general">[OPCIONAL] GRUB: configuración general</h2>
+<p>Contenidos de la carpeta <code>/etc/grub.d/</code> (en principio, no modificar nada):</p>
+<ul>
+<li><p><code>/etc/grub.d/00_header</code>: Cabeceras.</p></li>
+<li><p><code>/etc/grub.d/05_debian_theme</code>: Aspecto visual del menú, colores, temas, imagen de fondo...</p></li>
+<li><p><code>/etc/grub.d/10_linux</code>: Este archivo contiene mandatos y <em>scripts</em> que se encargan del <em>kernel</em> Linux de la partición principal (se incluyen todos los núcleos presentes en <code>/boot</code>).</p></li>
+<li><p><code>/etc/grub.d/20_*</code>: Aplicaciones <em>third party</em> (<code>20_memtest86+</code>, <code>20_linux_xen</code>...)</p></li>
+<li><p><code>/etc/grub.d/30_os-prober</code>: Este archivo contiene comandos y <em>scripts</em> que se encargan de otros sistemas operativos.</p></li>
+<li><p><code>/etc/grub.d/30_uefi-firmware</code>: Este archivo contiene comandos que automatizan la extracción de configuraciones incluidas en la partición EFI.</p></li>
+</ul>
+</section>
+<section id="grub-algunas-opciones-i" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="grub-algunas-opciones-i">GRUB: algunas opciones (I)</h2>
+<p>Fichero <code>/etc/default/grub</code>:</p>
+<ul>
+<li><p>Este fichero si es editable (<code>00_header</code> lee su contenido).</p></li>
+<li><p><code>GRUB_DEFAULT=0</code>: entrada por defecto para el arranque. Si ponemos <code>saved</code>, será seleccionada por el administrador (comandos <code>grub-set-default</code>, permanente, y <code>grub-reboot</code>, un solo arranque).</p></li>
+<li><p><code>GRUB_SAVEDEFAULT=true</code>: la entrada por defecto es siempre la última seleccionada.</p></li>
+<li><p><code>GRUB_HIDDEN_TIMEOUT=0</code>:</p>
+<ul>
+<li><p>Muestra una pantalla en negro o con una imagen, durante el número de segundos indicado, antes del menú de arranque (pulsar una tecla para saltarla). Es 0 cuando solo hay Linux (el menú puede aparecer con Shift).</p></li>
+<li><p>Suele no usarse cuando hay múltiples sistemas (comentado).</p></li>
+</ul></li>
+<li><p><code>GRUB_HIDDEN_TIMEOUT_QUIET=true</code>: sin cuenta atrás.</p></li>
+</ul>
+</section>
+<section id="opcional-grub-algunas-opciones-ii" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="opcional-grub-algunas-opciones-ii">[OPCIONAL] GRUB: algunas opciones (II)</h2>
+<p>Fichero <code>/etc/default/grub</code>:</p>
+<ul>
+<li><p><code>GRUB_TIMEOUT=10</code>: número de segundos hasta seleccionar entrada por defecto.</p></li>
+<li><p><code>GRUB_CMDLINE_LINUX=opciones</code>: pasar opciones de arranque al kernel <code>linux</code> (modo normal o recuperación).</p></li>
+<li><p><code>GRUB_CMDLINE_LINUX_DEFAULT=quiet splash</code>: pasar opciones de arranque al kernel <code>linux</code> (modo normal).</p></li>
+<li><p><code>GRUB_TERMINAL=console</code>: desactivar modo gráfico.</p></li>
+</ul>
+<!-- - `GRUB_BADRAM=0x7DDF0000,0xffffc000`: deshabilitar el uso de algunas direcciones de memoria (el primer argumento es la primera dirección a partir de la cual se aplica, el segundo es una máscara con un 1 en los bits que voy a considerar) $\Rightarrow$ en el ejemplo, no se usan posiciones de la 0x7DDF0000 a la 0x7DDF4000. -->
+</section>
+<section id="opcional-grub-algunas-opciones-iii" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="opcional-grub-algunas-opciones-iii">[OPCIONAL] GRUB: algunas opciones (III)</h2>
+<p>Fichero <code>/etc/default/grub</code>:</p>
+<ul>
+<li><p><code>GRUB_DISTRIBUTOR=lsb_release -i -s 2&gt; /dev/null || echo Debian</code>: obtener el nombre de la distribución.</p></li>
+<li><p><code>GRUB_DISABLE_LINUX_UUID="true"</code>: no utilizar el UUID del dispositivo raíz (utilizar nomenclatura tradicional <code>/dev/sda</code>).</p></li>
+<li><p><code>GRUB_GFXMODE=640x480</code>: seleccionar manualmente la resolución para el menú.</p></li>
+<li><p><code>GRUB_INIT_TUNE="480 440 1"</code>: hacer <code>beep</code> antes del menú de inicio (<strong>tempo [pitch1 duration1] [pitch2 duration2]...</strong>).</p></li>
+<li><p><code>GRUB_BACKGROUND</code>: imagen de fondo.</p></li>
+</ul>
+</section>
+<section id="gestor-de-arranque-grub-2" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="gestor-de-arranque-grub-2">Gestor de arranque GRUB</h2>
+<p>GRUB permite (durante la selección del SO):</p>
+<ul>
+<li><p>Editar las entradas:</p>
+<ul>
+<li><p>Pulsar tecla <code>e</code>, permite modificar las entradas de arranque para solucionar errores.</p></li>
+<li><p>Los cambios no son permanentes, solo sirve para probar.</p></li>
+</ul></li>
+<li><p>Consola interactiva GRUB: pulsar la tecla <code>c</code>. Permite ejecutar comandos para arreglar el arranque (seleccionar otro <code>initrd</code>, cargar módulos...).</p></li>
+<li><p>Terminología de GRUB, numerando los dispositivos según los reconozca la BIOS empezando en cero:</p>
+<ul>
+<li><p>Nombres de dispositivos: <code>(&lt;t&gt;&lt;n&gt;,&lt;np&gt;)</code><br>
+<code>(hd0,0)</code> <span class="math inline">\Rightarrow</span> <code>/dev/sda1</code></p></li>
+<li><p>Nombres de ficheros <code>(hd0,0)/boot/grub/grub.conf</code></p></li>
+</ul></li>
+</ul>
+</section>
+<section id="fragmento-bootgrubgrub.cfg-linux" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="fragmento-bootgrubgrub.cfg-linux">Fragmento <code>/boot/grub/grub.cfg</code> (Linux)</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">menuentry</span> <span class="st">'Debian GNU/Linux, con Linux 5.4.0-0.bpo.3-amd64'</span> <span class="at">--class</span> debian <span class="at">--class</span> gnu-linux <span class="at">--class</span> gnu <span class="at">--class</span> os <span class="va">$menuentry_id_option</span> <span class="st">'gnulinux-5.4.0-0.bpo.3-amd64-advanced-bf8474c5-958e-4cca-a568-4828b2310fda'</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">load_video</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">insmod</span> gzio</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">insmod</span> part_msdos</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">insmod</span> ext2</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">set</span> root=<span class="st">'hd0,msdos1'</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">search</span> <span class="at">--no-floppy</span> <span class="at">--fs-uuid</span> <span class="at">--set</span><span class="op">=</span>root bf8474c5-958e-4cca-a568-4828b2310fda</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">'Cargando Linux 5.4.0-0.bpo.3-amd64...'</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">linux</span> /boot/vmlinuz-5.4.0-0.bpo.3-amd64 root=UUID=bf8474c5-958e-4cca-a568-4828b2310fda ro initrd=/install/gtk/initrd.gz quiet</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">'Cargando imagen de memoria inicial...'</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">initrd</span> /boot/initrd.img-5.4.0-0.bpo.3-amd64</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ex">menuentry</span> <span class="st">'Debian GNU/Linux, with Linux 5.4.0-0.bpo.3-amd64 (recovery mode)'</span> <span class="at">--class</span> debian <span class="at">--class</span> gnu-linux <span class="at">--class</span> gnu <span class="at">--class</span> os <span class="va">$menuentry_id_option</span> <span class="st">'gnulinux-5.4.0-0.bpo.3-amd64-recovery-bf8474c5-958e-4cca-a568-4828b2310fda'</span> {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="ex">load_video</span>   </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="ex">insmod</span> gzio</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">insmod</span> part_msdos</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">insmod</span> ext2</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">set</span> root=<span class="st">'hd0,msdos1'</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="ex">search</span> <span class="at">--no-floppy</span> <span class="at">--fs-uuid</span> <span class="at">--set</span><span class="op">=</span>root bf8474c5-958e-4cca-a568-4828b2310fda</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">'Cargando Linux 5.4.0-0.bpo.3-amd64...'</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="ex">linux</span> /boot/vmlinuz-5.4.0-0.bpo.3-amd64 root=UUID=bf8474c5-958e-4cca-a568-4828b2310fda ro single initrd=/install/gtk/initrd.gz</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">'Cargando imagen de memoria inicial...'</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="ex">initrd</span> /boot/initrd.img-5.4.0-0.bpo.3-amd64</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fragmento-bootgrubgrub.cfg-windows" class="level2">
+<h2 class="anchored" data-anchor-id="fragmento-bootgrubgrub.cfg-windows">Fragmento <code>/boot/grub/grub.cfg</code> (Windows)</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">## </span><span class="re">BEGIN</span><span class="co"> /etc/grub.d/30_os-prober </span><span class="al">###</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">menuentry</span> <span class="st">'Windows 7 (en /dev/sdb1)'</span> <span class="at">--class</span> windows <span class="at">--class</span> os <span class="va">$menuentry_id_option</span> <span class="st">'osprober-chain-DA3EBC4E3EBC2583'</span> {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">insmod</span> part_msdos</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">insmod</span> ntfs</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">set</span> root=<span class="st">'hd1,msdos1'</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">search</span> <span class="at">--no-floppy</span> <span class="at">--fs-uuid</span> <span class="at">--set</span><span class="op">=</span>root DA3EBC4E3EBC2583</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">parttool</span> <span class="va">${root}</span> hidden-</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">chainloader</span> +1</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">## </span><span class="re">END</span><span class="co"> /etc/grub.d/30_os-prober ## </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejercicio-parámetros-básicos-de-grub" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-parámetros-básicos-de-grub">Ejercicio: parámetros básicos de GRUB</h2>
+<ol type="1">
+<li>Cambia la imagen de fondo a la que quieras.</li>
+</ol>
+<ul>
+<li>Para ello puedes copiar una imagen usando el navegador de archivos, <code>scp</code>, descargarla con <code>wget</code>…</li>
+<li>Puedes poner la imagen en <code>/boot</code>.</li>
+<li>Quizás no te funcione a la primera. Revisa:
+<ul>
+<li>Ruta entre comillas.</li>
+<li>Formato imagen (¿imagemagick?).</li>
+<li>Regenerar ficheros de configuración.</li>
+</ul></li>
+</ul>
+<ol start="2" type="1">
+<li>Cambia el timeout.</li>
+</ol>
+</section>
+</section>
+<section id="modo-monousuariomultiusuario" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Modo monousuario/multiusuario</h1>
+<section id="opciones-avanzadas-y-modo-monousuario" class="level2">
+<h2 class="anchored" data-anchor-id="opciones-avanzadas-y-modo-monousuario">Opciones avanzadas y modo monousuario</h2>
+<p><img src="images/grub_recovery.png" class="img-fluid" style="width:70.0%"></p>
+</section>
+<section id="modo-monousuario" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="modo-monousuario">Modo monousuario</h2>
+<ul>
+<li><p>Estado del sistema definido para realizar tareas <strong>administrativas y de mantenimiento</strong>, que requieren un control <strong>completo</strong> y <span class="rojo">no compartido</span>.</p></li>
+<li><p>Sólo realiza el <strong>montaje del sistema de ficheros raíz</strong> (<code>/</code>), los otros SF están disponibles pero no están montados.</p></li>
+<li><p>Se puede acceder a todo el sistema, pero:</p>
+<ul>
+<li><p>Muy pocos demonios están en ejecución, sólo los necesarios.</p></li>
+<li><p>Muchas utilidades no están activas (impresión, red).</p></li>
+<li><p>Sólo las órdenes del SF raíz están disponibles (si <code>/usr</code> está en otra partición, no está montado).</p></li>
+</ul></li>
+<li><p>Para entrar en modo monousuario el proceso <strong>Init</strong> crea el <em>shell</em> por defecto (<code>/bin/sh</code>) como usuario <strong>root</strong>:</p>
+<ul>
+<li>Pero antes se ejecuta la orden <code>/sbin/sulogin</code>, que pide la contraseña de <code>root</code> para dejar entrar al sistema.</li>
+</ul></li>
+</ul>
+</section>
+<section id="modo-monousuario-1" class="level2">
+<h2 class="anchored" data-anchor-id="modo-monousuario-1">Modo monousuario</h2>
+<ul>
+<li><p>¿Cómo se entra en modo monousuario?</p>
+<ul>
+<li><p><strong>Manualmente</strong>, indicando al cargador una opción o parámetro: mediante la interfaz de edición de GRUB, opción <code>single</code> a la entrada del núcleo.</p></li>
+<li><p><strong>Automáticamente</strong>, si hay problemas en el proceso de arranque que el sistema no puede solucionar por sí solo (p.e. problemas en el SF que <code>fsck</code> no puede solucionar, errores en los ficheros de arranque).</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="modo-monousuario-2" class="level2">
+<h2 class="anchored" data-anchor-id="modo-monousuario-2">Modo monousuario</h2>
+<div class="alertblock">
+<ul>
+<li><p><strong>¡Problema!</strong>: si cambiamos las opciones de GRUB y ponemos <code>init=/bin/sh</code>, no se llama a <code>sulogin</code>.</p></li>
+<li><p>Permite tener acceso a todo el sistema, estando delante del ordenador.</p></li>
+</ul>
+</div>
+</section>
+<section id="ejercicio-hacerse-root-sin-la-contraseña" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-hacerse-root-sin-la-contraseña">Ejercicio: hacerse root sin la contraseña</h2>
+<p><img src="images/mrrobot.jpg" class="img-fluid"></p>
+<p>Has conseguido entrar en la sala de servidores echándole laxante en el café al guardia de seguridad. ¿Podrías hacerte con el usuario <code>root</code> del sistema y ponerle la contraseña que quieras?</p>
+<p>Para conseguirlo puedes hacer algo extraordinario como mirar la bibliografía del tema.</p>
+</section>
+<section id="modo-monousuario-3" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="modo-monousuario-3">Modo monousuario</h2>
+<ul>
+<li><p><strong>Solución</strong>: no existe una solución única sino un <strong>conjunto de medidas de mitigación</strong> para proteger ante accesos físicos al sistema.</p></li>
+<li><p>Por ejemplo, solicitar contraseña para la entrada de administración.</p>
+<ul>
+<li>Fichero <code>/etc/grub.d/40_custom</code> (o donde esté la entrada).</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> superusers=<span class="st">"user1"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">password_pbkdf2</span> user1 grub.pbkdf2.sha512.10000.086EB0CC8 ...</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">password_pbkdf2</span> user2 grub.pbkdf2.sha512.10000.045EB0CC8 ...</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>El password se puede generar usando:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">grub-mkpasswd-pbkdf2</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> password: </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Reenter</span> password: </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Your</span> PBKDF2 is grub.pbkdf2.sha512.10000.086EB0CC8CB1E39E2...</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Ejecutar <code>update-grub</code> o modificar la entrada de administración para que requiera password: <code>--users user1</code>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="modo-monousuario-4" class="level2">
+<h2 class="anchored" data-anchor-id="modo-monousuario-4">Modo monousuario</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Vulnerabilidad en el sistema de contraseñas de <code>grub</code> y estrategias de mitigación:</p>
+</div><div class="column" style="width:50%;">
+<p><img src="images/mission_impossiblecabledrop.jpg" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p><a href="https://www.genbeta.com/seguridad/una-vulnerabilidad-puede-darte-acceso-root-en-linux-pulsando-intro-durante-70-segundos">Una vulnerabilidad puede darte acceso root en Linux pulsando Intro durante 70 segundos (2016)</a></p></li>
+<li><p><a href="https://www.cyberciti.biz/tips/tips-to-protect-linux-servers-physical-console-access.html">Algunas estrategias de mitigación frente a accesos físicos (2009)</a></p></li>
+<li><p><a href="https://www.secur.cc/physical-security-for-linux-systems/">Physical Security for Linux Systems (2020)</a></p></li>
+</ul>
+</section>
+<section id="ejercicio-proteje-tu-sistema-de-arranque" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-proteje-tu-sistema-de-arranque">Ejercicio: proteje tu sistema de arranque</h2>
+<ol type="1">
+<li><p>Añade un usuario y contraseña a GRUB.</p></li>
+<li><p>Desabilita el reinicio por teclado Ctrl+Alt+Del. <span class="rojo">Prueba esto usando el menú de Virtual Box o reiniciarás tu ordenador</span></p></li>
+</ol>
+</section>
+<section id="pasos-arranque-modo-multiusuario-iii" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="pasos-arranque-modo-multiusuario-iii">Pasos arranque modo multiusuario (I/II)</h2>
+<ol type="1">
+<li><p>Chequea el sistema de ficheros raíz con <code>fsck</code>.</p>
+<ul>
+<li><p>Si al apagar el sistema, el sistema de ficheros se desmontó correctamente, no se chequea.</p></li>
+<li><p>Sin embargo, algunos SOs con determinados SFs fuerzan el chequeo siempre, o cada cierto tiempo (cada 3 meses) o cada cierto número de montajes sin chequear (cada 20 veces).</p></li>
+<li><p>Si <code>fsck</code> encuentra problemas que no puede solucionar <strong>“sólo”</strong>, lleva al sistema a modo monousuario para que el administrador realice el chequeo manual.</p></li>
+</ul></li>
+<li><p>Monta el sistema de ficheros raíz en modo lectura-escritura.</p></li>
+<li><p>Chequea el resto de SFs con <code>fsck</code> (idem al punto 1).</p></li>
+<li><p>Monta el resto de SFs.</p></li>
+<li><p>Activa las particiones de intercambio (<em>swapping</em>): <code>swapon -a</code>.</p></li>
+<li><p>Activa las cuotas de disco: <code>quotacheck -a</code> y <code>quotaon -a</code>.</p></li>
+</ol>
+</section>
+<section id="pasos-arranque-modo-multiusuario-iiii" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="pasos-arranque-modo-multiusuario-iiii">Pasos arranque modo multiusuario (II/II)</h2>
+<ol start="7" type="1">
+<li><p>Lanza los procesos servidores o demonios: <code>crond</code>, <code>atd</code>, <code>cupsd</code>, <code>syslogd</code>...</p></li>
+<li><p>Activa la red.</p></li>
+<li><p>Lanza los demonios de red: <code>xinetd</code>, <code>apache2</code>, <code>nagiosd</code>, <code>sshd</code>, <code>ntpd</code>, <code>nfsd</code>, <code>rpc.mountd</code>, <code>slapd</code>...</p></li>
+<li><p>Limpia los sistemas de ficheros: <code>/tmp</code>, etc.</p></li>
+<li><p>Permite que los usuarios entren:</p>
+<ul>
+<li><p>Crea las terminales, lanzando <code>getty</code> en modo texto, y el terminal gráfico, si es preciso.</p></li>
+<li><p>Borra, en caso de que exista, el fichero <code>/etc/nologin</code>: Si el fichero <code>/etc/nologin</code> existe, los usuarios (excepto <strong>root</strong>) no pueden entrar al sistema. Algunos sistemas lo crean al iniciar el arranque.</p></li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="init-y-systemd" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> init y systemd</h1>
+<section id="niveles-de-ejecución-en-gnulinux" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="niveles-de-ejecución-en-gnulinux">Niveles de ejecución en GNU/Linux</h2>
+<ul>
+<li><p>El SO puede estar en distintos niveles de ejecución (no solo modo monousuario y multiusuario).</p></li>
+<li><p>En GNU/Linux, los niveles de ejecución son:</p>
+<ul>
+<li><p><strong>Nivel 0</strong>: Sistema apagado.</p></li>
+<li><p><strong>Nivel 1, s o S</strong>: Modo monousuario, <em>rescue</em> o <em>troubleshooting</em>.</p></li>
+<li><p><strong>Nivel 2</strong>: Modo multiusuario sin funciones de red.</p></li>
+<li><p><strong>Nivel 3</strong>: Modo multiusuario con funciones de red y terminales de texto.</p></li>
+<li><p><strong>Nivel 4</strong>: Sin usar, a redefinir por el administrador.</p></li>
+<li><p><strong>Nivel 5</strong>: Modo multiusuario con funciones de red e inicio de sesión gráfico.</p></li>
+<li><p><strong>Nivel 6</strong>: Sistema reiniciándose.</p></li>
+</ul></li>
+<li><p>En Debian, por defecto, los niveles 2 al 5 son todos modo multiusuario con todas las funciones.</p></li>
+</ul>
+</section>
+<section id="niveles-de-ejecución-en-gnulinux-init" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="niveles-de-ejecución-en-gnulinux-init">Niveles de ejecución en GNU/Linux (init)</h2>
+<ul>
+<li><p><code>/sbin/runlevel</code>: saber en qué nivel está el sistema.</p></li>
+<li><p><code>/sbin/telinit</code>: cambiar de nivel de ejecución:</p>
+<ul>
+<li><p><code>telinit 1</code>: a modo monousuario.</p></li>
+<li><p><code>telinit 6</code>: reiniciar el sistema.</p></li>
+<li><p><code>telinit 3</code>: cambiar al nivel 3.</p></li>
+<li><p><code>systemctl isolate multi-user.target</code> <span class="math inline">\rightarrow</span> cambiar al nivel 3 en <code>systemd</code>.**</p></li>
+</ul></li>
+<li><p>El nivel por defecto, establecido al arrancar, se encuentra:</p>
+<ul>
+<li><p>En el fichero <code>/etc/inittab</code>: <code>id:2:initdefault:</code></p></li>
+<li><p>O con el siguiente comando (<code>systemd</code>): <code>systemctl set-default multi-user.target</code></p></li>
+</ul></li>
+<li><p>Al arrancar mediante GRUB, al núcleo se le puede pasar como parámetro un número indicando el nivel en el que queremos arrancar. En este caso se obviará el nivel por defecto.</p></li>
+</ul>
+</section>
+<section id="systemd" class="level2">
+<h2 class="anchored" data-anchor-id="systemd">Systemd</h2>
+<ul>
+<li><p>Es un reemplazo del proceso <code>Init</code> que viene incorporándose en GNU/Linux desde el año 2015.</p></li>
+<li><p>Amplía funcionalidades, pudiendo gestionar cosas que <code>Init</code> no gestiona, por ejemplo el sistema de <em>logs</em>.</p></li>
+<li><p>Filosofía principal:</p>
+<ul>
+<li><p>Mejorar la forma de expresar dependencias.</p></li>
+<li><p>Permitir que se realicen más tareas en paralelo.</p></li>
+<li><p>Reducir la carga extra que supone el intérprete.</p></li>
+</ul></li>
+<li><p>Se gestiona mediante unidades (servicios) y <em>targets</em> (algo similar a los niveles de ejecución).</p></li>
+</ul>
+</section>
+<section id="systemd-controversia" class="level2">
+<h2 class="anchored" data-anchor-id="systemd-controversia">Systemd: controversia</h2>
+<p>Sistema muy complejo, causa algunas dependencias innecesarias, ficheros binarios vs texto…</p>
+<p><img src="images/without-systemd2.png" class="img-fluid" width="200"></p>
+<p><a href="https://without-systemd.org" class="uri">https://without-systemd.org</a></p>
+</section>
+<section id="equivalencia-de-niveles-de-ejecución-de-init-y-systemd" class="level2">
+<h2 class="anchored" data-anchor-id="equivalencia-de-niveles-de-ejecución-de-init-y-systemd">Equivalencia de niveles de ejecución de init y systemd</h2>
+<p>systemd se encarga de dar soporte hacia atrás a guiones y niveles de <code>Init</code>.</p>
+<p><img src="images/table-init-systemd.png" class="img-fluid"></p>
+<p>Fuente [Nemeth et al., 2018].</p>
+</section>
+<section id="ficheros-de-inicialización" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="ficheros-de-inicialización">Ficheros de inicialización</h2>
+<ul>
+<li><p>Personalizar niveles de ejecución <span class="math inline">\Rightarrow</span> carpetas <code>/etc/rc</code><span class="rojo"><code>?</code></span><code>.d/</code>, donde <span class="rojo"><code>?</code></span> es el nivel de ejecución.</p></li>
+<li><p>Todos ellos son ejecutados por <strong>Init</strong> durante el arranque.</p></li>
+<li><p>Se ejecutan al arrancar o al cambiar de nivel:</p>
+<ul>
+<li><p>El nombre del script empieza por S o K, seguido de dos dígitos y un nombre descriptivo: <code>K35smb K15httpd S40atd S50xinetd S60cups S99local</code></p></li>
+<li><p>Los ejecuta en orden alfabético, primero los <strong>K</strong> después los <strong>S</strong>, los dos dígitos establecen el orden entre todos los K y todos los S.</p></li>
+<li><p><strong>Ficheros K</strong>: detener demonios o matar procesos.</p></li>
+<li><p><strong>Ficheros S</strong>: lanzar demonios o ejecutar funciones de inicio.</p></li>
+<li><p>Para cada nivel de inicialización, se especifica qué demonios tienen que estar activos o no.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="ficheros-de-inicialización-1" class="level2">
+<h2 class="anchored" data-anchor-id="ficheros-de-inicialización-1">Ficheros de inicialización</h2>
+<ul>
+<li><p>Carpetas <code>/etc/rc</code><span class="rojo"><code>?</code></span><code>.d/</code>:</p>
+<ul>
+<li><p>Todos los ficheros son enlaces simbólicos al fichero con el mismo nombre descriptivo localizado en <code>/etc/init.d</code>.</p></li>
+<li><p>Los <em>scripts</em> reciben varios parámetros: <code>start</code>, <code>stop</code>, <code>restart</code>...</p></li>
+<li><p>Esto permite lanzar o relanzar demonios sin reiniciar el sistema.</p></li>
+<li><p>rc ejecuta los ficheros K con el parámetro <code>stop</code> y los S con <code>start</code>.</p></li>
+<li><p>Estos <em>scripts</em> se mantienen por retrocompatibilidad, se tiende a utilizar <code>systemd</code> y el comando <code>systemctl</code> que actúa sobre <em>unidades</em> descritas en <code>/etc/systemd/system/</code> para cada <em>objetivo</em> <code>systemd</code>.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="ficheros-de-inicialización-2" class="level2">
+<h2 class="anchored" data-anchor-id="ficheros-de-inicialización-2">Ficheros de inicialización</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls /etc/rc2.d/ <span class="at">-la</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 16</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>   2 root root  4096 feb 13 10:21 .</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span> 180 root root 12288 mar 13 09:11 ..</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    22 nov 14  2019 K01cups-browsed <span class="at">-</span><span class="op">&gt;</span> ../init.d/cups-browsed</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    18 nov 14  2019 K01whoopsie <span class="at">-</span><span class="op">&gt;</span> ../init.d/whoopsie</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    15 nov 14  2019 S01acpid <span class="at">-</span><span class="op">&gt;</span> ../init.d/acpid</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 nov 14  2019 S01anacron <span class="at">-</span><span class="op">&gt;</span> ../init.d/anacron</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    16 nov 14  2019 S01apport <span class="at">-</span><span class="op">&gt;</span> ../init.d/apport</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    13 mar 22  2022 S01atd <span class="at">-</span><span class="op">&gt;</span> ../init.d/atd</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    22 nov 14  2019 S01avahi-daemon <span class="at">-</span><span class="op">&gt;</span> ../init.d/avahi-daemon</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    24 may  3  2020 S01binfmt-support <span class="at">-</span><span class="op">&gt;</span> ../init.d/binfmt-support</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    19 nov 14  2019 S01bluetooth <span class="at">-</span><span class="op">&gt;</span> ../init.d/bluetooth</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    26 nov 14  2019 S01console-setup.sh <span class="at">-</span><span class="op">&gt;</span> ../init.d/console-setup.sh</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    22 mar  9  2021 S01cpufrequtils <span class="at">-</span><span class="op">&gt;</span> ../init.d/cpufrequtils</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    14 nov 14  2019 S01cron <span class="at">-</span><span class="op">&gt;</span> ../init.d/cron</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    14 nov 14  2019 S01cups <span class="at">-</span><span class="op">&gt;</span> ../init.d/cups</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    14 nov 14  2019 S01dbus <span class="at">-</span><span class="op">&gt;</span> ../init.d/dbus</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    16 ene 26 12:59 S01docker <span class="at">-</span><span class="op">&gt;</span> ../init.d/docker</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    14 nov 14  2019 S01gdm3 <span class="at">-</span><span class="op">&gt;</span> ../init.d/gdm3</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    21 nov 14  2019 S01grub-common <span class="at">-</span><span class="op">&gt;</span> ../init.d/grub-common</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 mar  9  2021 S01hddtemp <span class="at">-</span><span class="op">&gt;</span> ../init.d/hddtemp</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    20 nov 14  2019 S01irqbalance <span class="at">-</span><span class="op">&gt;</span> ../init.d/irqbalance</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    16 mar 20  2020 S01jicofo <span class="at">-</span><span class="op">&gt;</span> ../init.d/jicofo</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    20 nov 14  2019 S01kerneloops <span class="at">-</span><span class="op">&gt;</span> ../init.d/kerneloops</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 mar  9  2021 S01lightdm <span class="at">-</span><span class="op">&gt;</span> ../init.d/lightdm</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    21 mar  9  2021 S01loadcpufreq <span class="at">-</span><span class="op">&gt;</span> ../init.d/loadcpufreq</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    22 nov 14  2019 S01lvm2-lvmetad <span class="at">-</span><span class="op">&gt;</span> ../init.d/lvm2-lvmetad</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    23 nov 14  2019 S01lvm2-lvmpolld <span class="at">-</span><span class="op">&gt;</span> ../init.d/lvm2-lvmpolld</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    15 nov 14  2019 S01mdadm <span class="at">-</span><span class="op">&gt;</span> ../init.d/mdadm</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    13 feb 13 10:21 S01mpd <span class="at">-</span><span class="op">&gt;</span> ../init.d/mpd</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 mar  4  2020 S01openvpn <span class="at">-</span><span class="op">&gt;</span> ../init.d/openvpn</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    18 nov 14  2019 S01plymouth <span class="at">-</span><span class="op">&gt;</span> ../init.d/plymouth</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="systemd-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="systemd-1">Systemd</h2>
+<ul>
+<li><p>Es compatible hacia atrás con los <em>scripts</em> SysV.</p></li>
+<li><p>Pero incorpora su propio mecanismo (más potente) de gestión de servicios.</p></li>
+<li><p>En la carpeta <code>/etc/systemd/</code> existen carpetas a distintos niveles con ficheros para distintos <em>targets</em>. Ejemplo:</p></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># /etc/systemd/system/sshd.service </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[Unit]</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">Description</span><span class="op">=</span>OpenBSD <span class="ex">Secure</span> Shell server</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="va">After</span><span class="op">=</span>network.target <span class="ex">auditd.service</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="va">ConditionPathExists</span><span class="op">=</span>!/etc/ssh/sshd_not_to_be_run</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[Service]</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="va">EnvironmentFile</span><span class="op">=</span>-/etc/default/ssh</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="va">ExecStartPre</span><span class="op">=</span>/usr/sbin/sshd <span class="ex">-t</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="va">ExecStart</span><span class="op">=</span>/usr/sbin/sshd <span class="ex">-D</span> <span class="va">$SSHD_OPTS</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="va">ExecReload</span><span class="op">=</span>/usr/sbin/sshd <span class="ex">-t</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="va">RuntimeDirectoryMode</span><span class="op">=</span>0755</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="ex">[Install]</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="va">WantedBy</span><span class="op">=</span>multi-user.target</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="va">Alias</span><span class="op">=</span>sshd.service</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="systemd-2" class="level2">
+<h2 class="anchored" data-anchor-id="systemd-2">Systemd</h2>
+<ul>
+<li><p>La forma de describir dependencias es más flexible:</p>
+<ul>
+<li><p><code>After</code> especifica qué necesita el servicio para poder ejecutarse.</p></li>
+<li><p><code>WantedBy</code> especifica cuándo se lanzará el servicio.</p></li>
+</ul></li>
+<li><p>Se puede especificar el usuario con <code>User</code>.</p></li>
+<li><p>El ejecutable se especifica con <code>ExecStart</code>.</p></li>
+<li><p><code>Restart=always</code> hace que el servicio se re-ejecute si por, algún motivo, se para.</p></li>
+<li><p><code>RestartSec=1</code>: el reinicio se hace tras 1 segundo.</p></li>
+<li><p><code>StartLimitIntervalSec=0[service]</code>: se intenta el reinicio para siempre (no hay límite).</p></li>
+</ul>
+</section>
+<section id="manejar-servicios" class="level2">
+<h2 class="anchored" data-anchor-id="manejar-servicios">Manejar servicios</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrancar un servicio (tradicional):</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/etc/init.d/myservice</span> start</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrancar un servicio (systemd):</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> start myservice</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Parar un servicio (tradicional): </span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">/etc/init.d/myservice</span> stop</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parar un servicio (systemd):</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> stop myservice</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Listar servicios (tradicional):</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /etc/init.d</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Listar servicios (systemd):</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> list-units <span class="at">--type</span><span class="op">=</span>service</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Añadir un servicio a todos los niveles</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="ex">update-rc.d</span> apache2 defaults</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar un servicio a todos los niveles</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> /etc/rc<span class="pp">*</span>/<span class="pp">*</span>myscript</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar un servicio a todos los niveles</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="ex">update-rc.d</span> apache2 remove</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="herramientas-de-systemd" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="herramientas-de-systemd">Herramientas de systemd</h2>
+<p>systemd con su abanico de herramientas permite consultar información y realizar acciones sobre arranque, servicios y logs muy útiles que son difíciles o imposibles con init:</p>
+<p>Mostrar servicios y servicios activos:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">systemd-cgls</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> <span class="at">--type</span><span class="op">=</span>service</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> <span class="at">--type</span><span class="op">=</span>service <span class="at">--state</span><span class="op">=</span>active</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Listar temporizadores:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> list-timers<span class="kw">`</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Mostrar logs de un servicio (ej. <code>ssh.service</code>, <code>apache2.service</code>):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">journalctl</span> <span class="at">-u</span> service-name.service</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">journalctl</span> <span class="at">-u</span> service-name.service <span class="at">-b</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Mostrar logs desde una fecha (también se puede elegir un intervalo):</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">journalctl</span> <span class="at">--since</span> <span class="st">"2023-01-30"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="resumen-del-proceso-de-arranque" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Resumen del proceso de arranque</h1>
+<section id="resumen-del-proceso-de-arranque-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="resumen-del-proceso-de-arranque-1">Resumen del proceso de arranque</h2>
+<ul>
+<li><p>Iniciador ROM (BIOS/UEFI)</p>
+<ul>
+<li><p>Chequeo inicial del sistema.</p></li>
+<li><p>Lee y almacena en memoria el programa cargador del SO.</p></li>
+<li><p>Pasa el control al cargador del SO, saltando a la dirección de memoria donde lo ha almacenado.</p></li>
+</ul></li>
+<li><p>Cargador del sistema operativo (GRUB) <span class="math inline">\Rightarrow</span> carga el núcleo del SO y le pasa el control, sabe dónde está el núcleo.</p></li>
+<li><p>Núcleo del SO:</p>
+<ul>
+<li><p>Chequeo <em>hardware</em>.</p></li>
+<li><p>Creación e inicialización de las estructuras de datos, tablas...</p></li>
+<li><p>Crea el proceso <strong>Init</strong> y le pasa el control.</p></li>
+</ul></li>
+<li><p>Proceso <strong>Init</strong>: termina el proceso de arranque, dejando el sistema preparado para ser usado (chequeo de SFs, montaje de SFs, activación de la <code>swap</code>, de cuotas, demonios, etc.)</p></li>
+</ul>
+</section>
+</section>
+<section id="parada-del-sistema" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Parada del sistema</h1>
+<section id="parada-del-sistema-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="parada-del-sistema-1">Parada del sistema</h2>
+<ul>
+<li>En ocasiones es necesario apagar o reiniciar el sistema: mantenimiento, diagnóstico, hardware nuevo, etc.</li>
+</ul>
+<div class="exampleblock">
+<p>Acciones durante proceso de parada</p>
+<ol type="1">
+<li><p>Se notifica a los usuarios.</p></li>
+<li><p>Procesos en ejecución <span class="math inline">\Rightarrow</span> enviar la señal de terminación (<strong>TERM</strong>).</p></li>
+<li><p>Se paran los demonios.</p></li>
+<li><p>A los usuarios que quedan conectados se les echa del sistema.</p></li>
+<li><p>Procesos que queden en ejecución <span class="math inline">\Rightarrow</span> enviar la señal de fin (<strong>KILL</strong>).</p></li>
+<li><p>Actualizaciones de disco pendientes (integridad del SF) con <code>sync</code>.</p></li>
+</ol>
+</div>
+</section>
+<section id="parada-del-sistema-shutdown" class="level2">
+<h2 class="anchored" data-anchor-id="parada-del-sistema-shutdown">Parada del sistema: <code>shutdown</code></h2>
+<p><strong><code>shutdown [opciones] tiempo [mensaje]</code></strong>:</p>
+<ul>
+<li><p>Sin opciones: modo monousuario (<code>telinit 1</code> o <code>systemctl isolate rescue.target</code>).</p></li>
+<li><p><code>-r</code>: reiniciar (<code>telinit 6</code> o <code>systemctl isolate reboot.target</code>).</p></li>
+<li><p><code>-h</code>: parar (<code>telinit 0</code> o <code>systemctl isolate shutdown.target</code>).</p></li>
+<li><p><code>-c</code>: cancelar.</p></li>
+<li><p><code>-k</code>: hacer una simulación de apagado.</p></li>
+<li><p><code>tiempo</code>: <code>+minutos</code>, <code>now</code>, <code>horas:minutos</code>.</p></li>
+</ul>
+<p>Al salir del modo monousuario, vuelve al nivel por defecto (salvo que expresamente se reinicie o apague).</p>
+</section>
+</section>
+<section id="caídas-del-sistema-y-problemas-de-arranque" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Caídas del sistema y problemas de arranque</h1>
+<section id="diagnóstico-de-sistema-y-arranque" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-de-sistema-y-arranque">Diagnóstico de sistema y arranque</h2>
+<p>Posibles causas de caídas del sistema</p>
+<ul>
+<li><p>Fallos <em>hardware</em>.</p></li>
+<li><p>Errores de <em>hardware</em> irrecuperables.</p></li>
+<li><p>Fallos de luz (cortes o altibajos).</p></li>
+<li><p>Otros problemas ambientales.</p></li>
+<li><p>Problemas de entrada/salida.</p></li>
+<li><p>Problemas de algún sistema de ficheros.</p></li>
+</ul>
+</section>
+<section id="diagnóstico-de-sistema-y-arranque-1" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-de-sistema-y-arranque-1">Diagnóstico de sistema y arranque</h2>
+<p>Problemas de arranque:</p>
+<ul>
+<li><p>Fallos <em>hardware</em>.</p></li>
+<li><p>No se puede leer el sistema de ficheros de los discos de trabajo.</p></li>
+<li><p>Hay áreas dañadas en el disco que no pertenecen al sistema de ficheros (p.e. tabla de particiones).</p></li>
+<li><p><em>Hardware</em> incompatible.</p></li>
+<li><p>Errores en la configuración del sistema.</p></li>
+</ul>
+</section>
+<section id="diagnóstico-de-sistema-y-arranque-2" class="level2">
+<h2 class="anchored" data-anchor-id="diagnóstico-de-sistema-y-arranque-2">Diagnóstico de sistema y arranque</h2>
+<ul>
+<li><p>Al rearrancar mirar los mensajes que hay en el fichero <code>/var/log/messages</code>.</p></li>
+<li><p>La orden <code>dmesg</code> <span class="math inline">\Rightarrow</span> mensajes producidos durante el arranque.</p></li>
+<li><p>En el arranque al núcleo se le pueden pasar otros parámetros:</p>
+<ul>
+<li><p><code>root=particion</code> <span class="math inline">\Rightarrow</span> indicar que monte como partición raíz una distinta.</p></li>
+<li><p><code>init=ejecutable</code> <span class="math inline">\Rightarrow</span> que en vez del proceso <strong>Init</strong> lance otro proceso:<br>
+<code>init=/bin/bash</code> <span class="math inline">\Rightarrow</span> en este caso el proceso de inicio del <strong>Init</strong> no se realiza, el SF está montado en modo sólo lectura, hay que remontarlo: <code>mount -o remount -w -n /</code></p></li>
+<li><p><code>single</code> <span class="math inline">\Rightarrow</span> arrancar en modo monousuario.</p></li>
+<li><p>Un número indicando el nivel de arranque.</p></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="referencias" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Referencias</h1>
+<section id="referencias-1" class="level2">
+<h2 class="anchored" data-anchor-id="referencias-1">Referencias</h2>
+<p>Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 2. <em>Booting and System Management Daemons</em>, Capítulo 10. <em>Logging</em>. Addison-Wesley. 5th Edition. 2018.</p>
+<p>Aeleen Frisch. Essential system administration. Capítulo 4. <em>Startup and shut down</em>. O’Reilly and Associates. Tercera edición. 2002.</p>
+<p>Ejemplo de acceso al modo monousuario sin contraseña de root: <a href="https://blog.sleeplessbeastie.eu/2014/05/01/how-to-access-single-user-mode-without-password/" class="uri">https://blog.sleeplessbeastie.eu/2014/05/01/how-to-access-single-user-mode-without-password/</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
