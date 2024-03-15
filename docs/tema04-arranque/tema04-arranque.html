@@ -102,22 +102,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -303,7 +289,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">14 de marzo de 2024</p>
+      <p class="date">15 de marzo de 2024</p>
     </div>
   </div>
   
@@ -491,8 +477,8 @@ Nota
 <li><p>GRUB se instala en el <em>master boot record</em> (MBR) o como <em>UEFI boot loader</em> y hace de las funciones de <em>master boot program</em> (MBP, programa cargador de arranque).</p></li>
 <li><p><strong>Pregunta qué SO arrancar</strong>: p.ej. Linux o Windows.</p>
 <ul>
-<li><p>Si la respuesta es Linux <span class="math inline">\Rightarrow</span> carga el núcleo solicitado y le pasa el control para que el arranque continúe.</p></li>
-<li><p>Si la respuesta es Windows <span class="math inline">\Rightarrow</span> pasa el control a Windows que realiza su arranque.</p></li>
+<li><p>Si la respuesta es Linux <span class="math inline">\(\Rightarrow\)</span> carga el núcleo solicitado y le pasa el control para que el arranque continúe.</p></li>
+<li><p>Si la respuesta es Windows <span class="math inline">\(\Rightarrow\)</span> pasa el control a Windows que realiza su arranque.</p></li>
 </ul></li>
 </ul>
 </section>
@@ -591,7 +577,7 @@ Importante
 <li><p>Terminología de GRUB, numerando los dispositivos según los reconozca la BIOS empezando en cero:</p>
 <ul>
 <li><p>Nombres de dispositivos: <code>(&lt;t&gt;&lt;n&gt;,&lt;np&gt;)</code><br>
-<code>(hd0,0)</code> <span class="math inline">\Rightarrow</span> <code>/dev/sda1</code></p></li>
+<code>(hd0,0)</code> <span class="math inline">\(\Rightarrow\)</span> <code>/dev/sda1</code></p></li>
 <li><p>Nombres de ficheros <code>(hd0,0)/boot/grub/grub.conf</code></p></li>
 </ul></li>
 </ul>
@@ -637,19 +623,28 @@ Importante
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">## </span><span class="re">END</span><span class="co"> /etc/grub.d/30_os-prober ## </span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="ejercicio-parámetros-básicos-de-grub" class="level2" data-background-color="lightgreen">
-<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-parámetros-básicos-de-grub">Ejercicio: parámetros básicos de GRUB</h2>
+<section id="ejercicio-parámetros-básicos-de-grub" class="level2 smaller scrollable" data-background-color="lightgreen">
+<h2 class="smaller scrollable anchored" data-background-color="lightgreen" data-anchor-id="ejercicio-parámetros-básicos-de-grub">Ejercicio: parámetros básicos de GRUB</h2>
 <ol type="1">
 <li>Cambia la imagen de fondo a la que quieras.</li>
 </ol>
 <ul>
-<li>Para ello puedes copiar una imagen usando el navegador de archivos, <code>scp</code>, descargarla con <code>wget</code>…</li>
 <li>Puedes poner la imagen en <code>/boot</code>.</li>
+<li>Para ello puedes copiar una imagen usando el navegador de archivos, <code>scp</code>, descargarla con <code>cd /boot/ &amp;&amp; wget "URL"</code>…</li>
+<li>Ponle un nombre fácil, e.g.&nbsp;<code>bg.png</code></li>
+<li>En <code>/etc/default/grub</code> añade:
+<ul>
+<li><code>GRUB_BACKGROUND="/boot/bg.png"</code></li>
+</ul></li>
 <li>Quizás no te funcione a la primera. Revisa:
 <ul>
 <li>Ruta entre comillas.</li>
-<li>Formato imagen (¿imagemagick?).</li>
-<li>Regenerar ficheros de configuración.</li>
+<li>Formato imagen (¿imagemagick?).
+<ul>
+<li><code>apt install imagemagick</code></li>
+<li><code>convert imagen.webp imagen.png</code></li>
+</ul></li>
+<li>Regenerar ficheros de configuración con <code>sudo update-grub2</code></li>
 </ul></li>
 </ul>
 <ol start="2" type="1">
@@ -809,7 +804,7 @@ Importante
 <li><p><code>telinit 1</code>: a modo monousuario.</p></li>
 <li><p><code>telinit 6</code>: reiniciar el sistema.</p></li>
 <li><p><code>telinit 3</code>: cambiar al nivel 3.</p></li>
-<li><p><code>systemctl isolate multi-user.target</code> <span class="math inline">\rightarrow</span> cambiar al nivel 3 en <code>systemd</code>.**</p></li>
+<li><p><code>systemctl isolate multi-user.target</code> <span class="math inline">\(\rightarrow\)</span> cambiar al nivel 3 en <code>systemd</code>.**</p></li>
 </ul></li>
 <li><p>El nivel por defecto, establecido al arrancar, se encuentra:</p>
 <ul>
@@ -848,7 +843,7 @@ Importante
 <section id="ficheros-de-inicialización" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="ficheros-de-inicialización">Ficheros de inicialización</h2>
 <ul>
-<li><p>Personalizar niveles de ejecución <span class="math inline">\Rightarrow</span> carpetas <code>/etc/rc</code><span class="rojo"><code>?</code></span><code>.d/</code>, donde <span class="rojo"><code>?</code></span> es el nivel de ejecución.</p></li>
+<li><p>Personalizar niveles de ejecución <span class="math inline">\(\Rightarrow\)</span> carpetas <code>/etc/rc</code><span class="rojo"><code>?</code></span><code>.d/</code>, donde <span class="rojo"><code>?</code></span> es el nivel de ejecución.</p></li>
 <li><p>Todos ellos son ejecutados por <strong>Init</strong> durante el arranque.</p></li>
 <li><p>Se ejecutan al arrancar o al cambiar de nivel:</p>
 <ul>
@@ -998,7 +993,7 @@ Importante
 <li><p>Lee y almacena en memoria el programa cargador del SO.</p></li>
 <li><p>Pasa el control al cargador del SO, saltando a la dirección de memoria donde lo ha almacenado.</p></li>
 </ul></li>
-<li><p>Cargador del sistema operativo (GRUB) <span class="math inline">\Rightarrow</span> carga el núcleo del SO y le pasa el control, sabe dónde está el núcleo.</p></li>
+<li><p>Cargador del sistema operativo (GRUB) <span class="math inline">\(\Rightarrow\)</span> carga el núcleo del SO y le pasa el control, sabe dónde está el núcleo.</p></li>
 <li><p>Núcleo del SO:</p>
 <ul>
 <li><p>Chequeo <em>hardware</em>.</p></li>
@@ -1020,10 +1015,10 @@ Importante
 <p>Acciones durante proceso de parada</p>
 <ol type="1">
 <li><p>Se notifica a los usuarios.</p></li>
-<li><p>Procesos en ejecución <span class="math inline">\Rightarrow</span> enviar la señal de terminación (<strong>TERM</strong>).</p></li>
+<li><p>Procesos en ejecución <span class="math inline">\(\Rightarrow\)</span> enviar la señal de terminación (<strong>TERM</strong>).</p></li>
 <li><p>Se paran los demonios.</p></li>
 <li><p>A los usuarios que quedan conectados se les echa del sistema.</p></li>
-<li><p>Procesos que queden en ejecución <span class="math inline">\Rightarrow</span> enviar la señal de fin (<strong>KILL</strong>).</p></li>
+<li><p>Procesos que queden en ejecución <span class="math inline">\(\Rightarrow\)</span> enviar la señal de fin (<strong>KILL</strong>).</p></li>
 <li><p>Actualizaciones de disco pendientes (integridad del SF) con <code>sync</code>.</p></li>
 </ol>
 </div>
@@ -1071,13 +1066,13 @@ Importante
 <h2 class="anchored" data-anchor-id="diagnóstico-de-sistema-y-arranque-2">Diagnóstico de sistema y arranque</h2>
 <ul>
 <li><p>Al rearrancar mirar los mensajes que hay en el fichero <code>/var/log/messages</code>.</p></li>
-<li><p>La orden <code>dmesg</code> <span class="math inline">\Rightarrow</span> mensajes producidos durante el arranque.</p></li>
+<li><p>La orden <code>dmesg</code> <span class="math inline">\(\Rightarrow\)</span> mensajes producidos durante el arranque.</p></li>
 <li><p>En el arranque al núcleo se le pueden pasar otros parámetros:</p>
 <ul>
-<li><p><code>root=particion</code> <span class="math inline">\Rightarrow</span> indicar que monte como partición raíz una distinta.</p></li>
-<li><p><code>init=ejecutable</code> <span class="math inline">\Rightarrow</span> que en vez del proceso <strong>Init</strong> lance otro proceso:<br>
-<code>init=/bin/bash</code> <span class="math inline">\Rightarrow</span> en este caso el proceso de inicio del <strong>Init</strong> no se realiza, el SF está montado en modo sólo lectura, hay que remontarlo: <code>mount -o remount -w -n /</code></p></li>
-<li><p><code>single</code> <span class="math inline">\Rightarrow</span> arrancar en modo monousuario.</p></li>
+<li><p><code>root=particion</code> <span class="math inline">\(\Rightarrow\)</span> indicar que monte como partición raíz una distinta.</p></li>
+<li><p><code>init=ejecutable</code> <span class="math inline">\(\Rightarrow\)</span> que en vez del proceso <strong>Init</strong> lance otro proceso:<br>
+<code>init=/bin/bash</code> <span class="math inline">\(\Rightarrow\)</span> en este caso el proceso de inicio del <strong>Init</strong> no se realiza, el SF está montado en modo sólo lectura, hay que remontarlo: <code>mount -o remount -w -n /</code></p></li>
+<li><p><code>single</code> <span class="math inline">\(\Rightarrow\)</span> arrancar en modo monousuario.</p></li>
 <li><p>Un número indicando el nivel de arranque.</p></li>
 </ul></li>
 </ul>

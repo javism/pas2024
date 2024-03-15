@@ -2032,7 +2032,7 @@
     "href": "tema04-arranque/tema04-arranque.html#gestor-de-arranque-grub-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Gestor de arranque GRUB",
-    "text": "Gestor de arranque GRUB\n\nGRUB: GRand Unified Bootloader:\nGRUB se instala en el master boot record (MBR) o como UEFI boot loader y hace de las funciones de master boot program (MBP, programa cargador de arranque).\nPregunta qué SO arrancar: p.ej. Linux o Windows.\n\nSi la respuesta es Linux \\Rightarrow carga el núcleo solicitado y le pasa el control para que el arranque continúe.\nSi la respuesta es Windows \\Rightarrow pasa el control a Windows que realiza su arranque."
+    "text": "Gestor de arranque GRUB\n\nGRUB: GRand Unified Bootloader:\nGRUB se instala en el master boot record (MBR) o como UEFI boot loader y hace de las funciones de master boot program (MBP, programa cargador de arranque).\nPregunta qué SO arrancar: p.ej. Linux o Windows.\n\nSi la respuesta es Linux \\(\\Rightarrow\\) carga el núcleo solicitado y le pasa el control para que el arranque continúe.\nSi la respuesta es Windows \\(\\Rightarrow\\) pasa el control a Windows que realiza su arranque."
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#gestor-de-arranque-grub-lo-básico",
@@ -2074,7 +2074,7 @@
     "href": "tema04-arranque/tema04-arranque.html#gestor-de-arranque-grub-2",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Gestor de arranque GRUB",
-    "text": "Gestor de arranque GRUB\nGRUB permite (durante la selección del SO):\n\nEditar las entradas:\n\nPulsar tecla e, permite modificar las entradas de arranque para solucionar errores.\nLos cambios no son permanentes, solo sirve para probar.\n\nConsola interactiva GRUB: pulsar la tecla c. Permite ejecutar comandos para arreglar el arranque (seleccionar otro initrd, cargar módulos...).\nTerminología de GRUB, numerando los dispositivos según los reconozca la BIOS empezando en cero:\n\nNombres de dispositivos: (&lt;t&gt;&lt;n&gt;,&lt;np&gt;)\n(hd0,0) \\Rightarrow /dev/sda1\nNombres de ficheros (hd0,0)/boot/grub/grub.conf"
+    "text": "Gestor de arranque GRUB\nGRUB permite (durante la selección del SO):\n\nEditar las entradas:\n\nPulsar tecla e, permite modificar las entradas de arranque para solucionar errores.\nLos cambios no son permanentes, solo sirve para probar.\n\nConsola interactiva GRUB: pulsar la tecla c. Permite ejecutar comandos para arreglar el arranque (seleccionar otro initrd, cargar módulos...).\nTerminología de GRUB, numerando los dispositivos según los reconozca la BIOS empezando en cero:\n\nNombres de dispositivos: (&lt;t&gt;&lt;n&gt;,&lt;np&gt;)\n(hd0,0) \\(\\Rightarrow\\) /dev/sda1\nNombres de ficheros (hd0,0)/boot/grub/grub.conf"
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#fragmento-bootgrubgrub.cfg-linux",
@@ -2095,7 +2095,7 @@
     "href": "tema04-arranque/tema04-arranque.html#ejercicio-parámetros-básicos-de-grub",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Ejercicio: parámetros básicos de GRUB",
-    "text": "Ejercicio: parámetros básicos de GRUB\n\nCambia la imagen de fondo a la que quieras.\n\n\nPara ello puedes copiar una imagen usando el navegador de archivos, scp, descargarla con wget…\nPuedes poner la imagen en /boot.\nQuizás no te funcione a la primera. Revisa:\n\nRuta entre comillas.\nFormato imagen (¿imagemagick?).\nRegenerar ficheros de configuración.\n\n\n\nCambia el timeout."
+    "text": "Ejercicio: parámetros básicos de GRUB\n\nCambia la imagen de fondo a la que quieras.\n\n\nPuedes poner la imagen en /boot.\nPara ello puedes copiar una imagen usando el navegador de archivos, scp, descargarla con cd /boot/ && wget \"URL\"…\nPonle un nombre fácil, e.g. bg.png\nEn /etc/default/grub añade:\n\nGRUB_BACKGROUND=\"/boot/bg.png\"\n\nQuizás no te funcione a la primera. Revisa:\n\nRuta entre comillas.\nFormato imagen (¿imagemagick?).\n\napt install imagemagick\nconvert imagen.webp imagen.png\n\nRegenerar ficheros de configuración con sudo update-grub2\n\n\n\nCambia el timeout."
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#opciones-avanzadas-y-modo-monousuario",
@@ -2179,7 +2179,7 @@
     "href": "tema04-arranque/tema04-arranque.html#niveles-de-ejecución-en-gnulinux-init",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Niveles de ejecución en GNU/Linux (init)",
-    "text": "Niveles de ejecución en GNU/Linux (init)\n\n/sbin/runlevel: saber en qué nivel está el sistema.\n/sbin/telinit: cambiar de nivel de ejecución:\n\ntelinit 1: a modo monousuario.\ntelinit 6: reiniciar el sistema.\ntelinit 3: cambiar al nivel 3.\nsystemctl isolate multi-user.target \\rightarrow cambiar al nivel 3 en systemd.**\n\nEl nivel por defecto, establecido al arrancar, se encuentra:\n\nEn el fichero /etc/inittab: id:2:initdefault:\nO con el siguiente comando (systemd): systemctl set-default multi-user.target\n\nAl arrancar mediante GRUB, al núcleo se le puede pasar como parámetro un número indicando el nivel en el que queremos arrancar. En este caso se obviará el nivel por defecto."
+    "text": "Niveles de ejecución en GNU/Linux (init)\n\n/sbin/runlevel: saber en qué nivel está el sistema.\n/sbin/telinit: cambiar de nivel de ejecución:\n\ntelinit 1: a modo monousuario.\ntelinit 6: reiniciar el sistema.\ntelinit 3: cambiar al nivel 3.\nsystemctl isolate multi-user.target \\(\\rightarrow\\) cambiar al nivel 3 en systemd.**\n\nEl nivel por defecto, establecido al arrancar, se encuentra:\n\nEn el fichero /etc/inittab: id:2:initdefault:\nO con el siguiente comando (systemd): systemctl set-default multi-user.target\n\nAl arrancar mediante GRUB, al núcleo se le puede pasar como parámetro un número indicando el nivel en el que queremos arrancar. En este caso se obviará el nivel por defecto."
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#systemd",
@@ -2207,7 +2207,7 @@
     "href": "tema04-arranque/tema04-arranque.html#ficheros-de-inicialización",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Ficheros de inicialización",
-    "text": "Ficheros de inicialización\n\nPersonalizar niveles de ejecución \\Rightarrow carpetas /etc/rc?.d/, donde ? es el nivel de ejecución.\nTodos ellos son ejecutados por Init durante el arranque.\nSe ejecutan al arrancar o al cambiar de nivel:\n\nEl nombre del script empieza por S o K, seguido de dos dígitos y un nombre descriptivo: K35smb K15httpd S40atd S50xinetd S60cups S99local\nLos ejecuta en orden alfabético, primero los K después los S, los dos dígitos establecen el orden entre todos los K y todos los S.\nFicheros K: detener demonios o matar procesos.\nFicheros S: lanzar demonios o ejecutar funciones de inicio.\nPara cada nivel de inicialización, se especifica qué demonios tienen que estar activos o no."
+    "text": "Ficheros de inicialización\n\nPersonalizar niveles de ejecución \\(\\Rightarrow\\) carpetas /etc/rc?.d/, donde ? es el nivel de ejecución.\nTodos ellos son ejecutados por Init durante el arranque.\nSe ejecutan al arrancar o al cambiar de nivel:\n\nEl nombre del script empieza por S o K, seguido de dos dígitos y un nombre descriptivo: K35smb K15httpd S40atd S50xinetd S60cups S99local\nLos ejecuta en orden alfabético, primero los K después los S, los dos dígitos establecen el orden entre todos los K y todos los S.\nFicheros K: detener demonios o matar procesos.\nFicheros S: lanzar demonios o ejecutar funciones de inicio.\nPara cada nivel de inicialización, se especifica qué demonios tienen que estar activos o no."
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#ficheros-de-inicialización-1",
@@ -2256,14 +2256,14 @@
     "href": "tema04-arranque/tema04-arranque.html#resumen-del-proceso-de-arranque-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Resumen del proceso de arranque",
-    "text": "Resumen del proceso de arranque\n\nIniciador ROM (BIOS/UEFI)\n\nChequeo inicial del sistema.\nLee y almacena en memoria el programa cargador del SO.\nPasa el control al cargador del SO, saltando a la dirección de memoria donde lo ha almacenado.\n\nCargador del sistema operativo (GRUB) \\Rightarrow carga el núcleo del SO y le pasa el control, sabe dónde está el núcleo.\nNúcleo del SO:\n\nChequeo hardware.\nCreación e inicialización de las estructuras de datos, tablas...\nCrea el proceso Init y le pasa el control.\n\nProceso Init: termina el proceso de arranque, dejando el sistema preparado para ser usado (chequeo de SFs, montaje de SFs, activación de la swap, de cuotas, demonios, etc.)"
+    "text": "Resumen del proceso de arranque\n\nIniciador ROM (BIOS/UEFI)\n\nChequeo inicial del sistema.\nLee y almacena en memoria el programa cargador del SO.\nPasa el control al cargador del SO, saltando a la dirección de memoria donde lo ha almacenado.\n\nCargador del sistema operativo (GRUB) \\(\\Rightarrow\\) carga el núcleo del SO y le pasa el control, sabe dónde está el núcleo.\nNúcleo del SO:\n\nChequeo hardware.\nCreación e inicialización de las estructuras de datos, tablas...\nCrea el proceso Init y le pasa el control.\n\nProceso Init: termina el proceso de arranque, dejando el sistema preparado para ser usado (chequeo de SFs, montaje de SFs, activación de la swap, de cuotas, demonios, etc.)"
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#parada-del-sistema-1",
     "href": "tema04-arranque/tema04-arranque.html#parada-del-sistema-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Parada del sistema",
-    "text": "Parada del sistema\n\nEn ocasiones es necesario apagar o reiniciar el sistema: mantenimiento, diagnóstico, hardware nuevo, etc.\n\n\nAcciones durante proceso de parada\n\nSe notifica a los usuarios.\nProcesos en ejecución \\Rightarrow enviar la señal de terminación (TERM).\nSe paran los demonios.\nA los usuarios que quedan conectados se les echa del sistema.\nProcesos que queden en ejecución \\Rightarrow enviar la señal de fin (KILL).\nActualizaciones de disco pendientes (integridad del SF) con sync."
+    "text": "Parada del sistema\n\nEn ocasiones es necesario apagar o reiniciar el sistema: mantenimiento, diagnóstico, hardware nuevo, etc.\n\n\nAcciones durante proceso de parada\n\nSe notifica a los usuarios.\nProcesos en ejecución \\(\\Rightarrow\\) enviar la señal de terminación (TERM).\nSe paran los demonios.\nA los usuarios que quedan conectados se les echa del sistema.\nProcesos que queden en ejecución \\(\\Rightarrow\\) enviar la señal de fin (KILL).\nActualizaciones de disco pendientes (integridad del SF) con sync."
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#parada-del-sistema-shutdown",
@@ -2291,7 +2291,7 @@
     "href": "tema04-arranque/tema04-arranque.html#diagnóstico-de-sistema-y-arranque-2",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Diagnóstico de sistema y arranque",
-    "text": "Diagnóstico de sistema y arranque\n\nAl rearrancar mirar los mensajes que hay en el fichero /var/log/messages.\nLa orden dmesg \\Rightarrow mensajes producidos durante el arranque.\nEn el arranque al núcleo se le pueden pasar otros parámetros:\n\nroot=particion \\Rightarrow indicar que monte como partición raíz una distinta.\ninit=ejecutable \\Rightarrow que en vez del proceso Init lance otro proceso:\ninit=/bin/bash \\Rightarrow en este caso el proceso de inicio del Init no se realiza, el SF está montado en modo sólo lectura, hay que remontarlo: mount -o remount -w -n /\nsingle \\Rightarrow arrancar en modo monousuario.\nUn número indicando el nivel de arranque."
+    "text": "Diagnóstico de sistema y arranque\n\nAl rearrancar mirar los mensajes que hay en el fichero /var/log/messages.\nLa orden dmesg \\(\\Rightarrow\\) mensajes producidos durante el arranque.\nEn el arranque al núcleo se le pueden pasar otros parámetros:\n\nroot=particion \\(\\Rightarrow\\) indicar que monte como partición raíz una distinta.\ninit=ejecutable \\(\\Rightarrow\\) que en vez del proceso Init lance otro proceso:\ninit=/bin/bash \\(\\Rightarrow\\) en este caso el proceso de inicio del Init no se realiza, el SF está montado en modo sólo lectura, hay que remontarlo: mount -o remount -w -n /\nsingle \\(\\Rightarrow\\) arrancar en modo monousuario.\nUn número indicando el nivel de arranque."
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#referencias-1",
