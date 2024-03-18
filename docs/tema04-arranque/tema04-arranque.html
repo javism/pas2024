@@ -289,7 +289,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">15 de marzo de 2024</p>
+      <p class="date">19 de marzo de 2024</p>
     </div>
   </div>
   
@@ -484,10 +484,11 @@ Nota
 </section>
 <section id="gestor-de-arranque-grub-lo-básico" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="gestor-de-arranque-grub-lo-básico">Gestor de arranque GRUB: lo básico</h2>
-<ul>
-<li><p>Archivo fundamental de configuración: <code>/boot/grub/grub.cfg</code>. <span class="rojo"><strong>¡No editar a mano!</strong></span>.</p></li>
-<li><p>Este archivo se genera a partir del comando <code>sudo update-grub2</code>, utilizando todos los <em>scripts</em> incluidos en la carpeta <code>/etc/grub.d/</code>.</p></li>
-</ul>
+<ol type="1">
+<li><p><code>/etc/default/grub</code>: archivo de configuración general de GRUB. Habitualmente sólo cambiaremos este.</p></li>
+<li><p><em>scripts</em> incluidos en la carpeta <code>/etc/grub.d/</code>.</p></li>
+<li><p>Archivo fundamental de configuración: <code>/boot/grub/grub.cfg</code>. <span class="rojo"><strong>¡No editar a mano!</strong></span>. Este archivo se genera a partir del comando <code>sudo update-grub2</code>, utilizando todos las opciones en <code>/etc/default/grub</code> y los scripts <code>/etc/grub.d/</code></p></li>
+</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -498,7 +499,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Reinstalar GRUB (por ejemplo, después de que Windows borre el MBR): <code>sudo grub-install /dev/sda</code>.</p>
+<p>Si compartes máquina con Windows este periódicamente borra el MBR y es necesario reinstalar GRUB desde una distribución <em>live</em> (<code>sudo grub-install /dev/sda</code>).</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -564,8 +565,8 @@ Importante
 <li><p><code>GRUB_BACKGROUND</code>: imagen de fondo.</p></li>
 </ul>
 </section>
-<section id="gestor-de-arranque-grub-2" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="gestor-de-arranque-grub-2">Gestor de arranque GRUB</h2>
+<section id="grub-modificación-de-parámetros-al-arrancar" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="grub-modificación-de-parámetros-al-arrancar">GRUB: modificación de parámetros al arrancar</h2>
 <p>GRUB permite (durante la selección del SO):</p>
 <ul>
 <li><p>Editar las entradas:</p>
@@ -578,7 +579,7 @@ Importante
 <ul>
 <li><p>Nombres de dispositivos: <code>(&lt;t&gt;&lt;n&gt;,&lt;np&gt;)</code><br>
 <code>(hd0,0)</code> <span class="math inline">\(\Rightarrow\)</span> <code>/dev/sda1</code></p></li>
-<li><p>Nombres de ficheros <code>(hd0,0)/boot/grub/grub.conf</code></p></li>
+<li><p>Nombres de ficheros <code>(hd0,0)/boot/grub/grub.cfg</code></p></li>
 </ul></li>
 </ul>
 </section>
@@ -689,7 +690,7 @@ Importante
 <h2 class="anchored" data-anchor-id="modo-monousuario-2">Modo monousuario</h2>
 <div class="alertblock">
 <ul>
-<li><p><strong>¡Problema!</strong>: si cambiamos las opciones de GRUB y ponemos <code>init=/bin/sh</code>, no se llama a <code>sulogin</code>.</p></li>
+<li><p><strong>¡Problema!</strong>: si cambiamos las opciones de GRUB y ponemos <code>init=/bin/sh</code> / <code>init=/bin/bash</code>, no se llama a <code>sulogin</code>.</p></li>
 <li><p>Permite tener acceso a todo el sistema, estando delante del ordenador.</p></li>
 </ul>
 </div>
@@ -738,11 +739,11 @@ Importante
 <li><p><a href="https://www.secur.cc/physical-security-for-linux-systems/">Physical Security for Linux Systems (2020)</a></p></li>
 </ul>
 </section>
-<section id="ejercicio-proteje-tu-sistema-de-arranque" class="level2" data-background-color="lightgreen">
-<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-proteje-tu-sistema-de-arranque">Ejercicio: proteje tu sistema de arranque</h2>
+<section id="ejercicio-protege-tu-sistema-de-arranque" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-protege-tu-sistema-de-arranque">Ejercicio: protege tu sistema de arranque</h2>
 <ol type="1">
 <li><p>Añade un usuario y contraseña a GRUB.</p></li>
-<li><p>Desabilita el reinicio por teclado Ctrl+Alt+Del. <span class="rojo">Prueba esto usando el menú de Virtual Box o reiniciarás tu ordenador</span></p></li>
+<li><p>Deshabilita el reinicio por teclado Ctrl+Alt+Del. <span class="rojo">Prueba esto usando el menú de Virtual Box o reiniciarás tu ordenador</span></p></li>
 </ol>
 </section>
 <section id="pasos-arranque-modo-multiusuario-iii" class="level2 smaller">
@@ -751,7 +752,7 @@ Importante
 <li><p>Chequea el sistema de ficheros raíz con <code>fsck</code>.</p>
 <ul>
 <li><p>Si al apagar el sistema, el sistema de ficheros se desmontó correctamente, no se chequea.</p></li>
-<li><p>Sin embargo, algunos SOs con determinados SFs fuerzan el chequeo siempre, o cada cierto tiempo (cada 3 meses) o cada cierto número de montajes sin chequear (cada 20 veces).</p></li>
+<li><p>Sin embargo, algunos SOs con determinados SFs fuerzan el chequeo siempre, o cada cierto tiempo o cada cierto número de montajes sin chequear.</p></li>
 <li><p>Si <code>fsck</code> encuentra problemas que no puede solucionar <strong>“sólo”</strong>, lleva al sistema a modo monousuario para que el administrador realice el chequeo manual.</p></li>
 </ul></li>
 <li><p>Monta el sistema de ficheros raíz en modo lectura-escritura.</p></li>
@@ -766,7 +767,7 @@ Importante
 <ol start="7" type="1">
 <li><p>Lanza los procesos servidores o demonios: <code>crond</code>, <code>atd</code>, <code>cupsd</code>, <code>syslogd</code>...</p></li>
 <li><p>Activa la red.</p></li>
-<li><p>Lanza los demonios de red: <code>xinetd</code>, <code>apache2</code>, <code>nagiosd</code>, <code>sshd</code>, <code>ntpd</code>, <code>nfsd</code>, <code>rpc.mountd</code>, <code>slapd</code>...</p></li>
+<li><p>Lanza los demonios de red: <code>apache2</code>, <code>nagiosd</code>, <code>sshd</code>, <code>ntpd</code>, <code>nfsd</code>, <code>rpc.mountd</code>, <code>slapd</code>...</p></li>
 <li><p>Limpia los sistemas de ficheros: <code>/tmp</code>, etc.</p></li>
 <li><p>Permite que los usuarios entren:</p>
 <ul>
@@ -870,39 +871,39 @@ Importante
 </section>
 <section id="ficheros-de-inicialización-2" class="level2">
 <h2 class="anchored" data-anchor-id="ficheros-de-inicialización-2">Ficheros de inicialización</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls /etc/rc2.d/ <span class="at">-la</span></span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls /etc/rc3.d/ <span class="at">-la</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 16</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>   2 root root  4096 feb 13 10:21 .</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span> 180 root root 12288 mar 13 09:11 ..</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    22 nov 14  2019 K01cups-browsed <span class="at">-</span><span class="op">&gt;</span> ../init.d/cups-browsed</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    18 nov 14  2019 K01whoopsie <span class="at">-</span><span class="op">&gt;</span> ../init.d/whoopsie</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    15 nov 14  2019 S01acpid <span class="at">-</span><span class="op">&gt;</span> ../init.d/acpid</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 nov 14  2019 S01anacron <span class="at">-</span><span class="op">&gt;</span> ../init.d/anacron</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    16 nov 14  2019 S01apport <span class="at">-</span><span class="op">&gt;</span> ../init.d/apport</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    13 mar 22  2022 S01atd <span class="at">-</span><span class="op">&gt;</span> ../init.d/atd</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    22 nov 14  2019 S01avahi-daemon <span class="at">-</span><span class="op">&gt;</span> ../init.d/avahi-daemon</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    24 may  3  2020 S01binfmt-support <span class="at">-</span><span class="op">&gt;</span> ../init.d/binfmt-support</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    19 nov 14  2019 S01bluetooth <span class="at">-</span><span class="op">&gt;</span> ../init.d/bluetooth</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    26 nov 14  2019 S01console-setup.sh <span class="at">-</span><span class="op">&gt;</span> ../init.d/console-setup.sh</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    22 mar  9  2021 S01cpufrequtils <span class="at">-</span><span class="op">&gt;</span> ../init.d/cpufrequtils</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    14 nov 14  2019 S01cron <span class="at">-</span><span class="op">&gt;</span> ../init.d/cron</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    14 nov 14  2019 S01cups <span class="at">-</span><span class="op">&gt;</span> ../init.d/cups</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    14 nov 14  2019 S01dbus <span class="at">-</span><span class="op">&gt;</span> ../init.d/dbus</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    16 ene 26 12:59 S01docker <span class="at">-</span><span class="op">&gt;</span> ../init.d/docker</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    14 nov 14  2019 S01gdm3 <span class="at">-</span><span class="op">&gt;</span> ../init.d/gdm3</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    21 nov 14  2019 S01grub-common <span class="at">-</span><span class="op">&gt;</span> ../init.d/grub-common</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 mar  9  2021 S01hddtemp <span class="at">-</span><span class="op">&gt;</span> ../init.d/hddtemp</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    20 nov 14  2019 S01irqbalance <span class="at">-</span><span class="op">&gt;</span> ../init.d/irqbalance</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    16 mar 20  2020 S01jicofo <span class="at">-</span><span class="op">&gt;</span> ../init.d/jicofo</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    20 nov 14  2019 S01kerneloops <span class="at">-</span><span class="op">&gt;</span> ../init.d/kerneloops</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 mar  9  2021 S01lightdm <span class="at">-</span><span class="op">&gt;</span> ../init.d/lightdm</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    21 mar  9  2021 S01loadcpufreq <span class="at">-</span><span class="op">&gt;</span> ../init.d/loadcpufreq</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    22 nov 14  2019 S01lvm2-lvmetad <span class="at">-</span><span class="op">&gt;</span> ../init.d/lvm2-lvmetad</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    23 nov 14  2019 S01lvm2-lvmpolld <span class="at">-</span><span class="op">&gt;</span> ../init.d/lvm2-lvmpolld</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    15 nov 14  2019 S01mdadm <span class="at">-</span><span class="op">&gt;</span> ../init.d/mdadm</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    13 feb 13 10:21 S01mpd <span class="at">-</span><span class="op">&gt;</span> ../init.d/mpd</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 mar  4  2020 S01openvpn <span class="at">-</span><span class="op">&gt;</span> ../init.d/openvpn</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    18 nov 14  2019 S01plymouth <span class="at">-</span><span class="op">&gt;</span> ../init.d/plymouth</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span>   2 root root  4096 feb  7 21:32 .</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxr-xr-x</span> 161 root root 12288 mar 18 17:45 ..</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    27 sep 15  2023 K01speech-dispatcher <span class="at">-</span><span class="op">&gt;</span> ../init.d/speech-dispatcher</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    15 sep 15  2023 S01acpid <span class="at">-</span><span class="op">&gt;</span> ../init.d/acpid</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 sep 15  2023 S01anacron <span class="at">-</span><span class="op">&gt;</span> ../init.d/anacron</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    14 feb  7 21:32 S01atop <span class="at">-</span><span class="op">&gt;</span> ../init.d/atop</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    18 feb  7 21:32 S01atopacct <span class="at">-</span><span class="op">&gt;</span> ../init.d/atopacct</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    22 sep 15  2023 S01avahi-daemon <span class="at">-</span><span class="op">&gt;</span> ../init.d/avahi-daemon</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    19 sep 15  2023 S01bluetooth <span class="at">-</span><span class="op">&gt;</span> ../init.d/bluetooth</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    26 sep 15  2023 S01console-setup.sh <span class="at">-</span><span class="op">&gt;</span> ../init.d/console-setup.sh</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    14 sep 15  2023 S01cron <span class="at">-</span><span class="op">&gt;</span> ../init.d/cron</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    14 sep 15  2023 S01cups <span class="at">-</span><span class="op">&gt;</span> ../init.d/cups</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    14 sep 15  2023 S01dbus <span class="at">-</span><span class="op">&gt;</span> ../init.d/dbus</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    21 sep 15  2023 S01grub-common <span class="at">-</span><span class="op">&gt;</span> ../init.d/grub-common</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    20 sep 15  2023 S01irqbalance <span class="at">-</span><span class="op">&gt;</span> ../init.d/irqbalance</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    20 sep 15  2023 S01kerneloops <span class="at">-</span><span class="op">&gt;</span> ../init.d/kerneloops</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 sep 15  2023 S01lightdm <span class="at">-</span><span class="op">&gt;</span> ../init.d/lightdm</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    23 sep 15  2023 S01lvm2-lvmpolld <span class="at">-</span><span class="op">&gt;</span> ../init.d/lvm2-lvmpolld</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    20 sep 15  2023 S01mintsystem <span class="at">-</span><span class="op">&gt;</span> ../init.d/mintsystem</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 sep 15  2023 S01openvpn <span class="at">-</span><span class="op">&gt;</span> ../init.d/openvpn</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    18 sep 15  2023 S01plymouth <span class="at">-</span><span class="op">&gt;</span> ../init.d/plymouth</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 ene 30 14:09 S01postfix <span class="at">-</span><span class="op">&gt;</span> ../init.d/postfix</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    37 sep 15  2023 S01pulseaudio-enable-autospawn <span class="at">-</span><span class="op">&gt;</span> ../init.d/pulseaudio-enable-autospawn</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    15 sep 15  2023 S01rsync <span class="at">-</span><span class="op">&gt;</span> ../init.d/rsync</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    15 sep 15  2023 S01saned <span class="at">-</span><span class="op">&gt;</span> ../init.d/saned</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    23 ene 27 11:50 S01smartmontools <span class="at">-</span><span class="op">&gt;</span> ../init.d/smartmontools</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    15 sep 15  2023 S01uuidd <span class="at">-</span><span class="op">&gt;</span> ../init.d/uuidd</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    20 sep 15  2023 S01virtualbox <span class="at">-</span><span class="op">&gt;</span> ../init.d/virtualbox</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    19 sep 15  2023 S01zfs-mount <span class="at">-</span><span class="op">&gt;</span> ../init.d/zfs-mount</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    19 sep 15  2023 S01zfs-share <span class="at">-</span><span class="op">&gt;</span> ../init.d/zfs-share</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="ex">lrwxrwxrwx</span>   1 root root    17 sep 15  2023 S01zfs-zed <span class="at">-</span><span class="op">&gt;</span> ../init.d/zfs-zed</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="systemd-1" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="systemd-1">Systemd</h2>
@@ -974,12 +975,17 @@ Importante
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> <span class="at">--type</span><span class="op">=</span>service</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> <span class="at">--type</span><span class="op">=</span>service <span class="at">--state</span><span class="op">=</span>active</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Listar temporizadores:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> list-timers<span class="kw">`</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> list-timers</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Mostrar logs de un servicio (ej. <code>ssh.service</code>, <code>apache2.service</code>):</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">journalctl</span> <span class="at">-u</span> service-name.service</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">journalctl</span> <span class="at">-u</span> service-name.service <span class="at">-b</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Mostrar logs desde una fecha (también se puede elegir un intervalo):</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">journalctl</span> <span class="at">--since</span> <span class="st">"2023-01-30"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejercicio-cómo-añadir-un-servicio-a-systemd" class="level2 smaller scrollable" data-background-color="lightgreen">
+<h2 class="smaller scrollable anchored" data-background-color="lightgreen" data-anchor-id="ejercicio-cómo-añadir-un-servicio-a-systemd">Ejercicio: cómo añadir un servicio a systemd</h2>
+<p>En el siguiente tutorial más o menos nos explican cómo añadir un servicio a <code>systemd</code>. Lo malo es que dejan un problema seguridad instalado. Intenta encontrar el problema de seguridad y explotarlo para escalar privilegios en Linux.</p>
+<p><a href="https://www.redeszone.net/tutoriales/servidores/administrar-servicios-linux-systemd/" class="uri">https://www.redeszone.net/tutoriales/servidores/administrar-servicios-linux-systemd/</a></p>
 </section>
 </section>
 <section id="resumen-del-proceso-de-arranque" class="level1" data-number="7">

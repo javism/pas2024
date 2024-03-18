@@ -2039,7 +2039,7 @@
     "href": "tema04-arranque/tema04-arranque.html#gestor-de-arranque-grub-lo-básico",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Gestor de arranque GRUB: lo básico",
-    "text": "Gestor de arranque GRUB: lo básico\n\nArchivo fundamental de configuración: /boot/grub/grub.cfg. ¡No editar a mano!.\nEste archivo se genera a partir del comando sudo update-grub2, utilizando todos los scripts incluidos en la carpeta /etc/grub.d/.\n\n\n\n\n\n\n\nTip\n\n\n\nReinstalar GRUB (por ejemplo, después de que Windows borre el MBR): sudo grub-install /dev/sda.\n\n\n\n\n\n\n\n\nImportante\n\n\n\nA través del cargador de arranque o un USB maligno se pueden ganar privilegios en una máquina"
+    "text": "Gestor de arranque GRUB: lo básico\n\n/etc/default/grub: archivo de configuración general de GRUB. Habitualmente sólo cambiaremos este.\nscripts incluidos en la carpeta /etc/grub.d/.\nArchivo fundamental de configuración: /boot/grub/grub.cfg. ¡No editar a mano!. Este archivo se genera a partir del comando sudo update-grub2, utilizando todos las opciones en /etc/default/grub y los scripts /etc/grub.d/\n\n\n\n\n\n\n\nTip\n\n\n\nSi compartes máquina con Windows este periódicamente borra el MBR y es necesario reinstalar GRUB desde una distribución live (sudo grub-install /dev/sda).\n\n\n\n\n\n\n\n\nImportante\n\n\n\nA través del cargador de arranque o un USB maligno se pueden ganar privilegios en una máquina"
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#opcional-grub-configuración-general",
@@ -2123,7 +2123,7 @@
     "href": "tema04-arranque/tema04-arranque.html#modo-monousuario-2",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Modo monousuario",
-    "text": "Modo monousuario\n\n\n¡Problema!: si cambiamos las opciones de GRUB y ponemos init=/bin/sh, no se llama a sulogin.\nPermite tener acceso a todo el sistema, estando delante del ordenador."
+    "text": "Modo monousuario\n\n\n¡Problema!: si cambiamos las opciones de GRUB y ponemos init=/bin/sh / init=/bin/bash, no se llama a sulogin.\nPermite tener acceso a todo el sistema, estando delante del ordenador."
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#ejercicio-hacerse-root-sin-la-contraseña",
@@ -2158,14 +2158,14 @@
     "href": "tema04-arranque/tema04-arranque.html#pasos-arranque-modo-multiusuario-iii",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Pasos arranque modo multiusuario (I/II)",
-    "text": "Pasos arranque modo multiusuario (I/II)\n\nChequea el sistema de ficheros raíz con fsck.\n\nSi al apagar el sistema, el sistema de ficheros se desmontó correctamente, no se chequea.\nSin embargo, algunos SOs con determinados SFs fuerzan el chequeo siempre, o cada cierto tiempo (cada 3 meses) o cada cierto número de montajes sin chequear (cada 20 veces).\nSi fsck encuentra problemas que no puede solucionar “sólo”, lleva al sistema a modo monousuario para que el administrador realice el chequeo manual.\n\nMonta el sistema de ficheros raíz en modo lectura-escritura.\nChequea el resto de SFs con fsck (idem al punto 1).\nMonta el resto de SFs.\nActiva las particiones de intercambio (swapping): swapon -a.\nActiva las cuotas de disco: quotacheck -a y quotaon -a."
+    "text": "Pasos arranque modo multiusuario (I/II)\n\nChequea el sistema de ficheros raíz con fsck.\n\nSi al apagar el sistema, el sistema de ficheros se desmontó correctamente, no se chequea.\nSin embargo, algunos SOs con determinados SFs fuerzan el chequeo siempre, o cada cierto tiempo o cada cierto número de montajes sin chequear.\nSi fsck encuentra problemas que no puede solucionar “sólo”, lleva al sistema a modo monousuario para que el administrador realice el chequeo manual.\n\nMonta el sistema de ficheros raíz en modo lectura-escritura.\nChequea el resto de SFs con fsck (idem al punto 1).\nMonta el resto de SFs.\nActiva las particiones de intercambio (swapping): swapon -a.\nActiva las cuotas de disco: quotacheck -a y quotaon -a."
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#pasos-arranque-modo-multiusuario-iiii",
     "href": "tema04-arranque/tema04-arranque.html#pasos-arranque-modo-multiusuario-iiii",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Pasos arranque modo multiusuario (II/II)",
-    "text": "Pasos arranque modo multiusuario (II/II)\n\nLanza los procesos servidores o demonios: crond, atd, cupsd, syslogd...\nActiva la red.\nLanza los demonios de red: xinetd, apache2, nagiosd, sshd, ntpd, nfsd, rpc.mountd, slapd...\nLimpia los sistemas de ficheros: /tmp, etc.\nPermite que los usuarios entren:\n\nCrea las terminales, lanzando getty en modo texto, y el terminal gráfico, si es preciso.\nBorra, en caso de que exista, el fichero /etc/nologin: Si el fichero /etc/nologin existe, los usuarios (excepto root) no pueden entrar al sistema. Algunos sistemas lo crean al iniciar el arranque."
+    "text": "Pasos arranque modo multiusuario (II/II)\n\nLanza los procesos servidores o demonios: crond, atd, cupsd, syslogd...\nActiva la red.\nLanza los demonios de red: apache2, nagiosd, sshd, ntpd, nfsd, rpc.mountd, slapd...\nLimpia los sistemas de ficheros: /tmp, etc.\nPermite que los usuarios entren:\n\nCrea las terminales, lanzando getty en modo texto, y el terminal gráfico, si es preciso.\nBorra, en caso de que exista, el fichero /etc/nologin: Si el fichero /etc/nologin existe, los usuarios (excepto root) no pueden entrar al sistema. Algunos sistemas lo crean al iniciar el arranque."
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#niveles-de-ejecución-en-gnulinux",
@@ -2221,7 +2221,7 @@
     "href": "tema04-arranque/tema04-arranque.html#ficheros-de-inicialización-2",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Ficheros de inicialización",
-    "text": "Ficheros de inicialización\n$ ls /etc/rc2.d/ -la\ntotal 16\ndrwxr-xr-x   2 root root  4096 feb 13 10:21 .\ndrwxr-xr-x 180 root root 12288 mar 13 09:11 ..\nlrwxrwxrwx   1 root root    22 nov 14  2019 K01cups-browsed -&gt; ../init.d/cups-browsed\nlrwxrwxrwx   1 root root    18 nov 14  2019 K01whoopsie -&gt; ../init.d/whoopsie\nlrwxrwxrwx   1 root root    15 nov 14  2019 S01acpid -&gt; ../init.d/acpid\nlrwxrwxrwx   1 root root    17 nov 14  2019 S01anacron -&gt; ../init.d/anacron\nlrwxrwxrwx   1 root root    16 nov 14  2019 S01apport -&gt; ../init.d/apport\nlrwxrwxrwx   1 root root    13 mar 22  2022 S01atd -&gt; ../init.d/atd\nlrwxrwxrwx   1 root root    22 nov 14  2019 S01avahi-daemon -&gt; ../init.d/avahi-daemon\nlrwxrwxrwx   1 root root    24 may  3  2020 S01binfmt-support -&gt; ../init.d/binfmt-support\nlrwxrwxrwx   1 root root    19 nov 14  2019 S01bluetooth -&gt; ../init.d/bluetooth\nlrwxrwxrwx   1 root root    26 nov 14  2019 S01console-setup.sh -&gt; ../init.d/console-setup.sh\nlrwxrwxrwx   1 root root    22 mar  9  2021 S01cpufrequtils -&gt; ../init.d/cpufrequtils\nlrwxrwxrwx   1 root root    14 nov 14  2019 S01cron -&gt; ../init.d/cron\nlrwxrwxrwx   1 root root    14 nov 14  2019 S01cups -&gt; ../init.d/cups\nlrwxrwxrwx   1 root root    14 nov 14  2019 S01dbus -&gt; ../init.d/dbus\nlrwxrwxrwx   1 root root    16 ene 26 12:59 S01docker -&gt; ../init.d/docker\nlrwxrwxrwx   1 root root    14 nov 14  2019 S01gdm3 -&gt; ../init.d/gdm3\nlrwxrwxrwx   1 root root    21 nov 14  2019 S01grub-common -&gt; ../init.d/grub-common\nlrwxrwxrwx   1 root root    17 mar  9  2021 S01hddtemp -&gt; ../init.d/hddtemp\nlrwxrwxrwx   1 root root    20 nov 14  2019 S01irqbalance -&gt; ../init.d/irqbalance\nlrwxrwxrwx   1 root root    16 mar 20  2020 S01jicofo -&gt; ../init.d/jicofo\nlrwxrwxrwx   1 root root    20 nov 14  2019 S01kerneloops -&gt; ../init.d/kerneloops\nlrwxrwxrwx   1 root root    17 mar  9  2021 S01lightdm -&gt; ../init.d/lightdm\nlrwxrwxrwx   1 root root    21 mar  9  2021 S01loadcpufreq -&gt; ../init.d/loadcpufreq\nlrwxrwxrwx   1 root root    22 nov 14  2019 S01lvm2-lvmetad -&gt; ../init.d/lvm2-lvmetad\nlrwxrwxrwx   1 root root    23 nov 14  2019 S01lvm2-lvmpolld -&gt; ../init.d/lvm2-lvmpolld\nlrwxrwxrwx   1 root root    15 nov 14  2019 S01mdadm -&gt; ../init.d/mdadm\nlrwxrwxrwx   1 root root    13 feb 13 10:21 S01mpd -&gt; ../init.d/mpd\nlrwxrwxrwx   1 root root    17 mar  4  2020 S01openvpn -&gt; ../init.d/openvpn\nlrwxrwxrwx   1 root root    18 nov 14  2019 S01plymouth -&gt; ../init.d/plymouth"
+    "text": "Ficheros de inicialización\n$ ls /etc/rc3.d/ -la\ntotal 16\ndrwxr-xr-x   2 root root  4096 feb  7 21:32 .\ndrwxr-xr-x 161 root root 12288 mar 18 17:45 ..\nlrwxrwxrwx   1 root root    27 sep 15  2023 K01speech-dispatcher -&gt; ../init.d/speech-dispatcher\nlrwxrwxrwx   1 root root    15 sep 15  2023 S01acpid -&gt; ../init.d/acpid\nlrwxrwxrwx   1 root root    17 sep 15  2023 S01anacron -&gt; ../init.d/anacron\nlrwxrwxrwx   1 root root    14 feb  7 21:32 S01atop -&gt; ../init.d/atop\nlrwxrwxrwx   1 root root    18 feb  7 21:32 S01atopacct -&gt; ../init.d/atopacct\nlrwxrwxrwx   1 root root    22 sep 15  2023 S01avahi-daemon -&gt; ../init.d/avahi-daemon\nlrwxrwxrwx   1 root root    19 sep 15  2023 S01bluetooth -&gt; ../init.d/bluetooth\nlrwxrwxrwx   1 root root    26 sep 15  2023 S01console-setup.sh -&gt; ../init.d/console-setup.sh\nlrwxrwxrwx   1 root root    14 sep 15  2023 S01cron -&gt; ../init.d/cron\nlrwxrwxrwx   1 root root    14 sep 15  2023 S01cups -&gt; ../init.d/cups\nlrwxrwxrwx   1 root root    14 sep 15  2023 S01dbus -&gt; ../init.d/dbus\nlrwxrwxrwx   1 root root    21 sep 15  2023 S01grub-common -&gt; ../init.d/grub-common\nlrwxrwxrwx   1 root root    20 sep 15  2023 S01irqbalance -&gt; ../init.d/irqbalance\nlrwxrwxrwx   1 root root    20 sep 15  2023 S01kerneloops -&gt; ../init.d/kerneloops\nlrwxrwxrwx   1 root root    17 sep 15  2023 S01lightdm -&gt; ../init.d/lightdm\nlrwxrwxrwx   1 root root    23 sep 15  2023 S01lvm2-lvmpolld -&gt; ../init.d/lvm2-lvmpolld\nlrwxrwxrwx   1 root root    20 sep 15  2023 S01mintsystem -&gt; ../init.d/mintsystem\nlrwxrwxrwx   1 root root    17 sep 15  2023 S01openvpn -&gt; ../init.d/openvpn\nlrwxrwxrwx   1 root root    18 sep 15  2023 S01plymouth -&gt; ../init.d/plymouth\nlrwxrwxrwx   1 root root    17 ene 30 14:09 S01postfix -&gt; ../init.d/postfix\nlrwxrwxrwx   1 root root    37 sep 15  2023 S01pulseaudio-enable-autospawn -&gt; ../init.d/pulseaudio-enable-autospawn\nlrwxrwxrwx   1 root root    15 sep 15  2023 S01rsync -&gt; ../init.d/rsync\nlrwxrwxrwx   1 root root    15 sep 15  2023 S01saned -&gt; ../init.d/saned\nlrwxrwxrwx   1 root root    23 ene 27 11:50 S01smartmontools -&gt; ../init.d/smartmontools\nlrwxrwxrwx   1 root root    15 sep 15  2023 S01uuidd -&gt; ../init.d/uuidd\nlrwxrwxrwx   1 root root    20 sep 15  2023 S01virtualbox -&gt; ../init.d/virtualbox\nlrwxrwxrwx   1 root root    19 sep 15  2023 S01zfs-mount -&gt; ../init.d/zfs-mount\nlrwxrwxrwx   1 root root    19 sep 15  2023 S01zfs-share -&gt; ../init.d/zfs-share\nlrwxrwxrwx   1 root root    17 sep 15  2023 S01zfs-zed -&gt; ../init.d/zfs-zed"
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#systemd-1",
@@ -2249,7 +2249,7 @@
     "href": "tema04-arranque/tema04-arranque.html#herramientas-de-systemd",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Herramientas de systemd",
-    "text": "Herramientas de systemd\nsystemd con su abanico de herramientas permite consultar información y realizar acciones sobre arranque, servicios y logs muy útiles que son difíciles o imposibles con init:\nMostrar servicios y servicios activos:\nsystemctl\nsystemd-cgls\nsystemctl --type=service\nsystemctl --type=service --state=active\nListar temporizadores:\nsystemctl list-timers`\nMostrar logs de un servicio (ej. ssh.service, apache2.service):\njournalctl -u service-name.service\njournalctl -u service-name.service -b\nMostrar logs desde una fecha (también se puede elegir un intervalo):\njournalctl --since \"2023-01-30\""
+    "text": "Herramientas de systemd\nsystemd con su abanico de herramientas permite consultar información y realizar acciones sobre arranque, servicios y logs muy útiles que son difíciles o imposibles con init:\nMostrar servicios y servicios activos:\nsystemctl\nsystemd-cgls\nsystemctl --type=service\nsystemctl --type=service --state=active\nListar temporizadores:\nsystemctl list-timers\nMostrar logs de un servicio (ej. ssh.service, apache2.service):\njournalctl -u service-name.service\njournalctl -u service-name.service -b\nMostrar logs desde una fecha (también se puede elegir un intervalo):\njournalctl --since \"2023-01-30\""
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#resumen-del-proceso-de-arranque-1",
@@ -2379,5 +2379,26 @@
     "crumbs": [
       "Tema 2: Ejercicios permisos"
     ]
+  },
+  {
+    "objectID": "tema04-arranque/tema04-arranque.html#grub-modificación-de-parámetros-al-arrancar",
+    "href": "tema04-arranque/tema04-arranque.html#grub-modificación-de-parámetros-al-arrancar",
+    "title": "Tema 4: Arranque y parada del sistema y servicios.",
+    "section": "GRUB: modificación de parámetros al arrancar",
+    "text": "GRUB: modificación de parámetros al arrancar\nGRUB permite (durante la selección del SO):\n\nEditar las entradas:\n\nPulsar tecla e, permite modificar las entradas de arranque para solucionar errores.\nLos cambios no son permanentes, solo sirve para probar.\n\nConsola interactiva GRUB: pulsar la tecla c. Permite ejecutar comandos para arreglar el arranque (seleccionar otro initrd, cargar módulos...).\nTerminología de GRUB, numerando los dispositivos según los reconozca la BIOS empezando en cero:\n\nNombres de dispositivos: (&lt;t&gt;&lt;n&gt;,&lt;np&gt;)\n(hd0,0) \\(\\Rightarrow\\) /dev/sda1\nNombres de ficheros (hd0,0)/boot/grub/grub.cfg"
+  },
+  {
+    "objectID": "tema04-arranque/tema04-arranque.html#ejercicio-protege-tu-sistema-de-arranque",
+    "href": "tema04-arranque/tema04-arranque.html#ejercicio-protege-tu-sistema-de-arranque",
+    "title": "Tema 4: Arranque y parada del sistema y servicios.",
+    "section": "Ejercicio: protege tu sistema de arranque",
+    "text": "Ejercicio: protege tu sistema de arranque\n\nAñade un usuario y contraseña a GRUB.\nDeshabilita el reinicio por teclado Ctrl+Alt+Del. Prueba esto usando el menú de Virtual Box o reiniciarás tu ordenador"
+  },
+  {
+    "objectID": "tema04-arranque/tema04-arranque.html#ejercicio-cómo-añadir-un-servicio-a-systemd",
+    "href": "tema04-arranque/tema04-arranque.html#ejercicio-cómo-añadir-un-servicio-a-systemd",
+    "title": "Tema 4: Arranque y parada del sistema y servicios.",
+    "section": "Ejercicio: cómo añadir un servicio a systemd",
+    "text": "Ejercicio: cómo añadir un servicio a systemd\nEn el siguiente tutorial más o menos nos explican cómo añadir un servicio a systemd. Lo malo es que dejan un problema seguridad instalado. Intenta encontrar el problema de seguridad y explotarlo para escalar privilegios en Linux.\nhttps://www.redeszone.net/tutoriales/servidores/administrar-servicios-linux-systemd/"
   }
 ]
