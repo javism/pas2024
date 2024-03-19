@@ -1754,7 +1754,7 @@
     "href": "index.html#contenido-en-pdf",
     "title": "Programación y Administración de Sistemas",
     "section": "Contenido en PDF",
-    "text": "Contenido en PDF\nPuedes acceder también al contenido de esta asignatura en formato PDF imprimible:\n\nInicio\nTema 0: Presentación\nTema 1.a: Introducción\nTema 1.b: Software Libre y GNU/Linux”\nTema 1.c: Virtual Box, Debian y configuración básica\nTema 2: Organización de un sistema operativo tipo GNU/Linux\n\nTema 2: Ejercicios permisos\nTema 2: Web personal",
+    "text": "Contenido en PDF\nPuedes acceder también al contenido de esta asignatura en formato PDF imprimible:\n\nInicio\nTema 0: Presentación\nTema 1.a: Introducción\nTema 1.b: Software Libre y GNU/Linux”\nTema 1.c: Virtual Box, Debian y configuración básica\nTema 2: Organización de un sistema operativo tipo GNU/Linux\n\nTema 2: Ejercicios permisos\nTema 2: Web personal\n\nTema 3: Gestión de Usuarios\nTema 4: Arranque y parada del sistema y servicios.",
     "crumbs": [
       "Inicio"
     ]
@@ -1934,371 +1934,540 @@
     "href": "tema04-arranque/tema04-arranque.html",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "",
-    "text": "Describir todas las fases del proceso de arranque del sistema GNU/Linux, estableciendo qué elementos hardware y, sobre todo, software intervienen.\nExplicar qué misión tienen en el arranque los siguientes componentes: iniciador ROM, programa cargador, núcleo del sistema operativo, initrd y proceso Init.\nConfigurar los distintos parámetros del programa cargador GRUB y utilizar el modo interactivo.\nDistinguir la diferencia entre modo de ejecución monousuario y multiusuario.\nExplicar los problemas de seguridad asociados al modo monousuario.\nConocer systemd como sustituto para el Init de GNU/Linux\nEnumerar los pasos necesarios para la configuración del sistema en modo multiusuario.\nExplicar el concepto de niveles de ejecución y las funciones típicas de cada nivel.\nConfigurar los servicios de cada nivel de ejecución u objetivos.\nArrancar, parar, listar, añadir y eliminar servicios en cada nivel.\nEnumerar las acciones que se llevan a cabo durante la parada del sistema.\nUtilizar la herramienta shutdown.\nEnumerar posibles causas de caídas del sistema operativo.\nEnumerar posibles problemas durante el arranque del sistema operativo.\nConocer los principales mecanismos para consultar los logs del sistema operativo.\n\n\n\n\n\nCuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.\n\n\n\n\n\n\n\nNota\n\n\n\nComo en otros temas, en estos apuntes se dan muchos detalles que por supuesto no hay que memorizar. Si hay que saber en qué directorio se encuentran el/los ficheros de configuración pero no los parámetros de memoria, estos los ponemos aquí para conocer las posibilidades de cada herramienta."
+    "text": "Describir todas las fases del proceso de arranque del sistema GNU/Linux, estableciendo qué elementos hardware y, sobre todo, software intervienen.\nExplicar qué misión tienen en el arranque los siguientes componentes: iniciador ROM, programa cargador, núcleo del sistema operativo, initrd y proceso Init.\nConfigurar los distintos parámetros del programa cargador GRUB y utilizar el modo interactivo.\nDistinguir la diferencia entre modo de ejecución monousuario y multiusuario.\nExplicar los problemas de seguridad asociados al modo monousuario.\nConocer systemd como sustituto para el Init de GNU/Linux\nEnumerar los pasos necesarios para la configuración del sistema en modo multiusuario.\nExplicar el concepto de niveles de ejecución y las funciones típicas de cada nivel.\nConfigurar los servicios de cada nivel de ejecución u objetivos.\nArrancar, parar, listar, añadir y eliminar servicios en cada nivel.\nEnumerar las acciones que se llevan a cabo durante la parada del sistema.\nUtilizar la herramienta shutdown.\nEnumerar posibles causas de caídas del sistema operativo.\nEnumerar posibles problemas durante el arranque del sistema operativo.\nConocer los principales mecanismos para consultar los logs del sistema operativo.\n\n\n\n\n\nCuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.\n\n\n\n\n\n\n\nNota\n\n\n\nComo en otros temas, en estos apuntes se dan muchos detalles que por supuesto no hay que memorizar. Si hay que saber en qué directorio se encuentran el/los ficheros de configuración pero no los parámetros de memoria, estos los ponemos aquí para conocer las posibilidades de cada herramienta.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#objetivos-de-aprendizaje",
     "href": "tema04-arranque/tema04-arranque.html#objetivos-de-aprendizaje",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "",
-    "text": "Describir todas las fases del proceso de arranque del sistema GNU/Linux, estableciendo qué elementos hardware y, sobre todo, software intervienen.\nExplicar qué misión tienen en el arranque los siguientes componentes: iniciador ROM, programa cargador, núcleo del sistema operativo, initrd y proceso Init.\nConfigurar los distintos parámetros del programa cargador GRUB y utilizar el modo interactivo.\nDistinguir la diferencia entre modo de ejecución monousuario y multiusuario.\nExplicar los problemas de seguridad asociados al modo monousuario.\nConocer systemd como sustituto para el Init de GNU/Linux\nEnumerar los pasos necesarios para la configuración del sistema en modo multiusuario.\nExplicar el concepto de niveles de ejecución y las funciones típicas de cada nivel.\nConfigurar los servicios de cada nivel de ejecución u objetivos.\nArrancar, parar, listar, añadir y eliminar servicios en cada nivel.\nEnumerar las acciones que se llevan a cabo durante la parada del sistema.\nUtilizar la herramienta shutdown.\nEnumerar posibles causas de caídas del sistema operativo.\nEnumerar posibles problemas durante el arranque del sistema operativo.\nConocer los principales mecanismos para consultar los logs del sistema operativo."
+    "text": "Describir todas las fases del proceso de arranque del sistema GNU/Linux, estableciendo qué elementos hardware y, sobre todo, software intervienen.\nExplicar qué misión tienen en el arranque los siguientes componentes: iniciador ROM, programa cargador, núcleo del sistema operativo, initrd y proceso Init.\nConfigurar los distintos parámetros del programa cargador GRUB y utilizar el modo interactivo.\nDistinguir la diferencia entre modo de ejecución monousuario y multiusuario.\nExplicar los problemas de seguridad asociados al modo monousuario.\nConocer systemd como sustituto para el Init de GNU/Linux\nEnumerar los pasos necesarios para la configuración del sistema en modo multiusuario.\nExplicar el concepto de niveles de ejecución y las funciones típicas de cada nivel.\nConfigurar los servicios de cada nivel de ejecución u objetivos.\nArrancar, parar, listar, añadir y eliminar servicios en cada nivel.\nEnumerar las acciones que se llevan a cabo durante la parada del sistema.\nUtilizar la herramienta shutdown.\nEnumerar posibles causas de caídas del sistema operativo.\nEnumerar posibles problemas durante el arranque del sistema operativo.\nConocer los principales mecanismos para consultar los logs del sistema operativo.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#evaluación",
     "href": "tema04-arranque/tema04-arranque.html#evaluación",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "",
-    "text": "Cuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.\n\n\n\n\n\n\n\nNota\n\n\n\nComo en otros temas, en estos apuntes se dan muchos detalles que por supuesto no hay que memorizar. Si hay que saber en qué directorio se encuentran el/los ficheros de configuración pero no los parámetros de memoria, estos los ponemos aquí para conocer las posibilidades de cada herramienta."
+    "text": "Cuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.\n\n\n\n\n\n\n\nNota\n\n\n\nComo en otros temas, en estos apuntes se dan muchos detalles que por supuesto no hay que memorizar. Si hay que saber en qué directorio se encuentran el/los ficheros de configuración pero no los parámetros de memoria, estos los ponemos aquí para conocer las posibilidades de cada herramienta.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#arranque-y-parada-del-sistema",
     "href": "tema04-arranque/tema04-arranque.html#arranque-y-parada-del-sistema",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Arranque y parada del sistema",
-    "text": "Arranque y parada del sistema\n\nProcesos de arranque y de parada:\n\nArranque: el sistema se prepara para ser usado por los usuarios.\nParada: el sistema se deja consistente (p.ej. vaciar la caché).\n\n\n\nEl administrador deberá saber qué ficheros controlan estos procesos y cómo lo hacen, para reconocer situaciones de error y solucionarlas.\nProcesos sencillos: se basan en un conjunto de ficheros de configuración y/o de guiones shell que determinan y controlan los procesos."
+    "text": "Arranque y parada del sistema\n\nProcesos de arranque y de parada:\n\nArranque: el sistema se prepara para ser usado por los usuarios.\nParada: el sistema se deja consistente (p.ej. vaciar la caché).\n\n\n\nEl administrador deberá saber qué ficheros controlan estos procesos y cómo lo hacen, para reconocer situaciones de error y solucionarlas.\nProcesos sencillos: se basan en un conjunto de ficheros de configuración y/o de guiones shell que determinan y controlan los procesos.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#arranque",
     "href": "tema04-arranque/tema04-arranque.html#arranque",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Arranque",
-    "text": "Arranque\n\nFuente [Nemeth et al., 2018]."
+    "text": "Arranque\n\nFuente [Nemeth et al., 2018].",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-1",
     "href": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Proceso de arranque",
-    "text": "Proceso de arranque\n\nFuente [Nemeth et al., 2018]."
+    "text": "Proceso de arranque\n\nFuente [Nemeth et al., 2018].",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-fases",
     "href": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-fases",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Proceso de arranque: fases",
-    "text": "Proceso de arranque: fases\n\nDos fases:\n\nArranque del hardware.\nArranque del Sistema Operativo (SO)."
+    "text": "Proceso de arranque: fases\n\nDos fases:\n\nArranque del hardware.\nArranque del Sistema Operativo (SO).",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-programa-cargador",
     "href": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-programa-cargador",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Proceso de arranque: programa cargador",
-    "text": "Proceso de arranque: programa cargador\n\nEl programa cargador (master boot program o boot program) está en los primeros sectores del disco y tiene un tamaño prefijado.\nEstos sectores se conocen como Master Boot Record (MBR, o Volume Boot Record).\nEs el encargado de cargar el núcleo (o kernel) del SO y pasarle el control.\nEl iniciador ROM y el SO tienen un acuerdo sobre el programa cargador (ubicación, dirección de arranque y tamaño)."
+    "text": "Proceso de arranque: programa cargador\n\nEl programa cargador (master boot program o boot program) está en los primeros sectores del disco y tiene un tamaño prefijado.\nEstos sectores se conocen como Master Boot Record (MBR, o Volume Boot Record).\nEs el encargado de cargar el núcleo (o kernel) del SO y pasarle el control.\nEl iniciador ROM y el SO tienen un acuerdo sobre el programa cargador (ubicación, dirección de arranque y tamaño).",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-diferencia-bios-vs-uefi",
     "href": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-diferencia-bios-vs-uefi",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Proceso de arranque: diferencia BIOS vs UEFI",
-    "text": "Proceso de arranque: diferencia BIOS vs UEFI\n\nFuente Ask Ubuntu.\nPuedes consultar las entradas de arranque UEFI con el siguiente comando: efibootmgr -v.\nEn Windows puedes hacer algo similar con: bcdedit /enum firmware."
+    "text": "Proceso de arranque: diferencia BIOS vs UEFI\n\nFuente Ask Ubuntu.\nPuedes consultar las entradas de arranque UEFI con el siguiente comando: efibootmgr -v.\nEn Windows puedes hacer algo similar con: bcdedit /enum firmware.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-núcleo-del-s.o.",
     "href": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-núcleo-del-s.o.",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Proceso de arranque: núcleo del S.O.",
-    "text": "Proceso de arranque: núcleo del S.O.\n\nEl núcleo del S.O. continúa el proceso de arranque:\n\nRealiza una comprobación del hardware del sistema.\nSe prepara a sí mismo para ejecutar el sistema inicializando sus tablas internas, creando estructuras de datos necesarias, etc.\nA continuación crea el proceso Init y le pasa el control.\n\nEl núcleo (Linux) es cargado inicialmente en memoria, y permanece de manera residente durante el funcionamiento del sistema, controlando la ejecución del resto de software (GNU).\nParte de este código se encuentra en módulos del núcleo:\n\nMinimizar la cantidad de código que se carga en memoria.\nMaximizar la modularidad.\n\n\nNota: puedes ver los módulos del núcleo activos en Linux con lsmod."
+    "text": "Proceso de arranque: núcleo del S.O.\n\nEl núcleo del S.O. continúa el proceso de arranque:\n\nRealiza una comprobación del hardware del sistema.\nSe prepara a sí mismo para ejecutar el sistema inicializando sus tablas internas, creando estructuras de datos necesarias, etc.\nA continuación crea el proceso Init y le pasa el control.\n\nEl núcleo (Linux) es cargado inicialmente en memoria, y permanece de manera residente durante el funcionamiento del sistema, controlando la ejecución del resto de software (GNU).\nParte de este código se encuentra en módulos del núcleo:\n\nMinimizar la cantidad de código que se carga en memoria.\nMaximizar la modularidad.\n\n\nNota: puedes ver los módulos del núcleo activos en Linux con lsmod.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-initrd",
     "href": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-initrd",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Proceso de arranque: initrd",
-    "text": "Proceso de arranque: initrd\nPara arrancar el sistema se necesita leer del disco los módulos del kernel que permiten leer el disco."
+    "text": "Proceso de arranque: initrd\nPara arrancar el sistema se necesita leer del disco los módulos del kernel que permiten leer el disco.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-initrd-1",
     "href": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-initrd-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Proceso de arranque: initrd",
-    "text": "Proceso de arranque: initrd\n\ninitrd (Init RAM Disk):\n\nLas características del arranque pueden implicar que el medio desde el que se carga el núcleo provenga de un sistema de ficheros concreto (p.ej. ext4) o incluso desde la red.\nPara ello, se necesitarán módulos específicos, alojados en el initrd.\nEl programa cargador le dice al núcleo la posición del initrd.\nFuncionamiento:\n\nEl núcleo carga primero el initrd.\nUtilizando el initrd, se cargan los módulos necesarios.\nEntonces el núcleo continuará el proceso de arranque."
+    "text": "Proceso de arranque: initrd\n\ninitrd (Init RAM Disk):\n\nLas características del arranque pueden implicar que el medio desde el que se carga el núcleo provenga de un sistema de ficheros concreto (p.ej. ext4) o incluso desde la red.\nPara ello, se necesitarán módulos específicos, alojados en el initrd.\nEl programa cargador le dice al núcleo la posición del initrd.\nFuncionamiento:\n\nEl núcleo carga primero el initrd.\nUtilizando el initrd, se cargan los módulos necesarios.\nEntonces el núcleo continuará el proceso de arranque.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-proceso-init",
     "href": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-proceso-init",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Proceso de arranque: proceso Init",
-    "text": "Proceso de arranque: proceso Init\n\nEl proceso Init (/sbin/init con PID = 1) termina el proceso de arranque, dejando el sistema en modo multiusuario, preparado para que los usuarios trabajen en él.\nUsa una serie de scripts que le indican las acciones a realizar.\n\n\n\nTareas que realiza el proceso Init:\n\nChequea los sistemas de ficheros.\nMonta los sistemas de ficheros permanentes.\nActiva las áreas de swapping o intercambio.\nActiva los demonios y la red (NFS, NIS, etc.).\nLimpia los sistemas de ficheros (borra los directorios temporales).\nHabilita el login a los usuarios del sistema."
+    "text": "Proceso de arranque: proceso Init\n\nEl proceso Init (/sbin/init con PID = 1) termina el proceso de arranque, dejando el sistema en modo multiusuario, preparado para que los usuarios trabajen en él.\nUsa una serie de scripts que le indican las acciones a realizar.\n\n\n\nTareas que realiza el proceso Init:\n\nChequea los sistemas de ficheros.\nMonta los sistemas de ficheros permanentes.\nActiva las áreas de swapping o intercambio.\nActiva los demonios y la red (NFS, NIS, etc.).\nLimpia los sistemas de ficheros (borra los directorios temporales).\nHabilita el login a los usuarios del sistema.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-por-dónde-vamos",
     "href": "tema04-arranque/tema04-arranque.html#proceso-de-arranque-por-dónde-vamos",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Proceso de arranque: por dónde vamos",
-    "text": "Proceso de arranque: por dónde vamos"
+    "text": "Proceso de arranque: por dónde vamos",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#gestor-de-arranque-grub-1",
     "href": "tema04-arranque/tema04-arranque.html#gestor-de-arranque-grub-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Gestor de arranque GRUB",
-    "text": "Gestor de arranque GRUB\n\nGRUB: GRand Unified Bootloader:\nGRUB se instala en el master boot record (MBR) o como UEFI boot loader y hace de las funciones de master boot program (MBP, programa cargador de arranque).\nPregunta qué SO arrancar: p.ej. Linux o Windows.\n\nSi la respuesta es Linux \\(\\Rightarrow\\) carga el núcleo solicitado y le pasa el control para que el arranque continúe.\nSi la respuesta es Windows \\(\\Rightarrow\\) pasa el control a Windows que realiza su arranque."
+    "text": "Gestor de arranque GRUB\n\nGRUB: GRand Unified Bootloader:\nGRUB se instala en el master boot record (MBR) o como UEFI boot loader y hace de las funciones de master boot program (MBP, programa cargador de arranque).\nPregunta qué SO arrancar: p.ej. Linux o Windows.\n\nSi la respuesta es Linux \\(\\Rightarrow\\) carga el núcleo solicitado y le pasa el control para que el arranque continúe.\nSi la respuesta es Windows \\(\\Rightarrow\\) pasa el control a Windows que realiza su arranque.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#gestor-de-arranque-grub-lo-básico",
     "href": "tema04-arranque/tema04-arranque.html#gestor-de-arranque-grub-lo-básico",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Gestor de arranque GRUB: lo básico",
-    "text": "Gestor de arranque GRUB: lo básico\n\n/etc/default/grub: archivo de configuración general de GRUB. Habitualmente sólo cambiaremos este.\nscripts incluidos en la carpeta /etc/grub.d/.\nArchivo fundamental de configuración: /boot/grub/grub.cfg. ¡No editar a mano!. Este archivo se genera a partir del comando sudo update-grub2, utilizando todos las opciones en /etc/default/grub y los scripts /etc/grub.d/\n\n\n\n\n\n\n\nTip\n\n\n\nSi compartes máquina con Windows este periódicamente borra el MBR y es necesario reinstalar GRUB desde una distribución live (sudo grub-install /dev/sda).\n\n\n\n\n\n\n\n\nImportante\n\n\n\nA través del cargador de arranque o un USB maligno se pueden ganar privilegios en una máquina"
+    "text": "Gestor de arranque GRUB: lo básico\n\n/etc/default/grub: archivo de configuración general de GRUB. Habitualmente sólo cambiaremos este.\nscripts incluidos en la carpeta /etc/grub.d/.\nArchivo fundamental de configuración: /boot/grub/grub.cfg. ¡No editar a mano!. Este archivo se genera a partir del comando sudo update-grub2, utilizando todos las opciones en /etc/default/grub y los scripts /etc/grub.d/\n\n\n\n\n\n\n\nTip\n\n\n\nSi compartes máquina con Windows este periódicamente borra el MBR y es necesario reinstalar GRUB desde una distribución live (sudo grub-install /dev/sda).\n\n\n\n\n\n\n\n\nImportante\n\n\n\nA través del cargador de arranque o un USB maligno se pueden ganar privilegios en una máquina",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#opcional-grub-configuración-general",
     "href": "tema04-arranque/tema04-arranque.html#opcional-grub-configuración-general",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "[OPCIONAL] GRUB: configuración general",
-    "text": "[OPCIONAL] GRUB: configuración general\nContenidos de la carpeta /etc/grub.d/ (en principio, no modificar nada):\n\n/etc/grub.d/00_header: Cabeceras.\n/etc/grub.d/05_debian_theme: Aspecto visual del menú, colores, temas, imagen de fondo...\n/etc/grub.d/10_linux: Este archivo contiene mandatos y scripts que se encargan del kernel Linux de la partición principal (se incluyen todos los núcleos presentes en /boot).\n/etc/grub.d/20_*: Aplicaciones third party (20_memtest86+, 20_linux_xen...)\n/etc/grub.d/30_os-prober: Este archivo contiene comandos y scripts que se encargan de otros sistemas operativos.\n/etc/grub.d/30_uefi-firmware: Este archivo contiene comandos que automatizan la extracción de configuraciones incluidas en la partición EFI."
+    "text": "[OPCIONAL] GRUB: configuración general\nContenidos de la carpeta /etc/grub.d/ (en principio, no modificar nada):\n\n/etc/grub.d/00_header: Cabeceras.\n/etc/grub.d/05_debian_theme: Aspecto visual del menú, colores, temas, imagen de fondo...\n/etc/grub.d/10_linux: Este archivo contiene mandatos y scripts que se encargan del kernel Linux de la partición principal (se incluyen todos los núcleos presentes en /boot).\n/etc/grub.d/20_*: Aplicaciones third party (20_memtest86+, 20_linux_xen...)\n/etc/grub.d/30_os-prober: Este archivo contiene comandos y scripts que se encargan de otros sistemas operativos.\n/etc/grub.d/30_uefi-firmware: Este archivo contiene comandos que automatizan la extracción de configuraciones incluidas en la partición EFI.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#grub-algunas-opciones-i",
     "href": "tema04-arranque/tema04-arranque.html#grub-algunas-opciones-i",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "GRUB: algunas opciones (I)",
-    "text": "GRUB: algunas opciones (I)\nFichero /etc/default/grub:\n\nEste fichero si es editable (00_header lee su contenido).\nGRUB_DEFAULT=0: entrada por defecto para el arranque. Si ponemos saved, será seleccionada por el administrador (comandos grub-set-default, permanente, y grub-reboot, un solo arranque).\nGRUB_SAVEDEFAULT=true: la entrada por defecto es siempre la última seleccionada.\nGRUB_HIDDEN_TIMEOUT=0:\n\nMuestra una pantalla en negro o con una imagen, durante el número de segundos indicado, antes del menú de arranque (pulsar una tecla para saltarla). Es 0 cuando solo hay Linux (el menú puede aparecer con Shift).\nSuele no usarse cuando hay múltiples sistemas (comentado).\n\nGRUB_HIDDEN_TIMEOUT_QUIET=true: sin cuenta atrás."
+    "text": "GRUB: algunas opciones (I)\nFichero /etc/default/grub:\n\nEste fichero si es editable (00_header lee su contenido).\nGRUB_DEFAULT=0: entrada por defecto para el arranque. Si ponemos saved, será seleccionada por el administrador (comandos grub-set-default, permanente, y grub-reboot, un solo arranque).\nGRUB_SAVEDEFAULT=true: la entrada por defecto es siempre la última seleccionada.\nGRUB_HIDDEN_TIMEOUT=0:\n\nMuestra una pantalla en negro o con una imagen, durante el número de segundos indicado, antes del menú de arranque (pulsar una tecla para saltarla). Es 0 cuando solo hay Linux (el menú puede aparecer con Shift).\nSuele no usarse cuando hay múltiples sistemas (comentado).\n\nGRUB_HIDDEN_TIMEOUT_QUIET=true: sin cuenta atrás.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#opcional-grub-algunas-opciones-ii",
     "href": "tema04-arranque/tema04-arranque.html#opcional-grub-algunas-opciones-ii",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "[OPCIONAL] GRUB: algunas opciones (II)",
-    "text": "[OPCIONAL] GRUB: algunas opciones (II)\nFichero /etc/default/grub:\n\nGRUB_TIMEOUT=10: número de segundos hasta seleccionar entrada por defecto.\nGRUB_CMDLINE_LINUX=opciones: pasar opciones de arranque al kernel linux (modo normal o recuperación).\nGRUB_CMDLINE_LINUX_DEFAULT=quiet splash: pasar opciones de arranque al kernel linux (modo normal).\nGRUB_TERMINAL=console: desactivar modo gráfico."
+    "text": "[OPCIONAL] GRUB: algunas opciones (II)\nFichero /etc/default/grub:\n\nGRUB_TIMEOUT=10: número de segundos hasta seleccionar entrada por defecto.\nGRUB_CMDLINE_LINUX=opciones: pasar opciones de arranque al kernel linux (modo normal o recuperación).\nGRUB_CMDLINE_LINUX_DEFAULT=quiet splash: pasar opciones de arranque al kernel linux (modo normal).\nGRUB_TERMINAL=console: desactivar modo gráfico.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#opcional-grub-algunas-opciones-iii",
     "href": "tema04-arranque/tema04-arranque.html#opcional-grub-algunas-opciones-iii",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "[OPCIONAL] GRUB: algunas opciones (III)",
-    "text": "[OPCIONAL] GRUB: algunas opciones (III)\nFichero /etc/default/grub:\n\nGRUB_DISTRIBUTOR=lsb_release -i -s 2&gt; /dev/null || echo Debian: obtener el nombre de la distribución.\nGRUB_DISABLE_LINUX_UUID=\"true\": no utilizar el UUID del dispositivo raíz (utilizar nomenclatura tradicional /dev/sda).\nGRUB_GFXMODE=640x480: seleccionar manualmente la resolución para el menú.\nGRUB_INIT_TUNE=\"480 440 1\": hacer beep antes del menú de inicio (tempo [pitch1 duration1] [pitch2 duration2]...).\nGRUB_BACKGROUND: imagen de fondo."
+    "text": "[OPCIONAL] GRUB: algunas opciones (III)\nFichero /etc/default/grub:\n\nGRUB_DISTRIBUTOR=lsb_release -i -s 2&gt; /dev/null || echo Debian: obtener el nombre de la distribución.\nGRUB_DISABLE_LINUX_UUID=\"true\": no utilizar el UUID del dispositivo raíz (utilizar nomenclatura tradicional /dev/sda).\nGRUB_GFXMODE=640x480: seleccionar manualmente la resolución para el menú.\nGRUB_INIT_TUNE=\"480 440 1\": hacer beep antes del menú de inicio (tempo [pitch1 duration1] [pitch2 duration2]...).\nGRUB_BACKGROUND: imagen de fondo.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
-    "objectID": "tema04-arranque/tema04-arranque.html#gestor-de-arranque-grub-2",
-    "href": "tema04-arranque/tema04-arranque.html#gestor-de-arranque-grub-2",
+    "objectID": "tema04-arranque/tema04-arranque.html#grub-modificación-de-parámetros-al-arrancar",
+    "href": "tema04-arranque/tema04-arranque.html#grub-modificación-de-parámetros-al-arrancar",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
-    "section": "Gestor de arranque GRUB",
-    "text": "Gestor de arranque GRUB\nGRUB permite (durante la selección del SO):\n\nEditar las entradas:\n\nPulsar tecla e, permite modificar las entradas de arranque para solucionar errores.\nLos cambios no son permanentes, solo sirve para probar.\n\nConsola interactiva GRUB: pulsar la tecla c. Permite ejecutar comandos para arreglar el arranque (seleccionar otro initrd, cargar módulos...).\nTerminología de GRUB, numerando los dispositivos según los reconozca la BIOS empezando en cero:\n\nNombres de dispositivos: (&lt;t&gt;&lt;n&gt;,&lt;np&gt;)\n(hd0,0) \\(\\Rightarrow\\) /dev/sda1\nNombres de ficheros (hd0,0)/boot/grub/grub.conf"
+    "section": "GRUB: modificación de parámetros al arrancar",
+    "text": "GRUB: modificación de parámetros al arrancar\nGRUB permite (durante la selección del SO):\n\nEditar las entradas:\n\nPulsar tecla e, permite modificar las entradas de arranque para solucionar errores.\nLos cambios no son permanentes, solo sirve para probar.\n\nConsola interactiva GRUB: pulsar la tecla c. Permite ejecutar comandos para arreglar el arranque (seleccionar otro initrd, cargar módulos...).\nTerminología de GRUB, numerando los dispositivos según los reconozca la BIOS empezando en cero:\n\nNombres de dispositivos: (&lt;t&gt;&lt;n&gt;,&lt;np&gt;)\n(hd0,0) \\(\\Rightarrow\\) /dev/sda1\nNombres de ficheros (hd0,0)/boot/grub/grub.cfg",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#fragmento-bootgrubgrub.cfg-linux",
     "href": "tema04-arranque/tema04-arranque.html#fragmento-bootgrubgrub.cfg-linux",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Fragmento /boot/grub/grub.cfg (Linux)",
-    "text": "Fragmento /boot/grub/grub.cfg (Linux)\nmenuentry 'Debian GNU/Linux, con Linux 5.4.0-0.bpo.3-amd64' --class debian --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-5.4.0-0.bpo.3-amd64-advanced-bf8474c5-958e-4cca-a568-4828b2310fda' {\n    load_video\n    insmod gzio\n    insmod part_msdos\n    insmod ext2\n    set root='hd0,msdos1'\n    search --no-floppy --fs-uuid --set=root bf8474c5-958e-4cca-a568-4828b2310fda\n    echo 'Cargando Linux 5.4.0-0.bpo.3-amd64...'\n    linux /boot/vmlinuz-5.4.0-0.bpo.3-amd64 root=UUID=bf8474c5-958e-4cca-a568-4828b2310fda ro initrd=/install/gtk/initrd.gz quiet\n    echo 'Cargando imagen de memoria inicial...'\n    initrd /boot/initrd.img-5.4.0-0.bpo.3-amd64\n}\nmenuentry 'Debian GNU/Linux, with Linux 5.4.0-0.bpo.3-amd64 (recovery mode)' --class debian --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-5.4.0-0.bpo.3-amd64-recovery-bf8474c5-958e-4cca-a568-4828b2310fda' {\n    load_video   \n    insmod gzio\n    insmod part_msdos\n    insmod ext2\n    set root='hd0,msdos1'\n    search --no-floppy --fs-uuid --set=root bf8474c5-958e-4cca-a568-4828b2310fda\n    echo 'Cargando Linux 5.4.0-0.bpo.3-amd64...'\n    linux /boot/vmlinuz-5.4.0-0.bpo.3-amd64 root=UUID=bf8474c5-958e-4cca-a568-4828b2310fda ro single initrd=/install/gtk/initrd.gz\n    echo 'Cargando imagen de memoria inicial...'\n    initrd /boot/initrd.img-5.4.0-0.bpo.3-amd64\n    }"
+    "text": "Fragmento /boot/grub/grub.cfg (Linux)\nmenuentry 'Debian GNU/Linux, con Linux 5.4.0-0.bpo.3-amd64' --class debian --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-5.4.0-0.bpo.3-amd64-advanced-bf8474c5-958e-4cca-a568-4828b2310fda' {\n    load_video\n    insmod gzio\n    insmod part_msdos\n    insmod ext2\n    set root='hd0,msdos1'\n    search --no-floppy --fs-uuid --set=root bf8474c5-958e-4cca-a568-4828b2310fda\n    echo 'Cargando Linux 5.4.0-0.bpo.3-amd64...'\n    linux /boot/vmlinuz-5.4.0-0.bpo.3-amd64 root=UUID=bf8474c5-958e-4cca-a568-4828b2310fda ro initrd=/install/gtk/initrd.gz quiet\n    echo 'Cargando imagen de memoria inicial...'\n    initrd /boot/initrd.img-5.4.0-0.bpo.3-amd64\n}\nmenuentry 'Debian GNU/Linux, with Linux 5.4.0-0.bpo.3-amd64 (recovery mode)' --class debian --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-5.4.0-0.bpo.3-amd64-recovery-bf8474c5-958e-4cca-a568-4828b2310fda' {\n    load_video   \n    insmod gzio\n    insmod part_msdos\n    insmod ext2\n    set root='hd0,msdos1'\n    search --no-floppy --fs-uuid --set=root bf8474c5-958e-4cca-a568-4828b2310fda\n    echo 'Cargando Linux 5.4.0-0.bpo.3-amd64...'\n    linux /boot/vmlinuz-5.4.0-0.bpo.3-amd64 root=UUID=bf8474c5-958e-4cca-a568-4828b2310fda ro single initrd=/install/gtk/initrd.gz\n    echo 'Cargando imagen de memoria inicial...'\n    initrd /boot/initrd.img-5.4.0-0.bpo.3-amd64\n    }",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#fragmento-bootgrubgrub.cfg-windows",
     "href": "tema04-arranque/tema04-arranque.html#fragmento-bootgrubgrub.cfg-windows",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Fragmento /boot/grub/grub.cfg (Windows)",
-    "text": "Fragmento /boot/grub/grub.cfg (Windows)\n...\n## BEGIN /etc/grub.d/30_os-prober ###\nmenuentry 'Windows 7 (en /dev/sdb1)' --class windows --class os $menuentry_id_option 'osprober-chain-DA3EBC4E3EBC2583' {\n    insmod part_msdos\n    insmod ntfs\n    set root='hd1,msdos1'\n    search --no-floppy --fs-uuid --set=root DA3EBC4E3EBC2583\n    parttool ${root} hidden-\n    chainloader +1\n}\n## END /etc/grub.d/30_os-prober ##"
+    "text": "Fragmento /boot/grub/grub.cfg (Windows)\n...\n## BEGIN /etc/grub.d/30_os-prober ###\nmenuentry 'Windows 7 (en /dev/sdb1)' --class windows --class os $menuentry_id_option 'osprober-chain-DA3EBC4E3EBC2583' {\n    insmod part_msdos\n    insmod ntfs\n    set root='hd1,msdos1'\n    search --no-floppy --fs-uuid --set=root DA3EBC4E3EBC2583\n    parttool ${root} hidden-\n    chainloader +1\n}\n## END /etc/grub.d/30_os-prober ##",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#ejercicio-parámetros-básicos-de-grub",
     "href": "tema04-arranque/tema04-arranque.html#ejercicio-parámetros-básicos-de-grub",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Ejercicio: parámetros básicos de GRUB",
-    "text": "Ejercicio: parámetros básicos de GRUB\n\nCambia la imagen de fondo a la que quieras.\n\n\nPuedes poner la imagen en /boot.\nPara ello puedes copiar una imagen usando el navegador de archivos, scp, descargarla con cd /boot/ && wget \"URL\"…\nPonle un nombre fácil, e.g. bg.png\nEn /etc/default/grub añade:\n\nGRUB_BACKGROUND=\"/boot/bg.png\"\n\nQuizás no te funcione a la primera. Revisa:\n\nRuta entre comillas.\nFormato imagen (¿imagemagick?).\n\napt install imagemagick\nconvert imagen.webp imagen.png\n\nRegenerar ficheros de configuración con sudo update-grub2\n\n\n\nCambia el timeout."
+    "text": "Ejercicio: parámetros básicos de GRUB\n\nCambia la imagen de fondo a la que quieras.\n\n\nPuedes poner la imagen en /boot.\nPara ello puedes copiar una imagen usando el navegador de archivos, scp, descargarla con cd /boot/ && wget \"URL\"…\nPonle un nombre fácil, e.g. bg.png\nEn /etc/default/grub añade:\n\nGRUB_BACKGROUND=\"/boot/bg.png\"\n\nQuizás no te funcione a la primera. Revisa:\n\nRuta entre comillas.\nFormato imagen (¿imagemagick?).\n\napt install imagemagick\nconvert imagen.webp imagen.png\n\nRegenerar ficheros de configuración con sudo update-grub2\n\n\n\nCambia el timeout.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#opciones-avanzadas-y-modo-monousuario",
     "href": "tema04-arranque/tema04-arranque.html#opciones-avanzadas-y-modo-monousuario",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Opciones avanzadas y modo monousuario",
-    "text": "Opciones avanzadas y modo monousuario"
+    "text": "Opciones avanzadas y modo monousuario",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#modo-monousuario",
     "href": "tema04-arranque/tema04-arranque.html#modo-monousuario",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Modo monousuario",
-    "text": "Modo monousuario\n\nEstado del sistema definido para realizar tareas administrativas y de mantenimiento, que requieren un control completo y no compartido.\nSólo realiza el montaje del sistema de ficheros raíz (/), los otros SF están disponibles pero no están montados.\nSe puede acceder a todo el sistema, pero:\n\nMuy pocos demonios están en ejecución, sólo los necesarios.\nMuchas utilidades no están activas (impresión, red).\nSólo las órdenes del SF raíz están disponibles (si /usr está en otra partición, no está montado).\n\nPara entrar en modo monousuario el proceso Init crea el shell por defecto (/bin/sh) como usuario root:\n\nPero antes se ejecuta la orden /sbin/sulogin, que pide la contraseña de root para dejar entrar al sistema."
+    "text": "Modo monousuario\n\nEstado del sistema definido para realizar tareas administrativas y de mantenimiento, que requieren un control completo y no compartido.\nSólo realiza el montaje del sistema de ficheros raíz (/), los otros SF están disponibles pero no están montados.\nSe puede acceder a todo el sistema, pero:\n\nMuy pocos demonios están en ejecución, sólo los necesarios.\nMuchas utilidades no están activas (impresión, red).\nSólo las órdenes del SF raíz están disponibles (si /usr está en otra partición, no está montado).\n\nPara entrar en modo monousuario el proceso Init crea el shell por defecto (/bin/sh) como usuario root:\n\nPero antes se ejecuta la orden /sbin/sulogin, que pide la contraseña de root para dejar entrar al sistema.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#modo-monousuario-1",
     "href": "tema04-arranque/tema04-arranque.html#modo-monousuario-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Modo monousuario",
-    "text": "Modo monousuario\n\n¿Cómo se entra en modo monousuario?\n\nManualmente, indicando al cargador una opción o parámetro: mediante la interfaz de edición de GRUB, opción single a la entrada del núcleo.\nAutomáticamente, si hay problemas en el proceso de arranque que el sistema no puede solucionar por sí solo (p.e. problemas en el SF que fsck no puede solucionar, errores en los ficheros de arranque)."
+    "text": "Modo monousuario\n\n¿Cómo se entra en modo monousuario?\n\nManualmente, indicando al cargador una opción o parámetro: mediante la interfaz de edición de GRUB, opción single a la entrada del núcleo.\nAutomáticamente, si hay problemas en el proceso de arranque que el sistema no puede solucionar por sí solo (p.e. problemas en el SF que fsck no puede solucionar, errores en los ficheros de arranque).",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#modo-monousuario-2",
     "href": "tema04-arranque/tema04-arranque.html#modo-monousuario-2",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Modo monousuario",
-    "text": "Modo monousuario\n\n\n¡Problema!: si cambiamos las opciones de GRUB y ponemos init=/bin/sh / init=/bin/bash, no se llama a sulogin.\nPermite tener acceso a todo el sistema, estando delante del ordenador."
+    "text": "Modo monousuario\n\n\n¡Problema!: si cambiamos las opciones de GRUB y ponemos init=/bin/sh / init=/bin/bash, no se llama a sulogin.\nPermite tener acceso a todo el sistema, estando delante del ordenador.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#ejercicio-hacerse-root-sin-la-contraseña",
     "href": "tema04-arranque/tema04-arranque.html#ejercicio-hacerse-root-sin-la-contraseña",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Ejercicio: hacerse root sin la contraseña",
-    "text": "Ejercicio: hacerse root sin la contraseña\n\nHas conseguido entrar en la sala de servidores echándole laxante en el café al guardia de seguridad. ¿Podrías hacerte con el usuario root del sistema y ponerle la contraseña que quieras?\nPara conseguirlo puedes hacer algo extraordinario como mirar la bibliografía del tema."
+    "text": "Ejercicio: hacerse root sin la contraseña\n\nHas conseguido entrar en la sala de servidores echándole laxante en el café al guardia de seguridad. ¿Podrías hacerte con el usuario root del sistema y ponerle la contraseña que quieras?\nPara conseguirlo puedes hacer algo extraordinario como mirar la bibliografía del tema.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#modo-monousuario-3",
     "href": "tema04-arranque/tema04-arranque.html#modo-monousuario-3",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Modo monousuario",
-    "text": "Modo monousuario\n\nSolución: no existe una solución única sino un conjunto de medidas de mitigación para proteger ante accesos físicos al sistema.\nPor ejemplo, solicitar contraseña para la entrada de administración.\n\nFichero /etc/grub.d/40_custom (o donde esté la entrada).\n\nset superusers=\"user1\"\npassword_pbkdf2 user1 grub.pbkdf2.sha512.10000.086EB0CC8 ...\npassword_pbkdf2 user2 grub.pbkdf2.sha512.10000.045EB0CC8 ...\n\nEl password se puede generar usando:\n\ngrub-mkpasswd-pbkdf2\nEnter password: \nReenter password: \nYour PBKDF2 is grub.pbkdf2.sha512.10000.086EB0CC8CB1E39E2...\n\nEjecutar update-grub o modificar la entrada de administración para que requiera password: --users user1."
+    "text": "Modo monousuario\n\nSolución: no existe una solución única sino un conjunto de medidas de mitigación para proteger ante accesos físicos al sistema.\nPor ejemplo, solicitar contraseña para la entrada de administración.\n\nFichero /etc/grub.d/40_custom (o donde esté la entrada).\n\nset superusers=\"user1\"\npassword_pbkdf2 user1 grub.pbkdf2.sha512.10000.086EB0CC8 ...\npassword_pbkdf2 user2 grub.pbkdf2.sha512.10000.045EB0CC8 ...\n\nEl password se puede generar usando:\n\ngrub-mkpasswd-pbkdf2\nEnter password: \nReenter password: \nYour PBKDF2 is grub.pbkdf2.sha512.10000.086EB0CC8CB1E39E2...\n\nEjecutar update-grub o modificar la entrada de administración para que requiera password: --users user1.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#modo-monousuario-4",
     "href": "tema04-arranque/tema04-arranque.html#modo-monousuario-4",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Modo monousuario",
-    "text": "Modo monousuario\n\n\nVulnerabilidad en el sistema de contraseñas de grub y estrategias de mitigación:\n\n\n\n\n\nUna vulnerabilidad puede darte acceso root en Linux pulsando Intro durante 70 segundos (2016)\nAlgunas estrategias de mitigación frente a accesos físicos (2009)\nPhysical Security for Linux Systems (2020)"
+    "text": "Modo monousuario\n\n\nVulnerabilidad en el sistema de contraseñas de grub y estrategias de mitigación:\n\n\n\n\n\nUna vulnerabilidad puede darte acceso root en Linux pulsando Intro durante 70 segundos (2016)\nAlgunas estrategias de mitigación frente a accesos físicos (2009)\nPhysical Security for Linux Systems (2020)",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
-    "objectID": "tema04-arranque/tema04-arranque.html#ejercicio-proteje-tu-sistema-de-arranque",
-    "href": "tema04-arranque/tema04-arranque.html#ejercicio-proteje-tu-sistema-de-arranque",
+    "objectID": "tema04-arranque/tema04-arranque.html#ejercicio-protege-tu-sistema-de-arranque",
+    "href": "tema04-arranque/tema04-arranque.html#ejercicio-protege-tu-sistema-de-arranque",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
-    "section": "Ejercicio: proteje tu sistema de arranque",
-    "text": "Ejercicio: proteje tu sistema de arranque\n\nAñade un usuario y contraseña a GRUB.\nDesabilita el reinicio por teclado Ctrl+Alt+Del. Prueba esto usando el menú de Virtual Box o reiniciarás tu ordenador"
+    "section": "Ejercicio: protege tu sistema de arranque",
+    "text": "Ejercicio: protege tu sistema de arranque\n\nAñade un usuario y contraseña a GRUB.\nDeshabilita el reinicio por teclado Ctrl+Alt+Del. Prueba esto usando el menú de Virtual Box o reiniciarás tu ordenador",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#pasos-arranque-modo-multiusuario-iii",
     "href": "tema04-arranque/tema04-arranque.html#pasos-arranque-modo-multiusuario-iii",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Pasos arranque modo multiusuario (I/II)",
-    "text": "Pasos arranque modo multiusuario (I/II)\n\nChequea el sistema de ficheros raíz con fsck.\n\nSi al apagar el sistema, el sistema de ficheros se desmontó correctamente, no se chequea.\nSin embargo, algunos SOs con determinados SFs fuerzan el chequeo siempre, o cada cierto tiempo o cada cierto número de montajes sin chequear.\nSi fsck encuentra problemas que no puede solucionar “sólo”, lleva al sistema a modo monousuario para que el administrador realice el chequeo manual.\n\nMonta el sistema de ficheros raíz en modo lectura-escritura.\nChequea el resto de SFs con fsck (idem al punto 1).\nMonta el resto de SFs.\nActiva las particiones de intercambio (swapping): swapon -a.\nActiva las cuotas de disco: quotacheck -a y quotaon -a."
+    "text": "Pasos arranque modo multiusuario (I/II)\n\nChequea el sistema de ficheros raíz con fsck.\n\nSi al apagar el sistema, el sistema de ficheros se desmontó correctamente, no se chequea.\nSin embargo, algunos SOs con determinados SFs fuerzan el chequeo siempre, o cada cierto tiempo o cada cierto número de montajes sin chequear.\nSi fsck encuentra problemas que no puede solucionar “sólo”, lleva al sistema a modo monousuario para que el administrador realice el chequeo manual.\n\nMonta el sistema de ficheros raíz en modo lectura-escritura.\nChequea el resto de SFs con fsck (idem al punto 1).\nMonta el resto de SFs.\nActiva las particiones de intercambio (swapping): swapon -a.\nActiva las cuotas de disco: quotacheck -a y quotaon -a.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#pasos-arranque-modo-multiusuario-iiii",
     "href": "tema04-arranque/tema04-arranque.html#pasos-arranque-modo-multiusuario-iiii",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Pasos arranque modo multiusuario (II/II)",
-    "text": "Pasos arranque modo multiusuario (II/II)\n\nLanza los procesos servidores o demonios: crond, atd, cupsd, syslogd...\nActiva la red.\nLanza los demonios de red: apache2, nagiosd, sshd, ntpd, nfsd, rpc.mountd, slapd...\nLimpia los sistemas de ficheros: /tmp, etc.\nPermite que los usuarios entren:\n\nCrea las terminales, lanzando getty en modo texto, y el terminal gráfico, si es preciso.\nBorra, en caso de que exista, el fichero /etc/nologin: Si el fichero /etc/nologin existe, los usuarios (excepto root) no pueden entrar al sistema. Algunos sistemas lo crean al iniciar el arranque."
+    "text": "Pasos arranque modo multiusuario (II/II)\n\nLanza los procesos servidores o demonios: crond, atd, cupsd, syslogd...\nActiva la red.\nLanza los demonios de red: apache2, nagiosd, sshd, ntpd, nfsd, rpc.mountd, slapd...\nLimpia los sistemas de ficheros: /tmp, etc.\nPermite que los usuarios entren:\n\nCrea las terminales, lanzando getty en modo texto, y el terminal gráfico, si es preciso.\nBorra, en caso de que exista, el fichero /etc/nologin: Si el fichero /etc/nologin existe, los usuarios (excepto root) no pueden entrar al sistema. Algunos sistemas lo crean al iniciar el arranque.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#niveles-de-ejecución-en-gnulinux",
     "href": "tema04-arranque/tema04-arranque.html#niveles-de-ejecución-en-gnulinux",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Niveles de ejecución en GNU/Linux",
-    "text": "Niveles de ejecución en GNU/Linux\n\nEl SO puede estar en distintos niveles de ejecución (no solo modo monousuario y multiusuario).\nEn GNU/Linux, los niveles de ejecución son:\n\nNivel 0: Sistema apagado.\nNivel 1, s o S: Modo monousuario, rescue o troubleshooting.\nNivel 2: Modo multiusuario sin funciones de red.\nNivel 3: Modo multiusuario con funciones de red y terminales de texto.\nNivel 4: Sin usar, a redefinir por el administrador.\nNivel 5: Modo multiusuario con funciones de red e inicio de sesión gráfico.\nNivel 6: Sistema reiniciándose.\n\nEn Debian, por defecto, los niveles 2 al 5 son todos modo multiusuario con todas las funciones."
+    "text": "Niveles de ejecución en GNU/Linux\n\nEl SO puede estar en distintos niveles de ejecución (no solo modo monousuario y multiusuario).\nEn GNU/Linux, los niveles de ejecución son:\n\nNivel 0: Sistema apagado.\nNivel 1, s o S: Modo monousuario, rescue o troubleshooting.\nNivel 2: Modo multiusuario sin funciones de red.\nNivel 3: Modo multiusuario con funciones de red y terminales de texto.\nNivel 4: Sin usar, a redefinir por el administrador.\nNivel 5: Modo multiusuario con funciones de red e inicio de sesión gráfico.\nNivel 6: Sistema reiniciándose.\n\nEn Debian, por defecto, los niveles 2 al 5 son todos modo multiusuario con todas las funciones.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#niveles-de-ejecución-en-gnulinux-init",
     "href": "tema04-arranque/tema04-arranque.html#niveles-de-ejecución-en-gnulinux-init",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Niveles de ejecución en GNU/Linux (init)",
-    "text": "Niveles de ejecución en GNU/Linux (init)\n\n/sbin/runlevel: saber en qué nivel está el sistema.\n/sbin/telinit: cambiar de nivel de ejecución:\n\ntelinit 1: a modo monousuario.\ntelinit 6: reiniciar el sistema.\ntelinit 3: cambiar al nivel 3.\nsystemctl isolate multi-user.target \\(\\rightarrow\\) cambiar al nivel 3 en systemd.**\n\nEl nivel por defecto, establecido al arrancar, se encuentra:\n\nEn el fichero /etc/inittab: id:2:initdefault:\nO con el siguiente comando (systemd): systemctl set-default multi-user.target\n\nAl arrancar mediante GRUB, al núcleo se le puede pasar como parámetro un número indicando el nivel en el que queremos arrancar. En este caso se obviará el nivel por defecto."
+    "text": "Niveles de ejecución en GNU/Linux (init)\n\n/sbin/runlevel: saber en qué nivel está el sistema.\n/sbin/telinit: cambiar de nivel de ejecución:\n\ntelinit 1: a modo monousuario.\ntelinit 6: reiniciar el sistema.\ntelinit 3: cambiar al nivel 3.\nsystemctl isolate multi-user.target \\(\\rightarrow\\) cambiar al nivel 3 en systemd.**\n\nEl nivel por defecto, establecido al arrancar, se encuentra:\n\nEn el fichero /etc/inittab: id:2:initdefault:\nO con el siguiente comando (systemd): systemctl set-default multi-user.target\n\nAl arrancar mediante GRUB, al núcleo se le puede pasar como parámetro un número indicando el nivel en el que queremos arrancar. En este caso se obviará el nivel por defecto.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#systemd",
     "href": "tema04-arranque/tema04-arranque.html#systemd",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Systemd",
-    "text": "Systemd\n\nEs un reemplazo del proceso Init que viene incorporándose en GNU/Linux desde el año 2015.\nAmplía funcionalidades, pudiendo gestionar cosas que Init no gestiona, por ejemplo el sistema de logs.\nFilosofía principal:\n\nMejorar la forma de expresar dependencias.\nPermitir que se realicen más tareas en paralelo.\nReducir la carga extra que supone el intérprete.\n\nSe gestiona mediante unidades (servicios) y targets (algo similar a los niveles de ejecución)."
+    "text": "Systemd\n\nEs un reemplazo del proceso Init que viene incorporándose en GNU/Linux desde el año 2015.\nAmplía funcionalidades, pudiendo gestionar cosas que Init no gestiona, por ejemplo el sistema de logs.\nFilosofía principal:\n\nMejorar la forma de expresar dependencias.\nPermitir que se realicen más tareas en paralelo.\nReducir la carga extra que supone el intérprete.\n\nSe gestiona mediante unidades (servicios) y targets (algo similar a los niveles de ejecución).",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#systemd-controversia",
     "href": "tema04-arranque/tema04-arranque.html#systemd-controversia",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Systemd: controversia",
-    "text": "Systemd: controversia\nSistema muy complejo, causa algunas dependencias innecesarias, ficheros binarios vs texto…\n\nhttps://without-systemd.org"
+    "text": "Systemd: controversia\nSistema muy complejo, causa algunas dependencias innecesarias, ficheros binarios vs texto…\n\nhttps://without-systemd.org",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#equivalencia-de-niveles-de-ejecución-de-init-y-systemd",
     "href": "tema04-arranque/tema04-arranque.html#equivalencia-de-niveles-de-ejecución-de-init-y-systemd",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Equivalencia de niveles de ejecución de init y systemd",
-    "text": "Equivalencia de niveles de ejecución de init y systemd\nsystemd se encarga de dar soporte hacia atrás a guiones y niveles de Init.\n\nFuente [Nemeth et al., 2018]."
+    "text": "Equivalencia de niveles de ejecución de init y systemd\nsystemd se encarga de dar soporte hacia atrás a guiones y niveles de Init.\n\nFuente [Nemeth et al., 2018].",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#ficheros-de-inicialización",
     "href": "tema04-arranque/tema04-arranque.html#ficheros-de-inicialización",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Ficheros de inicialización",
-    "text": "Ficheros de inicialización\n\nPersonalizar niveles de ejecución \\(\\Rightarrow\\) carpetas /etc/rc?.d/, donde ? es el nivel de ejecución.\nTodos ellos son ejecutados por Init durante el arranque.\nSe ejecutan al arrancar o al cambiar de nivel:\n\nEl nombre del script empieza por S o K, seguido de dos dígitos y un nombre descriptivo: K35smb K15httpd S40atd S50xinetd S60cups S99local\nLos ejecuta en orden alfabético, primero los K después los S, los dos dígitos establecen el orden entre todos los K y todos los S.\nFicheros K: detener demonios o matar procesos.\nFicheros S: lanzar demonios o ejecutar funciones de inicio.\nPara cada nivel de inicialización, se especifica qué demonios tienen que estar activos o no."
+    "text": "Ficheros de inicialización\n\nPersonalizar niveles de ejecución \\(\\Rightarrow\\) carpetas /etc/rc?.d/, donde ? es el nivel de ejecución.\nTodos ellos son ejecutados por Init durante el arranque.\nSe ejecutan al arrancar o al cambiar de nivel:\n\nEl nombre del script empieza por S o K, seguido de dos dígitos y un nombre descriptivo: K35smb K15httpd S40atd S50xinetd S60cups S99local\nLos ejecuta en orden alfabético, primero los K después los S, los dos dígitos establecen el orden entre todos los K y todos los S.\nFicheros K: detener demonios o matar procesos.\nFicheros S: lanzar demonios o ejecutar funciones de inicio.\nPara cada nivel de inicialización, se especifica qué demonios tienen que estar activos o no.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#ficheros-de-inicialización-1",
     "href": "tema04-arranque/tema04-arranque.html#ficheros-de-inicialización-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Ficheros de inicialización",
-    "text": "Ficheros de inicialización\n\nCarpetas /etc/rc?.d/:\n\nTodos los ficheros son enlaces simbólicos al fichero con el mismo nombre descriptivo localizado en /etc/init.d.\nLos scripts reciben varios parámetros: start, stop, restart...\nEsto permite lanzar o relanzar demonios sin reiniciar el sistema.\nrc ejecuta los ficheros K con el parámetro stop y los S con start.\nEstos scripts se mantienen por retrocompatibilidad, se tiende a utilizar systemd y el comando systemctl que actúa sobre unidades descritas en /etc/systemd/system/ para cada objetivo systemd."
+    "text": "Ficheros de inicialización\n\nCarpetas /etc/rc?.d/:\n\nTodos los ficheros son enlaces simbólicos al fichero con el mismo nombre descriptivo localizado en /etc/init.d.\nLos scripts reciben varios parámetros: start, stop, restart...\nEsto permite lanzar o relanzar demonios sin reiniciar el sistema.\nrc ejecuta los ficheros K con el parámetro stop y los S con start.\nEstos scripts se mantienen por retrocompatibilidad, se tiende a utilizar systemd y el comando systemctl que actúa sobre unidades descritas en /etc/systemd/system/ para cada objetivo systemd.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#ficheros-de-inicialización-2",
     "href": "tema04-arranque/tema04-arranque.html#ficheros-de-inicialización-2",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Ficheros de inicialización",
-    "text": "Ficheros de inicialización\n$ ls /etc/rc3.d/ -la\ntotal 16\ndrwxr-xr-x   2 root root  4096 feb  7 21:32 .\ndrwxr-xr-x 161 root root 12288 mar 18 17:45 ..\nlrwxrwxrwx   1 root root    27 sep 15  2023 K01speech-dispatcher -&gt; ../init.d/speech-dispatcher\nlrwxrwxrwx   1 root root    15 sep 15  2023 S01acpid -&gt; ../init.d/acpid\nlrwxrwxrwx   1 root root    17 sep 15  2023 S01anacron -&gt; ../init.d/anacron\nlrwxrwxrwx   1 root root    14 feb  7 21:32 S01atop -&gt; ../init.d/atop\nlrwxrwxrwx   1 root root    18 feb  7 21:32 S01atopacct -&gt; ../init.d/atopacct\nlrwxrwxrwx   1 root root    22 sep 15  2023 S01avahi-daemon -&gt; ../init.d/avahi-daemon\nlrwxrwxrwx   1 root root    19 sep 15  2023 S01bluetooth -&gt; ../init.d/bluetooth\nlrwxrwxrwx   1 root root    26 sep 15  2023 S01console-setup.sh -&gt; ../init.d/console-setup.sh\nlrwxrwxrwx   1 root root    14 sep 15  2023 S01cron -&gt; ../init.d/cron\nlrwxrwxrwx   1 root root    14 sep 15  2023 S01cups -&gt; ../init.d/cups\nlrwxrwxrwx   1 root root    14 sep 15  2023 S01dbus -&gt; ../init.d/dbus\nlrwxrwxrwx   1 root root    21 sep 15  2023 S01grub-common -&gt; ../init.d/grub-common\nlrwxrwxrwx   1 root root    20 sep 15  2023 S01irqbalance -&gt; ../init.d/irqbalance\nlrwxrwxrwx   1 root root    20 sep 15  2023 S01kerneloops -&gt; ../init.d/kerneloops\nlrwxrwxrwx   1 root root    17 sep 15  2023 S01lightdm -&gt; ../init.d/lightdm\nlrwxrwxrwx   1 root root    23 sep 15  2023 S01lvm2-lvmpolld -&gt; ../init.d/lvm2-lvmpolld\nlrwxrwxrwx   1 root root    20 sep 15  2023 S01mintsystem -&gt; ../init.d/mintsystem\nlrwxrwxrwx   1 root root    17 sep 15  2023 S01openvpn -&gt; ../init.d/openvpn\nlrwxrwxrwx   1 root root    18 sep 15  2023 S01plymouth -&gt; ../init.d/plymouth\nlrwxrwxrwx   1 root root    17 ene 30 14:09 S01postfix -&gt; ../init.d/postfix\nlrwxrwxrwx   1 root root    37 sep 15  2023 S01pulseaudio-enable-autospawn -&gt; ../init.d/pulseaudio-enable-autospawn\nlrwxrwxrwx   1 root root    15 sep 15  2023 S01rsync -&gt; ../init.d/rsync\nlrwxrwxrwx   1 root root    15 sep 15  2023 S01saned -&gt; ../init.d/saned\nlrwxrwxrwx   1 root root    23 ene 27 11:50 S01smartmontools -&gt; ../init.d/smartmontools\nlrwxrwxrwx   1 root root    15 sep 15  2023 S01uuidd -&gt; ../init.d/uuidd\nlrwxrwxrwx   1 root root    20 sep 15  2023 S01virtualbox -&gt; ../init.d/virtualbox\nlrwxrwxrwx   1 root root    19 sep 15  2023 S01zfs-mount -&gt; ../init.d/zfs-mount\nlrwxrwxrwx   1 root root    19 sep 15  2023 S01zfs-share -&gt; ../init.d/zfs-share\nlrwxrwxrwx   1 root root    17 sep 15  2023 S01zfs-zed -&gt; ../init.d/zfs-zed"
+    "text": "Ficheros de inicialización\n$ ls /etc/rc3.d/ -la\ntotal 16\ndrwxr-xr-x   2 root root  4096 feb  7 21:32 .\ndrwxr-xr-x 161 root root 12288 mar 18 17:45 ..\nlrwxrwxrwx   1 root root    27 sep 15  2023 K01speech-dispatcher -&gt; ../init.d/speech-dispatcher\nlrwxrwxrwx   1 root root    15 sep 15  2023 S01acpid -&gt; ../init.d/acpid\nlrwxrwxrwx   1 root root    17 sep 15  2023 S01anacron -&gt; ../init.d/anacron\nlrwxrwxrwx   1 root root    14 feb  7 21:32 S01atop -&gt; ../init.d/atop\nlrwxrwxrwx   1 root root    18 feb  7 21:32 S01atopacct -&gt; ../init.d/atopacct\nlrwxrwxrwx   1 root root    22 sep 15  2023 S01avahi-daemon -&gt; ../init.d/avahi-daemon\nlrwxrwxrwx   1 root root    19 sep 15  2023 S01bluetooth -&gt; ../init.d/bluetooth\nlrwxrwxrwx   1 root root    26 sep 15  2023 S01console-setup.sh -&gt; ../init.d/console-setup.sh\nlrwxrwxrwx   1 root root    14 sep 15  2023 S01cron -&gt; ../init.d/cron\nlrwxrwxrwx   1 root root    14 sep 15  2023 S01cups -&gt; ../init.d/cups\nlrwxrwxrwx   1 root root    14 sep 15  2023 S01dbus -&gt; ../init.d/dbus\nlrwxrwxrwx   1 root root    21 sep 15  2023 S01grub-common -&gt; ../init.d/grub-common\nlrwxrwxrwx   1 root root    20 sep 15  2023 S01irqbalance -&gt; ../init.d/irqbalance\nlrwxrwxrwx   1 root root    20 sep 15  2023 S01kerneloops -&gt; ../init.d/kerneloops\nlrwxrwxrwx   1 root root    17 sep 15  2023 S01lightdm -&gt; ../init.d/lightdm\nlrwxrwxrwx   1 root root    23 sep 15  2023 S01lvm2-lvmpolld -&gt; ../init.d/lvm2-lvmpolld\nlrwxrwxrwx   1 root root    20 sep 15  2023 S01mintsystem -&gt; ../init.d/mintsystem\nlrwxrwxrwx   1 root root    17 sep 15  2023 S01openvpn -&gt; ../init.d/openvpn\nlrwxrwxrwx   1 root root    18 sep 15  2023 S01plymouth -&gt; ../init.d/plymouth\nlrwxrwxrwx   1 root root    17 ene 30 14:09 S01postfix -&gt; ../init.d/postfix\nlrwxrwxrwx   1 root root    37 sep 15  2023 S01pulseaudio-enable-autospawn -&gt; ../init.d/pulseaudio-enable-autospawn\nlrwxrwxrwx   1 root root    15 sep 15  2023 S01rsync -&gt; ../init.d/rsync\nlrwxrwxrwx   1 root root    15 sep 15  2023 S01saned -&gt; ../init.d/saned\nlrwxrwxrwx   1 root root    23 ene 27 11:50 S01smartmontools -&gt; ../init.d/smartmontools\nlrwxrwxrwx   1 root root    15 sep 15  2023 S01uuidd -&gt; ../init.d/uuidd\nlrwxrwxrwx   1 root root    20 sep 15  2023 S01virtualbox -&gt; ../init.d/virtualbox\nlrwxrwxrwx   1 root root    19 sep 15  2023 S01zfs-mount -&gt; ../init.d/zfs-mount\nlrwxrwxrwx   1 root root    19 sep 15  2023 S01zfs-share -&gt; ../init.d/zfs-share\nlrwxrwxrwx   1 root root    17 sep 15  2023 S01zfs-zed -&gt; ../init.d/zfs-zed",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#systemd-1",
     "href": "tema04-arranque/tema04-arranque.html#systemd-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Systemd",
-    "text": "Systemd\n\nEs compatible hacia atrás con los scripts SysV.\nPero incorpora su propio mecanismo (más potente) de gestión de servicios.\nEn la carpeta /etc/systemd/ existen carpetas a distintos niveles con ficheros para distintos targets. Ejemplo:\n\n# /etc/systemd/system/sshd.service \n[Unit]\nDescription=OpenBSD Secure Shell server\nAfter=network.target auditd.service\nConditionPathExists=!/etc/ssh/sshd_not_to_be_run\n\n[Service]\nEnvironmentFile=-/etc/default/ssh\nExecStartPre=/usr/sbin/sshd -t\nExecStart=/usr/sbin/sshd -D $SSHD_OPTS\nExecReload=/usr/sbin/sshd -t\n...\nRuntimeDirectoryMode=0755\n\n[Install]\nWantedBy=multi-user.target\nAlias=sshd.service"
+    "text": "Systemd\n\nEs compatible hacia atrás con los scripts SysV.\nPero incorpora su propio mecanismo (más potente) de gestión de servicios.\nEn la carpeta /etc/systemd/ existen carpetas a distintos niveles con ficheros para distintos targets. Ejemplo:\n\n# /etc/systemd/system/sshd.service \n[Unit]\nDescription=OpenBSD Secure Shell server\nAfter=network.target auditd.service\nConditionPathExists=!/etc/ssh/sshd_not_to_be_run\n\n[Service]\nEnvironmentFile=-/etc/default/ssh\nExecStartPre=/usr/sbin/sshd -t\nExecStart=/usr/sbin/sshd -D $SSHD_OPTS\nExecReload=/usr/sbin/sshd -t\n...\nRuntimeDirectoryMode=0755\n\n[Install]\nWantedBy=multi-user.target\nAlias=sshd.service",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#systemd-2",
     "href": "tema04-arranque/tema04-arranque.html#systemd-2",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Systemd",
-    "text": "Systemd\n\nLa forma de describir dependencias es más flexible:\n\nAfter especifica qué necesita el servicio para poder ejecutarse.\nWantedBy especifica cuándo se lanzará el servicio.\n\nSe puede especificar el usuario con User.\nEl ejecutable se especifica con ExecStart.\nRestart=always hace que el servicio se re-ejecute si por, algún motivo, se para.\nRestartSec=1: el reinicio se hace tras 1 segundo.\nStartLimitIntervalSec=0[service]: se intenta el reinicio para siempre (no hay límite)."
+    "text": "Systemd\n\nLa forma de describir dependencias es más flexible:\n\nAfter especifica qué necesita el servicio para poder ejecutarse.\nWantedBy especifica cuándo se lanzará el servicio.\n\nSe puede especificar el usuario con User.\nEl ejecutable se especifica con ExecStart.\nRestart=always hace que el servicio se re-ejecute si por, algún motivo, se para.\nRestartSec=1: el reinicio se hace tras 1 segundo.\nStartLimitIntervalSec=0[service]: se intenta el reinicio para siempre (no hay límite).",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#manejar-servicios",
     "href": "tema04-arranque/tema04-arranque.html#manejar-servicios",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Manejar servicios",
-    "text": "Manejar servicios\n# Arrancar un servicio (tradicional):\n/etc/init.d/myservice start\n# Arrancar un servicio (systemd):\nsystemctl start myservice\n# Parar un servicio (tradicional): \n/etc/init.d/myservice stop\n# Parar un servicio (systemd):\nsystemctl stop myservice\n# Listar servicios (tradicional):\nls /etc/init.d\n# Listar servicios (systemd):\nsystemctl list-units --type=service\n# Añadir un servicio a todos los niveles\nupdate-rc.d apache2 defaults\n# Eliminar un servicio a todos los niveles\nrm /etc/rc*/*myscript\n# Eliminar un servicio a todos los niveles\nupdate-rc.d apache2 remove"
+    "text": "Manejar servicios\n# Arrancar un servicio (tradicional):\n/etc/init.d/myservice start\n# Arrancar un servicio (systemd):\nsystemctl start myservice\n# Parar un servicio (tradicional): \n/etc/init.d/myservice stop\n# Parar un servicio (systemd):\nsystemctl stop myservice\n# Listar servicios (tradicional):\nls /etc/init.d\n# Listar servicios (systemd):\nsystemctl list-units --type=service\n# Añadir un servicio a todos los niveles\nupdate-rc.d apache2 defaults\n# Eliminar un servicio a todos los niveles\nrm /etc/rc*/*myscript\n# Eliminar un servicio a todos los niveles\nupdate-rc.d apache2 remove",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#herramientas-de-systemd",
     "href": "tema04-arranque/tema04-arranque.html#herramientas-de-systemd",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Herramientas de systemd",
-    "text": "Herramientas de systemd\nsystemd con su abanico de herramientas permite consultar información y realizar acciones sobre arranque, servicios y logs muy útiles que son difíciles o imposibles con init:\nMostrar servicios y servicios activos:\nsystemctl\nsystemd-cgls\nsystemctl --type=service\nsystemctl --type=service --state=active\nListar temporizadores:\nsystemctl list-timers\nMostrar logs de un servicio (ej. ssh.service, apache2.service):\njournalctl -u service-name.service\njournalctl -u service-name.service -b\nMostrar logs desde una fecha (también se puede elegir un intervalo):\njournalctl --since \"2023-01-30\""
+    "text": "Herramientas de systemd\nsystemd con su abanico de herramientas permite consultar información y realizar acciones sobre arranque, servicios y logs muy útiles que son difíciles o imposibles con init:\nMostrar servicios y servicios activos:\nsystemctl\nsystemd-cgls\nsystemctl --type=service\nsystemctl --type=service --state=active\nListar temporizadores:\nsystemctl list-timers\nMostrar logs de un servicio (ej. ssh.service, apache2.service):\njournalctl -u service-name.service\njournalctl -u service-name.service -b\nMostrar logs desde una fecha (también se puede elegir un intervalo):\njournalctl --since \"2023-01-30\"",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
+  },
+  {
+    "objectID": "tema04-arranque/tema04-arranque.html#ejercicio-cómo-añadir-un-servicio-a-systemd",
+    "href": "tema04-arranque/tema04-arranque.html#ejercicio-cómo-añadir-un-servicio-a-systemd",
+    "title": "Tema 4: Arranque y parada del sistema y servicios.",
+    "section": "Ejercicio: cómo añadir un servicio a systemd",
+    "text": "Ejercicio: cómo añadir un servicio a systemd\nEn el siguiente tutorial más o menos nos explican cómo añadir un servicio a systemd. Lo malo es que dejan un problema seguridad instalado. Intenta encontrar el problema de seguridad y explotarlo para escalar privilegios en Linux.\nhttps://www.redeszone.net/tutoriales/servidores/administrar-servicios-linux-systemd/",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#resumen-del-proceso-de-arranque-1",
     "href": "tema04-arranque/tema04-arranque.html#resumen-del-proceso-de-arranque-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Resumen del proceso de arranque",
-    "text": "Resumen del proceso de arranque\n\nIniciador ROM (BIOS/UEFI)\n\nChequeo inicial del sistema.\nLee y almacena en memoria el programa cargador del SO.\nPasa el control al cargador del SO, saltando a la dirección de memoria donde lo ha almacenado.\n\nCargador del sistema operativo (GRUB) \\(\\Rightarrow\\) carga el núcleo del SO y le pasa el control, sabe dónde está el núcleo.\nNúcleo del SO:\n\nChequeo hardware.\nCreación e inicialización de las estructuras de datos, tablas...\nCrea el proceso Init y le pasa el control.\n\nProceso Init: termina el proceso de arranque, dejando el sistema preparado para ser usado (chequeo de SFs, montaje de SFs, activación de la swap, de cuotas, demonios, etc.)"
+    "text": "Resumen del proceso de arranque\n\nIniciador ROM (BIOS/UEFI)\n\nChequeo inicial del sistema.\nLee y almacena en memoria el programa cargador del SO.\nPasa el control al cargador del SO, saltando a la dirección de memoria donde lo ha almacenado.\n\nCargador del sistema operativo (GRUB) \\(\\Rightarrow\\) carga el núcleo del SO y le pasa el control, sabe dónde está el núcleo.\nNúcleo del SO:\n\nChequeo hardware.\nCreación e inicialización de las estructuras de datos, tablas...\nCrea el proceso Init y le pasa el control.\n\nProceso Init: termina el proceso de arranque, dejando el sistema preparado para ser usado (chequeo de SFs, montaje de SFs, activación de la swap, de cuotas, demonios, etc.)",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#parada-del-sistema-1",
     "href": "tema04-arranque/tema04-arranque.html#parada-del-sistema-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Parada del sistema",
-    "text": "Parada del sistema\n\nEn ocasiones es necesario apagar o reiniciar el sistema: mantenimiento, diagnóstico, hardware nuevo, etc.\n\n\nAcciones durante proceso de parada\n\nSe notifica a los usuarios.\nProcesos en ejecución \\(\\Rightarrow\\) enviar la señal de terminación (TERM).\nSe paran los demonios.\nA los usuarios que quedan conectados se les echa del sistema.\nProcesos que queden en ejecución \\(\\Rightarrow\\) enviar la señal de fin (KILL).\nActualizaciones de disco pendientes (integridad del SF) con sync."
+    "text": "Parada del sistema\n\nEn ocasiones es necesario apagar o reiniciar el sistema: mantenimiento, diagnóstico, hardware nuevo, etc.\n\n\nAcciones durante proceso de parada\n\nSe notifica a los usuarios.\nProcesos en ejecución \\(\\Rightarrow\\) enviar la señal de terminación (TERM).\nSe paran los demonios.\nA los usuarios que quedan conectados se les echa del sistema.\nProcesos que queden en ejecución \\(\\Rightarrow\\) enviar la señal de fin (KILL).\nActualizaciones de disco pendientes (integridad del SF) con sync.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#parada-del-sistema-shutdown",
     "href": "tema04-arranque/tema04-arranque.html#parada-del-sistema-shutdown",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Parada del sistema: shutdown",
-    "text": "Parada del sistema: shutdown\nshutdown [opciones] tiempo [mensaje]:\n\nSin opciones: modo monousuario (telinit 1 o systemctl isolate rescue.target).\n-r: reiniciar (telinit 6 o systemctl isolate reboot.target).\n-h: parar (telinit 0 o systemctl isolate shutdown.target).\n-c: cancelar.\n-k: hacer una simulación de apagado.\ntiempo: +minutos, now, horas:minutos.\n\nAl salir del modo monousuario, vuelve al nivel por defecto (salvo que expresamente se reinicie o apague)."
+    "text": "Parada del sistema: shutdown\nshutdown [opciones] tiempo [mensaje]:\n\nSin opciones: modo monousuario (telinit 1 o systemctl isolate rescue.target).\n-r: reiniciar (telinit 6 o systemctl isolate reboot.target).\n-h: parar (telinit 0 o systemctl isolate shutdown.target).\n-c: cancelar.\n-k: hacer una simulación de apagado.\ntiempo: +minutos, now, horas:minutos.\n\nAl salir del modo monousuario, vuelve al nivel por defecto (salvo que expresamente se reinicie o apague).",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#diagnóstico-de-sistema-y-arranque",
     "href": "tema04-arranque/tema04-arranque.html#diagnóstico-de-sistema-y-arranque",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Diagnóstico de sistema y arranque",
-    "text": "Diagnóstico de sistema y arranque\nPosibles causas de caídas del sistema\n\nFallos hardware.\nErrores de hardware irrecuperables.\nFallos de luz (cortes o altibajos).\nOtros problemas ambientales.\nProblemas de entrada/salida.\nProblemas de algún sistema de ficheros."
+    "text": "Diagnóstico de sistema y arranque\nPosibles causas de caídas del sistema\n\nFallos hardware.\nErrores de hardware irrecuperables.\nFallos de luz (cortes o altibajos).\nOtros problemas ambientales.\nProblemas de entrada/salida.\nProblemas de algún sistema de ficheros.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#diagnóstico-de-sistema-y-arranque-1",
     "href": "tema04-arranque/tema04-arranque.html#diagnóstico-de-sistema-y-arranque-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Diagnóstico de sistema y arranque",
-    "text": "Diagnóstico de sistema y arranque\nProblemas de arranque:\n\nFallos hardware.\nNo se puede leer el sistema de ficheros de los discos de trabajo.\nHay áreas dañadas en el disco que no pertenecen al sistema de ficheros (p.e. tabla de particiones).\nHardware incompatible.\nErrores en la configuración del sistema."
+    "text": "Diagnóstico de sistema y arranque\nProblemas de arranque:\n\nFallos hardware.\nNo se puede leer el sistema de ficheros de los discos de trabajo.\nHay áreas dañadas en el disco que no pertenecen al sistema de ficheros (p.e. tabla de particiones).\nHardware incompatible.\nErrores en la configuración del sistema.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#diagnóstico-de-sistema-y-arranque-2",
     "href": "tema04-arranque/tema04-arranque.html#diagnóstico-de-sistema-y-arranque-2",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Diagnóstico de sistema y arranque",
-    "text": "Diagnóstico de sistema y arranque\n\nAl rearrancar mirar los mensajes que hay en el fichero /var/log/messages.\nLa orden dmesg \\(\\Rightarrow\\) mensajes producidos durante el arranque.\nEn el arranque al núcleo se le pueden pasar otros parámetros:\n\nroot=particion \\(\\Rightarrow\\) indicar que monte como partición raíz una distinta.\ninit=ejecutable \\(\\Rightarrow\\) que en vez del proceso Init lance otro proceso:\ninit=/bin/bash \\(\\Rightarrow\\) en este caso el proceso de inicio del Init no se realiza, el SF está montado en modo sólo lectura, hay que remontarlo: mount -o remount -w -n /\nsingle \\(\\Rightarrow\\) arrancar en modo monousuario.\nUn número indicando el nivel de arranque."
+    "text": "Diagnóstico de sistema y arranque\n\nAl rearrancar mirar los mensajes que hay en el fichero /var/log/messages.\nLa orden dmesg \\(\\Rightarrow\\) mensajes producidos durante el arranque.\nEn el arranque al núcleo se le pueden pasar otros parámetros:\n\nroot=particion \\(\\Rightarrow\\) indicar que monte como partición raíz una distinta.\ninit=ejecutable \\(\\Rightarrow\\) que en vez del proceso Init lance otro proceso:\ninit=/bin/bash \\(\\Rightarrow\\) en este caso el proceso de inicio del Init no se realiza, el SF está montado en modo sólo lectura, hay que remontarlo: mount -o remount -w -n /\nsingle \\(\\Rightarrow\\) arrancar en modo monousuario.\nUn número indicando el nivel de arranque.",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema04-arranque/tema04-arranque.html#referencias-1",
     "href": "tema04-arranque/tema04-arranque.html#referencias-1",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Referencias",
-    "text": "Referencias\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 2. Booting and System Management Daemons, Capítulo 10. Logging. Addison-Wesley. 5th Edition. 2018.\nAeleen Frisch. Essential system administration. Capítulo 4. Startup and shut down. O’Reilly and Associates. Tercera edición. 2002.\nEjemplo de acceso al modo monousuario sin contraseña de root: https://blog.sleeplessbeastie.eu/2014/05/01/how-to-access-single-user-mode-without-password/"
+    "text": "Referencias\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 2. Booting and System Management Daemons, Capítulo 10. Logging. Addison-Wesley. 5th Edition. 2018.\nAeleen Frisch. Essential system administration. Capítulo 4. Startup and shut down. O’Reilly and Associates. Tercera edición. 2002.\nEjemplo de acceso al modo monousuario sin contraseña de root: https://blog.sleeplessbeastie.eu/2014/05/01/how-to-access-single-user-mode-without-password/",
+    "crumbs": [
+      "Tema 4: Arranque y Parada"
+    ]
   },
   {
     "objectID": "tema02-organizacion/tema02-ejercicios.html",
@@ -2379,26 +2548,5 @@
     "crumbs": [
       "Tema 2: Ejercicios permisos"
     ]
-  },
-  {
-    "objectID": "tema04-arranque/tema04-arranque.html#grub-modificación-de-parámetros-al-arrancar",
-    "href": "tema04-arranque/tema04-arranque.html#grub-modificación-de-parámetros-al-arrancar",
-    "title": "Tema 4: Arranque y parada del sistema y servicios.",
-    "section": "GRUB: modificación de parámetros al arrancar",
-    "text": "GRUB: modificación de parámetros al arrancar\nGRUB permite (durante la selección del SO):\n\nEditar las entradas:\n\nPulsar tecla e, permite modificar las entradas de arranque para solucionar errores.\nLos cambios no son permanentes, solo sirve para probar.\n\nConsola interactiva GRUB: pulsar la tecla c. Permite ejecutar comandos para arreglar el arranque (seleccionar otro initrd, cargar módulos...).\nTerminología de GRUB, numerando los dispositivos según los reconozca la BIOS empezando en cero:\n\nNombres de dispositivos: (&lt;t&gt;&lt;n&gt;,&lt;np&gt;)\n(hd0,0) \\(\\Rightarrow\\) /dev/sda1\nNombres de ficheros (hd0,0)/boot/grub/grub.cfg"
-  },
-  {
-    "objectID": "tema04-arranque/tema04-arranque.html#ejercicio-protege-tu-sistema-de-arranque",
-    "href": "tema04-arranque/tema04-arranque.html#ejercicio-protege-tu-sistema-de-arranque",
-    "title": "Tema 4: Arranque y parada del sistema y servicios.",
-    "section": "Ejercicio: protege tu sistema de arranque",
-    "text": "Ejercicio: protege tu sistema de arranque\n\nAñade un usuario y contraseña a GRUB.\nDeshabilita el reinicio por teclado Ctrl+Alt+Del. Prueba esto usando el menú de Virtual Box o reiniciarás tu ordenador"
-  },
-  {
-    "objectID": "tema04-arranque/tema04-arranque.html#ejercicio-cómo-añadir-un-servicio-a-systemd",
-    "href": "tema04-arranque/tema04-arranque.html#ejercicio-cómo-añadir-un-servicio-a-systemd",
-    "title": "Tema 4: Arranque y parada del sistema y servicios.",
-    "section": "Ejercicio: cómo añadir un servicio a systemd",
-    "text": "Ejercicio: cómo añadir un servicio a systemd\nEn el siguiente tutorial más o menos nos explican cómo añadir un servicio a systemd. Lo malo es que dejan un problema seguridad instalado. Intenta encontrar el problema de seguridad y explotarlo para escalar privilegios en Linux.\nhttps://www.redeszone.net/tutoriales/servidores/administrar-servicios-linux-systemd/"
   }
 ]
