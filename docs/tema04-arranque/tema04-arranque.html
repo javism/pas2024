@@ -710,22 +710,22 @@ Importante
 <ul>
 <li><p><strong>Solución</strong>: no existe una solución única sino un <strong>conjunto de medidas de mitigación</strong> para proteger ante accesos físicos al sistema.</p></li>
 <li><p>Por ejemplo, solicitar contraseña para la entrada de administración.</p>
-<ul>
+<ol type="1">
+<li>El password se puede generar usando (copiala al portapapeles):</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">grub-mkpasswd-pbkdf2</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> password: </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Reenter</span> password: </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Your</span> PBKDF2 is grub.pbkdf2.sha512.10000.086EB0CC8CB1E39E2...</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
 <li>Fichero <code>/etc/grub.d/40_custom</code> (o donde esté la entrada).</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> superusers=<span class="st">"user1"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">password_pbkdf2</span> user1 grub.pbkdf2.sha512.10000.086EB0CC8 ...</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">password_pbkdf2</span> user2 grub.pbkdf2.sha512.10000.045EB0CC8 ...</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>El password se puede generar usando:</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">grub-mkpasswd-pbkdf2</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> password: </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Reenter</span> password: </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Your</span> PBKDF2 is grub.pbkdf2.sha512.10000.086EB0CC8CB1E39E2...</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> superusers=<span class="st">"user1"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">password_pbkdf2</span> user1 grub.pbkdf2.sha512.10000.086EB0CC8 ...</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">password_pbkdf2</span> user2 grub.pbkdf2.sha512.10000.045EB0CC8 ...</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
 <li>Ejecutar <code>update-grub</code> o modificar la entrada de administración para que requiera password: <code>--users user1</code>.</li>
-</ul></li>
+</ol></li>
 </ul>
 </section>
 <section id="modo-monousuario-4" class="level2">

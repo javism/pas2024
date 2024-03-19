@@ -2224,7 +2224,7 @@
     "href": "tema04-arranque/tema04-arranque.html#modo-monousuario-3",
     "title": "Tema 4: Arranque y parada del sistema y servicios.",
     "section": "Modo monousuario",
-    "text": "Modo monousuario\n\nSolución: no existe una solución única sino un conjunto de medidas de mitigación para proteger ante accesos físicos al sistema.\nPor ejemplo, solicitar contraseña para la entrada de administración.\n\nFichero /etc/grub.d/40_custom (o donde esté la entrada).\n\nset superusers=\"user1\"\npassword_pbkdf2 user1 grub.pbkdf2.sha512.10000.086EB0CC8 ...\npassword_pbkdf2 user2 grub.pbkdf2.sha512.10000.045EB0CC8 ...\n\nEl password se puede generar usando:\n\ngrub-mkpasswd-pbkdf2\nEnter password: \nReenter password: \nYour PBKDF2 is grub.pbkdf2.sha512.10000.086EB0CC8CB1E39E2...\n\nEjecutar update-grub o modificar la entrada de administración para que requiera password: --users user1.",
+    "text": "Modo monousuario\n\nSolución: no existe una solución única sino un conjunto de medidas de mitigación para proteger ante accesos físicos al sistema.\nPor ejemplo, solicitar contraseña para la entrada de administración.\n\nEl password se puede generar usando (copiala al portapapeles):\n\ngrub-mkpasswd-pbkdf2\nEnter password: \nReenter password: \nYour PBKDF2 is grub.pbkdf2.sha512.10000.086EB0CC8CB1E39E2...\n\nFichero /etc/grub.d/40_custom (o donde esté la entrada).\n\nset superusers=\"user1\"\npassword_pbkdf2 user1 grub.pbkdf2.sha512.10000.086EB0CC8 ...\npassword_pbkdf2 user2 grub.pbkdf2.sha512.10000.045EB0CC8 ...\n\nEjecutar update-grub o modificar la entrada de administración para que requiera password: --users user1.",
     "crumbs": [
       "Tema 4: Arranque y Parada"
     ]
