@@ -230,6 +230,12 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../tema05-recursos/tema05-recursos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 5: Gestión de recursos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../enlaces.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Enlaces</span></a>
   </div>
@@ -293,7 +299,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">19 de marzo de 2024</p>
+      <p class="date">2 de abril de 2024</p>
     </div>
   </div>
   
@@ -721,10 +727,13 @@ Importante
 <li>Fichero <code>/etc/grub.d/40_custom</code> (o donde esté la entrada).</li>
 </ol>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> superusers=<span class="st">"user1"</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">password_pbkdf2</span> user1 grub.pbkdf2.sha512.10000.086EB0CC8 ...</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">password_pbkdf2</span> user2 grub.pbkdf2.sha512.10000.045EB0CC8 ...</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reemplazar grub.pbkdf2... con la salida del comando anterior</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">password_pbkdf2</span> user1 grub.pbkdf2.sha512.10000.086EB0CC8 ...</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Este usuario no sería administracidor</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#password_pbkdf2 user2 grub.pbkdf2.sha512.10000.045EB0CC8 ...</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
-<li>Ejecutar <code>update-grub</code> o modificar la entrada de administración para que requiera password: <code>--users user1</code>.</li>
+<li><p>Ejecutar <code>update-grub</code> o modificar la entrada de administración para que requiera password: <code>--users user1</code>.</p></li>
+<li><p>Reiniciar.</p></li>
 </ol></li>
 </ul>
 </section>

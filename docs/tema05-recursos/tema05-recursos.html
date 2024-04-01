@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Javier Sánchez Monedero">
+
+<title>Programación y Administración de Sistemas (2023-2024) - Tema 5: Gestión de recursos del sistema</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tema05-recursos/tema05-recursos.html">Tema 5: Gestión de recursos</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Programación y Administración de Sistemas (2023-2024)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inicio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema00-presentacion/presentacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 0: Presentación</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01a-introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.a: Introducción</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01b-software-libre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.b: Software Libre y GNU/Linux</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01c-proyecto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.c: Virtual Box, Debian y configuración básica</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-ficheros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Organización de GNU/Linux</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Ejercicios permisos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-webuco.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Ejercicios web personal en la UCO</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema03-usuarios/tema03-usuarios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 3: Gestión de usuarios</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema04-arranque/tema04-arranque.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 4: Arranque y Parada</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema05-recursos/tema05-recursos.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Tema 5: Gestión de recursos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../enlaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Enlaces</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-y-evaluación" id="toc-objetivos-y-evaluación" class="nav-link active" data-scroll-target="#objetivos-y-evaluación"><span class="header-section-number">1</span> Objetivos y evaluación</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2</span> Introducción</a></li>
+  <li><a href="#actividad-de-la-cpu" id="toc-actividad-de-la-cpu" class="nav-link" data-scroll-target="#actividad-de-la-cpu"><span class="header-section-number">3</span> Actividad de la CPU</a></li>
+  <li><a href="#programación-y-temporizadores" id="toc-programación-y-temporizadores" class="nav-link" data-scroll-target="#programación-y-temporizadores"><span class="header-section-number">4</span> Programación y temporizadores</a></li>
+  <li><a href="#rastreo-de-procesos" id="toc-rastreo-de-procesos" class="nav-link" data-scroll-target="#rastreo-de-procesos"><span class="header-section-number">5</span> Rastreo de procesos</a></li>
+  <li><a href="#memoria" id="toc-memoria" class="nav-link" data-scroll-target="#memoria"><span class="header-section-number">6</span> Memoria</a></li>
+  <li><a href="#dispositivos-entradasalida" id="toc-dispositivos-entradasalida" class="nav-link" data-scroll-target="#dispositivos-entradasalida"><span class="header-section-number">7</span> Dispositivos Entrada/Salida</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">8</span> Referencias</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tema 5: Gestión de recursos del sistema</h1>
+<p class="subtitle lead">Programación y Administración de Sistemas <br> (2023-2024)</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Autor/a</div>
+  <div class="quarto-title-meta-heading">Afiliaciones</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Javier Sánchez Monedero </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Depto. Informática y Análisis Numérico
+          </p>
+        <p class="affiliation">
+            Escuela Politécnica Superior
+          </p>
+        <p class="affiliation">
+            Universidad de Córdoba
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2 de abril de 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objetivos-y-evaluación" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Objetivos y evaluación</h1>
+<section id="objetivos" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="objetivos">Objetivos</h2>
+<ul>
+<li><p>Conocer cuáles son los <strong>recursos básicos</strong> del sistema operativo (CPU, memoria y espacio en disco) y la necesidad e importancia de su <strong>monitorización y gestión</strong>.</p></li>
+<li><p>Definir los <strong>procesos</strong> en GNU/Linux y distinguir los <strong>modos de ejecución</strong> básicos (modo usuario y modo núcleo).</p></li>
+<li><p>Establecer los <strong>tipos</strong> de procesos que pueden ejecutarse en el sistema operativo.</p></li>
+<li><p>Utilizar la herramienta <code>ps</code> para ver los procesos en ejecución y sus atributos.</p></li>
+<li><p>Explicar el <strong>ciclo de vida de un proceso</strong> en GNU/Linux desde el punto de vista de su administración, detallando los distintos estados por los que puede pasar.</p></li>
+<li><p>Conocer el <strong>mecanismo de planificación</strong> utilizado en GNU/Linux para ejecutar los procesos.</p></li>
+<li><p>Utilizar el número <em>nice</em> para modificar la <strong>prioridad</strong> de los procesos.</p></li>
+<li><p>Enviar <strong>señales</strong> a procesos para controlar su ejecución y distinguir entre el efecto de las distintas señales.</p></li>
+<li><p>Monitorizar el tiempo de actividad de un sistema mediante la herramienta <code>uptime</code>.</p></li>
+<li><p>Monitorizar el árbol de ejecución de procesos de un sistema mediante la herramienta <code>pstree</code>.</p></li>
+<li><p>Monitorizar los procesos en ejecución de forma interactiva mediante la herramienta <code>top</code>.</p></li>
+<li><p>Obtener informes sobre la ejecución de procesos en un sistema mediante la herramienta <code>vmstat</code>.</p></li>
+<li><p>Conocer el contenido de la carpeta <code>/proc</code> y los ficheros que en ella aparecen para cada uno de los procesos en ejecución.</p></li>
+<li><p>Postergar la ejecución de procesos mediante el uso de la herramienta <code>at</code>.</p></li>
+<li><p>Planificar la ejecución periódica de procesos mediante la herramienta <code>cron</code>.</p></li>
+<li><p>Rastrear señales y llamadas al sistema de un determinado proceso mediante la herramienta <code>strace</code>.</p></li>
+<li><p>Monitorizar la cantidad de memoria libre mediante la herramienta <code>free</code>.</p></li>
+<li><p>Monitorizar el uso de memoria mediante <code>vmstat</code>.</p></li>
+<li><p>Decidir el espacio de paginación necesario para un sistema operativo.</p></li>
+<li><p>Controlar el espacio en disco mediante las herramientas <code>df</code> y <code>du</code>.</p></li>
+<li><p>Monitorizar el rendimiento de los discos mediante el uso de la herramienta <code>iostat</code>.</p></li>
+</ul>
+</section>
+<section id="evaluación" class="level2">
+<h2 class="anchored" data-anchor-id="evaluación">Evaluación</h2>
+<ul>
+<li><p>Cuestionarios objetivos.</p></li>
+<li><p>Pruebas de respuesta libre.</p></li>
+<li><p>Tareas de administración.</p></li>
+</ul>
+</section>
+</section>
+<section id="introducción" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Introducción</h1>
+<section id="tareas-típicas" class="level2">
+<h2 class="anchored" data-anchor-id="tareas-típicas">Tareas típicas</h2>
+<p>Empieza a ir lento un servicio, ¿qué puede pasar?</p>
+<p>. . .</p>
+<p>¿Cuántos recursos gasta nuestro servidor web según aumentan las peticiones?</p>
+<p>. . .</p>
+<p>¿cómo programo una tarea para que se ejecute repetidamente?</p>
+</section>
+<section id="introducción-1" class="level2">
+<h2 class="anchored" data-anchor-id="introducción-1">Introducción</h2>
+<p>Una <strong>correcta administración</strong> del sistema implica obtener información sobre sus <strong>recursos</strong> y rendimiento:</p>
+<ul>
+<li><p>Procesos en ejecución,</p></li>
+<li><p>cantidad de memoria disponible,</p></li>
+<li><p>espacio en disco,</p></li>
+<li><p>nº de particiones,</p></li>
+<li><p>prioridad de procesos, etc.</p></li>
+</ul>
+<p>para poder identificar y mitigar cuellos de botella, ataques, incidencias, etc.</p>
+</section>
+</section>
+<section id="actividad-de-la-cpu" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Actividad de la CPU</h1>
+<section id="procesos-en-gnulinux" class="level2">
+<h2 class="anchored" data-anchor-id="procesos-en-gnulinux">Procesos en GNU/Linux</h2>
+<p><img src="images/book_process_control.png" class="img-fluid"></p>
+<p>Fuente Nemeth et. al 2018</p>
+</section>
+<section id="procesos-en-gnulinux-1" class="level2">
+<h2 class="anchored" data-anchor-id="procesos-en-gnulinux-1">Procesos en GNU/Linux</h2>
+<ul>
+<li><p><strong>Proceso</strong>: representa un programa en ejecución (el SO crea el proceso cuando comienza la ejecución y lo elimina al finalizarla). Es una abstracción a través de la cuál la memoria, tiempo de procesador y recursos E/S pueden gestionarse y monitorizarse.</p></li>
+<li><p>Un sistema de tiempo compartido como GNU/Linux permite <strong>múltiples usuarios</strong> que ejecuten <strong>múltiples procesos</strong>, aunque la CPU solo puede <strong>ejecutar un proceso a la vez</strong> por núcleo.</p></li>
+<li><p>La CPU conmuta rápidamente de un proceso al siguiente, ejecutando un <strong><em>cuanto</em></strong> (por ejemplo, 100ms) de cada proceso.</p></li>
+<li><p>El SO es el encargado de decidir qué proceso se ejecuta en qué lugar <span class="math inline">\(\rightarrow\)</span> <strong>planificación</strong> de la CPU.</p></li>
+</ul>
+</section>
+<section id="información-de-cpu-y-núcleos-pc" class="level2">
+<h2 class="anchored" data-anchor-id="información-de-cpu-y-núcleos-pc">Información de CPU y núcleos: PC</h2>
+<p>En un PC:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> lscpu <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">'^Hilo|^Núcleo|^socket|^CPU\('</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">CPU</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span><span class="bu">:</span>                              8</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Hilo</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="ex">de</span> procesamiento por núcleo: 2</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Núcleo</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="ex">por</span> «socket»:              4</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">CPU</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="ex">del</span> nodo NUMA 0:              0-7</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-m</span> 1 <span class="st">'cpu cores'</span> /proc/cpuinfo</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">cpu</span> cores   : 4</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nproc <span class="at">--all</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">8</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="información-de-cpu-y-núcleos-servidor" class="level2">
+<h2 class="anchored" data-anchor-id="información-de-cpu-y-núcleos-servidor">Información de CPU y núcleos: servidor</h2>
+<p>En un servidor:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-m</span> 1 <span class="st">'cpu cores'</span> /proc/cpuinfo</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cpu</span> cores   : 20</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nproc <span class="at">--all</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">160</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> lscpu <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-E</span> <span class="st">'^Hilo|^Núcleo|^socket|^CPU\('</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">CPU</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span><span class="bu">:</span>                              160</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Hilo</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="ex">de</span> procesamiento por núcleo: 2</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Núcleo</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="ex">por</span> «socket»:              20</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">CPU</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="ex">del</span> nodo NUMA 0:              0-19,80-99</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">CPU</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="ex">del</span> nodo NUMA 1:              20-39,100-119</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">CPU</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="ex">del</span> nodo NUMA 2:              40-59,120-139</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ex">CPU</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="ex">del</span> nodo NUMA 3:              60-79,140-159</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="procesos-modos-de-ejecución" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="procesos-modos-de-ejecución">Procesos: modos de ejecución</h2>
+<p>Modos de ejecución (distinción para proteger mejor las direcciones de memoria a las que puede acceder un proceso)</p>
+<ul>
+<li><p>Modo <strong>usuario</strong>: se ejecuta <strong>código normal</strong> del programa.</p></li>
+<li><p>Modo <strong>núcleo</strong>: se ejecutan las funciones del <strong>núcleo</strong> (en realidad, es el <em>kernel</em> ejecutándose en nombre del proceso):</p>
+<ol type="1">
+<li><p><strong>Llamadas al sistema</strong>: Los procesos de usuario solicitan servicios explícitamente a través de la interfaz de llamadas al sistema (p.ej. crear un hilo, abrir un fichero…).</p></li>
+<li><p><strong>Excepciones</strong>: Situaciones excepcionales (división por cero, errores de direccionamiento…) causan excepciones <em>hardware</em> que requieren intervención del <em>kernel</em>.</p></li>
+<li><p><strong>Interrupciones</strong>: Los dispositivos periféricos interrumpen para notificar al <em>kernel</em> de diversos sucesos (terminación de E/S, cambio de estado…).</p></li>
+</ol></li>
+</ul>
+</section>
+<section id="procesos-tipos-de-procesos-iii" class="level2">
+<h2 class="anchored" data-anchor-id="procesos-tipos-de-procesos-iii">Procesos: tipos de procesos (I/II)</h2>
+<div class="block">
+<p><strong>Procesos de usuario</strong></p>
+<ul>
+<li><p>Procesos creados por un usuario real.</p></li>
+<li><p>Se ejecutan en modo usuario, excepto en los casos anteriores.</p></li>
+</ul>
+</div>
+<div class="block">
+<p><strong>Procesos demonio</strong></p>
+<ul>
+<li><p>No asociados a un usuario, o asociados a uno ficticio.</p></li>
+<li><p>Se ejecutan en modo usuario, excepto en los casos anteriores.</p></li>
+<li><p>Realizan tareas periódicas relacionadas con la administración del sistema (gestión de la red, <code>crontab</code>…).</p></li>
+</ul>
+</div>
+</section>
+<section id="procesos-tipos-de-procesos-iiii" class="level2">
+<h2 class="anchored" data-anchor-id="procesos-tipos-de-procesos-iiii">Procesos: tipos de procesos (II/II)</h2>
+<div class="block">
+<p><strong>Procesos núcleo</strong></p>
+<ul>
+<li><p>No asociados a un usuario.</p></li>
+<li><p>Corresponden al código del <em>kernel</em>.</p></li>
+<li><p>Se ejecutan siempre en modo núcleo.</p></li>
+<li><p>Tareas de administración más delicadas (planificación, intercambio de procesos, intercambio de páginas…).</p></li>
+</ul>
+</div>
+</section>
+<section id="procesos-monitorizar-con-ps" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="procesos-monitorizar-con-ps">Procesos: monitorizar con <code>ps</code></h2>
+<p><strong><code>ps</code></strong>: información sobre los procesos en ejecución</p>
+<ul>
+<li><p><code>USER</code> <span class="math inline">\(\Rightarrow\)</span> usuario que lanzó el programa.</p></li>
+<li><p><code>PID</code> <span class="math inline">\(\Rightarrow\)</span> identificador del proceso.</p></li>
+<li><p><code>PPID</code> <span class="math inline">\(\Rightarrow\)</span> identificador del proceso padre (los nuevos procesos se crean clonándose con <code>fork</code>).</p></li>
+<li><p><code>%CPU</code> <span class="math inline">\(\Rightarrow\)</span> porcentaje de la CPU consumido por este proceso (en ese momento).</p></li>
+<li><p><code>%MEM</code> <span class="math inline">\(\Rightarrow\)</span> fracción de memoria consumida (es una estimación).</p></li>
+<li><p><code>VSZ</code> <span class="math inline">\(\Rightarrow\)</span> tamaño virtual (código+datos+pila) en KB.</p></li>
+<li><p><code>RSS</code> <span class="math inline">\(\Rightarrow\)</span> memoria real usada en KB (<code>VSZ</code> incluye a <code>RSS</code>).</p></li>
+<li><p><code>TTY</code> <span class="math inline">\(\Rightarrow\)</span> terminal asociado con el proceso.</p></li>
+</ul>
+</section>
+<section id="procesos-monitorizar-con-ps-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="procesos-monitorizar-con-ps-1">Procesos: monitorizar con <code>ps</code></h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><strong><code>ps</code></strong>: información sobre los procesos en ejecución</p>
+<ul>
+<li><code>STAT</code> estado del proceso:
+<ul>
+<li><code>R</code>: en ejecución</li>
+<li><code>S</code>: durmiendo</li>
+<li><code>Z</code>: proceso <em>zombie</em></li>
+<li><code>D</code>: durmiendo ininterrumpible (E/S)</li>
+<li><code>T</code>: parado (señal o <code>trace</code>)</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img src="images/psa.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p><code>STAT</code> <em>banderas</em> adicionales:</p>
+<ul>
+<li><code>&lt;</code>:prioridad más alta de lo normal (<span class="math inline">\(&lt;0\)</span>), <code>N</code>: más baja de lo normal (<span class="math inline">\(&gt;0\)</span>)</li>
+<li><code>l</code>: tiene <em>multithread</em>, <code>+</code>: proceso, <em>foreground</em>, <code>s</code>: líder de sesión</li>
+<li><code>L</code>: tiene páginas bloqueadas en memoria</li>
+</ul></li>
+</ul>
+</section>
+<section id="procesos-estados-de-los-procesos" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="procesos-estados-de-los-procesos">Procesos: estados de los procesos</h2>
+<p><img src="images/states.svg" class="img-fluid"></p>
+<ul>
+<li><p><code>R</code>: un proceso en <strong>ejecución</strong> está listo para ejecutarse en cuanto la CPU esté libre. Tiene todos los recursos que necesita y está esperando su <em>cuanto</em> para ejecutarse.</p></li>
+<li><p><code>S</code>: <strong>durmiendo</strong>, esperando a que ocurra un evento específico (petición I/O, lectura de un <em>socket</em>…). <code>bash</code> y los demonios del sistema pasan casi todo su tiempo durmiendo, esperando la entrada por terminal o que un cliente haga una petición por la red. Estos procesos no recibirán tiempo de CPU hasta que el evento ocurra o que se reciba una señal específica.</p></li>
+</ul>
+</section>
+<section id="procesos-estados-de-los-procesos-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="procesos-estados-de-los-procesos-1">Procesos: estados de los procesos</h2>
+<p><img src="images/states.svg" class="img-fluid"></p>
+<ul>
+<li><code>D</code>: <strong>durmiendo</strong>, <strong>espera ininterrumpible</strong>. Algunas operaciones causan este estado, en el que el proceso no maneja señales, solo despertará cuando pase el evento. Normalmente, el estado <code>D</code> es transitorio y no llegaríamos a verlo en el <code>ps</code>. Sin embargo, determinadas situaciones anómalas hacen que el estado se mantenga (p.ej. pedir un fichero a un servidor NFS al que no podemos acceder y que hemos montado con <code>hard</code>). Solo podemos reiniciar o arreglar el problema.</li>
+</ul>
+</section>
+<section id="procesos-estados-de-los-procesos-2" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="procesos-estados-de-los-procesos-2">Procesos: estados de los procesos</h2>
+<p><img src="images/states.svg" class="img-fluid"></p>
+<ul>
+<li><p><code>Z</code>: <strong><em>zombie</em></strong>, el proceso termina correctamente pero el padre no recoge su código de error <span class="math inline">\(\rightarrow\)</span> Consultar el PPID para ver el origen del problema.</p></li>
+<li><p><code>T</code>: proceso <strong>detenido temporalmente</strong> mediante señales (<code>Ctrl+Z</code>) o porque está siendo examinado (<code>trace</code>). Solo volverán a ejecutarse tras otra señal.</p></li>
+</ul>
+</section>
+<section id="procesos-estados-de-los-procesos-3" class="level2">
+<h2 class="anchored" data-anchor-id="procesos-estados-de-los-procesos-3">Procesos: estados de los procesos</h2>
+<p><img src="images/states.svg" class="img-fluid"></p>
+<ul>
+<li><code>I</code>: <em>idle</em>, este estado se introdujo en 2017 con la versión 4.17 del núcleo. Significa que estamos ante un proceso ocioso de un hilo del núcleo, en espera ininterrumpible. A diferencia del estado <code>D</code>, solo se aplica a procesos del núcleo y no contribuye a la carga de la CPU.</li>
+</ul>
+</section>
+<section id="procesos-estados-de-los-procesos-4" class="level2">
+<h2 class="anchored" data-anchor-id="procesos-estados-de-los-procesos-4">Procesos: estados de los procesos</h2>
+<ul>
+<li><p><code>s</code>: <strong>líder de sesión</strong>. Los procesos se pueden agrupar. Si se manda una señal al grupo, se le manda a todos los procesos. El líder es el que interactúa con la terminal.</p></li>
+<li><p><code>l</code>: <strong>hilos creados</strong> con <code>CLONE_THREAD</code> (p.ej. hilos <em>Native Posix Thread Library</em>, NPTL).</p></li>
+<li><p><code>L</code>: el proceso ha pedido al <em>kernel</em> bloquear determinadas páginas de memoria, para evitar que no se modifiquen mientras se hacen determinadas operaciones.</p></li>
+<li><p><code>+</code>: <em>foreground</em>, proceso de primer plano, iniciado sin <code>&amp;</code>.</p></li>
+</ul>
+</section>
+<section id="ejemplo-salida-ps" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo-salida-ps">Ejemplo salida <code>ps</code></h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ps aux <span class="kw">|</span> <span class="fu">less</span> <span class="co">#a-&gt; Todos usuarios, x-&gt; Procesos sin terminal, u -&gt; Añadir nombre de usuario</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">USER</span>         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">root</span>           1  0.0  0.0 166852 11240 <span class="pp">?</span>        Ss   11:50   0:02 /sbin/init</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">root</span>           2  0.0  0.0      0     0 <span class="pp">?</span>        S    11:50   0:00 <span class="pp">[</span><span class="ss">kthreadd</span><span class="pp">]</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">root</span>           3  0.0  0.0      0     0 <span class="pp">?</span>        I<span class="op">&lt;</span>   11:50   0:00 <span class="pp">[</span><span class="ss">rcu_gp</span><span class="pp">]</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">root</span>           4  0.0  0.0      0     0 <span class="pp">?</span>        I<span class="op">&lt;</span>   11:50   0:00 <span class="pp">[</span><span class="ss">rcu_par_gp</span><span class="pp">]</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">root</span>          12  0.0  0.0      0     0 <span class="pp">?</span>        S    11:50   0:00 <span class="pp">[</span><span class="ss">ksoftirqd/0</span><span class="pp">]</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">root</span>          13  0.0  0.0      0     0 <span class="pp">?</span>        I    11:50   0:30 <span class="pp">[</span><span class="ss">rcu_sched</span><span class="pp">]</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">pedroa</span>     18651  0.0  0.0  14096  3400 pts/1    R+   20:36   0:00 ps aux</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ex">pedroa</span>     18652  0.0  0.0   8140   912 pts/1    S+   20:36   0:00 less</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ps al <span class="co">#a-&gt; Todos usuarios, l -&gt; Formato "long"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">F</span>   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">4</span>     0    1323    1315  20   0 633340 217800 <span class="at">-</span>   Ssl+ tty7      31:12 /usr/lib/xorg/Xorg :0 <span class="at">-seat</span> seat0 <span class="at">-auth</span> /var/run/lightdm/root/:0 <span class="at">-nolisten</span> tcp vt7 <span class="at">-novtswitch</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">4</span>     0    1324       1  20   0   8340  1760 <span class="at">-</span>    Ss+  tty1       0:00 /sbin/agetty <span class="at">-o</span> <span class="at">-p</span> <span class="at">--</span> <span class="dt">\u</span> <span class="at">--noclear</span> tty1 linux</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span>  1000   18303   18292  20   0  10644  4860 core_s Ss+  pts/0      0:00 bash</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span>  1000   18649   18292  20   0  10644  4912 <span class="at">-</span>    Ss   pts/1      0:00 bash</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">4</span>  1000   18718   18649  20   0  13816  1308 <span class="at">-</span>    R+   pts/1      0:00 ps al</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="árbol-de-procesos-pstree" class="level2">
+<h2 class="anchored" data-anchor-id="árbol-de-procesos-pstree">Árbol de procesos: <code>pstree</code></h2>
+<p><code>pstree</code> <span class="math inline">\(\Rightarrow\)</span> visualiza un árbol de los procesos en ejecución</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemd─┬─ModemManager───2*[{ModemManager}]</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>        <span class="ex">├─NetworkManager───2*[{NetworkManager}]</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="ex">├─accounts-daemon───2*[{accounts-daemon}]</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="ex">├─acpid</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="ex">├─agetty</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="ex">├─atop</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="ex">├─atopacctd</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="ex">├─systemd─┬─</span><span class="er">(</span><span class="ex">sd-pam</span><span class="kw">)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="ex">│</span>         ├─at-spi-bus-laun─┬─dbus-daemon</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="ex">│</span>         │                 └─3<span class="pp">*[</span><span class="ss">{at</span><span class="pp">-</span><span class="ss">spi</span><span class="pp">-</span><span class="ss">bus</span><span class="pp">-</span><span class="ss">laun}</span><span class="pp">]</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="ex">│</span>         ├─at-spi2-registr───2<span class="pp">*[</span><span class="ss">{at</span><span class="pp">-</span><span class="ss">spi2</span><span class="pp">-</span><span class="ss">registr}</span><span class="pp">]</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="ex">│</span>         ├─chrome_crashpad───2<span class="pp">*[</span><span class="ss">{chrome_crashpad}</span><span class="pp">]</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="ex">│</span>         ├─code─┬─code───code───19<span class="pp">*[</span><span class="ss">{code}</span><span class="pp">]</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="ex">│</span>         │      ├─code───code───code───15<span class="pp">*[</span><span class="ss">{code}</span><span class="pp">]</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="ex">│</span>         │      ├─code───7<span class="pp">*[</span><span class="ss">{code}</span><span class="pp">]</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="ex">│</span>         │      ├─code─┬─bash───quarto───deno─┬─xdg-open</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="ex">│</span>         │      │      │                      └─7<span class="pp">*[</span><span class="ss">{deno}</span><span class="pp">]</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="ex">│</span>         │      │      ├─2<span class="pp">*[</span><span class="ss">bash</span><span class="pp">]</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="prioridad" class="level2">
+<h2 class="anchored" data-anchor-id="prioridad">Prioridad</h2>
+<p>Número <em>nice</em> (“<em>buena gente</em>”) y <strong>prioridad de procesos</strong>:</p>
+<ul>
+<li><p>Planificación de procesos por prioridades dinámicas.</p></li>
+<li><p>Al lanzar el proceso, se le asigna un <strong>número <em>nice</em></strong> o prioridad estática (se hereda por defecto del proceso padre).</p></li>
+<li><p>La prioridad por defecto se obtiene mediante el número <strong><em>nice</em></strong>.</p></li>
+<li><p>Valores bajos (negativos): más prioridad.</p></li>
+<li><p>Valores altos (positivos): menos prioridad.</p></li>
+<li><p>Rango de prioridad estática <span class="math inline">\(\Rightarrow [-20,19]\)</span></p></li>
+</ul>
+</section>
+<section id="prioridad-y-señales-ejemplos-nice" class="level2">
+<h2 class="anchored" data-anchor-id="prioridad-y-señales-ejemplos-nice">Prioridad y señales: ejemplos <code>nice</code></h2>
+<p>Asignación de prioridades mayores o menores que la actual:</p>
+<ul>
+<li><p><code>nice -5 nautilus</code>: lanzar <code>nautilus</code> con nº nice incrementado en 5.</p></li>
+<li><p><code>nice --10 nautilus</code>: lanzar <code>nautilus</code> con nº nice decrementado en 10 (solo <strong>root</strong>).</p></li>
+<li><p><code>renice 14 890</code>: prioridad 14 al proceso 890.</p></li>
+<li><p><code>renice 5 -u pedroa</code>: prioridad 5 para todos los procesos del usuario <code>pedroa</code>.</p></li>
+</ul>
+</section>
+<section id="ejercicio-nice" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-nice">Ejercicio nice</h2>
+<ol type="1">
+<li>Lista la información los procesos relacionados con <code>apache</code></li>
+<li>Busca <a href="https://duckduckgo.com/?q=c%C3%B3mo+saber+la+prioridad+de+un+proceso+en+linux&amp;t=h_&amp;ia=web">cómo averiguar la prioridad</a> de estos procesos (hay varias alternativas).</li>
+<li>Lista y cambia la prioridad a algún proceso.</li>
+</ol>
+</section>
+<section id="ejercicio-nice-solución" class="level2 content-hidden smaller" data-background-color="lightgreen" data-unless-format="reveal">
+<h2 class="content-hidden smaller anchored" data-background-color="lightgreen" data-unless-format="reveal" data-anchor-id="ejercicio-nice-solución">Ejercicio nice (solución)</h2>
+<p>Información con ps:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ps axu<span class="kw">|</span><span class="fu">grep</span> <span class="at">-E</span> <span class="st">'apache|COMMAND'</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">USER</span>         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">root</span>       29822  0.0  0.0   6524  4396 <span class="pp">?</span>        Ss   12:45   0:00 /usr/sbin/apache2 <span class="at">-k</span> start</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">www-data</span>   29823  0.0  0.0 1997844 4320 <span class="pp">?</span>        Sl   12:45   0:00 /usr/sbin/apache2 <span class="at">-k</span> start</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">www-data</span>   29824  0.0  0.0 1932308 4316 <span class="pp">?</span>        Sl   12:45   0:00 /usr/sbin/apache2 <span class="at">-k</span> start</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Con la opción <code>-l</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span> <span class="at">-lu</span> www-data</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Una vez sabemos el PID podemos consultar su prioridad:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span> <span class="at">-o</span> pid 29822</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>También con <code>top</code>.</p>
+</section>
+<section id="señales-y-procesos-kill" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="señales-y-procesos-kill">Señales y procesos: <code>kill</code></h2>
+<p>Envío de señales a los procesos (pararlos, hacer que continúen, eliminarlos…):</p>
+<ul>
+<li><p><code>kill -señal pid</code> (donde señal es un número).</p></li>
+<li><p><code>kill pid</code>: mandar señal por defecto al proceso <code>pid</code> (señal <code>SIGTERM</code>, número 15, <strong>se puede capturar</strong>).</p></li>
+<li><p><code>SIGKILL</code> (9) fuerza la salida del proceso. <strong>No se puede capturar</strong>.</p></li>
+<li><p>Parar un proceso <code>SIGSTOP</code> (19), Reiniciarlo <code>SIGCONT</code> (18).</p></li>
+<li><p><code>killall comando</code>: permite mandar una señal a todos los procesos con un determinado nombre de comando.</p></li>
+<li><p><code>pkill</code> ó <code>skill</code> <span class="math inline">\(\Rightarrow\)</span> enviar una señal usando el nombre u otros atributos o criterios (<code>uid</code>, <code>gid</code>, <code>terminal</code>…).</p></li>
+<li><p>Los procesos en estado <code>D</code> o <code>Z</code> no se detienen pese a recibir la señal KILL.</p></li>
+</ul>
+</section>
+<section id="señales-posix" class="level2">
+<h2 class="anchored" data-anchor-id="señales-posix">Señales POSIX</h2>
+<p><img src="images/signals.png" class="img-fluid"></p>
+<p>Fuente Nemeth et. al 2018.</p>
+</section>
+<section id="señales-posix-1" class="level2 smaller scrollable">
+<h2 class="smaller scrollable anchored" data-anchor-id="señales-posix-1">Señales POSIX</h2>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">#</td>
+<td style="text-align: left;">Nombre</td>
+<td style="text-align: left;">Descripción</td>
+<td>Por defecto</td>
+<td style="text-align: left;">¿Se puede capturar?</td>
+<td>¿Se puede bloquear?</td>
+<td style="text-align: left;">¿<code>core dump</code>?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">HUP</td>
+<td style="text-align: left;">Hang up (terminal)</td>
+<td>Terminar</td>
+<td style="text-align: left;">Si</td>
+<td>Si</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: left;">Interrumpir (Ctrl+C)</td>
+<td>Terminar</td>
+<td style="text-align: left;">Si</td>
+<td>Si</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">QUIT</td>
+<td style="text-align: left;">Similar a TERM</td>
+<td>Terminar</td>
+<td style="text-align: left;">Si</td>
+<td>Si</td>
+<td style="text-align: left;">Si</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">KILL</td>
+<td style="text-align: left;">Matar proceso</td>
+<td>Terminar</td>
+<td style="text-align: left;">No</td>
+<td>No</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">*</td>
+<td style="text-align: left;">BUS</td>
+<td style="text-align: left;">Error manejo bus</td>
+<td>Terminar</td>
+<td style="text-align: left;">Si</td>
+<td>Si</td>
+<td style="text-align: left;">Si</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">SEGV</td>
+<td style="text-align: left;">Violación de segmento</td>
+<td>Terminar</td>
+<td style="text-align: left;">Si</td>
+<td>Si</td>
+<td style="text-align: left;">Si</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">TERM</td>
+<td style="text-align: left;">Parar <em>software</em></td>
+<td>Terminar</td>
+<td style="text-align: left;">Si</td>
+<td>Si</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">*</td>
+<td style="text-align: left;">STOP</td>
+<td style="text-align: left;">Parada</td>
+<td>Parar</td>
+<td style="text-align: left;">No</td>
+<td>No</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">*</td>
+<td style="text-align: left;">TSTP</td>
+<td style="text-align: left;">Parada (Ctrl+Z)</td>
+<td>Parar</td>
+<td style="text-align: left;">Si</td>
+<td>Si</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">*</td>
+<td style="text-align: left;">CONT</td>
+<td style="text-align: left;">Continuar (tras STOP)</td>
+<td>Continuar</td>
+<td style="text-align: left;">Si</td>
+<td>No</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">*</td>
+<td style="text-align: left;">WINCH</td>
+<td style="text-align: left;">Cambio tamaño</td>
+<td>Continuar</td>
+<td style="text-align: left;">Si</td>
+<td>Si</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">*</td>
+<td style="text-align: left;">USR1</td>
+<td style="text-align: left;">A definir</td>
+<td>Terminar</td>
+<td style="text-align: left;">Si</td>
+<td>Si</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">*</td>
+<td style="text-align: left;">USR2</td>
+<td style="text-align: left;">A definir</td>
+<td>Terminar</td>
+<td style="text-align: left;">Si</td>
+<td>Si</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<p>*: depende del Sistema Operativo.</p>
+</section>
+<section id="señales-y-procesos" class="level2">
+<h2 class="anchored" data-anchor-id="señales-y-procesos">Señales y procesos</h2>
+<ul>
+<li><p><code>KILL</code> (9): No se puede bloquear ni capturar.</p></li>
+<li><p><code>INT</code> (2): La que se envía al pulsar <code>Crtl+C</code>.</p>
+<ul>
+<li><p>Se puede bloquear.</p></li>
+<li><p>Si se manda a un intérprete de órdenes, podría cancelar la orden que está ejecutando, pero no el programa completo.</p></li>
+</ul></li>
+<li><p><code>TERM</code> (15): La que se manda al cerrar el proceso padre o al reiniciar. Se puede bloquear y capturar.</p></li>
+<li><p>Diferencia entre <code>STOP</code> y <code>TSP</code>: <code>STOP</code> no se puede ni bloquear ni capturar.</p></li>
+</ul>
+</section>
+<section id="señales-y-procesos-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="señales-y-procesos-1">Señales y procesos</h2>
+<ul>
+<li><p><code>HUP</code> (1):</p>
+<ul>
+<li><p>Si se trata de demonios, debería provocar que se reinicien, volviendo a leer su configuración.</p></li>
+<li><p>Si se trata de procesos iniciados en una terminal, se manda al cerrar la terminal (algunos intérpretes hacen inmunes los procesos <em>background</em> a esta señal, en <strong>bash</strong>, hay que hacerlo con el comando <code>nohup</code>).</p></li>
+</ul></li>
+<li><p><code>QUIT</code> (3): Similar a <code>TERM</code> pero hace un <em>core dump</em>.</p></li>
+<li><p><code>TSTP</code>: La que se envía al pulsar <code>Crtl+Z</code>.</p></li>
+<li><p>Los procesos detenidos con <code>TSTP</code> o con <code>STOP</code>, se puede reanudar con:</p>
+<ul>
+<li>la señal <code>CONT</code>, o usando el comando <code>fg</code> (vuelve al <em>foreground</em>) o <code>bg</code> (vuelve al <em>background</em>).</li>
+</ul></li>
+</ul>
+</section>
+<section id="monitorizar-uso-cpu-con-uptime" class="level2">
+<h2 class="anchored" data-anchor-id="monitorizar-uso-cpu-con-uptime">Monitorizar uso CPU con <code>uptime</code></h2>
+<p><strong><code>uptime</code></strong>: hora actual, cuánto tiempo lleva en marcha el sistema, número de usuarios conectados, y carga media del sistema (el número medio de procesos del sistema que durante los últimos <span class="math inline">\(1\)</span>, <span class="math inline">\(5\)</span> y <span class="math inline">\(15\)</span> minutos han estado en los estados <code>R</code> o <code>D</code>).</p>
+<ul>
+<li><p>Valores altos implican que el sistema se está usando mucho, pero ¿cuándo se considera que un valor es alto? <span class="math inline">\(\rightarrow\)</span> depende del número de núcleos.</p></li>
+<li><p>Valores bajos no significan que el tiempo de respuesta vaya a ser bajo.</p></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">i02samoj@VTS1:~$</span> uptime</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">13:54:52</span> up  7:55,  4 users,  load average: 0,00, 0,00, 0,00</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="top" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="top"><code>top</code></h2>
+<p><strong><code>top</code></strong>: proporciona una visión continua de la actividad del procesador, en tiempo real, mostrando las tareas que hacen más uso de la CPU. Además, permite manipular procesos de forma <strong>interactiva</strong>.</p>
+<ul>
+<li><p>Las cinco líneas primeras muestran información general:</p>
+<ul>
+<li><p>Estadísticas <code>uptime</code>.</p></li>
+<li><p>Resumen de procesos en el sistema: nº procesos, nº procesos en ejecución, durmiendo, parados o zombies.</p></li>
+<li><p>Porcentaje de tiempo de CPU gastado en: modo usuario (<code>us</code>), modo sistema o núcleo (<code>sy</code>), procesos valor <code>nice</code> positivo (<code>ni</code>), tiempo ocioso (<code>id</code>), procesos esperando eventos E/S (<code>wa</code>), tratando interrupciones (<em>hardware</em> o <em>software</em>, <code>hi</code> o <code>si</code>), espera involuntaria en virtualización (<code>st</code>).</p></li>
+<li><p>Estado actual de la memoria física: total disponible, usada, libre, usada en <em>buffers</em>.</p></li>
+<li><p>Espacio swap: total disponible, usada, libre, usada en <em>buffers</em>, usada en caché de página.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="top-ejemplo" class="level2">
+<h2 class="anchored" data-anchor-id="top-ejemplo"><code>top</code> (ejemplo)</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">top</span> <span class="at">-</span> 14:06:52 up  4:58,  1 user,  load average: 0,73, 1,04, 1,09</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Tareas:</span> 338 total,   1 ejecutar,  336 hibernar,    0 detener,    1 zombie</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">%Cpu</span><span class="er">(</span><span class="ex">s</span><span class="kw">)</span><span class="bu">:</span>  2,4 usuario,  1,2 sist,  0,0 adecuado, 96,0 inact,  0,0 en espera,  0,0 hardw int,  0,4 softw int,  0,0 roba</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">MiB</span> Mem :  31976,8 total,  16274,0 libre,   5729,4 usado,   9973,5 búfer/caché</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">MiB</span> Intercambio:   2048,0 total,   2048,0 libre,      0,0 usado.  24470,8 dispon Mem </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">PID</span> USUARIO   PR  NI    VIRT    RES    SHR S  %CPU  %MEM     HORA+ ORDEN                                          </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">927</span> root      20   0 1059784 340240 279388 S   6,9   1,0  24:22.48 Xorg                                           </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">14955</span> javi      20   0   54,5g 300016 117956 S   5,6   0,9  10:38.54 code                                           </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">14926</span> javi      20   0   32,5g 129396  87796 S   5,0   0,4   3:36.17 code                                           </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">14860</span> javi      20   0  658428  69480  47412 S   3,0   0,2   0:28.59 mate-terminal                                  </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>   <span class="ex">1174</span> javi       9 <span class="at">-11</span> 2460768  20644  15760 S   2,0   0,1   6:21.53 pulseaudio                                     </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>   <span class="ex">1402</span> javi      20   0  386468  80468  47844 S   1,3   0,2   4:31.08 marco                                          </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>   <span class="ex">2307</span> javi      20   0   20,6g 755064 283428 S   1,3   2,3  64:47.79 firefox-bin                                    </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="ex">38250</span> javi      20   0   14892   4132   3296 R   1,0   0,0   0:00.15 top                                            </span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>   <span class="ex">1292</span> javi      20   0  317004  11644   6160 S   0,7   0,0   2:24.85 ibus-daemon                                    </span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>   <span class="ex">1916</span> javi      20   0 3680980 594664 237824 S   0,7   1,8   6:55.73 thunderbird                                    </span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="ex">710</span> root      20   0  486964  20516  17240 S   0,3   0,1   0:17.27 NetworkManager                                 </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>   <span class="ex">1424</span> javi      20   0  756152 108576  51740 S   0,3   0,3   1:02.19 mintmenu                                       </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>   <span class="ex">1569</span> javi      20   0 5177956 295572  76252 S   0,3   0,9   2:01.15 dropbox                                        </span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="ex">14892</span> javi      20   0   36,6g 191608 136864 S   0,3   0,6   1:47.41 code                                           </span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="ex">25532</span> root      20   0       0      0      0 I   0,3   0,0   0:05.80 kworker/u16:4-events_unbound                   </span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="ex">26234</span> javi      20   0 2574928 164384  95444 S   0,3   0,5   0:31.49 Isolated Web Co                                </span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  <span class="ex">29156</span> javi      20   0 1596016 205008 129828 S   0,3   0,6   0:21.91 VirtualBox                                     </span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  <span class="ex">29176</span> javi      20   0   77236  15284  12404 S   0,3   0,0   0:13.22 VBoxXPCOMIPCD                                  </span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  <span class="ex">31941</span> javi      20   0 2821780 302532 114364 S   0,3   0,9   1:02.87 Isolated Web Co            </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="top-ejemplo-1" class="level2">
+<h2 class="anchored" data-anchor-id="top-ejemplo-1"><code>top</code> (ejemplo)</h2>
+<p><img src="images/top.png" class="img-fluid"></p>
+</section>
+<section id="top-interacción" class="level2">
+<h2 class="anchored" data-anchor-id="top-interacción"><code>top</code>: interacción</h2>
+<ul>
+<li><p>Los datos de la parte inferior son similares a los de <code>ps</code> (excepto [SHR] memoria compartida disponible para ser utilizada).</p></li>
+<li><p>Procesos ordenados decrecientemente por uso de CPU.</p></li>
+<li><p>Lista actualizada interactivamente, normalmente cada 5s o pulsar intro/espacio.</p></li>
+</ul>
+</section>
+<section id="top-interacción-1" class="level2">
+<h2 class="anchored" data-anchor-id="top-interacción-1"><code>top</code>: interacción</h2>
+<ul>
+<li><p>Tareas sobre los procesos:</p>
+<ul>
+<li><p>Cambiar la prioridad de alguno utilizando la opción “<code>r</code>”.</p></li>
+<li><p>Matar o enviar una señal con la opción “<code>k</code>”.</p></li>
+<li><p>Ordenarlos según diferentes criterios (por PID con “<code>N</code>”, uso de CPU con “<code>P</code>”, tiempo con “<code>T</code>”, por memoria con “<code>M</code>”, etc.).</p></li>
+<li><p>Con “<code>n</code>” se cambia el número de procesos que se muestran.</p></li>
+<li><p>Para salir se utiliza la letra “<code>q</code>”.</p></li>
+<li><p>“<code>u</code>” mostrar un usuario.</p></li>
+<li><p>“<code>R</code>” cambiar ordenación.</p></li>
+<li><p>“<code>1</code>” información independiente por cada procesador.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="alternativas-a-top" class="level2">
+<h2 class="anchored" data-anchor-id="alternativas-a-top">Alternativas a <code>top</code></h2>
+<p><code>top</code> viene con todas las distribuciones de linux, pero hay <a href="https://itsfoss.com/linux-system-monitoring-tools/">otras alternativas</a> como <code>htop</code></p>
+<p><img src="images/htop.png" class="img-fluid"></p>
+</section>
+<section id="ejercicio-top" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-top">Ejercicio top</h2>
+<ol type="1">
+<li>Recuerda que puedes ver la ayuda pulsando <code>h</code>.</li>
+<li>Prueba a monitorizar los procesos de un solo usuario.</li>
+<li>Prueba a ordenar por diferentes criterios. Busca el proceso que más memoria consume.</li>
+<li>Busca cómo saber el número de hilos del sistema.</li>
+<li>Instala <code>htop</code> y prueba de nuevo.</li>
+</ol>
+</section>
+<section id="vmstat" class="level2">
+<h2 class="anchored" data-anchor-id="vmstat"><code>vmstat</code></h2>
+<p>**<code>vmstat [options] [delay [count]]</code>: información sobre memoria virtual (y más)</p>
+<ul>
+<li><p><code>r</code> <span class="math inline">\(\Rightarrow\)</span> número de procesos esperando su tiempo de ejecución.</p></li>
+<li><p><code>b</code> <span class="math inline">\(\Rightarrow\)</span> número de procesos en espera ininterrumpible.</p></li>
+<li><p><code>us</code> <span class="math inline">\(\Rightarrow\)</span> tiempo de CPU en modo usuario (modo usuario).</p></li>
+<li><p><code>sy</code> <span class="math inline">\(\Rightarrow\)</span> tiempo de CPU en modo sistema (modo núcleo).</p></li>
+<li><p><code>id</code> <span class="math inline">\(\Rightarrow\)</span> tiempo de CPU en inactividad.</p></li>
+<li><p><code>wa</code> <span class="math inline">\(\Rightarrow\)</span> tiempo de CPU usado en espera de E/S.</p></li>
+<li><p><code>st</code> <span class="math inline">\(\Rightarrow\)</span> tiempo de CPU usado en virtualización.</p></li>
+</ul>
+</section>
+<section id="vmstat-ejemplo" class="level2">
+<h2 class="anchored" data-anchor-id="vmstat-ejemplo"><code>vmstat</code>: ejemplo</h2>
+<p>Repetir cada 2 segundos 5 veces:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmstat 2 5</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">procs</span>  <span class="at">----------memory------------</span> <span class="at">-swap-</span> <span class="at">--io--</span> <span class="at">-system--</span> <span class="at">-----cpu------</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">r</span>  b   swpd     free   buff   cache si  so  bi bo  in    cs us sy id wa st</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span>  0      0 10368052 221628 3251020  0   0 109 71  142  482 5  1 93  0   0</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span>  0      0 10367408 221636 3251288  0   0   0 58 1526 7113 4  2 94  0   0</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span>  0      0 10350648 221636 3269616  0   0   0  0 1165 3711 9  1 90  0   0</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span>  0      0 10351420 221636 3268904  0   0   0  0  575 1578 6  0 93  0   0</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span>  0      0 10345792 221636 3274928  0   0   0 26 2497 8090 6  3 91  0   0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Más posibilidades en <a href="https://phoenixnap.com/kb/vmstat-command">How to Use the vmstat Command</a></p>
+</section>
+<section id="carpeta-proc" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="carpeta-proc">Carpeta /proc</h2>
+<p><code>ps</code> y <code>top</code> leen la información que necesitan de <code>/proc</code>.</p>
+<p>Cada proceso tiene una carpeta (cuyo nombre es el <code>pid</code>) y en esa carpeta hay información sobre el mismo:</p>
+<ul>
+<li><p><code>cmdline</code>: línea de comandos con que fue iniciado.</p></li>
+<li><p><code>cwd</code>: enlace simbólico al directorio actual del proceso.</p></li>
+<li><p><code>environ</code>: Las variables de entorno en el momento de invocación.</p></li>
+<li><p><code>exe</code>: enlace simbólico al fichero ejecutado.</p></li>
+<li><p><code>fd</code>: carpeta con cualquier descriptor de fichero abierto.</p></li>
+<li><p><code>maps</code>: información de mapeo de memoria.</p></li>
+<li><p><code>root</code>: enlace simbólico a la raíz del sistema (<code>/</code>).</p></li>
+<li><p><code>stat</code>: estado del proceso.</p></li>
+<li><p><code>statm</code>: uso de memoria.</p></li>
+</ul>
+</section>
+<section id="ejercicio-monitoriza-apache" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-monitoriza-apache">Ejercicio: monitoriza apache</h2>
+<ol type="1">
+<li>Instala las utilidades de apache:</li>
+</ol>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install apache2-utils</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li>Vamos a usar <em>apache benchmark</em> para probar el rendimiento de nuestro servidor. Nota: Idealmente <code>ab</code> debe utilizarse desde otra máquina distinta al servidor.</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># esto lanza 10000 peticiones con un máximo de 100 concurrentes</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ab</span> <span class="at">-n</span> 10000 <span class="at">-c</span> 100 http://localhost/</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li>Abre 3 terminales en tu servidor.</li>
+<li>Inicia <code>top</code> para vigilar la CPU.</li>
+<li>Lanza <code>vmstat</code> para mostrar información periódicamente.</li>
+<li>Usa <code>ab</code> y observa qué pasa.</li>
+</ol>
+</section>
+<section id="ejercicio-fork-bomb" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-fork-bomb">Ejercicio: fork bomb</h2>
+<p>El siguiente código lanza una subprocesos de forma recursiva <code>:(){ :|:&amp; };:</code>. <span class="rojo">ATENCIÓN: prueba esto sólo en tu máquina virtual</span>. Explicación en <a href="https://www.cyberciti.biz/faq/understanding-bash-fork-bomb/">Understanding Bash fork() Bomb</a>.</p>
+<ol type="1">
+<li>Lanza <code>vmstat 1</code>.</li>
+<li>Lanza el ataque:</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">:()</span><span class="kw">{</span> <span class="bu">:</span><span class="kw">|</span><span class="bu">:</span><span class="kw">&amp;</span> <span class="kw">};</span><span class="bu">:</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Intenta arreglarlo.</li>
+<li>¿Cómo podemos protegernos frente a este ataque?</li>
+</ol>
+<ul>
+<li>Echa un vistazo a <code>ulimit</code> en el enlace anterior.</li>
+<li>Mira los parámetros de <a href="https://www.geeksforgeeks.org/limits-conf-file-to-limit-users-process-in-linux-with-examples/"><code>/etc/security/limits.conf</code></a>.</li>
+</ul>
+</section>
+</section>
+<section id="programación-y-temporizadores" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Programación y temporizadores</h1>
+<section id="programar-ejecución-de-procesos-con-at" class="level2">
+<h2 class="anchored" data-anchor-id="programar-ejecución-de-procesos-con-at">Programar ejecución de procesos con <code>at</code></h2>
+<p><code>at</code>: ejecutar tareas a una determinada hora (no viene instalado por defecto).</p>
+<ul>
+<li><p>Puede recibir un fichero de texto con las órdenes a ejecutar.</p></li>
+<li><p>Dispone de un prompt para ir introduciendo las órdenes (<code>Ctrl+D</code> para finalizar introduce <code>&lt;EOT&gt;</code>).</p></li>
+<li><p><code>atd</code>: demonio que ejecuta las órdenes.</p></li>
+<li><p><code>atq</code>: consulta la lista de órdenes.</p></li>
+<li><p><code>atrm</code>: eliminar órdenes.</p></li>
+</ul>
+</section>
+<section id="at-ejemplo" class="level2">
+<h2 class="anchored" data-anchor-id="at-ejemplo"><code>at</code>: ejemplo</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> date</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">lun</span> 20 mar 2023 14:36:50 CET</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> at 14:40</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ex">warning:</span> commands will be executed using /bin/sh</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">at</span><span class="op">&gt;</span> echo <span class="st">"Hola Mundo"</span> <span class="op">&gt;</span> /tmp/saludo</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">at</span><span class="op">&gt;</span> <span class="op">&lt;</span>EOT<span class="op">&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="ex">job</span> 3 at Mon Mar 20 14:40:00 2023</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> atq </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span>   Mon Mar 20 14:40:00 2023 a javi</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> date <span class="kw">;</span> <span class="fu">cat</span> /tmp/saludo</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="ex">lun</span> 20 mar 2023 14:37:39 CET</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="ex">cat:</span> /tmp/saludo: No existe el archivo o el directorio</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> date <span class="kw">;</span> <span class="fu">cat</span> /tmp/saludo</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="ex">lun</span> 20 mar 2023 14:40:20 CET</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="ex">Hola</span> Mundo</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tareas-periódicas-con-cron" class="level2">
+<h2 class="anchored" data-anchor-id="tareas-periódicas-con-cron">Tareas periódicas con <code>cron</code></h2>
+<ul>
+<li><p><code>cron</code>: ejecutar tareas periódicamente.</p>
+<ul>
+<li><p><code>crond</code>: demonio encargado de ejecutar las órdenes.</p></li>
+<li><p><code>crontab</code>: establecer las tareas a ejecutar (<code>-e</code>: añadir/modificar tareas, <code>-l</code>: listar tareas, <code>-r</code>: eliminar tareas).</p></li>
+<li><p><code>/etc/crontab</code>: fichero de configuración del administrador.</p></li>
+<li><p><code>/etc/cron.d</code>: directorio en el que el administrador puede copiar ficheros con formato del <code>crontab</code> que ejecutará <code>cron</code>.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="crontab" class="level2">
+<h2 class="anchored" data-anchor-id="crontab"><code>crontab</code></h2>
+<ul>
+<li><p>Formato de <code>crontab</code>: <code>minuto hora día_mes mes día_semana [user] comando</code></p></li>
+<li><p>Se interpreta como una conjunción de condiciones, salvo para <code>día_semana</code> y <code>día_mes</code> (que sería disyunción).</p></li>
+<li><p>Los domingos son el día 0 y 7 de la semana.</p></li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of job definition:</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># .---------------- minute (0 - 59)</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># |  .------------- hour (0 - 23)</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># |  |  .---------- day of month (1 - 31)</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># |  |  |  |  |</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># *  *  *  *  * user-name command to be executed</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="ex">17</span> <span class="pp">*</span>    <span class="pp">*</span> <span class="pp">*</span> <span class="pp">*</span>   root    cd / <span class="kw">&amp;&amp;</span> <span class="fu">run-parts</span> <span class="at">--report</span> /etc/cron.hourly</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="ex">25</span> 6    <span class="pp">*</span> <span class="pp">*</span> <span class="pp">*</span>   root    test <span class="at">-x</span> /usr/sbin/anacron <span class="kw">||</span> <span class="kw">(</span> <span class="bu">cd</span> / <span class="kw">&amp;&amp;</span> <span class="fu">run-parts</span> <span class="at">--report</span> /etc/cron.daily <span class="kw">)</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="ex">47</span> 6    <span class="pp">*</span> <span class="pp">*</span> 7   root    test <span class="at">-x</span> /usr/sbin/anacron <span class="kw">||</span> <span class="kw">(</span> <span class="bu">cd</span> / <span class="kw">&amp;&amp;</span> <span class="fu">run-parts</span> <span class="at">--report</span> /etc/cron.weekly <span class="kw">)</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="ex">52</span> 6    1 <span class="pp">*</span> <span class="pp">*</span>   root    test <span class="at">-x</span> /usr/sbin/anacron <span class="kw">||</span> <span class="kw">(</span> <span class="bu">cd</span> / <span class="kw">&amp;&amp;</span> <span class="fu">run-parts</span> <span class="at">--report</span> /etc/cron.monthly <span class="kw">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="crontab-ejemplo" class="level2">
+<h2 class="anchored" data-anchor-id="crontab-ejemplo"><code>crontab</code> ejemplo</h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Hacer una copia de seguridad del home cada semana</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span> 5 <span class="pp">*</span> <span class="pp">*</span> 1       tar <span class="at">-zcf</span> /var/backups/home_<span class="va">$(</span><span class="fu">date</span> +<span class="dt">\%</span>Y<span class="dt">\%</span>m<span class="dt">\%</span>d%S<span class="va">)</span>.tgz /home/</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Otras tareas</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="ex">5</span> 9 <span class="pp">*</span> <span class="pp">*</span> <span class="pp">*</span>       <span class="va">$HOME</span>/tareadiaria     <span class="co"># 9:05</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="ex">15</span> 14 1 <span class="pp">*</span> <span class="pp">*</span>     <span class="va">$HOME</span>/tareames        <span class="co"># 14:15 el día 1 cada mes</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span> 22 <span class="pp">*</span> <span class="pp">*</span> 1-5    <span class="va">$HOME</span>/tareasemanal    <span class="co"># 22:0 de lunes a viernes</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="ex">21</span> 0-23/2 <span class="pp">*</span> <span class="pp">*</span> <span class="pp">*</span> <span class="va">$HOME</span>/tareacada2horas <span class="co"># 0h, 2h, 4h, 6h, y 21m</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="ex">5</span> 4 <span class="pp">*</span> <span class="pp">*</span> sun     <span class="va">$HOME</span>/tareadomingos   <span class="co"># Domingos a las 4:05</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span> 9 1 <span class="pp">*</span> 5       <span class="va">$HOME</span>/otratarea       <span class="co"># A las 9:00h el día 1 </span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                                      <span class="co"># de cada mes O los viernes</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="anacron" class="level2">
+<h2 class="anchored" data-anchor-id="anacron"><code>anacron</code></h2>
+<ul>
+<li><p>Si la máquina no está encendida cuando se ha requerido lanzar el proceso <span class="math inline">\(\Rightarrow\)</span> <code>cron</code> no lo lanza.</p></li>
+<li><p>Se podría hacer <code>0 10 */3 * *</code> para conseguir algo parecido (lo intentaría a las 10h cada tres días).</p></li>
+<li><p><code>anacron</code>: no asume que la máquina está siempre encendida.</p>
+<ul>
+<li><p>Combina el uso de <em>scripts</em> al inicio con el uso de <strong>cron</strong>.</p></li>
+<li><p>Permite especificar tareas diarias, semanales o mensuales, de forma muy simple.</p></li>
+<li><p>Introducir aplicaciones o enlaces a las mismas en:</p>
+<ul>
+<li><code>/etc/cron.daily/</code>, <code>/etc/cron.hourly/</code>, <code>/etc/cron.monthly/</code>, <code>/etc/cron.weekly/</code></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="cron-anacron-y-systemd" class="level2">
+<h2 class="anchored" data-anchor-id="cron-anacron-y-systemd"><code>cron</code>, <code>anacron</code> y <code>systemd</code></h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> service anacron status</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Los <em>timers</em> de systemd son una alternativa a <code>cron</code> y <code>anacron</code> si bien <code>systemd</code> se encarga de integrarlos por compatibilidad hacia atrás. Puedes ver un <a href="https://atareao.es/tutorial/trabajando-con-systemd/cron-con-systemd-timer/">ejemplo de timers aquí</a>.</p>
+<p>Esto añade más posibilidades, por ejemplo, controlar que <code>anacron</code> se ejecute sólo cuando el portátil está conectado a la corriente (ver <code>/lib/systemd/system/anacron.service</code>.)</p>
+</section>
+<section id="ejercicio-dónde-pondrías" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-dónde-pondrías">Ejercicio: ¿dónde pondrías…?</h2>
+<ol type="1">
+<li>Copia de seguridad de un portátil</li>
+<li>Programar el apagado de la máquina a una hora una sola vez</li>
+<li>Copia de seguridad en un servidor</li>
+</ol>
+</section>
+</section>
+<section id="rastreo-de-procesos" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Rastreo de procesos</h1>
+<section id="rastreo-de-señales-y-llamadas-al-sistema" class="level2">
+<h2 class="anchored" data-anchor-id="rastreo-de-señales-y-llamadas-al-sistema">Rastreo de señales y llamadas al sistema</h2>
+<p>El comando <code>strace</code> nos permite observar qué es lo que está haciendo un proceso.</p>
+<p>Muestra cada llamada al sistema que hace y cada señal que recibe.</p>
+<ul>
+<li><p><code>strace -p pid</code>: rastrear un proceso ya iniciado.</p></li>
+<li><p><code>strace comando</code>: iniciar un proceso y rastrearlo.</p></li>
+<li><p><code>strace -o salida.txt comando</code>: utilizar un fichero para guardar la salida.</p></li>
+</ul>
+<p>Procesos acaparadores:</p>
+<ul>
+<li><p>Como administradores, debemos sospechar cuando un proceso acapara mucha CPU.</p></li>
+<li><p>Antes de matarlos, deberíamos saber qué están haciendo.</p></li>
+<li><p>Si el proceso parece legítimo, deberíamos suspenderlo con <code>STOP</code>, aplicarle <code>renice</code> y reanudarlo con <code>CONT</code> tras hablar con el dueño del proceso.</p></li>
+</ul>
+</section>
+<section id="rastreo-de-señales-y-llamadas-al-sistema-1" class="level2">
+<h2 class="anchored" data-anchor-id="rastreo-de-señales-y-llamadas-al-sistema-1">Rastreo de señales y llamadas al sistema</h2>
+<p>¿Algo así qué haría?</p>
+<p><span class="rojo">ATENCIÓN. No hacer esto fuera de tu máquina virtual controlada</span></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="ex">1</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mkdir</span> adir</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> adir</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">touch</span> afile</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="ex">end</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>. . .</p>
+<ul>
+<li><p>No consume mucho espacio, pero bloquea el uso del disco <span class="rojo">¿por qué?</span>.</p></li>
+<li><p>El árbol que se genera es tan grande, que ni si quiera <code>rm -R</code> es capaz de manejarlo.</p></li>
+</ul>
+</section>
+</section>
+<section id="memoria" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Memoria</h1>
+<section id="controlgestión-de-la-actividad-de-la-memoria" class="level2">
+<h2 class="anchored" data-anchor-id="controlgestión-de-la-actividad-de-la-memoria">Control/gestión de la actividad de la memoria</h2>
+<ul>
+<li><p>Intercambio y paginación <span class="math inline">\(\Rightarrow\)</span> memoria virtual para alojar procesos.</p></li>
+<li><p>Debemos gestionar la RAM y la zona de intercambio.</p></li>
+<li><p><strong><code>vmstat</code></strong> (todo en KBs salvo con <code>-S</code> ):</p>
+<ul>
+<li><p><code>swpd</code> <span class="math inline">\(\Rightarrow\)</span> Cantidad de memoria virtual (intercambio) ocupada.</p></li>
+<li><p><code>free</code> <span class="math inline">\(\Rightarrow\)</span> Cantidad de memoria virtual sin usar.</p></li>
+<li><p><code>buff</code> <span class="math inline">\(\Rightarrow\)</span> Cantidad de memoria empleada como buffers para E/S (memoria temporal empleada por algunos dispositivos, p.ej. una tarjeta de red).</p></li>
+<li><p><code>cache</code> <span class="math inline">\(\Rightarrow\)</span> La cantidad de memoria empleada como caché de disco.</p></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmstat 2 2</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">procs</span> <span class="at">------------memory----------</span> <span class="at">--swap-</span> <span class="at">--io--</span> <span class="at">-system--</span> <span class="at">-----cpu------</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">r</span>  b  swpd     free   buff   cache  si  so  bi bo  in    cs us sy id wa st</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span>  0     0 10368052 221628 3251020  0   0  109 71  142  482 5  1 93  0   0</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span>  0     0 10367408 221636 3251288  0   0    0 58 1526 7113 4  2 94  0   0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="controlgestión-de-la-actividad-de-la-memoria-1" class="level2">
+<h2 class="anchored" data-anchor-id="controlgestión-de-la-actividad-de-la-memoria-1">Control/gestión de la actividad de la memoria</h2>
+<ul>
+<li><p><strong><code>vmstat</code></strong></p>
+<ul>
+<li><p><code>si</code> <span class="math inline">\(\Rightarrow\)</span> Cantidad de memoria traída del espacio de intercambio desde disco en KB/s.</p></li>
+<li><p><code>so</code> <span class="math inline">\(\Rightarrow\)</span> Cantidad de memoria intercambiada al disco en KB/s.</p></li>
+<li><p><code>bi</code> <span class="math inline">\(\Rightarrow\)</span> Bloques recibidos desde un dispositivo de bloques (en bloques/s).</p></li>
+<li><p><code>bo</code> <span class="math inline">\(\Rightarrow\)</span> Bloques enviados a un dispositivo de bloques (en bloques/s).</p></li>
+<li><p><code>in</code> <span class="math inline">\(\Rightarrow\)</span> Nº de interrupciones por segundo (contando el reloj).</p></li>
+<li><p><code>cs</code> <span class="math inline">\(\Rightarrow\)</span> Nº de cambios de contexto por segundo.</p></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmstat 2 2</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">procs</span> <span class="at">------------memory----------</span> <span class="at">--swap-</span> <span class="at">--io--</span> <span class="at">-system--</span> <span class="at">-----cpu------</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="ex">r</span>  b  swpd     free   buff   cache  si  so  bi bo   in   cs us sy id wa st</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span>  0     0 10368052 221628 3251020   0   0 109 71  142  482 5  1 93  0   0</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span>  0     0 10367408 221636 3251288   0   0   0 58 1526 7113 4  2 94  0   0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="memoria-de-intercambio" class="level2">
+<h2 class="anchored" data-anchor-id="memoria-de-intercambio">Memoria de intercambio</h2>
+<p><strong>Espacio para paginación</strong>:</p>
+<ul>
+<li><p>¿Qué <strong>tamaño</strong> es el adecuado para la paginación?. Depende:</p>
+<ul>
+<li><p>Memoria requerida por los procesos, número de procesos simultáneos, etc…</p></li>
+<li><p>Demanda del sistema.</p></li>
+<li><p>En portátiles, para posibilitar la hibernación, al menos tanto espacio como memoria RAM.</p></li>
+</ul></li>
+<li><p>Se puede tener una <strong>partición de intercambio</strong> o un <strong>fichero de intercambio</strong>, ¿qué opción es la mejor?</p></li>
+<li><p>Se puede controlar con números de prioridad en <code>/etc/fstab</code>.</p></li>
+</ul>
+</section>
+<section id="gestión-memoria-de-intercambio" class="level2">
+<h2 class="anchored" data-anchor-id="gestión-memoria-de-intercambio">Gestión memoria de intercambio:</h2>
+<p><strong>Espacio para paginación</strong>:</p>
+<ul>
+<li><p><code>swapon -s</code>: nos da un listado de particiones o ficheros activos.</p></li>
+<li><p><code>swapon /dev/sda5</code>: activar una determinada partición.</p></li>
+<li><p><code>swapoff /dev/sda5</code>: desactivar una determinada partición.</p></li>
+<li><p>¿Cómo se crea un fichero de paginación?</p></li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El fichero debe ser contiguo en disco</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dd if=/dev/zero of=/.fichero_swap bs=1048576 count=1024</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkswap /.fichero_swap</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> sync</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> swapon /.fichero_swap</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="uso-de-memoria-free" class="level2">
+<h2 class="anchored" data-anchor-id="uso-de-memoria-free">Uso de memoria: <code>free</code></h2>
+<p><code>free</code>: obtener información sobre el uso de memoria (mismos campos que <strong>top</strong>).</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> free</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span>        used        free      shared  buff/cache   available</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Mem:</span>     16203968     3778368     3046064      570784     9379536    11514988</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Swap:</span>           0           0           0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejercicio-paginación" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-paginación">Ejercicio: paginación</h2>
+<ol type="1">
+<li>Consulta si tienes la swap activada y la memoria con <code>swapon -s</code> y <code>free</code></li>
+<li>Comprueba si está en uso</li>
+<li>Desactívala</li>
+<li>Activa la swap en un fichero</li>
+<li>Comprueba el resultado con <code>swapon -s</code> y <code>free</code></li>
+<li>Deja todo como estaba</li>
+</ol>
+</section>
+<section id="ejercicio-memoria-en-uso" class="level2 autoscroll" data-background-color="lightgreen">
+<h2 class="autoscroll anchored" data-background-color="lightgreen" data-anchor-id="ejercicio-memoria-en-uso">Ejercicio: memoria en uso</h2>
+<p>Utiliza el siguiente código para reservar el 90% de la memoria libre del ordenador. Comprueba el efecto que tiene con <code>vmstat</code> y <code>free</code>.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;sys/sysinfo.h&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> printmemsize<span class="op">(</span><span class="dt">char</span> <span class="op">*</span>str<span class="op">,</span> <span class="dt">unsigned</span> <span class="dt">long</span> ramsize<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%s</span><span class="st">: </span><span class="sc">%ld</span><span class="st"> in bytes / </span><span class="sc">%ld</span><span class="st"> in KB / </span><span class="sc">%ld</span><span class="st"> in MB / </span><span class="sc">%ld</span><span class="st"> in GB</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>               str<span class="op">,</span> ramsize<span class="op">,</span> ramsize<span class="op">/</span><span class="dv">1024</span><span class="op">,</span> <span class="op">(</span>ramsize<span class="op">/</span><span class="dv">1024</span><span class="op">)/</span><span class="dv">1024</span><span class="op">,</span> <span class="op">((</span>ramsize<span class="op">/</span><span class="dv">1024</span><span class="op">)/</span><span class="dv">1024</span><span class="op">)/</span><span class="dv">1024</span><span class="op">);</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">struct</span> sysinfo info<span class="op">;</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>        sysinfo<span class="op">(&amp;</span>info<span class="op">);</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"uptime: </span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span> info<span class="op">.</span>uptime<span class="op">);</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">// print total ram size</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>        printmemsize<span class="op">(</span><span class="st">"totalram"</span><span class="op">,</span> info<span class="op">.</span>totalram<span class="op">);</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>        printmemsize<span class="op">(</span><span class="st">"freeram"</span><span class="op">,</span> info<span class="op">.</span>freeram<span class="op">);</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>        printmemsize<span class="op">(</span><span class="st">"sharedram"</span><span class="op">,</span> info<span class="op">.</span>sharedram<span class="op">);</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>        printmemsize<span class="op">(</span><span class="st">"bufferram"</span><span class="op">,</span> info<span class="op">.</span>bufferram<span class="op">);</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>        printmemsize<span class="op">(</span><span class="st">"freeswap"</span><span class="op">,</span> info<span class="op">.</span>freeswap<span class="op">);</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"current running processes: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> info<span class="op">.</span>procs<span class="op">);</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="op">*</span>v <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> n<span class="op">;</span> </span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> info<span class="op">.</span>freeram<span class="op">/</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">long</span><span class="op">);</span></span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"n: </span><span class="sc">%ld</span><span class="st">; sizeof(long): </span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span> n<span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">long</span><span class="op">));</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> ceill<span class="op">(</span><span class="fl">0.9</span> <span class="op">*</span> n<span class="op">);</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    printmemsize<span class="op">(</span><span class="st">"allocating 90</span><span class="sc">% o</span><span class="st">f free memory"</span><span class="op">,</span> n<span class="op">);</span></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> malloc<span class="op">(</span>n <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span><span class="dt">long</span><span class="op">));</span></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>v <span class="op">==</span> NULL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>        perror<span class="op">(</span><span class="st">"cannot allocate memory</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">unsigned</span> <span class="dt">long</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span>n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>        v<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>    getchar<span class="op">();</span></span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>    free<span class="op">(</span>v<span class="op">);</span></span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="dispositivos-entradasalida" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Dispositivos Entrada/Salida</h1>
+<section id="espacio-en-disco-df" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="espacio-en-disco-df">Espacio en disco: <code>df</code></h2>
+<p>Espacio en disco (<strong>particiones</strong>):</p>
+<ul>
+<li><code>df</code>: muestra la capacidad, el espacio libre y el punto de montaje de cada sistema de ficheros del equipo.</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> df <span class="at">-h</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">S.ficheros</span>     Tamaño Usados  Disp Uso% Montado en</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">udev</span>             7,7G      0  7,7G   0% /dev</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="ex">tmpfs</span>            1,6G   1,8M  1,6G   1% /run</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/nvme0n1p6</span>    58G    32G   24G  58% /</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="ex">tmpfs</span>            7,8G   279M  7,5G   4% /dev/shm</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="ex">tmpfs</span>            5,0M   4,0K  5,0M   1% /run/lock</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/nvme0n1p5</span>   314G   131G  167G  45% /home</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/loop1</span>        83M    83M     0 100% /snap/scrcpy/274</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>Si el sistema de ficheros raíz se quedase sin espacio el sistema tendría problemas. P.ej., no podría arrancar, (<span class="rojo">¿por qué?</span>).</p></li>
+<li><p>“<code>-i</code>” nos permite mostrar información sobre los nodos-i.</p></li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> df <span class="at">-i</span> /dev/nvme0n1p5</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">S.ficheros</span>      Nodos-i NUsados  NLibres NUso% Montado en</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/nvme0n1p5</span> 20946944 1021112 19925832    5% /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="espacio-en-disco-du" class="level2">
+<h2 class="anchored" data-anchor-id="espacio-en-disco-du">Espacio en disco: <code>du</code></h2>
+<p>Espacio en disco (<strong>carpetas</strong>):</p>
+<ul>
+<li><code>du</code>: muestra el espacio usado por cada subdirectorio del directorio actual.</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/PAS$</span> du <span class="at">-h</span> <span class="at">--max-depth</span><span class="op">=</span>1</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">196K</span>    ./Programa2021</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="ex">176K</span>    ./logs</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="ex">32K</span> ./reservas</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="ex">79M</span> ./Evaluacion</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="ex">45M</span> ./MaterialDocente</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="ex">6,9M</span>    ./guiaDocente</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="ex">1,4M</span>    ./listaClase</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="ex">133M</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>Si no ponemos <code>--max-depth=1</code> nos muestra <strong>todas</strong> las carpetas.</p></li>
+<li><p>La última línea es el acumulado.</p></li>
+<li><p><span class="rojo">¡OJO!</span> <strong>du</strong> cuenta bloques del sistema de ficheros, estén o no completamente ocupados (para un fichero de 1B cuenta 4 KB).</p></li>
+</ul>
+</section>
+<section id="estadísticas-memoria-iostat" class="level2">
+<h2 class="anchored" data-anchor-id="estadísticas-memoria-iostat">Estadísticas memoria: <code>iostat</code></h2>
+<p>Estadísticas de entrada/salida de disco</p>
+<p><code>iostat intervalo numero</code>: presenta estadísticas sobre la CPU y los dispositivos y particiones de E/S.</p>
+<ul>
+<li><p><code>tps</code> <span class="math inline">\(\Rightarrow\)</span> nº de transferencias por segundo.</p></li>
+<li><p><code>kB_read/s</code> <span class="math inline">\(\Rightarrow\)</span> nº de kBs leídos por segundo.</p></li>
+<li><p><code>kB_wrtn/s</code> <span class="math inline">\(\Rightarrow\)</span> nº de kBs escritos por segundo.</p></li>
+<li><p><code>kB_read</code> <span class="math inline">\(\Rightarrow\)</span> nº total de kBs leídos.</p></li>
+<li><p><code>kB_wrtn</code> <span class="math inline">\(\Rightarrow\)</span> nº total de kBs escritos.</p></li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> iostat </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Linux</span> 5.4.0-144-generic     20/03/23    _x86_64_    <span class="er">(</span><span class="ex">8</span> CPU<span class="kw">)</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="ex">avg-cpu:</span>  %user   %nice %system %iowait  %steal   %idle</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>           <span class="ex">7,41</span>    0,79    2,62    0,91    0,00   88,28</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Device</span>             tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="ex">loop0</span>             0,11         0,91         0,00       1158          0</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="ex">nvme0n1</span>         218,69      3299,26      2384,25    4185145    3024449</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="ex">loop8</span>             0,09         0,89         0,00       1131          0</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="ex">loop9</span>             0,13         0,93         0,00       1181          0</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="ex">dm-0</span>            208,57      1415,84       427,96    1796005     542868</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="procesos-y-acceso-a-disco-iotop" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="procesos-y-acceso-a-disco-iotop">Procesos y acceso a disco: <code>iotop</code></h2>
+<p><a href="https://github.com/Tomas-M/iotop"><strong><code>iotop</code></strong></a>:</p>
+<blockquote class="blockquote">
+<p>Is your Linux server too slow or load is too high? One of the possible causes of such symptoms may be high IO (input/output) waiting time, which basically means that some of your processes need to read or write to a hard drive while it is too slow and not ready yet, serving data for some other processes.</p>
+<p>Common practice is to use iostat -x in order to find out which block device (hard drive) is slow, but this information is not always helpful. It could help you much more if you knew which process reads or writes the most data from your slow disk, so you could renice it using ionice or even kill it.</p>
+<p>iotop identifies processes that use high amount of input/output requests on your machine. It is similar to the well known top utility, but instead of showing you what consumes CPU the most, it lists processes by their IO usage. Inspired by iotop Python script from Guillaume Chazarain, rewritten in C by Vyacheslav Trushkin and improved by Boian Bonev so it runs without Python at all.</p>
+</blockquote>
+</section>
+</section>
+<section id="referencias" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Referencias</h1>
+<section id="referencias-1" class="level2">
+<h2 class="anchored" data-anchor-id="referencias-1">Referencias</h2>
+<p>Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 4. <em>Process Control</em>, Capítulo 10. <em>Logging</em>. Addison-Wesley. 5th Edition. 2018.</p>
+<p>Aeleen Frisch. Essential system administration. Capítulo 15. <em>Managing system resources</em>. O’Reilly and Associates. Tercera edición. 2002.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
