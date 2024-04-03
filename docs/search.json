@@ -3198,5 +3198,36 @@
     "crumbs": [
       "Tema 2: Ejercicios permisos"
     ]
+  },
+  {
+    "objectID": "index.html#cómo-hacer-más-compacto-o-menos-irritante-moodle-4.x",
+    "href": "index.html#cómo-hacer-más-compacto-o-menos-irritante-moodle-4.x",
+    "title": "Programación y Administración de Sistemas",
+    "section": "Cómo hacer más compacto (o menos irritante) moodle 4.x",
+    "text": "Cómo hacer más compacto (o menos irritante) moodle 4.x\nPincha aquí.",
+    "crumbs": [
+      "Inicio"
+    ]
+  },
+  {
+    "objectID": "varios/moodle-compacto.html",
+    "href": "varios/moodle-compacto.html",
+    "title": "Cómo hacer más compacto (o menos irritante) moodle 4.x",
+    "section": "",
+    "text": "Moodle 4.x se une a la web moderna pensada para ser simple en lo visual pero extremadamente ineficiente para trabajar con más de 3 elementos de información a la vez. ¡Por suerte podemos cambiarlo!"
+  },
+  {
+    "objectID": "varios/moodle-compacto.html#abstract",
+    "href": "varios/moodle-compacto.html#abstract",
+    "title": "Cómo hacer más compacto (o menos irritante) moodle 4.x",
+    "section": "",
+    "text": "Moodle 4.x se une a la web moderna pensada para ser simple en lo visual pero extremadamente ineficiente para trabajar con más de 3 elementos de información a la vez. ¡Por suerte podemos cambiarlo!"
+  },
+  {
+    "objectID": "varios/moodle-compacto.html#pasos",
+    "href": "varios/moodle-compacto.html#pasos",
+    "title": "Cómo hacer más compacto (o menos irritante) moodle 4.x",
+    "section": "Pasos",
+    "text": "Pasos\nInstala https://www.tampermonkey.net/ en tu navegador favorito. TL;DR: Tampermonkey permite incluir scripts de usuario para cambiar en parte el aspecto, comportamiento, etc. de webs.\nAñade el siguente script desde la URL: https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js. El script está pensado para la web de la UCO pero puede adaptarse a cualquier otro cambiando la línea // @match        https://moodle.uco.es/m2324/*.\n\nAcceso al panel/dashboard de Tampermonkey\n\n\n\nAcceso a la pestaña de utilidades\n\n\n\nCargar script desde URL https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js.\n\n\n\nRecarga tu moodle."
   }
 ]

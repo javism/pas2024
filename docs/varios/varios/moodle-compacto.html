@@ -8,7 +8,7 @@
 
 <meta name="author" content="Javier Sánchez Monedero">
 
-<title>Programación y Administración de Sistemas (2023-2024) - Programación y Administración de Sistemas</title>
+<title>Cómo hacer más compacto (o menos irritante) moodle 4.x</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,200 +24,44 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "Sin resultados",
-    "search-matching-documents-text": "documentos encontrados",
-    "search-copy-link-title": "Copiar el enlace en la búsqueda",
-    "search-hide-matches-text": "Ocultar resultados adicionales",
-    "search-more-match-text": "resultado adicional en este documento",
-    "search-more-matches-text": "resultados adicionales en este documento",
-    "search-clear-button-title": "Borrar",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancelar",
-    "search-submit-button-title": "Enviar",
-    "search-label": "Buscar"
-  }
-}</script>
+<script src="moodle-compacto_files/libs/clipboard/clipboard.min.js"></script>
+<script src="moodle-compacto_files/libs/quarto-html/quarto.js"></script>
+<script src="moodle-compacto_files/libs/quarto-html/popper.min.js"></script>
+<script src="moodle-compacto_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="moodle-compacto_files/libs/quarto-html/anchor.min.js"></script>
+<link href="moodle-compacto_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="moodle-compacto_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="moodle-compacto_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="moodle-compacto_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="moodle-compacto_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
 
-<body class="nav-sidebar docked">
+<body>
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Inicio</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Programación y Administración de Sistemas (2023-2024)</a> 
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Buscar"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Inicio</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tema00-presentacion/presentacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tema 0: Presentación</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tema01-introduccion/tema01a-introduccion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tema 1.a: Introducción</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tema01-introduccion/tema01b-software-libre.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tema 1.b: Software Libre y GNU/Linux</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tema01-introduccion/tema01c-proyecto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tema 1.c: Virtual Box, Debian y configuración básica</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tema02-organizacion/tema02-ficheros.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tema 2: Organización de GNU/Linux</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tema02-organizacion/tema02-ejercicios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tema 2: Ejercicios permisos</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tema02-organizacion/tema02-webuco.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tema 2: Ejercicios web personal en la UCO</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tema03-usuarios/tema03-usuarios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tema 3: Gestión de usuarios</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tema04-arranque/tema04-arranque.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tema 4: Arranque y Parada</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tema05-recursos/tema05-recursos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tema 5: Gestión de recursos</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./enlaces.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Enlaces</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    </div>
-<!-- main -->
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Programación y Administración de Sistemas</h1>
-<p class="subtitle lead">Programación y Administración de Sistemas</p>
+<h1 class="title">Cómo hacer más compacto (o menos irritante) moodle 4.x</h1>
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Autor/a</div>
-  <div class="quarto-title-meta-heading">Afiliaciones</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Javier Sánchez Monedero </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Depto. Informática y Análisis Numérico
-          </p>
-        <p class="affiliation">
-            Escuela Politécnica Superior
-          </p>
-        <p class="affiliation">
-            Universidad de Córdoba
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Javier Sánchez Monedero </p>
+          </div>
+  </div>
+    
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
@@ -233,53 +77,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="tema00-presentacion/images/meditate.png" class="center img-fluid" style="width:40.0%"></p>
-<p>Bienvenid[o|a|e] a la web de la asignatura “Programación y Administración de Sistemas (curso 2023-2024)”. Estos apuntes son una actualización progresiva de los apuntes del profesor Pedro A. Gutiérrez de cursos anteriores.</p>
-<p>Aquí encontrarás <strong>progresivamente</strong> el material de teoría de la asignatura en formato HTML navegando por el menú de la izquierda. El resto del material lo tienes disponible en la <a href="https://moodle.uco.es/m2324/">plataforma moodle de la UCO</a>.</p>
-<p>Al final de cada tema hay una sección sobre el proyecto de la asignatura de construcción de un sistema informático con GNU/Linux.</p>
-<section id="contenido-en-pdf" class="level2">
-<h2 class="anchored" data-anchor-id="contenido-en-pdf">Contenido en PDF</h2>
-<p>Puedes acceder también al contenido de esta asignatura en formato PDF imprimible:</p>
-<ul>
-<li><a href="./index.html">Inicio</a></li>
-<li><a href="tema00-presentacion/presentacion.pdf">Tema 0: Presentación</a></li>
-<li><a href="tema01-introduccion/tema01a-introduccion.pdf">Tema 1.a: Introducción</a></li>
-<li><a href="tema01-introduccion/tema01b-software-libre.pdf">Tema 1.b: Software Libre y GNU/Linux”</a></li>
-<li><a href="tema01-introduccion/tema01c-proyecto.pdf">Tema 1.c: Virtual Box, Debian y configuración básica</a></li>
-<li><a href="tema02-organizacion/tema02-ficheros.pdf">Tema 2: Organización de un sistema operativo tipo GNU/Linux</a>
-<ul>
-<li><a href="tema02-organizacion/tema02-ejercicios.pdf">Tema 2: Ejercicios permisos</a></li>
-<li><a href="tema02-organizacion/tema02-webuco.pdf">Tema 2: Web personal</a></li>
-</ul></li>
-<li><a href="tema03-usuarios/tema03-usuarios.pdf">Tema 3: Gestión de Usuarios</a></li>
-<li><a href="tema04-arranque/tema04-arranque.pdf">Tema 4: Arranque y parada del sistema y servicios.</a></li>
-<li><a href="tema05-recursos/tema05-recursos.pdf">Tema 5: Gestión de recursos del sistema.</a></li>
-</ul>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Moodle 4.x se une a la web moderna pensada para ser simple en lo visual pero extremadamente ineficiente para trabajar con más de 3 elementos de información a la vez. ¡Por suerte podemos cambiarlo!</p>
+<p><img src="moodle.jpeg" class="img-fluid" style="width:60.0%"></p>
 </section>
-<section id="evi-nemeth" class="level2">
-<h2 class="anchored" data-anchor-id="evi-nemeth">Evi Nemeth</h2>
-<p><a href="https://www.admin.com/samples/EviTribute.pdf">Evi Tribute</a> at admin.com.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/evi-nemeth.jpg" class="img-fluid figure-img"></p>
-<figcaption>Evi Nemeth retired from the Computer Science faculty at the University of Colorado in 2001. She explored the Pacific on her 40-foot sailboat named Wonderland for many years before becoming lost at sea in 2013. Fuente <a href="http://www.techfestival.org/evi-nemeth" class="uri">http://www.techfestival.org/evi-nemeth</a></figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/evi_denis.jpeg" class="img-fluid figure-img"></p>
-<figcaption>Evi Nemeth and Dennis Ritchie at the Phoenix 1987 USENIX conference. Evi, a UNIX engineer, author, and teacher, famous for one of the UNIX/Linux sys admin “bibles”. Dennis Ritchie co-developed UNIX and also the C programming language. Fuente <a href="https://twitter.com/bioreconstruct/status/1269422103343882245">@bioreconstruct</a></figcaption>
-</figure>
-</div>
-</section>
-<section id="cómo-hacer-más-compacto-o-menos-irritante-moodle-4.x" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-hacer-más-compacto-o-menos-irritante-moodle-4.x">Cómo hacer más compacto (o menos irritante) moodle 4.x</h2>
-<p>Pincha <a href="varios/moodle-compacto.html">aquí</a>.</p>
-
-
+<section id="pasos" class="level2">
+<h2 class="anchored" data-anchor-id="pasos">Pasos</h2>
+<p>Instala <a href="Tamper%20Monkey">https://www.tampermonkey.net/</a> en tu navegador favorito. TL;DR: Tampermonkey permite incluir scripts de usuario para cambiar en parte el aspecto, comportamiento, etc. de webs.</p>
+<p>Añade el siguente script desde la URL: <a href="https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js" class="uri">https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js</a>. El script está pensado para la web de la UCO pero puede adaptarse a cualquier otro cambiando la línea <code>// @match        https://moodle.uco.es/m2324/*</code>.</p>
+<ol type="1">
+<li>Acceso al panel/dashboard de Tampermonkey</li>
+</ol>
+<p><img src="tm1.png" class="img-fluid"></p>
+<ol start="2" type="1">
+<li>Acceso a la pestaña de utilidades</li>
+</ol>
+<p><img src="tm2.png" class="img-fluid"></p>
+<ol start="3" type="1">
+<li>Cargar script desde URL <a href="https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js" class="uri">https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js</a>.</li>
+</ol>
+<p><img src="tm3.png" class="img-fluid"></p>
+<ol start="4" type="1">
+<li>Recarga tu moodle.</li>
+</ol>
 </section>
 
-</main> <!-- /main -->
+</main>
+<!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

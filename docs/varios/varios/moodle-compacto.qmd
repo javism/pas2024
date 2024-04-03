@@ -1,0 +1,34 @@
+---
+title: "Cómo hacer más compacto (o menos irritante) moodle 4.x"
+lang: es
+author: Javier Sánchez Monedero
+institute: ""
+---
+
+## Abstract 
+
+Moodle 4.x se une a la web moderna pensada para ser simple en lo visual pero extremadamente ineficiente para trabajar con más de 3 elementos de información a la vez. ¡Por suerte podemos cambiarlo!
+
+![](moodle.jpeg){width="60%"}
+
+## Pasos 
+
+Instala [https://www.tampermonkey.net/](Tamper Monkey) en tu navegador favorito. TL;DR: Tampermonkey permite incluir scripts de usuario para cambiar en parte el aspecto, comportamiento, etc. de webs. 
+
+Añade el siguente script desde la URL: <https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js>. El script está pensado para la web de la UCO pero puede adaptarse a cualquier otro cambiando la línea `// @match        https://moodle.uco.es/m2324/*`.
+
+1. Acceso al panel/dashboard de Tampermonkey
+
+![](tm1.png)
+
+2. Acceso a la pestaña de utilidades
+
+![](tm2.png)
+
+3. Cargar script desde URL <https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js>.
+
+![](tm3.png)
+
+4. Recarga tu moodle. 
+
+
