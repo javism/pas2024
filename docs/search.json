@@ -2364,7 +2364,7 @@
     "href": "tema05-recursos/tema05-recursos.html#rastreo-de-señales-y-llamadas-al-sistema",
     "title": "Tema 5: Gestión de recursos del sistema",
     "section": "Rastreo de señales y llamadas al sistema",
-    "text": "Rastreo de señales y llamadas al sistema\nEl comando strace nos permite observar qué es lo que está haciendo un proceso.\nMuestra cada llamada al sistema que hace y cada señal que recibe.\n\nstrace -p pid: rastrear un proceso ya iniciado.\nstrace comando: iniciar un proceso y rastrearlo.\nstrace -o salida.txt comando: utilizar un fichero para guardar la salida.\n\nProcesos acaparadores:\n\nComo administradores, debemos sospechar cuando un proceso acapara mucha CPU.\nAntes de matarlos, deberíamos saber qué están haciendo.\nSi el proceso parece legítimo, deberíamos suspenderlo con STOP, aplicarle renice y reanudarlo con CONT tras hablar con el dueño del proceso.",
+    "text": "Rastreo de señales y llamadas al sistema\nEl comando strace nos permite observar qué es lo que está haciendo un proceso.\nMuestra cada llamada al sistema que hace y cada señal que recibe.\n\nstrace -p pid: rastrear un proceso ya iniciado.\nstrace comando: iniciar un proceso y rastrearlo.\nstrace -o salida.txt comando: utilizar un fichero para guardar la salida.\n\nCómo proceder con procesos acaparadores:\n\nComo administradores, debemos sospechar cuando un proceso acapara mucha CPU.\nAntes de matarlos, deberíamos saber qué están haciendo.\nSi el proceso parece legítimo, deberíamos suspenderlo con STOP, aplicarle renice y reanudarlo con CONT tras hablar con el dueño del proceso.",
     "crumbs": [
       "Tema 5: Gestión de recursos"
     ]

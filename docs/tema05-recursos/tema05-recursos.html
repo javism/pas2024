@@ -1094,8 +1094,8 @@ window.Quarto = {
 </section>
 <section id="rastreo-de-procesos" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Rastreo de procesos</h1>
-<section id="rastreo-de-señales-y-llamadas-al-sistema" class="level2">
-<h2 class="anchored" data-anchor-id="rastreo-de-señales-y-llamadas-al-sistema">Rastreo de señales y llamadas al sistema</h2>
+<section id="rastreo-de-señales-y-llamadas-al-sistema" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="rastreo-de-señales-y-llamadas-al-sistema">Rastreo de señales y llamadas al sistema</h2>
 <p>El comando <code>strace</code> nos permite observar qué es lo que está haciendo un proceso.</p>
 <p>Muestra cada llamada al sistema que hace y cada señal que recibe.</p>
 <ul>
@@ -1103,7 +1103,7 @@ window.Quarto = {
 <li><p><code>strace comando</code>: iniciar un proceso y rastrearlo.</p></li>
 <li><p><code>strace -o salida.txt comando</code>: utilizar un fichero para guardar la salida.</p></li>
 </ul>
-<p>Procesos acaparadores:</p>
+<p>Cómo proceder con <strong>procesos acaparadores</strong>:</p>
 <ul>
 <li><p>Como administradores, debemos sospechar cuando un proceso acapara mucha CPU.</p></li>
 <li><p>Antes de matarlos, deberíamos saber qué están haciendo.</p></li>
