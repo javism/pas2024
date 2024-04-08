@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,6 +74,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -395,7 +397,7 @@ window.Quarto = {
 <p>Sistema de Archivos/Ficheros (SA/SF)</p>
 <ul>
 <li><p>Organiza la información de los dispositivos de almacenamiento secundario (disco duro, disco extraíble, DVDs, CDRom...).</p></li>
-<li><p>El dispositivo se divide manera lógica para que quede organizado de una forma inteligible para el SO.</p></li>
+<li><p>El dispositivo <strong>se divide manera lógica</strong> para que quede organizado de una forma inteligible para el SO.</p></li>
 <li><p>La división se hace a múltiples niveles:</p>
 <ul>
 <li><p><strong>Particiones</strong> o <strong>volúmenes</strong>.</p></li>
@@ -414,18 +416,20 @@ window.Quarto = {
 </ul>
 <p><img src="images/gparted-main-window.png" class="img-fluid"></p>
 </section>
-<section id="sistema-de-archivos-bloques" class="level2">
-<h2 class="anchored" data-anchor-id="sistema-de-archivos-bloques">Sistema de Archivos: bloques</h2>
+<section id="sistema-de-archivos-bloques" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="sistema-de-archivos-bloques">Sistema de Archivos: bloques</h2>
 <p><strong>Bloque</strong>: agrupación lógica de sectores físicos del disco, la cual supone la unidad de transferencia mínima que usa el SA.</p>
-<ul>
+<p><strong>Agrupación</strong>: conjunto de bloques gestionado como una unidad lógica de almacenamiento.</p>
+<div class="incremental">
+<ul class="incremental">
 <li><p>El <strong>tamaño de bloque</strong> es un parámetro decisivo que afecta a la eficiencia del acceso a disco y a la fragmentación del mismo.</p>
-<ul>
+<ul class="incremental">
 <li><p>Tamaño de bloque <strong>pequeño</strong>: Mayor número de operaciones de Entrada/Salida (E/S) para acceder al archivo. Menor fragmentación.</p></li>
 <li><p>Tamaño de bloque <strong>grande</strong>: Menor número de operaciones E/S para acceder al archivo. Mayor fragmentación.</p></li>
 </ul></li>
 <li><p>Puedes ver el tamaño de bloque con <code>stat -f .</code></p></li>
 </ul>
-<p><strong>Agrupación</strong>: conjunto de bloques gestionado como una unidad lógica de almacenamiento.</p>
+</div>
 </section>
 <section id="efecto-del-tamaño-de-bloque" class="level2">
 <h2 class="anchored" data-anchor-id="efecto-del-tamaño-de-bloque">Efecto del tamaño de bloque</h2>
@@ -525,7 +529,7 @@ window.Quarto = {
 </section>
 <section id="gestión-del-espacio-libre" class="level2">
 <h2 class="anchored" data-anchor-id="gestión-del-espacio-libre">Gestión del espacio libre</h2>
-<p><strong>Gestión del espacio libre</strong>: distintos mecanismos permiten gestionar el espacio libre.</p>
+<p><strong>Gestión del espacio libre</strong>: distintos mecanismos permiten gestionar el espacio libre. Veremos más al final del tema.</p>
 <ul>
 <li><p>Se pueden utilizar <strong>mapas de bits</strong> o <strong>listas de recursos libres</strong>.</p></li>
 <li><p>Gestión de dos tipos de recursos:</p>
@@ -535,6 +539,7 @@ window.Quarto = {
 </ul></li>
 </ul>
 <p><strong>Bloques de datos</strong>: es dónde se almacena realmente la información.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dumpe2fs /dev/nvme0n1p3<span class="kw">|</span><span class="fu">less</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="servidor-de-archivos" class="level1" data-number="4">
@@ -697,11 +702,11 @@ window.Quarto = {
 <ul>
 <li>Todos los bloques del archivo se encuentran contiguos en el disco:
 <ul>
-<li>Muy sencillo de implementar. {{&lt; fa check &gt;}}</li>
-<li>Accesos secuencial y directo muy rápidos. {{&lt; fa check &gt;}}</li>
-<li>Necesario saber el tamaño del archivo al crearlo. {{&lt; fa times &gt;}}</li>
-<li>Fragmentación del disco. {{&lt; fa times &gt;}}</li>
-<li>Para añadir datos al archivo, puede que haya que moverlo. {{&lt; fa times &gt;}}</li>
+<li>Muy sencillo de implementar. <i class="fa-solid fa-check" aria-label="check"></i></li>
+<li>Accesos secuencial y directo muy rápidos. <i class="fa-solid fa-check" aria-label="check"></i></li>
+<li>Necesario saber el tamaño del archivo al crearlo. <i class="fa-solid fa-times" aria-label="times"></i></li>
+<li>Fragmentación del disco. <i class="fa-solid fa-times" aria-label="times"></i></li>
+<li>Para añadir datos al archivo, puede que haya que moverlo. <i class="fa-solid fa-times" aria-label="times"></i></li>
 </ul></li>
 <li>Por todo ello, no se utiliza.</li>
 </ul>
@@ -712,8 +717,8 @@ window.Quarto = {
 <ul>
 <li>Los bloques del archivo se encuentran en cualquier posición del disco.
 <ul>
-<li>Se produce menos <strong>fragmentación</strong> {{&lt; fa arrow-right &gt;}} el primer bloque asignado es el primero que hay libre. {{&lt; fa check &gt;}}</li>
-<li>Es necesario traducir el número de bloque lógico al número de bloque en el dispositivo. {{&lt; fa times &gt;}}</li>
+<li>Se produce menos <strong>fragmentación</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> el primer bloque asignado es el primero que hay libre. <i class="fa-solid fa-check" aria-label="check"></i></li>
+<li>Es necesario traducir el número de bloque lógico al número de bloque en el dispositivo. <i class="fa-solid fa-times" aria-label="times"></i></li>
 </ul></li>
 <li>Es la opción utilizada en la mayoría de SOs.</li>
 </ul>
@@ -732,10 +737,10 @@ window.Quarto = {
 <li><p>Cada bloque tiene un apuntador al siguiente bloque que seguiría en el archivo.</p></li>
 <li><p>El descriptor del archivo solo debe incluir la referencia al primer bloque.</p>
 <ul>
-<li>El acceso secuencial es muy rápido. {{&lt; fa check &gt;}}</li>
-<li>El acceso aleatorio a un bloque concreto de un archivo es muy costoso. {{&lt; fa times &gt;}}</li>
-<li>Cada bloque incluye un apuntador que aumenta su tamaño (y complica el cálculo de espacio libre). {{&lt; fa times &gt;}}</li>
-<li>La pérdida de un bloque supone perder el archivo completo. {{&lt; fa times &gt;}}</li>
+<li>El acceso secuencial es muy rápido. <i class="fa-solid fa-check" aria-label="check"></i></li>
+<li>El acceso aleatorio a un bloque concreto de un archivo es muy costoso. <i class="fa-solid fa-times" aria-label="times"></i></li>
+<li>Cada bloque incluye un apuntador que aumenta su tamaño (y complica el cálculo de espacio libre). <i class="fa-solid fa-times" aria-label="times"></i></li>
+<li>La pérdida de un bloque supone perder el archivo completo. <i class="fa-solid fa-times" aria-label="times"></i></li>
 </ul></li>
 </ul>
 </div>
@@ -749,9 +754,9 @@ window.Quarto = {
 <li><p>Los apuntadores se almacenan en una tabla independiente de los bloques (<em>File Allocation Table</em>, FAT).</p></li>
 <li><p>La tabla posee una entrada por cada bloque del SA.</p></li>
 <li><p>La FAT ocupará un espacio prefijado en la partición.</p></li>
-<li><p>Descriptor fichero {{&lt; fa arrow-right &gt;}} incluye su primera posición en la tabla.</p></li>
+<li><p>Descriptor fichero <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> incluye su primera posición en la tabla.</p></li>
 <li><p>Acceso aleatorio al archivo: recorriendo la tabla.</p></li>
-<li><p>La tabla se aloja en caché para mejorar las prestaciones y se mantiene una copia doble en el disco para mayor fiabilidad. ¡La FAT puede llegar a ocupar mucho! {{&lt; fa arrow-right &gt;}} agrupaciones.</p></li>
+<li><p>La tabla se aloja en caché para mejorar las prestaciones y se mantiene una copia doble en el disco para mayor fiabilidad. ¡La FAT puede llegar a ocupar mucho! <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> agrupaciones.</p></li>
 </ul>
 </div>
 </section>
@@ -778,14 +783,14 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="índices">Índices</h2>
 <div class="exampleblock">
 <ul>
-<li><p>Los punteros a los bloques están juntos y contiguos en una localización concreta {{&lt; fa arrow-right &gt;}} <strong>Bloques índice</strong>.</p></li>
+<li><p>Los punteros a los bloques están juntos y contiguos en una localización concreta <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <strong>Bloques índice</strong>.</p></li>
 <li><p>Cada archivo tiene un bloque índice.</p></li>
 <li><p>Para buscar el <span class="math inline">\(i\)</span>-ésimo bloque de un fichero, buscamos la <span class="math inline">\(i\)</span>-ésima entrada en su bloque índice.</p>
 <ul>
-<li>Buen acceso directo. {{&lt; fa check &gt;}}</li>
-<li>Se evita la fragmentación. {{&lt; fa check &gt;}}</li>
-<li>¿Tamaño del bloque índice? {{&lt; fa arrow-right &gt;}} debe fijarse un número de entradas y hay que reservar espacio para todas ellas. {{&lt; fa times &gt;}}</li>
-<li>Limitamos el tamaño máximo de los archivos. {{&lt; fa times &gt;}}</li>
+<li>Buen acceso directo. <i class="fa-solid fa-check" aria-label="check"></i></li>
+<li>Se evita la fragmentación. <i class="fa-solid fa-check" aria-label="check"></i></li>
+<li>¿Tamaño del bloque índice? <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> debe fijarse un número de entradas y hay que reservar espacio para todas ellas. <i class="fa-solid fa-times" aria-label="times"></i></li>
+<li>Limitamos el tamaño máximo de los archivos. <i class="fa-solid fa-times" aria-label="times"></i></li>
 </ul></li>
 </ul>
 </div>
@@ -796,17 +801,17 @@ window.Quarto = {
 <ul>
 <li><p>Consiste en introducir <span class="math inline">\(n\)</span> <strong>niveles de apuntadores</strong>, de manera que los apuntadores del descriptor apuntan a otros.</p></li>
 <li><p>Índice multinivel de nivel 1: el bloque índice apunta a otros bloques índices que finalmente apunta a un bloque de datos del fichero.</p></li>
-<li><p>Evita tener que prefijar el tamaño del bloque índice (podemos poner apuntadores a NULL). {{&lt; fa check &gt;}}</p></li>
-<li><p>El bloque índice tendrá un número pequeño de entradas. {{&lt; fa check &gt;}}</p></li>
-<li><p>Cada nivel, supone un acceso a disco adicional. {{&lt; fa times &gt;}}</p></li>
-<li><p>Para archivos pequeños, se desaprovechan muchos bloques índice. {{&lt; fa times &gt;}}</p></li>
+<li><p>Evita tener que prefijar el tamaño del bloque índice (podemos poner apuntadores a NULL). <i class="fa-solid fa-check" aria-label="check"></i></p></li>
+<li><p>El bloque índice tendrá un número pequeño de entradas. <i class="fa-solid fa-check" aria-label="check"></i></p></li>
+<li><p>Cada nivel, supone un acceso a disco adicional. <i class="fa-solid fa-times" aria-label="times"></i></p></li>
+<li><p>Para archivos pequeños, se desaprovechan muchos bloques índice. <i class="fa-solid fa-times" aria-label="times"></i></p></li>
 </ul>
 </div>
 </section>
 <section id="esquema-híbrido-nodos-i" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="esquema-híbrido-nodos-i">Esquema híbrido: nodos-i</h2>
 <div class="exampleblock">
-<p>Solución UNIX {{&lt; fa arrow-right &gt;}} Esquema híbrido</p>
+<p>Solución UNIX <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Esquema híbrido</p>
 <ul>
 <li><p>Por cada nodo-i incluir 15 punteros:</p>
 <ul>
@@ -831,16 +836,12 @@ window.Quarto = {
 </section>
 <section id="gestión-del-espacio-libre-1" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Gestión del espacio libre</h1>
-<section id="gestión-del-espacio-libre-2" class="level2">
-<h2 class="anchored" data-anchor-id="gestión-del-espacio-libre-2">Gestión del espacio libre</h2>
+<section id="gestión-del-espacio-libre-2" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="gestión-del-espacio-libre-2">Gestión del espacio libre</h2>
 <p><strong>Gestión del espacio libre</strong>: se necesita para asignar espacio a los archivos nuevos o a los que se les desea añadir datos.</p>
 <p>Se mantienen <strong>mapas de recursos</strong>, implementados como mapas de bits o listas de recursos libres.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://www.geeksforgeeks.org/free-space-management-in-operating-system/.png" class="img-fluid figure-img"></p>
-<figcaption>Free space management in Operating System</figcaption>
-</figure>
-</div>
+<p>Más detalles y técnicas concretas en <a href="https://www.geeksforgeeks.org/free-space-management-in-operating-system/">Free space management in Operating System</a></p>
+<p><img src="images/free-space-bitmap.png" class="img-fluid"> <img src="images/free-space-lists.png" class="img-fluid"></p>
 </section>
 <section id="gestión-del-espacio-libre-mapas-de-bits" class="level2">
 <h2 class="anchored" data-anchor-id="gestión-del-espacio-libre-mapas-de-bits">Gestión del espacio libre: Mapas de bits</h2>
@@ -848,10 +849,10 @@ window.Quarto = {
 <ul>
 <li>Se incluye un bit por recurso (descriptor de archivo, bloque o agrupación), que será 1 si el recurso esta libre y 0 en caso contrario.
 <ul>
-<li>Muy sencillo de implementar y de usar. {{&lt; fa check &gt;}}</li>
-<li>Si disco poco fragmentado {{&lt; fa arrow-right &gt;}} bloques libres al final, búsqueda muy eficiente. {{&lt; fa check &gt;}}</li>
-<li>Si disco fragmentado {{&lt; fa arrow-right &gt;}} búsqueda más costosa. {{&lt; fa times &gt;}}</li>
-<li>Espacio adicional requerido por el mapa. {{&lt; fa check &gt;}}</li>
+<li>Muy sencillo de implementar y de usar. <i class="fa-solid fa-check" aria-label="check"></i></li>
+<li>Si disco poco fragmentado <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> bloques libres al final, búsqueda muy eficiente. <i class="fa-solid fa-check" aria-label="check"></i></li>
+<li>Si disco fragmentado <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> búsqueda más costosa. <i class="fa-solid fa-times" aria-label="times"></i></li>
+<li>Espacio adicional requerido por el mapa. <i class="fa-solid fa-check" aria-label="check"></i></li>
 </ul></li>
 <li><strong>FAT</strong>: la propia tabla actúa como mapa de recursos.</li>
 </ul>
@@ -863,10 +864,10 @@ window.Quarto = {
 <li><p>Mantener una lista de apuntadores a los recursos libres.</p></li>
 <li><p>Al ocupar un recurso lo borramos de la lista.</p>
 <ul>
-<li>Muy eficiente para discos muy llenos y fragmentados. {{&lt; fa check &gt;}}</li>
-<li>Disco con mucho espacio libre {{&lt; fa arrow-right &gt;}} Ineficiente debido a que hay que cargar la lista. {{&lt; fa times &gt;}}</li>
+<li>Muy eficiente para discos muy llenos y fragmentados. <i class="fa-solid fa-check" aria-label="check"></i></li>
+<li>Disco con mucho espacio libre <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Ineficiente debido a que hay que cargar la lista. <i class="fa-solid fa-times" aria-label="times"></i></li>
 </ul></li>
-<li><p>Solución {{&lt; fa arrow-right &gt;}} Incluir número de bloques libres consecutivos en la lista (siguiente imagen). {{&lt; fa check &gt;}}</p></li>
+<li><p>Solución <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Incluir número de bloques libres consecutivos en la lista (siguiente imagen). <i class="fa-solid fa-check" aria-label="check"></i></p></li>
 </ul>
 </section>
 <section id="gestión-del-espacio-libre-fat-lista-enlazada" class="level2">
@@ -879,8 +880,8 @@ window.Quarto = {
 <section id="incremento-de-prestaciones-1" class="level2">
 <h2 class="anchored" data-anchor-id="incremento-de-prestaciones-1">Incremento de prestaciones</h2>
 <ul>
-<li><p>Acceso a <strong>memoria</strong> {{&lt; fa arrow-right &gt;}} orden de nanosegundos.</p></li>
-<li><p>Acceso a <strong>disco</strong> {{&lt; fa arrow-right &gt;}} orden de milisegundos.</p></li>
+<li><p>Acceso a <strong>memoria</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> orden de nanosegundos.</p></li>
+<li><p>Acceso a <strong>disco</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> orden de milisegundos.</p></li>
 <li><p><strong>Almacenamiento intermedio de los datos</strong></p>
 <ul>
 <li><p>Mantener una caché de datos en Memoria Principal (MP).</p></li>
@@ -909,11 +910,11 @@ window.Quarto = {
 <ul>
 <li><p>Bloques sucios (cambiados en caché pero no en el disco). Distintas políticas a la hora de mantener la <strong>coherencia</strong>:</p>
 <ul>
-<li><p><strong>Escritura inmediata</strong> (<em>write-through</em>) {{&lt; fa arrow-right &gt;}} Siempre actualizado.</p></li>
-<li><p><strong>Escritura diferida</strong> (<em>write-back</em>) {{&lt; fa arrow-right &gt;}} Actualizamos cuando el bloque salga de la caché.</p></li>
-<li><p><strong>Escritura periódica</strong> (<em>delayed-write</em>) {{&lt; fa arrow-right &gt;}} Establecer un tiempo periódico para las actualizaciones. Compromiso entre rendimiento y fiabilidad. Reduce la extensión de los posibles daños por caídas.</p></li>
+<li><p><strong>Escritura inmediata</strong> (<em>write-through</em>) <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Siempre actualizado.</p></li>
+<li><p><strong>Escritura diferida</strong> (<em>write-back</em>) <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Actualizamos cuando el bloque salga de la caché.</p></li>
+<li><p><strong>Escritura periódica</strong> (<em>delayed-write</em>) <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Establecer un tiempo periódico para las actualizaciones. Compromiso entre rendimiento y fiabilidad. Reduce la extensión de los posibles daños por caídas.</p></li>
 </ul></li>
-<li><p>Se puede distinguir entre bloques <strong>especiales</strong> (directorios, nodos-i o bloques índice) y bloques de <strong>datos</strong>. Bloques especiales {{&lt; fa arrow-right &gt;}} <em>write-through</em>.</p></li>
+<li><p>Se puede distinguir entre bloques <strong>especiales</strong> (directorios, nodos-i o bloques índice) y bloques de <strong>datos</strong>. Bloques especiales <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <em>write-through</em>.</p></li>
 <li><p>No se debe quitar un disco del sistema sin antes volcar los datos de la cache (comando <strong><code>sync</code></strong>).</p></li>
 </ul>
 </section>
@@ -922,8 +923,10 @@ window.Quarto = {
 <h1 data-number="9"><span class="header-section-number">9</span> Referencias</h1>
 <section id="referencias-1" class="level2">
 <h2 class="anchored" data-anchor-id="referencias-1">Referencias</h2>
-<p>Fernando Pérez-Costoya, Jesús Carretero-Pérez y Félix García-Carballeira. Problemas de Sistemas Operativos. De la base al diseño. Tema 8. Archivos y directorios. Sección 8.4. Sistemas de Archivos. Mc Graw Hill, Segunda Edición, 2003.</p>
 <p>Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 20. <em>Storage</em>. Addison-Wesley. 5th Edition. 2018.</p>
+<p>Geeks for geeks. <a href="https://www.geeksforgeeks.org/file-allocation-methods/">File Allocation Methods</a>. 2023.</p>
+<p>Geeks for geeks. <a href="https://www.geeksforgeeks.org/free-space-management-in-operating-system/">Free space management in Operating System</a>. 2023.</p>
+<p>Fernando Pérez-Costoya, Jesús Carretero-Pérez y Félix García-Carballeira. Problemas de Sistemas Operativos. De la base al diseño. Tema 8. Archivos y directorios. Sección 8.4. Sistemas de Archivos. Mc Graw Hill, Segunda Edición, 2003.</p>
 
 
 </section>
