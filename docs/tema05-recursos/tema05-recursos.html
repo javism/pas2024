@@ -297,7 +297,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2 de abril de 2024</p>
+      <p class="date">4 de abril de 2024</p>
     </div>
   </div>
   
@@ -635,7 +635,10 @@ window.Quarto = {
 <li><p><code>SIGKILL</code> (9) fuerza la salida del proceso. <strong>No se puede capturar</strong>.</p></li>
 <li><p>Parar un proceso <code>SIGSTOP</code> (19), Reiniciarlo <code>SIGCONT</code> (18).</p></li>
 <li><p><code>killall comando</code>: permite mandar una señal a todos los procesos con un determinado nombre de comando.</p></li>
-<li><p><code>pkill</code> ó <code>skill</code> <span class="math inline">\(\Rightarrow\)</span> enviar una señal usando el nombre u otros atributos o criterios (<code>uid</code>, <code>gid</code>, <code>terminal</code>…).</p></li>
+<li><p><code>pkill</code> <span class="math inline">\(\Rightarrow\)</span> enviar una señal usando el nombre u otros atributos o criterios (<code>uid</code>, <code>gid</code>, <code>terminal</code>…).</p>
+<ul>
+<li><code>renice +4 $(pgrep chrome)</code></li>
+</ul></li>
 <li><p>Los procesos en estado <code>D</code> o <code>Z</code> no se detienen pese a recibir la señal KILL.</p></li>
 </ul>
 </section>
@@ -976,8 +979,8 @@ window.Quarto = {
 <li>¿Cómo podemos protegernos frente a este ataque?</li>
 </ol>
 <ul>
-<li>Echa un vistazo a <code>ulimit</code> en el enlace anterior.</li>
 <li>Mira los parámetros de <a href="https://www.geeksforgeeks.org/limits-conf-file-to-limit-users-process-in-linux-with-examples/"><code>/etc/security/limits.conf</code></a>.</li>
+<li>Echa un vistazo a <code>ulimit</code> en el enlace anterior.</li>
 </ul>
 </section>
 </section>
@@ -1091,8 +1094,8 @@ window.Quarto = {
 </section>
 <section id="rastreo-de-procesos" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Rastreo de procesos</h1>
-<section id="rastreo-de-señales-y-llamadas-al-sistema" class="level2">
-<h2 class="anchored" data-anchor-id="rastreo-de-señales-y-llamadas-al-sistema">Rastreo de señales y llamadas al sistema</h2>
+<section id="rastreo-de-señales-y-llamadas-al-sistema" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="rastreo-de-señales-y-llamadas-al-sistema">Rastreo de señales y llamadas al sistema</h2>
 <p>El comando <code>strace</code> nos permite observar qué es lo que está haciendo un proceso.</p>
 <p>Muestra cada llamada al sistema que hace y cada señal que recibe.</p>
 <ul>
@@ -1100,7 +1103,7 @@ window.Quarto = {
 <li><p><code>strace comando</code>: iniciar un proceso y rastrearlo.</p></li>
 <li><p><code>strace -o salida.txt comando</code>: utilizar un fichero para guardar la salida.</p></li>
 </ul>
-<p>Procesos acaparadores:</p>
+<p>Cómo proceder con <strong>procesos acaparadores</strong>:</p>
 <ul>
 <li><p>Como administradores, debemos sospechar cuando un proceso acapara mucha CPU.</p></li>
 <li><p>Antes de matarlos, deberíamos saber qué están haciendo.</p></li>
@@ -1220,21 +1223,21 @@ window.Quarto = {
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;math.h&gt;</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> printmemsize<span class="op">(</span><span class="dt">char</span> <span class="op">*</span>str<span class="op">,</span> <span class="dt">unsigned</span> <span class="dt">long</span> ramsize<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"</span><span class="sc">%s</span><span class="st">: </span><span class="sc">%ld</span><span class="st"> in bytes / </span><span class="sc">%ld</span><span class="st"> in KB / </span><span class="sc">%ld</span><span class="st"> in MB / </span><span class="sc">%ld</span><span class="st"> in GB</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>               str<span class="op">,</span> ramsize<span class="op">,</span> ramsize<span class="op">/</span><span class="dv">1024</span><span class="op">,</span> <span class="op">(</span>ramsize<span class="op">/</span><span class="dv">1024</span><span class="op">)/</span><span class="dv">1024</span><span class="op">,</span> <span class="op">((</span>ramsize<span class="op">/</span><span class="dv">1024</span><span class="op">)/</span><span class="dv">1024</span><span class="op">)/</span><span class="dv">1024</span><span class="op">);</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"</span><span class="sc">%s</span><span class="st">: </span><span class="sc">%ld</span><span class="st"> in bytes / </span><span class="sc">%ld</span><span class="st"> in KB / </span><span class="sc">%ld</span><span class="st"> in MB / </span><span class="sc">%ld</span><span class="st"> in GB</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>           str<span class="op">,</span> ramsize<span class="op">,</span> ramsize<span class="op">/</span><span class="dv">1024</span><span class="op">,</span> <span class="op">(</span>ramsize<span class="op">/</span><span class="dv">1024</span><span class="op">)/</span><span class="dv">1024</span><span class="op">,</span> <span class="op">((</span>ramsize<span class="op">/</span><span class="dv">1024</span><span class="op">)/</span><span class="dv">1024</span><span class="op">)/</span><span class="dv">1024</span><span class="op">);</span></span>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">struct</span> sysinfo info<span class="op">;</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>        sysinfo<span class="op">(&amp;</span>info<span class="op">);</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"uptime: </span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span> info<span class="op">.</span>uptime<span class="op">);</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">// print total ram size</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>        printmemsize<span class="op">(</span><span class="st">"totalram"</span><span class="op">,</span> info<span class="op">.</span>totalram<span class="op">);</span></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>        printmemsize<span class="op">(</span><span class="st">"freeram"</span><span class="op">,</span> info<span class="op">.</span>freeram<span class="op">);</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>        printmemsize<span class="op">(</span><span class="st">"sharedram"</span><span class="op">,</span> info<span class="op">.</span>sharedram<span class="op">);</span></span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>        printmemsize<span class="op">(</span><span class="st">"bufferram"</span><span class="op">,</span> info<span class="op">.</span>bufferram<span class="op">);</span></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>        printmemsize<span class="op">(</span><span class="st">"freeswap"</span><span class="op">,</span> info<span class="op">.</span>freeswap<span class="op">);</span></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>        printf<span class="op">(</span><span class="st">"current running processes: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> info<span class="op">.</span>procs<span class="op">);</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> sysinfo info<span class="op">;</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    sysinfo<span class="op">(&amp;</span>info<span class="op">);</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"uptime: </span><span class="sc">%ld\n</span><span class="st">"</span><span class="op">,</span> info<span class="op">.</span>uptime<span class="op">);</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// print total ram size</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    printmemsize<span class="op">(</span><span class="st">"totalram"</span><span class="op">,</span> info<span class="op">.</span>totalram<span class="op">);</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    printmemsize<span class="op">(</span><span class="st">"freeram"</span><span class="op">,</span> info<span class="op">.</span>freeram<span class="op">);</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    printmemsize<span class="op">(</span><span class="st">"sharedram"</span><span class="op">,</span> info<span class="op">.</span>sharedram<span class="op">);</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    printmemsize<span class="op">(</span><span class="st">"bufferram"</span><span class="op">,</span> info<span class="op">.</span>bufferram<span class="op">);</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    printmemsize<span class="op">(</span><span class="st">"freeswap"</span><span class="op">,</span> info<span class="op">.</span>freeswap<span class="op">);</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"current running processes: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> info<span class="op">.</span>procs<span class="op">);</span></span>
 <span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="op">*</span>v <span class="op">=</span> NULL<span class="op">;</span></span>
 <span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">long</span> n<span class="op">;</span> </span>
