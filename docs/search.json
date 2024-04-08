@@ -1124,7 +1124,7 @@
     "href": "index.html#contenido-en-pdf",
     "title": "Programación y Administración de Sistemas",
     "section": "Contenido en PDF",
-    "text": "Contenido en PDF\nPuedes acceder también al contenido de esta asignatura en formato PDF imprimible:\n\nInicio\nTema 0: Presentación\nTema 1.a: Introducción\nTema 1.b: Software Libre y GNU/Linux”\nTema 1.c: Virtual Box, Debian y configuración básica\nTema 2: Organización de un sistema operativo tipo GNU/Linux\n\nTema 2: Ejercicios permisos\nTema 2: Web personal\n\nTema 3: Gestión de Usuarios\nTema 4: Arranque y parada del sistema y servicios.\nTema 5: Gestión de recursos del sistema.",
+    "text": "Contenido en PDF\nPuedes acceder también al contenido de esta asignatura en formato PDF imprimible:\n\nInicio\nTema 0: Presentación\nTema 1.a: Introducción\nTema 1.b: Software Libre y GNU/Linux”\nTema 1.c: Virtual Box, Debian y configuración básica\nTema 2: Organización de un sistema operativo tipo GNU/Linux\n\nTema 2: Ejercicios permisos\nTema 2: Web personal\n\nTema 3: Gestión de Usuarios\nTema 4: Arranque y parada del sistema y servicios.\nTema 5: Gestión de recursos del sistema.\nTema 6: Sistemas de ficheros y discos.",
     "crumbs": [
       "Inicio"
     ]
@@ -3229,5 +3229,565 @@
     "title": "Cómo hacer más compacto (o menos irritante) moodle 4.x",
     "section": "Pasos",
     "text": "Pasos\nInstala https://www.tampermonkey.net/ en tu navegador favorito. TL;DR: Tampermonkey permite incluir scripts de usuario para cambiar en parte el aspecto, comportamiento, etc. de webs.\nAñade el siguente script desde la URL: https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js. El script está pensado para la web de la UCO pero puede adaptarse a cualquier otro cambiando la línea // @match        https://moodle.uco.es/m2324/*.\n\nAcceso al panel/dashboard de Tampermonkey\n\n\n\nAcceso a la pestaña de utilidades\n\n\n\nCargar script desde URL https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js.\n\n\n\nRecarga tu moodle."
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html",
+    "href": "tema06-sf/tema06-sf.html",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "",
+    "text": "Distinguir entre discos duros rígidos y discos duros SSD.\nEnumerar las partes de las que está compuesto un disco duro rígido.\nExplicar qué es el sistema de archivos de un sistema operativo y cómo funciona.\nAnalizar la estructura del sistema de archivos: bloques de carga, bloques de datos, metainformación, superbloques, descriptores físicos, mapas de bits, listas de recursos libres...\nDividir el servidor de archivos de un sistema operativo en los componentes que lo forman: sistema de archivos virtual, módulo de organización de archivos, servidor de bloques y manejadores de dispositivos, analizando la función de cada uno.\nEstablecer la distintas opciones para implementar la asignación de bloques (con las distintas alternativas ofrecidas por los diferentes sistemas de archivos).\nEnumerar mecanismos para gestión del espacio libre.\nEnumerar y explicar mecanismos para el incremento de prestaciones mediante el uso de caché.\n\n\n\n\n\nCuestionarios objetivos.\nPruebas de respuesta libre.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#objetivos",
+    "href": "tema06-sf/tema06-sf.html#objetivos",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "",
+    "text": "Distinguir entre discos duros rígidos y discos duros SSD.\nEnumerar las partes de las que está compuesto un disco duro rígido.\nExplicar qué es el sistema de archivos de un sistema operativo y cómo funciona.\nAnalizar la estructura del sistema de archivos: bloques de carga, bloques de datos, metainformación, superbloques, descriptores físicos, mapas de bits, listas de recursos libres...\nDividir el servidor de archivos de un sistema operativo en los componentes que lo forman: sistema de archivos virtual, módulo de organización de archivos, servidor de bloques y manejadores de dispositivos, analizando la función de cada uno.\nEstablecer la distintas opciones para implementar la asignación de bloques (con las distintas alternativas ofrecidas por los diferentes sistemas de archivos).\nEnumerar mecanismos para gestión del espacio libre.\nEnumerar y explicar mecanismos para el incremento de prestaciones mediante el uso de caché.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#evaluación",
+    "href": "tema06-sf/tema06-sf.html#evaluación",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "",
+    "text": "Cuestionarios objetivos.\nPruebas de respuesta libre.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#introducción-1",
+    "href": "tema06-sf/tema06-sf.html#introducción-1",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Introducción",
+    "text": "Introducción\n\nLa función principal de un disco duro es almacenar la información del PC cuando no se encuentra conectado a la corriente eléctrica.\nTambién puede servir de extensión para la memoria RAM, gracias al mecanismo de memoria virtual (intercambio).\nEn la actualidad, existen dos tecnologías que conviven en los discos duros: la de los SSD y la de los discos rígidos.\nLos discos rígidos funcionan de forma parecida a un tocadiscos, mientras que los discos SSD (Solid State Disk o, mejor, Solid State Drive) utilizan una memoria formada por semiconductores para almacenar la información (similar a pendrives o tarjetas de memoria).",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#discos-rígidos",
+    "href": "tema06-sf/tema06-sf.html#discos-rígidos",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Discos rígidos",
+    "text": "Discos rígidos",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#discos-rígidos-vs-sólidos",
+    "href": "tema06-sf/tema06-sf.html#discos-rígidos-vs-sólidos",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Discos rígidos vs sólidos",
+    "text": "Discos rígidos vs sólidos",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#discos-rígidos-1",
+    "href": "tema06-sf/tema06-sf.html#discos-rígidos-1",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Discos rígidos",
+    "text": "Discos rígidos\n\n¿De qué esta compuesto un disco duro rígido?\n\nPlato: Cada uno de los discos que se encuentran apilados en su interior, cubiertos de un material magnetizable (de aluminio o cristal). La escritura cambia el estado de este material.\nCabezal: es un brazo que se mueve sobre el plato. Como los discos giran, permite acceder a cualquier punto de los mismos.\nPista: Se trata de cada una de las líneas esféricas que se pueden formar sobre cada plato.\nCilindro: Conjunto de varias pistas que se encuentran una encima de otra.\nSector: Cada una de las divisiones que se hace de la circunferencia que se forma en el disco. Normalmente en un sólo sector tendremos varios cientos de bytes de información.\n\nIndicando el cilindro, la cabeza y el sector podemos acceder a cualquier dato del disco.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#discos-rígidos-escritura",
+    "href": "tema06-sf/tema06-sf.html#discos-rígidos-escritura",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Discos rígidos: escritura",
+    "text": "Discos rígidos: escritura",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#archivos",
+    "href": "tema06-sf/tema06-sf.html#archivos",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Archivos",
+    "text": "Archivos\nArchivo: unidad de almacenamiento lógico no volátil que agrupa un conjunto de información relacionada entre si bajo un mismo nombre.\n\nUn archivo debe poseer un nombre que permita acceder al mismo de forma unívoca.\nEste nombre incluye una extensión (.txt, .zip…) que identifica el tipo de archivo (no significa que lo sea obligatoriamente)\nExisten códigos de identificación de tipo de archivos que usan herramientas como file (más en wikipedia).\nEl acceso a un archivo puede ser secuencial (para acceder a una posición hay que acceder antes a las anteriores) o directo/aleatorio (se puede acceder a cualquier posición).",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#sistema-de-ficheros-o-archivos",
+    "href": "tema06-sf/tema06-sf.html#sistema-de-ficheros-o-archivos",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Sistema de Ficheros o Archivos",
+    "text": "Sistema de Ficheros o Archivos\n\nSistema de Archivos/Ficheros (SA/SF)\n\nOrganiza la información de los dispositivos de almacenamiento secundario (disco duro, disco extraíble, DVDs, CDRom...).\nEl dispositivo se divide manera lógica para que quede organizado de una forma inteligible para el SO.\nLa división se hace a múltiples niveles:\n\nParticiones o volúmenes.\nBloques.\nAgrupaciones.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#sistema-de-archivos-partición",
+    "href": "tema06-sf/tema06-sf.html#sistema-de-archivos-partición",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Sistema de Archivos: partición",
+    "text": "Sistema de Archivos: partición\nPartición: porción de un disco a la que se le dota de una identidad propia y que se manipula como un entidad lógica independiente.\n\nLas particiones deben formatearse para que se creen las estructuras necesarias que permiten al SO manipular el disco.\nPuedes verlas con gparted.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#sistema-de-archivos-bloques",
+    "href": "tema06-sf/tema06-sf.html#sistema-de-archivos-bloques",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Sistema de Archivos: bloques",
+    "text": "Sistema de Archivos: bloques\nBloque: agrupación lógica de sectores físicos del disco, la cual supone la unidad de transferencia mínima que usa el SA.\n\nEl tamaño de bloque es un parámetro decisivo que afecta a la eficiencia del acceso a disco y a la fragmentación del mismo.\n\nTamaño de bloque pequeño: Mayor número de operaciones de Entrada/Salida (E/S) para acceder al archivo. Menor fragmentación.\nTamaño de bloque grande: Menor número de operaciones E/S para acceder al archivo. Mayor fragmentación.\n\nPuedes ver el tamaño de bloque con stat -f .\n\nAgrupación: conjunto de bloques gestionado como una unidad lógica de almacenamiento.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#efecto-del-tamaño-de-bloque",
+    "href": "tema06-sf/tema06-sf.html#efecto-del-tamaño-de-bloque",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Efecto del tamaño de bloque",
+    "text": "Efecto del tamaño de bloque\nDel estudio The impact of blocksize on Persistent Disk performance.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#estructura-del-sistema-de-archivos",
+    "href": "tema06-sf/tema06-sf.html#estructura-del-sistema-de-archivos",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Estructura del Sistema de Archivos",
+    "text": "Estructura del Sistema de Archivos",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#sistema-de-archivos-boot",
+    "href": "tema06-sf/tema06-sf.html#sistema-de-archivos-boot",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Sistema de Archivos: boot",
+    "text": "Sistema de Archivos: boot\nEl bloque de carga (boot o Volume Boot Record) contiene código ejecutado al arrancar el ordenador por el iniciador ROM utilizando esa partición.\n\nEl MBR apunta al VBR de la partición activa.\nSe suele incluir en todas las particiones (aunque no contengan el SO) para así mantener una estructura uniforme.\nSe añade un número mágico, el cuál será comprobado por el iniciador ROM para demostrar que el bloque de carga es válido.\n\n\n\nhttps://whereismydata.wordpress.com/2008/08/23/file-systems-mbr-and-volume-boot-record-basic/",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#sistema-de-archivos-metainformación",
+    "href": "tema06-sf/tema06-sf.html#sistema-de-archivos-metainformación",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Sistema de Archivos: metainformación",
+    "text": "Sistema de Archivos: metainformación\nMetainformación: super-bloques, FAT, nodos-i, mapas de bits, descriptores físicos...\n\nDescribe el SA y la distribución de sus componentes.\nEs necesaria para poder acceder a los datos.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#sistema-de-archivos-superbloque",
+    "href": "tema06-sf/tema06-sf.html#sistema-de-archivos-superbloque",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Sistema de Archivos: superbloque",
+    "text": "Sistema de Archivos: superbloque\nSuperbloque: características del SA, posición de los distintos elementos, tamaño…\n\nSe mantiene una serie de información común para todos los SAs y una entrada característica para cada tipo de SA.\nAl arrancar la máquina, los superbloques de todos los SAs que son cargados se mantienen en memoria.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#información-de-discos-particiones-y-superbloques",
+    "href": "tema06-sf/tema06-sf.html#información-de-discos-particiones-y-superbloques",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Información de discos, particiones y superbloques",
+    "text": "Información de discos, particiones y superbloques\n\nListado discos y particiones: sudo fdisk -l y gparted\nInformación superbloque:\n\nsudo dumpe2fs /dev/nvme0n1p3|less\nsudo dumpe2fs /dev/nvme0n1p3|grep -i super\n\n¿por qué está copiado varias veces el superbloque a lo largo del disco?",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#ejemplo-superbloque",
+    "href": "tema06-sf/tema06-sf.html#ejemplo-superbloque",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Ejemplo superbloque",
+    "text": "Ejemplo superbloque\nFilesystem volume name:   UBUNTU\nLast mounted on:          /\nFilesystem UUID:          eca06da0-02e9-4c2b-9fe0-1fd03743502c\nFilesystem magic number:  0xEF53\nFilesystem revision #:    1 (dynamic)\nFilesystem features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum\nFilesystem flags:         signed_directory_hash \nDefault mount options:    user_xattr acl\nFilesystem state:         clean\nErrors behavior:          Continue\nFilesystem OS type:       Linux\nInode count:              5120000\nBlock count:              20480000\nReserved block count:     1024000\nFree blocks:              4982222\nFree inodes:              4358040\nFirst block:              0\nBlock size:               4096\nFragment size:            4096",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#sistema-de-archivos-descriptores",
+    "href": "tema06-sf/tema06-sf.html#sistema-de-archivos-descriptores",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Sistema de Archivos: descriptores",
+    "text": "Sistema de Archivos: descriptores\nDescriptores físicos de archivos: nodos-i, registros de Windows-NT…\n\nDescriben cada uno de los archivos almacenados.\nTienen una estructura y tamaño muy dependiente del SO.\nEl número de descriptores debe ser proporcional al tamaño total del disco.\nIncluyen: tamaño, apuntadores a los bloques del archivo, permisos, propietarios…",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#sistema-de-archivos-descriptores-1",
+    "href": "tema06-sf/tema06-sf.html#sistema-de-archivos-descriptores-1",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Sistema de Archivos: descriptores",
+    "text": "Sistema de Archivos: descriptores\nInformación inodos fichero:\n$ ls -i /etc/passwd \n24352 /etc/passwd\n$ stat /etc/passwd\n  Fichero: /etc/passwd\n  Tamaño: 3042          Bloques: 8          Bloque E/S: 4096   fichero regular\nDispositivo: 10303h/66307d  Nodo-i: 24352       Enlaces: 1\nAcceso: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\nAcceso: 2023-04-10 11:25:47.835159901 +0200\nModificación: 2023-03-27 17:39:11.826105357 +0200\n      Cambio: 2023-03-27 17:39:11.826105357 +0200\n    Creación: -",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#gestión-del-espacio-libre",
+    "href": "tema06-sf/tema06-sf.html#gestión-del-espacio-libre",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Gestión del espacio libre",
+    "text": "Gestión del espacio libre\nGestión del espacio libre: distintos mecanismos permiten gestionar el espacio libre.\n\nSe pueden utilizar mapas de bits o listas de recursos libres.\nGestión de dos tipos de recursos:\n\nMapas de bloques: indican qué bloques (o agrupaciones) están libres.\nMapas de descriptores de archivos: indican qué descriptores de archivos (nodos-i, registros…) están libres.\n\n\nBloques de datos: es dónde se almacena realmente la información.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#servidor-de-archivos-1",
+    "href": "tema06-sf/tema06-sf.html#servidor-de-archivos-1",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Servidor de Archivos",
+    "text": "Servidor de Archivos\nServidor de Archivos: es el componente del SO que se encargará de gestionar el acceso a archivos.\n\nSe sigue una filosofía de organización en capas.\nLos niveles inferiores proporcionan servicios a los niveles superiores, y en cada nivel se aumenta la abstracción de las operaciones.\n\n\nCapas del servidor de archivos\n\nSistema de archivos virtual (+ abstracto).\nMódulo de organización de archivos.\nServidor de bloques.\nManejadores de dispositivos (- abstracto).",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#esquema-servidor-de-archivos",
+    "href": "tema06-sf/tema06-sf.html#esquema-servidor-de-archivos",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Esquema Servidor de Archivos",
+    "text": "Esquema Servidor de Archivos",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#sistema-de-archivos-virtual-iii",
+    "href": "tema06-sf/tema06-sf.html#sistema-de-archivos-virtual-iii",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Sistema de archivos virtual (I/II)",
+    "text": "Sistema de archivos virtual (I/II)\n\nSistema de archivos virtual (Virtual File System):\n\n\nProporciona la interfaz para las llamadas de E/S que deseen realizar los procesos de usuario, interactuando con el módulo de organización de archivos.\nCumple las funciones de manejo de directorios, gestión de nombres, servicios de seguridad, integración de archivos de distintos dispositivos/particiones…\nPor ello, es necesario utilizar una estructura adicional (nodos virtuales o nodos-v en UNIX), que incluye las características comunes a todos los sistemas de archivos y un enlace al descriptor de archivo particular (nodo-i o registro).",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#sistema-de-archivos-virtual-iiii",
+    "href": "tema06-sf/tema06-sf.html#sistema-de-archivos-virtual-iiii",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Sistema de archivos virtual (II/II)",
+    "text": "Sistema de archivos virtual (II/II)\n\nSistema de archivos virtual:\n\n\nHay operaciones genéricas que se pueden realizar en cualquier SA (caché de nombres, gestión de nodos virtuales...).\nOtras operaciones deben ser implementadas independientemente para cada tipo de SA.\nLos nodos virtuales contienen la siguiente información:\n\nAtributos del archivo.\nPuntero al nodo-i real.\nPunteros a funciones que realizan las operaciones genéricas de cualquier SA.\nPunteros a funciones que realizan las operaciones propias del SA concreto.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#módulo-de-organización-de-archivos",
+    "href": "tema06-sf/tema06-sf.html#módulo-de-organización-de-archivos",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Módulo de organización de archivos",
+    "text": "Módulo de organización de archivos\n\nMódulo de organización de archivos:\n\n\nSe implementa por separado para cada tipo de SA.\nRelaciona la imagen lógica de un archivo con su imagen física, traduciendo direcciones lógicas (contiguas) del archivo a las direcciones físicas (normalmente dispersas) del dispositivo.\nSe prestan los servicios de gestión de espacio libre y manejo de descriptores de archivos físicos (no virtuales).\nEste nivel se basa en la información de los nodos-i y utiliza los servicios del servidor de bloques para realizar las operaciones correspondientes.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#servidor-de-bloques",
+    "href": "tema06-sf/tema06-sf.html#servidor-de-bloques",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Servidor de bloques",
+    "text": "Servidor de bloques\n\nServidor de bloques:\n\n\nEste nivel emite los mandatos genéricos para leer y escribir bloques en los manejadores de dispositivo (E/S de bloques).\nSe traducirán en llamadas al manejador específico del SA.\nEn este nivel se realiza la caché de bloques.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#manejador-de-dispositivos",
+    "href": "tema06-sf/tema06-sf.html#manejador-de-dispositivos",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Manejador de dispositivos",
+    "text": "Manejador de dispositivos\n\nManejadores de dispositivos:\n\n\nSon específicos para cada hardware.\nTraducen órdenes de E/S de alto nivel a un formato que pueda entender el dispositivo (dependiente del hardware).",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#funcionamiento-esquemático-servidor-archivos",
+    "href": "tema06-sf/tema06-sf.html#funcionamiento-esquemático-servidor-archivos",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Funcionamiento esquemático servidor archivos",
+    "text": "Funcionamiento esquemático servidor archivos",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#linux-storage-stack-diagram",
+    "href": "tema06-sf/tema06-sf.html#linux-storage-stack-diagram",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Linux Storage Stack Diagram",
+    "text": "Linux Storage Stack Diagram\n\nLinux Storage Stack Diagram (PDF)\nFuente thomas-krenn",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#directorios",
+    "href": "tema06-sf/tema06-sf.html#directorios",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Directorios",
+    "text": "Directorios\n\nUn directorio es un fichero con un formato determinado.\nEl contenido de un directorio es una serie de entradas (registros), una por cada fichero contenido en él.\nCada registro tiene, al menos, el nombre del fichero y el puntero al descriptor físico correspondiente.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#directorios-resolución-nombre",
+    "href": "tema06-sf/tema06-sf.html#directorios-resolución-nombre",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Directorios: resolución nombre",
+    "text": "Directorios: resolución nombre",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#directorios-resolución-nombre-1",
+    "href": "tema06-sf/tema06-sf.html#directorios-resolución-nombre-1",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Directorios: resolución nombre",
+    "text": "Directorios: resolución nombre\n\nLa ruta /users/luis/claves se interpreta de forma recursiva:\n\nTraer a memoria bloque del i-nodo 2 (i-nodo raíz, conocido).\nSe busca dentro users y se obtiene el i-nodo 342.\nTraer a memoria bloque del i-nodo 342.\nSe busca dentro luis y se obtiene el i-nodo 256.\nTraer a memoria bloque del i-nodo 256.\nSe busca dentro claves y se obtiene el i-nodo 758.\nAl leer el i-nodo 758, se detecta que es un fichero y accede a los datos del archivo.\nLeer los bloques del fichero.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#directorios-cuándo-parar",
+    "href": "tema06-sf/tema06-sf.html#directorios-cuándo-parar",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Directorios: ¿Cuándo parar?",
+    "text": "Directorios: ¿Cuándo parar?\n\n¿Cuándo parar?\n\nNo se tienen permisos.\nSe ha encontrado el i-nodo del archivo.\nNo se encuentra el siguiente elemento de la ruta.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#directorios-1",
+    "href": "tema06-sf/tema06-sf.html#directorios-1",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Directorios",
+    "text": "Directorios\n\nLa llamada open() termina con la lectura del i-nodo.\nLa verificación de permisos se hace con los datos del i-nodo.\nUn directorio no es un i-nodo:",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#enlaces",
+    "href": "tema06-sf/tema06-sf.html#enlaces",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Enlaces",
+    "text": "Enlaces",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#asignación-de-bloques-1",
+    "href": "tema06-sf/tema06-sf.html#asignación-de-bloques-1",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Asignación de bloques",
+    "text": "Asignación de bloques\nAsignación: cómo se hace la correspondencia entre los bloques físicos del disco y los bloques lógicos del archivo.\nMecanismos de asignación: Asignación de bloques contiguos:\n\nTodos los bloques del archivo se encuentran contiguos en el disco:\n\nMuy sencillo de implementar. {{&lt; fa check &gt;}}\nAccesos secuencial y directo muy rápidos. {{&lt; fa check &gt;}}\nNecesario saber el tamaño del archivo al crearlo. {{&lt; fa times &gt;}}\nFragmentación del disco. {{&lt; fa times &gt;}}\nPara añadir datos al archivo, puede que haya que moverlo. {{&lt; fa times &gt;}}\n\nPor todo ello, no se utiliza.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#mecanismos-de-asignación",
+    "href": "tema06-sf/tema06-sf.html#mecanismos-de-asignación",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Mecanismos de asignación",
+    "text": "Mecanismos de asignación\nMecanismos de asignación: Asignación de bloques no contiguos:\n\nLos bloques del archivo se encuentran en cualquier posición del disco.\n\nSe produce menos fragmentación {{&lt; fa arrow-right &gt;}} el primer bloque asignado es el primero que hay libre. {{&lt; fa check &gt;}}\nEs necesario traducir el número de bloque lógico al número de bloque en el dispositivo. {{&lt; fa times &gt;}}\n\nEs la opción utilizada en la mayoría de SOs.\n\nPara tener constancia de qué bloques no contiguos pertenecen a cada archivo, se utilizan listas enlazadas o índices (que pueden ser multinivel).\n\nISO9660: Inicio y tamaño (fichero contiguo).\nSF MS-DOS: FAT (fichero enlazado).\nSF UNIX: i-nodo (fichero indexado). NTFS: Registro Windows (fichero indexado).",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#lista-enlazada",
+    "href": "tema06-sf/tema06-sf.html#lista-enlazada",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Lista enlazada",
+    "text": "Lista enlazada\n\nLista enlazada:\n\nCada bloque tiene un apuntador al siguiente bloque que seguiría en el archivo.\nEl descriptor del archivo solo debe incluir la referencia al primer bloque.\n\nEl acceso secuencial es muy rápido. {{&lt; fa check &gt;}}\nEl acceso aleatorio a un bloque concreto de un archivo es muy costoso. {{&lt; fa times &gt;}}\nCada bloque incluye un apuntador que aumenta su tamaño (y complica el cálculo de espacio libre). {{&lt; fa times &gt;}}\nLa pérdida de un bloque supone perder el archivo completo. {{&lt; fa times &gt;}}",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#tabla-de-asignación-de-archivos-fat",
+    "href": "tema06-sf/tema06-sf.html#tabla-de-asignación-de-archivos-fat",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Tabla de asignación de archivos (FAT)",
+    "text": "Tabla de asignación de archivos (FAT)\n\nTabla de asignación de archivos:\n\nEs una variación del método lista enlazada.\nLos apuntadores se almacenan en una tabla independiente de los bloques (File Allocation Table, FAT).\nLa tabla posee una entrada por cada bloque del SA.\nLa FAT ocupará un espacio prefijado en la partición.\nDescriptor fichero {{&lt; fa arrow-right &gt;}} incluye su primera posición en la tabla.\nAcceso aleatorio al archivo: recorriendo la tabla.\nLa tabla se aloja en caché para mejorar las prestaciones y se mantiene una copia doble en el disco para mayor fiabilidad. ¡La FAT puede llegar a ocupar mucho! {{&lt; fa arrow-right &gt;}} agrupaciones.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#tabla-de-asignación-de-archivos-fat-1",
+    "href": "tema06-sf/tema06-sf.html#tabla-de-asignación-de-archivos-fat-1",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Tabla de asignación de archivos (FAT)",
+    "text": "Tabla de asignación de archivos (FAT)",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#tabla-de-asignación-de-archivos-fat-2",
+    "href": "tema06-sf/tema06-sf.html#tabla-de-asignación-de-archivos-fat-2",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Tabla de asignación de archivos (FAT)",
+    "text": "Tabla de asignación de archivos (FAT)\n\n\n\nFAT de 12 bits: 4K agrupaciones.\nFAT de 16 bits: 64K agrupaciones.\nFAT de 32 bits: \\(2^{28}\\) agrupaciones (solo usa 28 bits). Tamaño de fichero en 32 bits. Tamaño máximo \\(2^{32} -1 = 4GB -1\\)\n\nMás información File System Functionality Comparison",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#índices",
+    "href": "tema06-sf/tema06-sf.html#índices",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Índices",
+    "text": "Índices\n\n\nLos punteros a los bloques están juntos y contiguos en una localización concreta {{&lt; fa arrow-right &gt;}} Bloques índice.\nCada archivo tiene un bloque índice.\nPara buscar el \\(i\\)-ésimo bloque de un fichero, buscamos la \\(i\\)-ésima entrada en su bloque índice.\n\nBuen acceso directo. {{&lt; fa check &gt;}}\nSe evita la fragmentación. {{&lt; fa check &gt;}}\n¿Tamaño del bloque índice? {{&lt; fa arrow-right &gt;}} debe fijarse un número de entradas y hay que reservar espacio para todas ellas. {{&lt; fa times &gt;}}\nLimitamos el tamaño máximo de los archivos. {{&lt; fa times &gt;}}",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#índice-multinivel",
+    "href": "tema06-sf/tema06-sf.html#índice-multinivel",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Índice multinivel",
+    "text": "Índice multinivel\n\n\nConsiste en introducir \\(n\\) niveles de apuntadores, de manera que los apuntadores del descriptor apuntan a otros.\nÍndice multinivel de nivel 1: el bloque índice apunta a otros bloques índices que finalmente apunta a un bloque de datos del fichero.\nEvita tener que prefijar el tamaño del bloque índice (podemos poner apuntadores a NULL). {{&lt; fa check &gt;}}\nEl bloque índice tendrá un número pequeño de entradas. {{&lt; fa check &gt;}}\nCada nivel, supone un acceso a disco adicional. {{&lt; fa times &gt;}}\nPara archivos pequeños, se desaprovechan muchos bloques índice. {{&lt; fa times &gt;}}",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#esquema-híbrido-nodos-i",
+    "href": "tema06-sf/tema06-sf.html#esquema-híbrido-nodos-i",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Esquema híbrido: nodos-i",
+    "text": "Esquema híbrido: nodos-i\n\nSolución UNIX {{&lt; fa arrow-right &gt;}} Esquema híbrido\n\nPor cada nodo-i incluir 15 punteros:\n\nPunteros directos a los 12 primeros bloques (para archivos pequeños). Nota: la siguiente figura indica 10 erróneamente.\nPuntero a un bloque índice de primer nivel (donde encontraremos punteros a bloques).\nPuntero a un bloque índice de segundo nivel (donde encontraremos punteros a punteros a bloques).\nPuntero a un bloque índice de tercer nivel (donde encontraremos punteros a punteros a punteros a bloques).\n\nBloques del disco: bloques de datos o bloques índice.\nEn ext4 y en NTFS existen los extents (bloques índice especiales que marcan una zona contigua del disco “numeroBloqueInicial, numeroBloques”).",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#asignación-de-bloques-indexado-multinivel",
+    "href": "tema06-sf/tema06-sf.html#asignación-de-bloques-indexado-multinivel",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Asignación de bloques: indexado multinivel",
+    "text": "Asignación de bloques: indexado multinivel",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#asignación-de-bloques-indexado-multinivel-ext2",
+    "href": "tema06-sf/tema06-sf.html#asignación-de-bloques-indexado-multinivel-ext2",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Asignación de bloques: indexado multinivel Ext2",
+    "text": "Asignación de bloques: indexado multinivel Ext2",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#gestión-del-espacio-libre-2",
+    "href": "tema06-sf/tema06-sf.html#gestión-del-espacio-libre-2",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Gestión del espacio libre",
+    "text": "Gestión del espacio libre\nGestión del espacio libre: se necesita para asignar espacio a los archivos nuevos o a los que se les desea añadir datos.\nSe mantienen mapas de recursos, implementados como mapas de bits o listas de recursos libres.\n\n\n\nFree space management in Operating System",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#gestión-del-espacio-libre-mapas-de-bits",
+    "href": "tema06-sf/tema06-sf.html#gestión-del-espacio-libre-mapas-de-bits",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Gestión del espacio libre: Mapas de bits",
+    "text": "Gestión del espacio libre: Mapas de bits\nMapas de bits\n\nSe incluye un bit por recurso (descriptor de archivo, bloque o agrupación), que será 1 si el recurso esta libre y 0 en caso contrario.\n\nMuy sencillo de implementar y de usar. {{&lt; fa check &gt;}}\nSi disco poco fragmentado {{&lt; fa arrow-right &gt;}} bloques libres al final, búsqueda muy eficiente. {{&lt; fa check &gt;}}\nSi disco fragmentado {{&lt; fa arrow-right &gt;}} búsqueda más costosa. {{&lt; fa times &gt;}}\nEspacio adicional requerido por el mapa. {{&lt; fa check &gt;}}\n\nFAT: la propia tabla actúa como mapa de recursos.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#gestión-del-espacio-libre-listas",
+    "href": "tema06-sf/tema06-sf.html#gestión-del-espacio-libre-listas",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Gestión del espacio libre: Listas",
+    "text": "Gestión del espacio libre: Listas\nListas de recursos libres\n\nMantener una lista de apuntadores a los recursos libres.\nAl ocupar un recurso lo borramos de la lista.\n\nMuy eficiente para discos muy llenos y fragmentados. {{&lt; fa check &gt;}}\nDisco con mucho espacio libre {{&lt; fa arrow-right &gt;}} Ineficiente debido a que hay que cargar la lista. {{&lt; fa times &gt;}}\n\nSolución {{&lt; fa arrow-right &gt;}} Incluir número de bloques libres consecutivos en la lista (siguiente imagen). {{&lt; fa check &gt;}}",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#gestión-del-espacio-libre-fat-lista-enlazada",
+    "href": "tema06-sf/tema06-sf.html#gestión-del-espacio-libre-fat-lista-enlazada",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Gestión del espacio libre: FAT + lista enlazada",
+    "text": "Gestión del espacio libre: FAT + lista enlazada",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#incremento-de-prestaciones-1",
+    "href": "tema06-sf/tema06-sf.html#incremento-de-prestaciones-1",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Incremento de prestaciones",
+    "text": "Incremento de prestaciones\n\nAcceso a memoria {{&lt; fa arrow-right &gt;}} orden de nanosegundos.\nAcceso a disco {{&lt; fa arrow-right &gt;}} orden de milisegundos.\nAlmacenamiento intermedio de los datos\n\nMantener una caché de datos en Memoria Principal (MP).\nAprovecha la proximidad espacial y temporal en las referencias a los datos accedidos.\nCaché de nombres: lista {nombre,nodo-i}. Si se vuelve a acceder al archivo, no hay que hacer toda la búsqueda del nodo-i.\nCaché de bloques: colección de bloques leídos o escritos recientemente. Si se vuelve a acceder a ese bloque, no hay que cargarlo de nuevo.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#caché-de-bloques-i",
+    "href": "tema06-sf/tema06-sf.html#caché-de-bloques-i",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Caché de bloques (I)",
+    "text": "Caché de bloques (I)\nCaché de bloques:\n\nSi el bloque está en MP, se escribirá o leerá en MP.\nPosteriormente, se moverán los bloques de MP al dispositivo.\nSi la caché está llena, hay que eliminar algún bloque:\n\nPolíticas de reemplazo: First In First Out (FIFO), Most Recently Used (MRU), Least Recently Used (LRU)…\nLo más común es LRU: aprovecha que los bloques no utilizados durante mucho tiempo, posiblemente no volverán a ser utilizados. Peligroso si hay un fallo del SA.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#caché-de-bloques-ii",
+    "href": "tema06-sf/tema06-sf.html#caché-de-bloques-ii",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Caché de bloques (II)",
+    "text": "Caché de bloques (II)\nCaché de bloques:\n\nBloques sucios (cambiados en caché pero no en el disco). Distintas políticas a la hora de mantener la coherencia:\n\nEscritura inmediata (write-through) {{&lt; fa arrow-right &gt;}} Siempre actualizado.\nEscritura diferida (write-back) {{&lt; fa arrow-right &gt;}} Actualizamos cuando el bloque salga de la caché.\nEscritura periódica (delayed-write) {{&lt; fa arrow-right &gt;}} Establecer un tiempo periódico para las actualizaciones. Compromiso entre rendimiento y fiabilidad. Reduce la extensión de los posibles daños por caídas.\n\nSe puede distinguir entre bloques especiales (directorios, nodos-i o bloques índice) y bloques de datos. Bloques especiales {{&lt; fa arrow-right &gt;}} write-through.\nNo se debe quitar un disco del sistema sin antes volcar los datos de la cache (comando sync).",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
+  },
+  {
+    "objectID": "tema06-sf/tema06-sf.html#referencias-1",
+    "href": "tema06-sf/tema06-sf.html#referencias-1",
+    "title": "Tema 6: Sistemas de ficheros y discos",
+    "section": "Referencias",
+    "text": "Referencias\nFernando Pérez-Costoya, Jesús Carretero-Pérez y Félix García-Carballeira. Problemas de Sistemas Operativos. De la base al diseño. Tema 8. Archivos y directorios. Sección 8.4. Sistemas de Archivos. Mc Graw Hill, Segunda Edición, 2003.\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 20. Storage. Addison-Wesley. 5th Edition. 2018.",
+    "crumbs": [
+      "Tema 6: Sistemas de ficheros y discos"
+    ]
   }
 ]
