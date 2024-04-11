@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -306,7 +306,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">8 de abril de 2024</p>
+      <p class="date">11 de abril de 2024</p>
     </div>
   </div>
   
@@ -326,7 +326,7 @@ window.Quarto = {
 <li><p><strong>Distinguir entre discos</strong> duros rígidos y discos duros SSD.</p></li>
 <li><p>Enumerar las <strong>partes</strong> de las que está compuesto un disco duro rígido.</p></li>
 <li><p>Explicar qué es el <strong>sistema de archivos</strong> de un sistema operativo y cómo funciona.</p></li>
-<li><p>Analizar la <strong>estructura del sistema de archivos</strong>: bloques de carga, bloques de datos, metainformación, superbloques, descriptores físicos, mapas de bits, listas de recursos libres...</p></li>
+<li><p>Analizar la <strong>estructura del sistema de archivos</strong>: bloques de carga, bloques de datos, metainformación, superbloques, descriptores físicos, mapas de bits, listas de recursos libres…</p></li>
 <li><p>Dividir el <strong>servidor de archivos</strong> de un sistema operativo en los componentes que lo forman: sistema de archivos virtual, módulo de organización de archivos, servidor de bloques y manejadores de dispositivos, analizando la función de cada uno.</p></li>
 <li><p>Establecer la distintas opciones para implementar la <strong>asignación de bloques</strong> (con las distintas alternativas ofrecidas por los diferentes sistemas de archivos).</p></li>
 <li><p>Enumerar mecanismos para <strong>gestión del espacio libre</strong>.</p></li>
@@ -396,7 +396,7 @@ window.Quarto = {
 <div class="block">
 <p>Sistema de Archivos/Ficheros (SA/SF)</p>
 <ul>
-<li><p>Organiza la información de los dispositivos de almacenamiento secundario (disco duro, disco extraíble, DVDs, CDRom...).</p></li>
+<li><p>Organiza la información de los dispositivos de almacenamiento secundario (disco duro, disco extraíble, DVDs, CDRom…).</p></li>
 <li><p>El dispositivo <strong>se divide manera lógica</strong> para que quede organizado de una forma inteligible para el SO.</p></li>
 <li><p>La división se hace a múltiples niveles:</p>
 <ul>
@@ -454,7 +454,7 @@ window.Quarto = {
 </div></div></section>
 <section id="sistema-de-archivos-metainformación" class="level2">
 <h2 class="anchored" data-anchor-id="sistema-de-archivos-metainformación">Sistema de Archivos: metainformación</h2>
-<p><strong>Metainformación</strong>: super-bloques, FAT, nodos-i, mapas de bits, descriptores físicos...</p>
+<p><strong>Metainformación</strong>: super-bloques, FAT, nodos-i, mapas de bits, descriptores físicos…</p>
 <ul>
 <li><p>Describe el SA y la distribución de sus componentes.</p></li>
 <li><p>Es necesaria para poder acceder a los datos.</p></li>
@@ -582,7 +582,7 @@ window.Quarto = {
 <li><strong>Sistema de archivos virtual</strong>:</li>
 </ol>
 <ul>
-<li><p>Hay operaciones genéricas que se pueden realizar en cualquier SA (caché de nombres, gestión de nodos virtuales...).</p></li>
+<li><p>Hay operaciones genéricas que se pueden realizar en cualquier SA (caché de nombres, gestión de nodos virtuales…).</p></li>
 <li><p>Otras operaciones deben ser implementadas independientemente para cada tipo de SA.</p></li>
 <li><p>Los <strong>nodos virtuales</strong> contienen la siguiente información:</p>
 <ul>
@@ -708,7 +708,7 @@ window.Quarto = {
 <li>Fragmentación del disco. <i class="fa-solid fa-times" aria-label="times"></i></li>
 <li>Para añadir datos al archivo, puede que haya que moverlo. <i class="fa-solid fa-times" aria-label="times"></i></li>
 </ul></li>
-<li>Por todo ello, no se utiliza.</li>
+<li>Por todo ello, no se utiliza salvo en el caso particular de discos ópticos.</li>
 </ul>
 </section>
 <section id="mecanismos-de-asignación" class="level2 smaller">
@@ -732,7 +732,6 @@ window.Quarto = {
 <section id="lista-enlazada" class="level2">
 <h2 class="anchored" data-anchor-id="lista-enlazada">Lista enlazada</h2>
 <div class="exampleblock">
-<p>Lista enlazada:</p>
 <ul>
 <li><p>Cada bloque tiene un apuntador al siguiente bloque que seguiría en el archivo.</p></li>
 <li><p>El descriptor del archivo solo debe incluir la referencia al primer bloque.</p>
@@ -745,18 +744,18 @@ window.Quarto = {
 </ul>
 </div>
 </section>
-<section id="tabla-de-asignación-de-archivos-fat" class="level2">
-<h2 class="anchored" data-anchor-id="tabla-de-asignación-de-archivos-fat">Tabla de asignación de archivos (FAT)</h2>
+<section id="tabla-de-asignación-de-archivos-fat" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="tabla-de-asignación-de-archivos-fat">Tabla de asignación de archivos (FAT)</h2>
 <div class="exampleblock">
 <p>Tabla de asignación de archivos:</p>
 <ul>
 <li><p>Es una variación del <strong>método lista enlazada</strong>.</p></li>
-<li><p>Los apuntadores se almacenan en una tabla independiente de los bloques (<em>File Allocation Table</em>, FAT).</p></li>
-<li><p>La tabla posee una entrada por cada bloque del SA.</p></li>
+<li><p>Los apuntadores se almacenan en una tabla independiente de los bloques (<strong><em>File Allocation Table</em>, FAT</strong>).</p></li>
+<li><p>La tabla posee una <strong>entrada por cada agrupación</strong> (<em>clusters</em>) de bloques del SA (¡de otro modo la FAT ocuparía mucho espacio!).</p></li>
 <li><p>La FAT ocupará un espacio prefijado en la partición.</p></li>
 <li><p>Descriptor fichero <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> incluye su primera posición en la tabla.</p></li>
-<li><p>Acceso aleatorio al archivo: recorriendo la tabla.</p></li>
-<li><p>La tabla se aloja en caché para mejorar las prestaciones y se mantiene una copia doble en el disco para mayor fiabilidad. ¡La FAT puede llegar a ocupar mucho! <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> agrupaciones.</p></li>
+<li><p>Acceso aleatorio al archivo: recorriendo la tabla y accediendo a los grupos de bloques hasta llegar al final del fichero (<a href="https://en.wikipedia.org/wiki/File_Allocation_Table#Technical_details">Technical details of FAT, Wikipedia</a>).</p></li>
+<li><p>La tabla se aloja en caché para mejorar las prestaciones y se mantiene una copia doble en el disco para mayor fiabilidad.</p></li>
 </ul>
 </div>
 </section>
@@ -845,21 +844,20 @@ window.Quarto = {
 </section>
 <section id="gestión-del-espacio-libre-mapas-de-bits" class="level2">
 <h2 class="anchored" data-anchor-id="gestión-del-espacio-libre-mapas-de-bits">Gestión del espacio libre: Mapas de bits</h2>
-<p><strong>Mapas de bits</strong></p>
 <ul>
-<li>Se incluye un bit por recurso (descriptor de archivo, bloque o agrupación), que será 1 si el recurso esta libre y 0 en caso contrario.
+<li><p>Se incluye un bit por recurso (descriptor de archivo, bloque o agrupación), que será 1 si el recurso esta libre y 0 en caso contrario.</p>
 <ul>
 <li>Muy sencillo de implementar y de usar. <i class="fa-solid fa-check" aria-label="check"></i></li>
 <li>Si disco poco fragmentado <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> bloques libres al final, búsqueda muy eficiente. <i class="fa-solid fa-check" aria-label="check"></i></li>
 <li>Si disco fragmentado <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> búsqueda más costosa. <i class="fa-solid fa-times" aria-label="times"></i></li>
 <li>Espacio adicional requerido por el mapa. <i class="fa-solid fa-check" aria-label="check"></i></li>
 </ul></li>
-<li><strong>FAT</strong>: la propia tabla actúa como mapa de recursos.</li>
+<li><p><strong>FAT</strong>: la propia tabla actúa como mapa de recursos.</p></li>
+<li><p><strong>exFAT</strong>: sistema híbrido donde los archivos se localizan con la lista enlazada pero además existe un mapa de bits para gestionar el espacio libre.</p></li>
 </ul>
 </section>
 <section id="gestión-del-espacio-libre-listas" class="level2">
 <h2 class="anchored" data-anchor-id="gestión-del-espacio-libre-listas">Gestión del espacio libre: Listas</h2>
-<p><strong>Listas de recursos libres</strong></p>
 <ul>
 <li><p>Mantener una lista de apuntadores a los recursos libres.</p></li>
 <li><p>Al ocupar un recurso lo borramos de la lista.</p>
@@ -893,7 +891,6 @@ window.Quarto = {
 </section>
 <section id="caché-de-bloques-i" class="level2">
 <h2 class="anchored" data-anchor-id="caché-de-bloques-i">Caché de bloques (I)</h2>
-<p><strong>Caché de bloques</strong>:</p>
 <ul>
 <li><p>Si el bloque está en MP, se escribirá o leerá en MP.</p></li>
 <li><p>Posteriormente, se moverán los bloques de MP al dispositivo.</p></li>
@@ -906,9 +903,8 @@ window.Quarto = {
 </section>
 <section id="caché-de-bloques-ii" class="level2">
 <h2 class="anchored" data-anchor-id="caché-de-bloques-ii">Caché de bloques (II)</h2>
-<p><strong>Caché de bloques</strong>:</p>
 <ul>
-<li><p>Bloques sucios (cambiados en caché pero no en el disco). Distintas políticas a la hora de mantener la <strong>coherencia</strong>:</p>
+<li><p>Bloques <em>sucios</em> (cambiados en caché pero no en el disco). Distintas políticas a la hora de mantener la <strong>coherencia</strong>:</p>
 <ul>
 <li><p><strong>Escritura inmediata</strong> (<em>write-through</em>) <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Siempre actualizado.</p></li>
 <li><p><strong>Escritura diferida</strong> (<em>write-back</em>) <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Actualizamos cuando el bloque salga de la caché.</p></li>
@@ -926,6 +922,7 @@ window.Quarto = {
 <p>Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 20. <em>Storage</em>. Addison-Wesley. 5th Edition. 2018.</p>
 <p>Geeks for geeks. <a href="https://www.geeksforgeeks.org/file-allocation-methods/">File Allocation Methods</a>. 2023.</p>
 <p>Geeks for geeks. <a href="https://www.geeksforgeeks.org/free-space-management-in-operating-system/">Free space management in Operating System</a>. 2023.</p>
+<p>Jacob Schrum. <a href="https://www.youtube.com/watch?v=EbHMDZTVrJg">File Systems 2: File Allocation (VIDEO)</a>. 2016.</p>
 <p>Fernando Pérez-Costoya, Jesús Carretero-Pérez y Félix García-Carballeira. Problemas de Sistemas Operativos. De la base al diseño. Tema 8. Archivos y directorios. Sección 8.4. Sistemas de Archivos. Mc Graw Hill, Segunda Edición, 2003.</p>
 
 

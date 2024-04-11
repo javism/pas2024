@@ -3235,7 +3235,7 @@
     "href": "tema06-sf/tema06-sf.html",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "",
-    "text": "Distinguir entre discos duros rígidos y discos duros SSD.\nEnumerar las partes de las que está compuesto un disco duro rígido.\nExplicar qué es el sistema de archivos de un sistema operativo y cómo funciona.\nAnalizar la estructura del sistema de archivos: bloques de carga, bloques de datos, metainformación, superbloques, descriptores físicos, mapas de bits, listas de recursos libres...\nDividir el servidor de archivos de un sistema operativo en los componentes que lo forman: sistema de archivos virtual, módulo de organización de archivos, servidor de bloques y manejadores de dispositivos, analizando la función de cada uno.\nEstablecer la distintas opciones para implementar la asignación de bloques (con las distintas alternativas ofrecidas por los diferentes sistemas de archivos).\nEnumerar mecanismos para gestión del espacio libre.\nEnumerar y explicar mecanismos para el incremento de prestaciones mediante el uso de caché.\n\n\n\n\n\nCuestionarios objetivos.\nPruebas de respuesta libre.",
+    "text": "Distinguir entre discos duros rígidos y discos duros SSD.\nEnumerar las partes de las que está compuesto un disco duro rígido.\nExplicar qué es el sistema de archivos de un sistema operativo y cómo funciona.\nAnalizar la estructura del sistema de archivos: bloques de carga, bloques de datos, metainformación, superbloques, descriptores físicos, mapas de bits, listas de recursos libres…\nDividir el servidor de archivos de un sistema operativo en los componentes que lo forman: sistema de archivos virtual, módulo de organización de archivos, servidor de bloques y manejadores de dispositivos, analizando la función de cada uno.\nEstablecer la distintas opciones para implementar la asignación de bloques (con las distintas alternativas ofrecidas por los diferentes sistemas de archivos).\nEnumerar mecanismos para gestión del espacio libre.\nEnumerar y explicar mecanismos para el incremento de prestaciones mediante el uso de caché.\n\n\n\n\n\nCuestionarios objetivos.\nPruebas de respuesta libre.",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
@@ -3245,7 +3245,7 @@
     "href": "tema06-sf/tema06-sf.html#objetivos",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "",
-    "text": "Distinguir entre discos duros rígidos y discos duros SSD.\nEnumerar las partes de las que está compuesto un disco duro rígido.\nExplicar qué es el sistema de archivos de un sistema operativo y cómo funciona.\nAnalizar la estructura del sistema de archivos: bloques de carga, bloques de datos, metainformación, superbloques, descriptores físicos, mapas de bits, listas de recursos libres...\nDividir el servidor de archivos de un sistema operativo en los componentes que lo forman: sistema de archivos virtual, módulo de organización de archivos, servidor de bloques y manejadores de dispositivos, analizando la función de cada uno.\nEstablecer la distintas opciones para implementar la asignación de bloques (con las distintas alternativas ofrecidas por los diferentes sistemas de archivos).\nEnumerar mecanismos para gestión del espacio libre.\nEnumerar y explicar mecanismos para el incremento de prestaciones mediante el uso de caché.",
+    "text": "Distinguir entre discos duros rígidos y discos duros SSD.\nEnumerar las partes de las que está compuesto un disco duro rígido.\nExplicar qué es el sistema de archivos de un sistema operativo y cómo funciona.\nAnalizar la estructura del sistema de archivos: bloques de carga, bloques de datos, metainformación, superbloques, descriptores físicos, mapas de bits, listas de recursos libres…\nDividir el servidor de archivos de un sistema operativo en los componentes que lo forman: sistema de archivos virtual, módulo de organización de archivos, servidor de bloques y manejadores de dispositivos, analizando la función de cada uno.\nEstablecer la distintas opciones para implementar la asignación de bloques (con las distintas alternativas ofrecidas por los diferentes sistemas de archivos).\nEnumerar mecanismos para gestión del espacio libre.\nEnumerar y explicar mecanismos para el incremento de prestaciones mediante el uso de caché.",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
@@ -3325,7 +3325,7 @@
     "href": "tema06-sf/tema06-sf.html#sistema-de-ficheros-o-archivos",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "Sistema de Ficheros o Archivos",
-    "text": "Sistema de Ficheros o Archivos\n\nSistema de Archivos/Ficheros (SA/SF)\n\nOrganiza la información de los dispositivos de almacenamiento secundario (disco duro, disco extraíble, DVDs, CDRom...).\nEl dispositivo se divide manera lógica para que quede organizado de una forma inteligible para el SO.\nLa división se hace a múltiples niveles:\n\nParticiones o volúmenes.\nBloques.\nAgrupaciones.",
+    "text": "Sistema de Ficheros o Archivos\n\nSistema de Archivos/Ficheros (SA/SF)\n\nOrganiza la información de los dispositivos de almacenamiento secundario (disco duro, disco extraíble, DVDs, CDRom…).\nEl dispositivo se divide manera lógica para que quede organizado de una forma inteligible para el SO.\nLa división se hace a múltiples niveles:\n\nParticiones o volúmenes.\nBloques.\nAgrupaciones.",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
@@ -3385,7 +3385,7 @@
     "href": "tema06-sf/tema06-sf.html#sistema-de-archivos-metainformación",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "Sistema de Archivos: metainformación",
-    "text": "Sistema de Archivos: metainformación\nMetainformación: super-bloques, FAT, nodos-i, mapas de bits, descriptores físicos...\n\nDescribe el SA y la distribución de sus componentes.\nEs necesaria para poder acceder a los datos.",
+    "text": "Sistema de Archivos: metainformación\nMetainformación: super-bloques, FAT, nodos-i, mapas de bits, descriptores físicos…\n\nDescribe el SA y la distribución de sus componentes.\nEs necesaria para poder acceder a los datos.",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
@@ -3485,7 +3485,7 @@
     "href": "tema06-sf/tema06-sf.html#sistema-de-archivos-virtual-iiii",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "Sistema de archivos virtual (II/II)",
-    "text": "Sistema de archivos virtual (II/II)\n\nSistema de archivos virtual:\n\n\nHay operaciones genéricas que se pueden realizar en cualquier SA (caché de nombres, gestión de nodos virtuales...).\nOtras operaciones deben ser implementadas independientemente para cada tipo de SA.\nLos nodos virtuales contienen la siguiente información:\n\nAtributos del archivo.\nPuntero al nodo-i real.\nPunteros a funciones que realizan las operaciones genéricas de cualquier SA.\nPunteros a funciones que realizan las operaciones propias del SA concreto.",
+    "text": "Sistema de archivos virtual (II/II)\n\nSistema de archivos virtual:\n\n\nHay operaciones genéricas que se pueden realizar en cualquier SA (caché de nombres, gestión de nodos virtuales…).\nOtras operaciones deben ser implementadas independientemente para cada tipo de SA.\nLos nodos virtuales contienen la siguiente información:\n\nAtributos del archivo.\nPuntero al nodo-i real.\nPunteros a funciones que realizan las operaciones genéricas de cualquier SA.\nPunteros a funciones que realizan las operaciones propias del SA concreto.",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
@@ -3605,7 +3605,7 @@
     "href": "tema06-sf/tema06-sf.html#asignación-de-bloques-1",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "Asignación de bloques",
-    "text": "Asignación de bloques\nAsignación: cómo se hace la correspondencia entre los bloques físicos del disco y los bloques lógicos del archivo.\nMecanismos de asignación: Asignación de bloques contiguos:\n\nTodos los bloques del archivo se encuentran contiguos en el disco:\n\nMuy sencillo de implementar. \nAccesos secuencial y directo muy rápidos. \nNecesario saber el tamaño del archivo al crearlo. \nFragmentación del disco. \nPara añadir datos al archivo, puede que haya que moverlo. \n\nPor todo ello, no se utiliza.",
+    "text": "Asignación de bloques\nAsignación: cómo se hace la correspondencia entre los bloques físicos del disco y los bloques lógicos del archivo.\nMecanismos de asignación: Asignación de bloques contiguos:\n\nTodos los bloques del archivo se encuentran contiguos en el disco:\n\nMuy sencillo de implementar. \nAccesos secuencial y directo muy rápidos. \nNecesario saber el tamaño del archivo al crearlo. \nFragmentación del disco. \nPara añadir datos al archivo, puede que haya que moverlo. \n\nPor todo ello, no se utiliza salvo en el caso particular de discos ópticos.",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
@@ -3625,7 +3625,7 @@
     "href": "tema06-sf/tema06-sf.html#lista-enlazada",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "Lista enlazada",
-    "text": "Lista enlazada\n\nLista enlazada:\n\nCada bloque tiene un apuntador al siguiente bloque que seguiría en el archivo.\nEl descriptor del archivo solo debe incluir la referencia al primer bloque.\n\nEl acceso secuencial es muy rápido. \nEl acceso aleatorio a un bloque concreto de un archivo es muy costoso. \nCada bloque incluye un apuntador que aumenta su tamaño (y complica el cálculo de espacio libre). \nLa pérdida de un bloque supone perder el archivo completo.",
+    "text": "Lista enlazada\n\n\nCada bloque tiene un apuntador al siguiente bloque que seguiría en el archivo.\nEl descriptor del archivo solo debe incluir la referencia al primer bloque.\n\nEl acceso secuencial es muy rápido. \nEl acceso aleatorio a un bloque concreto de un archivo es muy costoso. \nCada bloque incluye un apuntador que aumenta su tamaño (y complica el cálculo de espacio libre). \nLa pérdida de un bloque supone perder el archivo completo.",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
@@ -3635,7 +3635,7 @@
     "href": "tema06-sf/tema06-sf.html#tabla-de-asignación-de-archivos-fat",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "Tabla de asignación de archivos (FAT)",
-    "text": "Tabla de asignación de archivos (FAT)\n\nTabla de asignación de archivos:\n\nEs una variación del método lista enlazada.\nLos apuntadores se almacenan en una tabla independiente de los bloques (File Allocation Table, FAT).\nLa tabla posee una entrada por cada bloque del SA.\nLa FAT ocupará un espacio prefijado en la partición.\nDescriptor fichero  incluye su primera posición en la tabla.\nAcceso aleatorio al archivo: recorriendo la tabla.\nLa tabla se aloja en caché para mejorar las prestaciones y se mantiene una copia doble en el disco para mayor fiabilidad. ¡La FAT puede llegar a ocupar mucho!  agrupaciones.",
+    "text": "Tabla de asignación de archivos (FAT)\n\nTabla de asignación de archivos:\n\nEs una variación del método lista enlazada.\nLos apuntadores se almacenan en una tabla independiente de los bloques (File Allocation Table, FAT).\nLa tabla posee una entrada por cada agrupación (clusters) de bloques del SA (¡de otro modo la FAT ocuparía mucho espacio!).\nLa FAT ocupará un espacio prefijado en la partición.\nDescriptor fichero  incluye su primera posición en la tabla.\nAcceso aleatorio al archivo: recorriendo la tabla y accediendo a los grupos de bloques hasta llegar al final del fichero (Technical details of FAT, Wikipedia).\nLa tabla se aloja en caché para mejorar las prestaciones y se mantiene una copia doble en el disco para mayor fiabilidad.",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
@@ -3725,7 +3725,7 @@
     "href": "tema06-sf/tema06-sf.html#gestión-del-espacio-libre-mapas-de-bits",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "Gestión del espacio libre: Mapas de bits",
-    "text": "Gestión del espacio libre: Mapas de bits\nMapas de bits\n\nSe incluye un bit por recurso (descriptor de archivo, bloque o agrupación), que será 1 si el recurso esta libre y 0 en caso contrario.\n\nMuy sencillo de implementar y de usar. \nSi disco poco fragmentado  bloques libres al final, búsqueda muy eficiente. \nSi disco fragmentado  búsqueda más costosa. \nEspacio adicional requerido por el mapa. \n\nFAT: la propia tabla actúa como mapa de recursos.",
+    "text": "Gestión del espacio libre: Mapas de bits\n\nSe incluye un bit por recurso (descriptor de archivo, bloque o agrupación), que será 1 si el recurso esta libre y 0 en caso contrario.\n\nMuy sencillo de implementar y de usar. \nSi disco poco fragmentado  bloques libres al final, búsqueda muy eficiente. \nSi disco fragmentado  búsqueda más costosa. \nEspacio adicional requerido por el mapa. \n\nFAT: la propia tabla actúa como mapa de recursos.\nexFAT: sistema híbrido donde los archivos se localizan con la lista enlazada pero además existe un mapa de bits para gestionar el espacio libre.",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
@@ -3735,7 +3735,7 @@
     "href": "tema06-sf/tema06-sf.html#gestión-del-espacio-libre-listas",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "Gestión del espacio libre: Listas",
-    "text": "Gestión del espacio libre: Listas\nListas de recursos libres\n\nMantener una lista de apuntadores a los recursos libres.\nAl ocupar un recurso lo borramos de la lista.\n\nMuy eficiente para discos muy llenos y fragmentados. \nDisco con mucho espacio libre  Ineficiente debido a que hay que cargar la lista. \n\nSolución  Incluir número de bloques libres consecutivos en la lista (siguiente imagen).",
+    "text": "Gestión del espacio libre: Listas\n\nMantener una lista de apuntadores a los recursos libres.\nAl ocupar un recurso lo borramos de la lista.\n\nMuy eficiente para discos muy llenos y fragmentados. \nDisco con mucho espacio libre  Ineficiente debido a que hay que cargar la lista. \n\nSolución  Incluir número de bloques libres consecutivos en la lista (siguiente imagen).",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
@@ -3765,7 +3765,7 @@
     "href": "tema06-sf/tema06-sf.html#caché-de-bloques-i",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "Caché de bloques (I)",
-    "text": "Caché de bloques (I)\nCaché de bloques:\n\nSi el bloque está en MP, se escribirá o leerá en MP.\nPosteriormente, se moverán los bloques de MP al dispositivo.\nSi la caché está llena, hay que eliminar algún bloque:\n\nPolíticas de reemplazo: First In First Out (FIFO), Most Recently Used (MRU), Least Recently Used (LRU)…\nLo más común es LRU: aprovecha que los bloques no utilizados durante mucho tiempo, posiblemente no volverán a ser utilizados. Peligroso si hay un fallo del SA.",
+    "text": "Caché de bloques (I)\n\nSi el bloque está en MP, se escribirá o leerá en MP.\nPosteriormente, se moverán los bloques de MP al dispositivo.\nSi la caché está llena, hay que eliminar algún bloque:\n\nPolíticas de reemplazo: First In First Out (FIFO), Most Recently Used (MRU), Least Recently Used (LRU)…\nLo más común es LRU: aprovecha que los bloques no utilizados durante mucho tiempo, posiblemente no volverán a ser utilizados. Peligroso si hay un fallo del SA.",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
@@ -3775,7 +3775,7 @@
     "href": "tema06-sf/tema06-sf.html#caché-de-bloques-ii",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "Caché de bloques (II)",
-    "text": "Caché de bloques (II)\nCaché de bloques:\n\nBloques sucios (cambiados en caché pero no en el disco). Distintas políticas a la hora de mantener la coherencia:\n\nEscritura inmediata (write-through)  Siempre actualizado.\nEscritura diferida (write-back)  Actualizamos cuando el bloque salga de la caché.\nEscritura periódica (delayed-write)  Establecer un tiempo periódico para las actualizaciones. Compromiso entre rendimiento y fiabilidad. Reduce la extensión de los posibles daños por caídas.\n\nSe puede distinguir entre bloques especiales (directorios, nodos-i o bloques índice) y bloques de datos. Bloques especiales  write-through.\nNo se debe quitar un disco del sistema sin antes volcar los datos de la cache (comando sync).",
+    "text": "Caché de bloques (II)\n\nBloques sucios (cambiados en caché pero no en el disco). Distintas políticas a la hora de mantener la coherencia:\n\nEscritura inmediata (write-through)  Siempre actualizado.\nEscritura diferida (write-back)  Actualizamos cuando el bloque salga de la caché.\nEscritura periódica (delayed-write)  Establecer un tiempo periódico para las actualizaciones. Compromiso entre rendimiento y fiabilidad. Reduce la extensión de los posibles daños por caídas.\n\nSe puede distinguir entre bloques especiales (directorios, nodos-i o bloques índice) y bloques de datos. Bloques especiales  write-through.\nNo se debe quitar un disco del sistema sin antes volcar los datos de la cache (comando sync).",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
@@ -3785,7 +3785,7 @@
     "href": "tema06-sf/tema06-sf.html#referencias-1",
     "title": "Tema 6: Sistemas de ficheros y discos",
     "section": "Referencias",
-    "text": "Referencias\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 20. Storage. Addison-Wesley. 5th Edition. 2018.\nGeeks for geeks. File Allocation Methods. 2023.\nGeeks for geeks. Free space management in Operating System. 2023.\nFernando Pérez-Costoya, Jesús Carretero-Pérez y Félix García-Carballeira. Problemas de Sistemas Operativos. De la base al diseño. Tema 8. Archivos y directorios. Sección 8.4. Sistemas de Archivos. Mc Graw Hill, Segunda Edición, 2003.",
+    "text": "Referencias\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 20. Storage. Addison-Wesley. 5th Edition. 2018.\nGeeks for geeks. File Allocation Methods. 2023.\nGeeks for geeks. Free space management in Operating System. 2023.\nJacob Schrum. File Systems 2: File Allocation (VIDEO). 2016.\nFernando Pérez-Costoya, Jesús Carretero-Pérez y Félix García-Carballeira. Problemas de Sistemas Operativos. De la base al diseño. Tema 8. Archivos y directorios. Sección 8.4. Sistemas de Archivos. Mc Graw Hill, Segunda Edición, 2003.",
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
