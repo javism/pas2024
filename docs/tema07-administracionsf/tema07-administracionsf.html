@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Javier Sánchez Monedero">
+
+<title>Programación y Administración de Sistemas (2023-2024) - Tema 7: Administración de sistemas de ficheros</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tema07-administracionsf/tema07-administracionsf.html">Tema 7: Administración de sistemas de ficheros</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Programación y Administración de Sistemas (2023-2024)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inicio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema00-presentacion/presentacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 0: Presentación</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01a-introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.a: Introducción</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01b-software-libre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.b: Software Libre y GNU/Linux</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01c-proyecto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.c: Virtual Box, Debian y configuración básica</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-ficheros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Organización de GNU/Linux</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Ejercicios permisos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-webuco.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Ejercicios web personal en la UCO</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema03-usuarios/tema03-usuarios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 3: Gestión de usuarios</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema04-arranque/tema04-arranque.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 4: Arranque y Parada</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema05-recursos/tema05-recursos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 5: Gestión de recursos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema06-sf/tema06-sf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 6: Sistemas de ficheros y discos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema07-administracionsf/tema07-administracionsf.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Tema 7: Administración de sistemas de ficheros</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema07-administracionsf/tema07-RAID-cuotas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 7: Receta RAID + Cuotas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../enlaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Enlaces</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-y-evaluación" id="toc-objetivos-y-evaluación" class="nav-link active" data-scroll-target="#objetivos-y-evaluación"><span class="header-section-number">1</span> Objetivos y evaluación</a></li>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2</span> Introducción</a></li>
+  <li><a href="#i-just-want-to-add-a-disk" id="toc-i-just-want-to-add-a-disk" class="nav-link" data-scroll-target="#i-just-want-to-add-a-disk"><span class="header-section-number">3</span> I just want to add a disk!</a></li>
+  <li><a href="#montaje-y-desmontaje-de-sistemas-de-ficheros" id="toc-montaje-y-desmontaje-de-sistemas-de-ficheros" class="nav-link" data-scroll-target="#montaje-y-desmontaje-de-sistemas-de-ficheros"><span class="header-section-number">4</span> Montaje y desmontaje de sistemas de ficheros</a></li>
+  <li><a href="#comprobación-del-sistema-de-ficheros" id="toc-comprobación-del-sistema-de-ficheros" class="nav-link" data-scroll-target="#comprobación-del-sistema-de-ficheros"><span class="header-section-number">5</span> Comprobación del sistema de ficheros</a></li>
+  <li><a href="#sistema-de-journaling" id="toc-sistema-de-journaling" class="nav-link" data-scroll-target="#sistema-de-journaling"><span class="header-section-number">6</span> Sistema de journaling</a></li>
+  <li><a href="#creación-de-sistemas-de-ficheros" id="toc-creación-de-sistemas-de-ficheros" class="nav-link" data-scroll-target="#creación-de-sistemas-de-ficheros"><span class="header-section-number">7</span> Creación de sistemas de ficheros</a></li>
+  <li><a href="#administración-de-volúmenes-dinámicos" id="toc-administración-de-volúmenes-dinámicos" class="nav-link" data-scroll-target="#administración-de-volúmenes-dinámicos"><span class="header-section-number">8</span> Administración de volúmenes dinámicos</a></li>
+  <li><a href="#cuotas" id="toc-cuotas" class="nav-link" data-scroll-target="#cuotas"><span class="header-section-number">9</span> Cuotas</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">10</span> Referencias</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tema 7: Administración de sistemas de ficheros</h1>
+<p class="subtitle lead">Programación y Administración de Sistemas <br> (2023-2024)</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Autor/a</div>
+  <div class="quarto-title-meta-heading">Afiliaciones</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Javier Sánchez Monedero </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Depto. Informática y Análisis Numérico
+          </p>
+        <p class="affiliation">
+            Escuela Politécnica Superior
+          </p>
+        <p class="affiliation">
+            Universidad de Córdoba
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">15 de abril de 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objetivos-y-evaluación" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Objetivos y evaluación</h1>
+<section id="objetivos" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="objetivos">Objetivos</h2>
+<ul>
+<li><p>Explicar la importancia de la <strong>administración del sistema de ficheros</strong> en la labor de administración de sistemas informáticos.</p></li>
+<li><p>Explicar qué sucede en el sistema operativo cuando se <strong>montan y desmontan dispositivos</strong> en el sistema de ficheros.</p></li>
+<li><p>Utilizar la herramienta <code>mount</code> (y <code>umount</code>) para montar (y desmontar) sistemas de ficheros.</p></li>
+<li><p><strong>Configurar</strong> los dispositivos de almacenamiento principales del sistema mediante el fichero <code>/etc/fstab</code>.</p></li>
+<li><p>Explicar la necesidad del <strong>chequeo</strong> del sistema de ficheros y utilizar las principales herramientas de chequeo.</p></li>
+<li><p>Explicar cómo funciona el sistema de <strong><em>journaling</em></strong>.</p></li>
+<li><p>Enumerar los pasos necesarios para añadir un <strong>nuevo dispositivo</strong> de disco al sistema operativo.</p></li>
+<li><p>Explicar las diferencias fundamentales entre los sistemas de ficheros <code>ext2</code>, <code>ext3</code> y <code>ext4</code>.</p></li>
+<li><p>Justificar la necesidad del uso de <strong>cuotas</strong> de disco en sistemas informáticos compartidos.</p></li>
+<li><p>Configurar cuotas de disco para los distintos usuarios de un sistema GNU/Linux.</p></li>
+<li><p>Justificar la necesidad del uso de <strong>arrays redundantes de discos (RAID)</strong> en sistemas informáticos.</p></li>
+<li><p>Elegir el mecanismo RAID más adecuado: RAID0, RAID1 o RAID4/5.</p></li>
+<li><p>Ejemplificar el mecanismo de redundancia para RAID basado en paridad.</p></li>
+<li><p>Montar un sistema RAID por <em>software</em> en GNU/Linux.</p></li>
+</ul>
+</section>
+<section id="evaluación" class="level2">
+<h2 class="anchored" data-anchor-id="evaluación">Evaluación</h2>
+<ul>
+<li><p>Cuestionarios objetivos.</p></li>
+<li><p>Pruebas de respuesta libre.</p></li>
+<li><p>Tareas de administración.</p></li>
+<li><p><strong>NOTA</strong>: Como en otros temas, aquí veremos muchos parámetros de configuración que no tiene sentido memorizar, pero si hay que saber qué posibilidades tenemos en la administración de sistemas de ficheros.</p></li>
+</ul>
+</section>
+</section>
+<section id="introducción" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Introducción</h1>
+<section id="introducción-1" class="level2">
+<h2 class="anchored" data-anchor-id="introducción-1">Introducción</h2>
+<div class="exampleblock">
+<div class="incremental">
+<p>Tareas asociadas al sistema de ficheros en GNU/Linux:</p>
+<ul class="incremental">
+<li><p>Permitir el acceso a ficheros <strong>locales</strong> y <strong>remotos</strong>.</p></li>
+<li><p>Controlar los <strong>recursos</strong> que proporcionan: cuotas de disco, bloques o nodos-i libres, estadísticas de uso…</p></li>
+<li><p>Proteger de posibles <strong>fallos</strong> o <strong>errores</strong>: RAID, copias de seguridad…</p></li>
+<li><p>Controlar y proporcionar <strong>seguridad</strong> de los datos: propietarios, permisos…</p></li>
+<li><p><strong>Chequear</strong> (y corregir) el sistema de ficheros (en el momento, programado, etc. ).</p></li>
+<li><p><strong>Instalar</strong> y <strong>configurar</strong> nuevos dispositivos de almacenamiento.</p></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="i-just-want-to-add-a-disk" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> I just want to add a disk!</h1>
+<section id="i-just-want-to-add-a-disk-1" class="level2">
+<h2 class="anchored" data-anchor-id="i-just-want-to-add-a-disk-1">I just want to add a disk!</h2>
+<ul>
+<li><p>Antes de saltar a la teoría vamos a hacer algo habitual: añadir un disco duro al sistema utilizando todo su espacio de forma corriente.</p></li>
+<li><p>Más adelante entenderemos lo que estamos haciendo, podremos definir varias particiones, configuraremos RAID, cuotas, etc.</p></li>
+</ul>
+</section>
+<section id="receta-disco-i" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="receta-disco-i">Receta disco (I)</h2>
+<ol type="1">
+<li><p>Apagar el ordenador, conectar el disco y encender.</p></li>
+<li><p>Usamos <code>lsblk</code> para identificar dispositivos de bloques y particiones. Ej. <code>/dev/sdb</code>.</p></li>
+<li><p>Particionar el disco (<code>cfdisk</code> (más fácil), <code>parted</code>, <code>gparted</code>, <code>fdisk</code>…): <code>sudo fdisk /dev/sdb</code>:</p></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pas@debianpas:~$</span> sudo fdisk /dev/sdb</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[sudo]</span> password for pas: </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Welcome</span> to fdisk <span class="er">(</span><span class="ex">util-linux</span> 2.36.1<span class="kw">)</span><span class="bu">.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> will remain in memory only, until you decide to write them.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Be</span> careful before using the write command.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Device</span> does not contain a recognized partition table.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Created</span> a new DOS disklabel with disk identifier 0x11e147da.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Command</span> <span class="er">(</span><span class="ex">m</span> for help<span class="kw">)</span><span class="bu">:</span> g</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Created</span> a new GPT disklabel <span class="er">(</span><span class="ex">GUID:</span> 01C5F77B-F13F-6348-B35F-2BD08E33989A<span class="kw">)</span><span class="bu">.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Command</span> <span class="er">(</span><span class="ex">m</span> for help<span class="kw">)</span><span class="bu">:</span> n</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ex">Partition</span> number <span class="er">(</span><span class="ex">1-128,</span> default 1<span class="kw">)</span><span class="bu">:</span> 1</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ex">First</span> sector <span class="er">(</span><span class="ex">2048-204766,</span> default 2048<span class="kw">)</span><span class="bu">:</span> </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ex">Last</span> sector, +/-sectors or +/-size<span class="dt">{K</span><span class="op">,</span><span class="dt">M</span><span class="op">,</span><span class="dt">G</span><span class="op">,</span><span class="dt">T</span><span class="op">,</span><span class="dt">P}</span> <span class="er">(</span><span class="ex">2048-204766,</span> default 204766<span class="kw">)</span><span class="bu">:</span> </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ex">Created</span> a new partition 1 of type <span class="st">'Linux filesystem'</span> and of size 99 MiB.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ex">Command</span> <span class="er">(</span><span class="ex">m</span> for help<span class="kw">)</span><span class="bu">:</span> w</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ex">The</span> partition table has been altered.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ex">Calling</span> ioctl<span class="er">(</span><span class="kw">)</span> <span class="ex">to</span> re-read partition table.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ex">Syncing</span> disks.</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="receta-disco-ii" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="receta-disco-ii">Receta disco (II)</h2>
+<ol start="4" type="1">
+<li><p>Nuestra nueva partición estará en <code>/dev/sdb1</code></p></li>
+<li><p>Crear el sistema de ficheros: <code>sudo mkfs -t ext4 -L etiqueta /dev/sdb1</code></p></li>
+<li><p>Crear un punto de montaje y montar (3 alternativas de identificación del dispositivo, el UUID lo podemos obtener de <code>lsblk -f</code>.):</p></li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /punto/montaje</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount LABEL=etiqueta /punto/montaje</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/sdb1 /punto/montaje</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount UUID=a24457f7-5a17-4da0-a25b-c9f3f678780f /punto/montaje</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="7" type="1">
+<li>¡Listo!</li>
+</ol>
+</section>
+<section id="receta-disco-iii" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="receta-disco-iii">Receta disco (III)</h2>
+<ul>
+<li>¿Puedes escribir con tu usuario normal?</li>
+<li>Si reinicias, ¿sigue ahí?</li>
+<li>¿puedes montarlo sobre cualquier carpeta?</li>
+</ul>
+</section>
+</section>
+<section id="montaje-y-desmontaje-de-sistemas-de-ficheros" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Montaje y desmontaje de sistemas de ficheros</h1>
+<section id="concepto-montardesmontar" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="concepto-montardesmontar">Concepto montar/desmontar</h2>
+<ul>
+<li><p>En GNU/Linux, hay un único <strong>sistema de ficheros lógico</strong> (o una única “jerarquía de directorios”), en la que se organizan todos los dispositivos de almacenamiento disponibles.</p></li>
+<li><p>Cada partición tiene su propio sistema de ficheros, con su directorio raíz y su jerarquía.</p>
+<ul>
+<li><p><strong>Montar un sistema de ficheros</strong>: añadirlo al sistema de ficheros lógico. Sus datos (desde su propia raíz) están disponibles a partir de un punto de montaje (p.ej. <code>/media/usb1</code>).</p></li>
+<li><p><strong>Desmontar un sistema de ficheros</strong>: el sistema de ficheros deja de estar disponible, dejándolo además consistente.</p></li>
+</ul></li>
+<li><p>Los ficheros principales del SO están siempre disponibles desde la raíz del sistema de ficheros lógico (<code>/</code>).</p></li>
+<li><p>En el arranque, se monta primero la partición correspondiente a dicha raíz (<strong>root</strong>) y luego cualquier partición auxiliar.</p></li>
+</ul>
+</section>
+<section id="concepto-montardesmontar-1" class="level2">
+<h2 class="anchored" data-anchor-id="concepto-montardesmontar-1">Concepto montar/desmontar</h2>
+<p><img src="images/montajeFicheros.jpg" class="img-fluid"></p>
+</section>
+<section id="herramienta-mount" class="level2">
+<h2 class="anchored" data-anchor-id="herramienta-mount">Herramienta <code>mount</code></h2>
+<ul>
+<li><p><code>mount [opci] &lt;FicheroEspecialBloque&gt; &lt;PtoMontaje&gt;</code></p>
+<ul>
+<li><p><code>-t tipo-sf</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> tipo de sistema de ficheros.</p></li>
+<li><p><code>-r</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> montaje en modo sólo lectura.</p></li>
+<li><p><code>-w</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> montaje en modo lectura/escritura.</p></li>
+<li><p><code>-o opcionesMontaje</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> opciones del proceso de montaje (<code>nosuid</code>, <code>exec</code>, <code>remount</code>, etc.).</p></li>
+</ul></li>
+<li><p><code>umount &lt;PtoMontaje&gt; (ó &lt;FicheroEspecialBloque&gt;)</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> desmontar un sistema de ficheros. Si está siendo utilizado (<span class="rojo">busy</span>), no se podrá desmontar.</p></li>
+</ul>
+</section>
+<section id="monitorización-con-fuser-y-lsof" class="level2">
+<h2 class="anchored" data-anchor-id="monitorización-con-fuser-y-lsof">Monitorización con <code>fuser</code> y <code>lsof</code></h2>
+<ul>
+<li><p><code>fuser</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> saber qué ficheros se están usando y qué procesos los usan (<code>f</code>: fichero abierto para lectura, <code>F</code>: fichero abierto para escritura, <code>c</code>: directorio de trabajo, <code>e</code>: ejecutando el fichero, <code>m</code>: memoria compartida, etc.)</p></li>
+<li><p><code>lsof</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> obtener un listado de todos los ficheros abiertos. Se puede filtrar por procesos, usuarios, directorios, etc.</p></li>
+</ul>
+</section>
+<section id="fuser-y-lsof" class="level2">
+<h2 class="anchored" data-anchor-id="fuser-y-lsof"><code>fuser</code> y <code>lsof</code></h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> fuser <span class="at">-mv</span> /home <span class="co"># -m: ficheros montados; -v: verbose</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                     <span class="ex">USUARIO</span>     PID ACCESO ORDEN</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/home:</span>               root     kernel mount /home</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                     <span class="ex">javi</span>       1152 F...m pulseaudio</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                     <span class="ex">javi</span>       1158 F.c.m mate-session</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                     <span class="ex">javi</span>      38094 f.c.. code</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                     <span class="ex">javi</span>      38152 ..c.. code</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                     <span class="ex">javi</span>      38153 ..c.. code</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                     <span class="ex">javi</span>      38154 F.c.m code</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                     <span class="ex">javi</span>      38198 F.c.. code</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                     <span class="ex">javi</span>      38248 F.c.. java</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> lsof <span class="co"># tardará en ejecutarse unos segundos</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> lsof <span class="at">-c</span> code<span class="kw">|</span><span class="fu">wc</span> <span class="at">-l</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">2252</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fichero-etcfstab" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="fichero-etcfstab">Fichero <code>/etc/fstab</code></h2>
+<ul>
+<li><p><code>/etc/fstab</code>: fichero con información sobre todos los sistemas de ficheros a montar (o ya montados) y las zonas de intercambio a activar.</p>
+<p><code>fi_especial pto tipo opciones dump_freq pass_num</code></p>
+<ul>
+<li><p><code>fi_especial</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> fichero especial de bloques (<code>/dev/...</code>).</p></li>
+<li><p><code>pto</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> directorio que sirve de punto de montaje (<span class="rojo">¿permisos?</span>).</p></li>
+<li><p><code>tipo</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> tipo de SF (<code>ext2</code>, <code>ext3</code>, <code>ext4</code>, <code>vfat</code>, <code>iso9660</code>, <code>swap</code>, <code>ntfs</code>, <code>nfs</code>, etc.).</p></li>
+<li><p>Opciones para el proceso de montaje (separadas por “,” y sin espacios).</p></li>
+<li><p><code>dump_freq</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> “frecuencia del <em>dump</em>” para hacer una copia de seguridad de ese SF mediante el comando <code>dump</code> (no se usa).</p></li>
+<li><p><code>pass_num</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> en tiempo de arranque, en qué orden hay que chequear los SFs (ejecutar <code>fsck</code> para comprobar su estado).</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="opciones-de-fstab" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="opciones-de-fstab">Opciones de <code>fstab</code></h2>
+<ul>
+<li><p>Opciones del fichero <code>/etc/fstab</code>:</p>
+<ul>
+<li><p><code>defaults</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <code>rw</code>, <code>suid</code>, <code>dev</code>, <code>exec</code>, <code>auto</code>, <code>nouser</code>, <code>async</code>.</p></li>
+<li><p><code>rw</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Lectura-escritura (por defecto).</p></li>
+<li><p><code>ro</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Sólo lectura</p></li>
+<li><p><code>suid/nosuid</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Permitido (o no) que los bits suid o sgid tengan efecto.</p></li>
+<li><p><code>auto/noauto</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Montar automáticamente (o no) (ejecutando <code>mount -a</code> se montan todos los automáticos <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> siempre se ejecuta al arrancar el sistema).</p></li>
+<li><p><code>exec/noexec</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Permitir (o no) la ejecución de ficheros.</p></li>
+<li><p><code>usrquota, grpquota</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Activar cuotas.</p></li>
+<li><p><code>uid=500, gid=100</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Propietario y grupo propietario de los ficheros del SF (si el SF no incorpora esta información o si se quiere cambiar).</p></li>
+<li><p><code>umask=137</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Permisos de los ficheros (en este caso, 640) (si el SF no incorpora esta información o si se quieren cambiar).</p></li>
+<li><p><code>dev</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Interpretar ficheros especiales en el sistema de archivos.</p></li>
+<li><p><code>sync</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Forzar a que todas las operaciones sean síncronas (puede disminuir el tiempo de vida de la unidad de disco).</p></li>
+<li><p><code>user</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> permite que los usuarios puedan montar el sistema de ficheros. Solo el mismo usuario podrá desmontarlo. Implica las opciones <code>noexec</code>, <code>nosuid</code> y <code>nodev</code>.</p></li>
+<li><p><code>users</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> igual que <code>user</code> pero cualquiera podrá desmontarlo.</p></li>
+<li><p><code>nouser</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Solo <code>root</code> puede montar el SF.</p></li>
+<li><p><code>owner</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> permite que un usuario pueda montar el sistema de ficheros, siempre que sea dueño del fichero de dispositivo. Implica las opciones <code>nosuid</code> y <code>nodev</code>.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="fichero-etcfstab-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="fichero-etcfstab-1">Fichero <code>/etc/fstab</code></h2>
+<p>Ejemplo de contenido del fichero <code>/etc/fstab</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">LABEL</span><span class="op">=</span>/    <span class="ex">/</span>              ext4     defaults,usrquota  0 1</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda3</span>  /windows       vfat     defaults           0 0</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/dvd</span>   /media/dvd     iso9660  noauto,owner,ro    0 0</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/fd0</span>   /media/floppy  vfat     noauto,uid=500     0 0</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda4</span>  /otrolinux     ext3     defaults           0 2</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda2</span>  swap           swap     defaults           0 0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>Al ejecutar <code>mount</code> como <em>root</em>:</p>
+<ul>
+<li><p><code>mount /media/dvd</code>: coge las opciones que faltan del fichero.</p></li>
+<li><p><code>mount -t iso9660 -r /dev/dvd /media/dvd</code>: no las coge.</p></li>
+</ul></li>
+<li><p>Si se asigna permisos de montaje a los usuarios (opciones <code>user</code>, <code>users</code> u <code>owner</code>), sólo pueden ejecutar <code>mount /media/dvd</code> (sin opciones).</p></li>
+<li><p><code>mount -a</code>: montar todas las unidades que sean <code>auto</code>.</p></li>
+<li><p>Automontado de unidades: <code>udev</code> y <code>dbus</code>.</p></li>
+</ul>
+</section>
+<section id="nombres-efímeros-y-uuid" class="level2">
+<h2 class="anchored" data-anchor-id="nombres-efímeros-y-uuid">Nombres efímeros y UUID</h2>
+<ul>
+<li><p>Las referencias tipo <code>/dev/sda3</code> tienen el problema de que no son robustas.</p></li>
+<li><p>Si se añade un disco nuevo, o incluso a veces al reiniciar, <code>/dev/sda</code> puede pasar a ser <code>/dev/sdb</code>.</p></li>
+<li><p>Por esto es más robusto utilizar identificadores únicos UUID y permanentes para particiones.</p></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de líneas de fstab usando UUID</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># / was on /dev/nvme0n1p3 during installation</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">UUID</span><span class="op">=</span>eca06da0-02e9-4c2b-9fe0-1fd03743502c <span class="ex">/</span>               ext4    errors=remount-ro 0       1</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Puedes ver varias alternativas para identificar discos y particiones en <code>/dev/disk/</code>.</li>
+</ul>
+</section>
+</section>
+<section id="comprobación-del-sistema-de-ficheros" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Comprobación del sistema de ficheros</h1>
+<section id="concepto-y-herramientas-de-chequeo" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="concepto-y-herramientas-de-chequeo">Concepto y herramientas de chequeo</h2>
+<ul>
+<li><p>Durante el arranque, <code>fsck</code> o <code>e2fsck</code> chequearán la consistencia o estado del sistema de ficheros, detectando problemas e intentando repararlos.</p></li>
+<li><p>Se actúa sobre la estructura (no sobre el contenido):</p>
+<ul>
+<li><p><strong>Bloques</strong> que pertenezcan a varios ficheros.</p></li>
+<li><p><strong>Bloques</strong> que están marcados como libres, pero que se encuentran en uso.</p></li>
+<li><p><strong>Bloques</strong> que se encuentran marcados como en uso, pero que están libres.</p></li>
+<li><p>Inconsistencias en cuanto al número de enlaces hacia un <strong>nodo-i</strong>.</p></li>
+<li><p><strong>Nodos-i</strong> marcados como libres, pero que están en uso.</p></li>
+<li><p><strong>Nodos-i</strong> marcados como en uso, pero que están libres.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="comprobación-del-sistema-de-ficheros-1" class="level2">
+<h2 class="anchored" data-anchor-id="comprobación-del-sistema-de-ficheros-1">Comprobación del sistema de ficheros</h2>
+<ul>
+<li><p>Para chequear un SF siempre debe estar desmontado o montado en modo de sólo lectura.</p></li>
+<li><p>El SF raíz debe estar montado en modo de sólo lectura (el SF raíz no se puede desmontar, <span class="rojo">¿por qué?</span>).</p></li>
+</ul>
+<p>. . .</p>
+<ul>
+<li>Si al arrancar el proceso de chequeo encuentra problemas que no puede solucionar, obliga al administrador a que realice el chequeo “a mano” ejecutando la orden <code>fsck</code> o <code>e2fsck</code> (modo monousuario).</li>
+</ul>
+</section>
+</section>
+<section id="sistema-de-journaling" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Sistema de journaling</h1>
+<section id="journaling" class="level2">
+<h2 class="anchored" data-anchor-id="journaling">Journaling</h2>
+<ul>
+<li><p><em>Journaling</em>: para evitar la verificación completa (con <code>fsck</code>) de sistemas de ficheros de gran tamaño, que sería muy costosa, se implementa un modelo de control <strong>transaccional</strong> basado en <em>logging</em> (un diario).</p>
+<ul>
+<li><p>Las suboperaciones que modifiquen los metadatos y datos de un mismo archivo se agrupan en la misma transacción.</p></li>
+<li><p>Si el sistema falla, las acciones parcialmente realizadas se deshacen o completan, recorriendo el <em>log</em>.</p></li>
+<li><p>No se garantiza que el sistema esté actualizado al finalizar la recuperación, sino que es consistente.</p></li>
+</ul></li>
+<li><p>Sistemas con esta filosofía: JFS (IBM), NTFS, <code>ext3/4</code> y la gran mayoría de sistemas de archivos modernos.</p></li>
+</ul>
+</section>
+<section id="journaling-1" class="level2">
+<h2 class="anchored" data-anchor-id="journaling-1">Journaling</h2>
+<pre><code>TxBegin(&amp;tid);
+/* ...
+   Sub-operaciones
+   ... */
+TxCommit(tid);
+TxEnd(tid);</code></pre>
+<ul>
+<li><p>Por cada sub-operación que altera las estructuras de disco se escribe un registro en el <em>log</em>, que incluye las modificaciones en los <em>buffers</em> de i-nodos y de bloques.</p></li>
+<li><p>Cuando se ha copiado a disco (<em>log</em>) el registro de <em>commit</em>, se empiezan a procesar realmente los <em>buffers</em>.</p></li>
+<li><p>Después de una caída:</p>
+<ul>
+<li><p>Se completan las transacciones <em>commited</em>.</p></li>
+<li><p>Se descartan el resto de transacciones.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="obtener-información-de-nuestro-sistema-de-ficheros" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="obtener-información-de-nuestro-sistema-de-ficheros">Obtener información de nuestro sistema de ficheros</h2>
+<ol type="1">
+<li><p>Listado de discos y particiones: <code>sudo fdisk -l</code></p></li>
+<li><p>Listado de puntos de montaje: <code>mount</code></p></li>
+<li><p>Información sobre parámetros del sistema de ficheros:</p></li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> tune2fs <span class="at">-l</span> /dev/sda2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Comprobar última comprobación y veces que se ha montado.</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo tune2fs <span class="at">-l</span> /dev/sda2 <span class="kw">|</span> <span class="fu">grep</span> Last<span class="dt">\ </span>c</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Last</span> checked:             Fri Mar  5 11:59:50 2021</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo tune2fs <span class="at">-l</span> /dev/sda2 <span class="kw">|</span> <span class="fu">grep</span> Mount</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Mount</span> count:              303</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="5" type="1">
+<li><p>Intenta usar <code>fsck</code> con cada una de las particiones.</p></li>
+<li><p>¿Cómo podrías comprobar la partición raíz del sistema?</p></li>
+</ol>
+<!-- `touch /forcefsck` -->
+</section>
+<section id="obtener-información-del-journal-curiosidad" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="obtener-información-del-journal-curiosidad">Obtener información del journal (curiosidad)</h2>
+<ol start="7" type="1">
+<li>Información sobre soporte <em>journal</em> en el sistema de ficheros:</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dumpe2fs /dev/sda2 <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> journal</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="8" type="1">
+<li>Herramientas de depuración de sistemas de ficheros:
+<ol type="1">
+<li><code>sudo apt install sleuthkit</code></li>
+<li><code>sudo debugfs -R 'logdump -S' /dev/sdb1</code></li>
+</ol></li>
+</ol>
+</section>
+</section>
+<section id="creación-de-sistemas-de-ficheros" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Creación de sistemas de ficheros</h1>
+<section id="pasos-necesarios" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="pasos-necesarios">Pasos necesarios</h2>
+<div class="exampleblock">
+<p>Añadir un nuevo disco o SF:</p>
+<ol type="1">
+<li><p>Realizar la conexión física. Crear un fichero especial de dispositivo (si es necesario).</p></li>
+<li><p>Consultar ficheros de bloques: <code>lsblk</code></p></li>
+<li><p>Crear las particiones: <code>fdisk</code> (o <code>parted</code>).</p></li>
+<li><p>Crear sistema de ficheros: <code>mke2fs -t ext2 /dev/sdb3</code></p></li>
+<li><p>Etiquetar la partición usando <code>e2label</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> asigna una etiqueta al SF que se puede usar en el fichero <code>/etc/fstab</code>, en el campo <code>fi_especial</code>, mediante LABEL=etiqueta.</p></li>
+<li><p>Crear el directorio que hará de punto de montaje.</p></li>
+<li><p>Montar el nuevo sistema de ficheros.</p></li>
+<li><p>Actualizar <code>/etc/fstab</code> con las opciones necesarias.</p></li>
+</ol>
+</div>
+</section>
+<section id="diferencias-entre-ext2-ext3-y-ext4" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="diferencias-entre-ext2-ext3-y-ext4">Diferencias entre <code>ext2</code>, <code>ext3</code> y <code>ext4</code></h2>
+<ul>
+<li><p>Diferencias <code>ext2</code>, <code>ext3</code> y <code>ext4</code>:</p>
+<ul>
+<li><p><code>ext3</code> tiene el mismo formato que <code>ext2</code> pero además es transaccional: añade un registro o <span class="rojo"><em>journal</em></span> que permite recuperar la consistencia tras una caída del sistema.</p></li>
+<li><p><code>ext4</code> tiene un formato similar a <code>ext3</code>, pero además incluye:</p>
+<ul>
+<li><p>Una <strong>extensión</strong> describe un conjunto de bloques lógicos contiguos de un fichero que también se encuentran contiguos en disco: muy útil para ficheros grandes.</p></li>
+<li><p>Se retrasa la reserva de bloques de disco hasta que se va a escribir en él: mayor número de bloques contiguos en disco.</p></li>
+<li><p>Implementa una herramienta de desfragmentación <em>online</em>, <code>e4defrag</code> (capaz de funcionar mientras se usa el SF).</p></li>
+<li><p>Manejo de sistemas de ficheros y ficheros de mayor tamaño.</p></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="qué-sistema-elegir" class="level2">
+<h2 class="anchored" data-anchor-id="qué-sistema-elegir">¿Qué sistema elegir?</h2>
+<ul>
+<li><p><code>ext2</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> muy rápido en general, pero no tiene <em>journaling</em>. Se puede usar en un SF en el que se guardarán ficheros temporales.</p></li>
+<li><p><code>ext3</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> buen rendimiento en general y <em>journaling</em>.</p></li>
+<li><p><code>ext4</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> menor uso del CPU y mayor rapidez en los procesos de lectura y escritura que <code>ext3</code>. Estándar de facto en Linux.</p></li>
+</ul>
+<p>Hay muchas más opciones de <a href="https://www.maketecheasier.com/choosing-the-best-linux-filesystem/">sistemas de ficheros modernos</a>. Particularmente interesantes son ZFS and Btrfs.</p>
+</section>
+<section id="tune2fs" class="level2">
+<h2 class="anchored" data-anchor-id="tune2fs"><code>tune2fs</code></h2>
+<p><code>tune2fs</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Conocer y ajustar parámetros de un SF <code>ext4</code>/<code>ext3</code>/<code>ext2</code>.</p>
+<ul>
+<li><p><code>-l dispositivo</code>: Listar el contenido del superbloque del SF.</p></li>
+<li><p><code>-c max-mount-counts dispositivo</code>: Establecer el nº de montajes máximo sin realizar un fsck.</p></li>
+<li><p><code>-i numero[d|m|w] dispositivo</code>: Indicar el tiempo máximo entre dos chequeos.</p></li>
+<li><p><code>-L etiqueta dispositivo</code>: Poner una etiqueta al sistema de ficheros.</p></li>
+<li><p><code>-m porcentaje dispositivo</code>: Fijar el porcentaje de bloques reservados para procesos especiales (de <code>root</code>). Por defecto, <span class="math inline">\(5\%\)</span>.</p></li>
+</ul>
+</section>
+<section id="parámetros-del-sf-ext4" class="level2">
+<h2 class="anchored" data-anchor-id="parámetros-del-sf-ext4">Parámetros del SF ext4</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo tune2fs <span class="at">-l</span> /dev/sda2 </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tune2fs</span> 1.45.5 <span class="er">(</span><span class="ex">07-Jan-2020</span><span class="kw">)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> volume name:   <span class="op">&lt;</span>none<span class="op">&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Last</span> mounted on:          /</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> UUID:          1ccdff3f-4fa5-4222-85b9-81f463ac9da1</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> magic number:  0xEF53</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> revision <span class="co">#:    1 (dynamic)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> flags:         signed_directory_hash </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Default</span> mount options:    user_xattr acl</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> state:         clean</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Errors</span> behavior:          Continue</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> OS type:       Linux</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Inode</span> count:              2433024</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="ex">Block</span> count:              9701161</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="administración-de-volúmenes-dinámicos" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Administración de volúmenes dinámicos</h1>
+<section id="raid-y-lvm" class="level2">
+<h2 class="anchored" data-anchor-id="raid-y-lvm">RAID y LVM</h2>
+<ul>
+<li><p><strong>RAID</strong>: Array redundante de discos independientes.</p>
+<ul>
+<li><p>Varias unidades de disco se ven como una sola unidad lógica.</p></li>
+<li><p>Se pueden implementar por <em>software</em> o por <em>hardware</em>.</p></li>
+</ul></li>
+<li><p><strong>LVM</strong> (<strong><em>Logical Volume Management</em></strong>) : agrupar las particiones de uno o distintos discos en volúmenes. Permite redimensionar y mover particiones.</p></li>
+</ul>
+</section>
+<section id="raid-y-sistemas-de-ficheros-contemporáneos" class="level2">
+<h2 class="anchored" data-anchor-id="raid-y-sistemas-de-ficheros-contemporáneos">RAID y sistemas de ficheros contemporáneos</h2>
+<ul>
+<li><p>La mayoría de sistemas de ficheros necesitan una implementación a parte (hardware o software) de LVM sobre la que construir un RAID.</p></li>
+<li><p>Los sistemas de ficheros <strong>ZFS</strong>, <strong>Btrfs</strong> o <strong>XFS</strong> están diseñados para integrar distintos dispositivos físicos <strong>como parte del sistema de ficheros</strong> sin gestores LVM externos.</p></li>
+<li><p>Al ser este soporte nativo y a medida de estos sistemas de ficheros el rendimiento y robustez es mayor. Para más información ver <a href="https://en.wikipedia.org/wiki/ZFS#RAID_(%22RAID-Z%22)">RAID-Z</a> en Wikipedia.</p></li>
+</ul>
+</section>
+<section id="raid-0" class="level2">
+<h2 class="anchored" data-anchor-id="raid-0">RAID 0</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>RAID nivel 0:</p>
+<ul>
+<li><p>Expande la información en diversos discos, que se ven como un único SF.</p></li>
+<li><p>Aumenta el espacio según el número de discos usado.</p></li>
+<li><p>Se consigue E/S paralela en lecturas y escrituras, siempre que los bloques a tratar no sean del mismo disco.</p></li>
+<li><p>No hay redundancia de datos.</p></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<p><img src="images/raid0.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="raid-1" class="level2">
+<h2 class="anchored" data-anchor-id="raid-1">RAID 1</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>RAID nivel 1:</p>
+<ul>
+<li><p>Se utilizan dos o más discos duros, que forman un único SF (SF replicado en varios discos).</p></li>
+<li><p>Son discos espejos (todos guardan la misma información).</p></li>
+<li><p><span class="rojo"><strong>SI</strong></span> hay redundancia de datos.</p></li>
+<li><p>Las lecturas pueden ser en paralelo, las escrituras no.</p></li>
+<li><p>Cuando uno de los discos falla, el sistema sigue trabajando con el otro sin problemas.</p></li>
+<li><p>La recuperación de un disco es transparente al usuario.</p></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<p><img src="images/raid1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="raid-45" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="raid-45">RAID 4/5</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li><p>División de los datos a nivel de bloques.</p></li>
+<li><p>RAID 4: Mínimo 3 discos duros, de los cuales 1 almacenará la paridad de los otros discos, que son usados para datos.</p></li>
+<li><p>Problema: el disco con paridad es un cuello de botella. RAID 5: repartir paridad entre todos los discos.</p></li>
+<li><p>Se consigue un dispositivo de almacenamiento más grande.</p></li>
+<li><p><span class="rojo"><strong>SI</strong></span> hay redundancia de datos.</p></li>
+<li><p>Lecturas y escrituras en <span class="rojo"><strong>paralelo</strong></span>.</p></li>
+<li><p>RAID 5 ofrece la mejor relación rendimiento-coste en un entorno con varias unidades.</p></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<p><img src="images/raid5.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="paridad-cálculo" class="level2">
+<h2 class="anchored" data-anchor-id="paridad-cálculo">Paridad: cálculo</h2>
+<p>Paridad: cada vez que se escriben datos, se calcula el XOR bit a bit (1 número de unos impar, 0: número de unos par) de los bloques implicados en cada cada disco.</p>
+<p>Basada en operaciones XOR:</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Disco 1:</td>
+<td style="text-align: right;">00101010</td>
+<td style="text-align: center;">(Datos)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Disco 2:</td>
+<td style="text-align: right;">10001110</td>
+<td style="text-align: center;">(Datos)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Disco 3:</td>
+<td style="text-align: right;">11110111</td>
+<td style="text-align: center;">(Datos)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Disco 4:</td>
+<td style="text-align: right;">10110101</td>
+<td style="text-align: center;">(Datos)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Disco 5:</td>
+<td style="text-align: right;">11100110</td>
+<td style="text-align: center;">(Paridad)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="paridad-recuperación" class="level2">
+<h2 class="anchored" data-anchor-id="paridad-recuperación">Paridad: recuperación</h2>
+<p>Paridad: Si uno de los discos falla (p.ej. el disco 4), el contenido se puede restaurar a partir de la paridad:</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Disco 1:</td>
+<td style="text-align: right;">00101010</td>
+<td style="text-align: center;">(Datos)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Disco 2:</td>
+<td style="text-align: right;">10001110</td>
+<td style="text-align: center;">(Datos)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Disco 3:</td>
+<td style="text-align: right;">11110111</td>
+<td style="text-align: center;">(Datos)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Disco 5:</td>
+<td style="text-align: right;">11100110</td>
+<td style="text-align: center;">(Paridad)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Disco 4:</td>
+<td style="text-align: right;">10110101</td>
+<td style="text-align: center;">(Datos)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="cuotas" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Cuotas</h1>
+<section id="concepto-de-cuotas-de-disco" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="concepto-de-cuotas-de-disco">Concepto de cuotas de disco</h2>
+<div class="block">
+<p>Las <strong>cuotas</strong> de disco permiten limitar el número de bloques y/o ficheros (nodos-i) que un usuario puede usar en una partición (también se pueden establecer para grupos de usuarios).</p>
+</div>
+<ul>
+<li><p>Hay dos tipos de límites:</p>
+<ul>
+<li><p><strong>Límite <em>hard</em></strong>: el usuario no puede sobrepasarlo. Si lo hace, ya no podrá usar más bloques o crear más ficheros.</p></li>
+<li><p><strong>Límite <em>soft</em></strong>: es inferior al límite <em>hard</em> y se puede sobrepasar durante cierto tiempo, siempre que no se alcance el límite <em>hard</em>.</p></li>
+</ul></li>
+<li><p><strong>Periodo de gracia</strong>: tiempo durante el que se puede sobrepasar el límite <em>soft</em>. Se informa al usuario de que ha superado el límite y que debe liberar espacio o nodos-i (ficheros).</p>
+<ul>
+<li>Los periodos y los límites se establecen, de forma independiente, para bloques y nodos-i.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="referencias" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Referencias</h1>
+<section id="referencias-1" class="level2">
+<h2 class="anchored" data-anchor-id="referencias-1">Referencias</h2>
+<p>Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 20. <em>Storage</em>, Addison-Wesley. 5th Edition. 2018.</p>
+<p>Aeleen Frisch. Essential system administration. Capítulo 10. <em>Filesystems and disks</em>. O’Reilly and Associates. Tercera edición. 2002.</p>
+<p>Ext4 Design. <a href="https://ext4.wiki.kernel.org/index.php/Ext4_Design" class="uri">https://ext4.wiki.kernel.org/index.php/Ext4_Design</a></p>
+<p>Anatomy of the Linux virtual file system switch. <a href="https://developer.ibm.com/technologies/linux/tutorials/l-virtual-filesystem-switch/" class="uri">https://developer.ibm.com/technologies/linux/tutorials/l-virtual-filesystem-switch/</a></p>
+<p>Overview of the Linux Virtual File System. <a href="https://www.kernel.org/doc/html/latest/filesystems/vfs.html" class="uri">https://www.kernel.org/doc/html/latest/filesystems/vfs.html</a></p>
+<p>Wikipedia. Standard RAID levels. <a href="https://en.wikipedia.org/wiki/Standard_RAID_levels" class="uri">https://en.wikipedia.org/wiki/Standard_RAID_levels</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

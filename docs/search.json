@@ -3789,5 +3789,375 @@
     "crumbs": [
       "Tema 6: Sistemas de ficheros y discos"
     ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html",
+    "href": "tema07-administracionsf/tema07-administracionsf.html",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "",
+    "text": "Explicar la importancia de la administración del sistema de ficheros en la labor de administración de sistemas informáticos.\nExplicar qué sucede en el sistema operativo cuando se montan y desmontan dispositivos en el sistema de ficheros.\nUtilizar la herramienta mount (y umount) para montar (y desmontar) sistemas de ficheros.\nConfigurar los dispositivos de almacenamiento principales del sistema mediante el fichero /etc/fstab.\nExplicar la necesidad del chequeo del sistema de ficheros y utilizar las principales herramientas de chequeo.\nExplicar cómo funciona el sistema de journaling.\nEnumerar los pasos necesarios para añadir un nuevo dispositivo de disco al sistema operativo.\nExplicar las diferencias fundamentales entre los sistemas de ficheros ext2, ext3 y ext4.\nJustificar la necesidad del uso de cuotas de disco en sistemas informáticos compartidos.\nConfigurar cuotas de disco para los distintos usuarios de un sistema GNU/Linux.\nJustificar la necesidad del uso de arrays redundantes de discos (RAID) en sistemas informáticos.\nElegir el mecanismo RAID más adecuado: RAID0, RAID1 o RAID4/5.\nEjemplificar el mecanismo de redundancia para RAID basado en paridad.\nMontar un sistema RAID por software en GNU/Linux.\n\n\n\n\n\nCuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.\nNOTA: Como en otros temas, aquí veremos muchos parámetros de configuración que no tiene sentido memorizar, pero si hay que saber qué posibilidades tenemos en la administración de sistemas de ficheros.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#objetivos",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#objetivos",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "",
+    "text": "Explicar la importancia de la administración del sistema de ficheros en la labor de administración de sistemas informáticos.\nExplicar qué sucede en el sistema operativo cuando se montan y desmontan dispositivos en el sistema de ficheros.\nUtilizar la herramienta mount (y umount) para montar (y desmontar) sistemas de ficheros.\nConfigurar los dispositivos de almacenamiento principales del sistema mediante el fichero /etc/fstab.\nExplicar la necesidad del chequeo del sistema de ficheros y utilizar las principales herramientas de chequeo.\nExplicar cómo funciona el sistema de journaling.\nEnumerar los pasos necesarios para añadir un nuevo dispositivo de disco al sistema operativo.\nExplicar las diferencias fundamentales entre los sistemas de ficheros ext2, ext3 y ext4.\nJustificar la necesidad del uso de cuotas de disco en sistemas informáticos compartidos.\nConfigurar cuotas de disco para los distintos usuarios de un sistema GNU/Linux.\nJustificar la necesidad del uso de arrays redundantes de discos (RAID) en sistemas informáticos.\nElegir el mecanismo RAID más adecuado: RAID0, RAID1 o RAID4/5.\nEjemplificar el mecanismo de redundancia para RAID basado en paridad.\nMontar un sistema RAID por software en GNU/Linux.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#evaluación",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#evaluación",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "",
+    "text": "Cuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.\nNOTA: Como en otros temas, aquí veremos muchos parámetros de configuración que no tiene sentido memorizar, pero si hay que saber qué posibilidades tenemos en la administración de sistemas de ficheros.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#introducción-1",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#introducción-1",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Introducción",
+    "text": "Introducción\n\n\nTareas asociadas al sistema de ficheros en GNU/Linux:\n\nPermitir el acceso a ficheros locales y remotos.\nControlar los recursos que proporcionan: cuotas de disco, bloques o nodos-i libres, estadísticas de uso…\nProteger de posibles fallos o errores: RAID, copias de seguridad…\nControlar y proporcionar seguridad de los datos: propietarios, permisos…\nChequear (y corregir) el sistema de ficheros (en el momento, programado, etc. ).\nInstalar y configurar nuevos dispositivos de almacenamiento.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#i-just-want-to-add-a-disk-1",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#i-just-want-to-add-a-disk-1",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "I just want to add a disk!",
+    "text": "I just want to add a disk!\n\nAntes de saltar a la teoría vamos a hacer algo habitual: añadir un disco duro al sistema utilizando todo su espacio de forma corriente.\nMás adelante entenderemos lo que estamos haciendo, podremos definir varias particiones, configuraremos RAID, cuotas, etc.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#receta-disco-i",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#receta-disco-i",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Receta disco (I)",
+    "text": "Receta disco (I)\n\nApagar el ordenador, conectar el disco y encender.\nUsamos lsblk para identificar dispositivos de bloques y particiones. Ej. /dev/sdb.\nParticionar el disco (cfdisk (más fácil), parted, gparted, fdisk…): sudo fdisk /dev/sdb:\n\npas@debianpas:~$ sudo fdisk /dev/sdb\n[sudo] password for pas: \n\nWelcome to fdisk (util-linux 2.36.1).\nChanges will remain in memory only, until you decide to write them.\nBe careful before using the write command.\n\nDevice does not contain a recognized partition table.\nCreated a new DOS disklabel with disk identifier 0x11e147da.\n\nCommand (m for help): g\nCreated a new GPT disklabel (GUID: 01C5F77B-F13F-6348-B35F-2BD08E33989A).\n\nCommand (m for help): n\nPartition number (1-128, default 1): 1\nFirst sector (2048-204766, default 2048): \nLast sector, +/-sectors or +/-size{K,M,G,T,P} (2048-204766, default 204766): \n\nCreated a new partition 1 of type 'Linux filesystem' and of size 99 MiB.\n\nCommand (m for help): w\nThe partition table has been altered.\nCalling ioctl() to re-read partition table.\nSyncing disks.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#receta-disco-ii",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#receta-disco-ii",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Receta disco (II)",
+    "text": "Receta disco (II)\n\nNuestra nueva partición estará en /dev/sdb1\nCrear el sistema de ficheros: sudo mkfs -t ext4 -L etiqueta /dev/sdb1\nCrear un punto de montaje y montar (3 alternativas de identificación del dispositivo, el UUID lo podemos obtener de lsblk -f.):\n\nsudo mkdir /punto/montaje\nsudo mount LABEL=etiqueta /punto/montaje\nsudo mount /dev/sdb1 /punto/montaje\nsudo mount UUID=a24457f7-5a17-4da0-a25b-c9f3f678780f /punto/montaje\n\n¡Listo!",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#receta-disco-iii",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#receta-disco-iii",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Receta disco (III)",
+    "text": "Receta disco (III)\n\n¿Puedes escribir con tu usuario normal?\nSi reinicias, ¿sigue ahí?\n¿puedes montarlo sobre cualquier carpeta?",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#concepto-montardesmontar",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#concepto-montardesmontar",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Concepto montar/desmontar",
+    "text": "Concepto montar/desmontar\n\nEn GNU/Linux, hay un único sistema de ficheros lógico (o una única “jerarquía de directorios”), en la que se organizan todos los dispositivos de almacenamiento disponibles.\nCada partición tiene su propio sistema de ficheros, con su directorio raíz y su jerarquía.\n\nMontar un sistema de ficheros: añadirlo al sistema de ficheros lógico. Sus datos (desde su propia raíz) están disponibles a partir de un punto de montaje (p.ej. /media/usb1).\nDesmontar un sistema de ficheros: el sistema de ficheros deja de estar disponible, dejándolo además consistente.\n\nLos ficheros principales del SO están siempre disponibles desde la raíz del sistema de ficheros lógico (/).\nEn el arranque, se monta primero la partición correspondiente a dicha raíz (root) y luego cualquier partición auxiliar.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#concepto-montardesmontar-1",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#concepto-montardesmontar-1",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Concepto montar/desmontar",
+    "text": "Concepto montar/desmontar",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#herramienta-mount",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#herramienta-mount",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Herramienta mount",
+    "text": "Herramienta mount\n\nmount [opci] &lt;FicheroEspecialBloque&gt; &lt;PtoMontaje&gt;\n\n-t tipo-sf  tipo de sistema de ficheros.\n-r  montaje en modo sólo lectura.\n-w  montaje en modo lectura/escritura.\n-o opcionesMontaje  opciones del proceso de montaje (nosuid, exec, remount, etc.).\n\numount &lt;PtoMontaje&gt; (ó &lt;FicheroEspecialBloque&gt;)  desmontar un sistema de ficheros. Si está siendo utilizado (busy), no se podrá desmontar.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#monitorización-con-fuser-y-lsof",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#monitorización-con-fuser-y-lsof",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Monitorización con fuser y lsof",
+    "text": "Monitorización con fuser y lsof\n\nfuser  saber qué ficheros se están usando y qué procesos los usan (f: fichero abierto para lectura, F: fichero abierto para escritura, c: directorio de trabajo, e: ejecutando el fichero, m: memoria compartida, etc.)\nlsof  obtener un listado de todos los ficheros abiertos. Se puede filtrar por procesos, usuarios, directorios, etc.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#fuser-y-lsof",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#fuser-y-lsof",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "fuser y lsof",
+    "text": "fuser y lsof\n$ fuser -mv /home # -m: ficheros montados; -v: verbose\n                     USUARIO     PID ACCESO ORDEN\n/home:               root     kernel mount /home\n                     javi       1152 F...m pulseaudio\n                     javi       1158 F.c.m mate-session\n...\n                     javi      38094 f.c.. code\n                     javi      38152 ..c.. code\n                     javi      38153 ..c.. code\n                     javi      38154 F.c.m code\n                     javi      38198 F.c.. code\n                     javi      38248 F.c.. java\n...\n$ lsof # tardará en ejecutarse unos segundos\n$ lsof -c code|wc -l\n2252",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#fichero-etcfstab",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#fichero-etcfstab",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Fichero /etc/fstab",
+    "text": "Fichero /etc/fstab\n\n/etc/fstab: fichero con información sobre todos los sistemas de ficheros a montar (o ya montados) y las zonas de intercambio a activar.\nfi_especial pto tipo opciones dump_freq pass_num\n\nfi_especial  fichero especial de bloques (/dev/...).\npto  directorio que sirve de punto de montaje (¿permisos?).\ntipo  tipo de SF (ext2, ext3, ext4, vfat, iso9660, swap, ntfs, nfs, etc.).\nOpciones para el proceso de montaje (separadas por “,” y sin espacios).\ndump_freq  “frecuencia del dump” para hacer una copia de seguridad de ese SF mediante el comando dump (no se usa).\npass_num  en tiempo de arranque, en qué orden hay que chequear los SFs (ejecutar fsck para comprobar su estado).",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#opciones-de-fstab",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#opciones-de-fstab",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Opciones de fstab",
+    "text": "Opciones de fstab\n\nOpciones del fichero /etc/fstab:\n\ndefaults  rw, suid, dev, exec, auto, nouser, async.\nrw  Lectura-escritura (por defecto).\nro  Sólo lectura\nsuid/nosuid  Permitido (o no) que los bits suid o sgid tengan efecto.\nauto/noauto  Montar automáticamente (o no) (ejecutando mount -a se montan todos los automáticos  siempre se ejecuta al arrancar el sistema).\nexec/noexec  Permitir (o no) la ejecución de ficheros.\nusrquota, grpquota  Activar cuotas.\nuid=500, gid=100  Propietario y grupo propietario de los ficheros del SF (si el SF no incorpora esta información o si se quiere cambiar).\numask=137  Permisos de los ficheros (en este caso, 640) (si el SF no incorpora esta información o si se quieren cambiar).\ndev  Interpretar ficheros especiales en el sistema de archivos.\nsync  Forzar a que todas las operaciones sean síncronas (puede disminuir el tiempo de vida de la unidad de disco).\nuser  permite que los usuarios puedan montar el sistema de ficheros. Solo el mismo usuario podrá desmontarlo. Implica las opciones noexec, nosuid y nodev.\nusers  igual que user pero cualquiera podrá desmontarlo.\nnouser  Solo root puede montar el SF.\nowner  permite que un usuario pueda montar el sistema de ficheros, siempre que sea dueño del fichero de dispositivo. Implica las opciones nosuid y nodev.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#fichero-etcfstab-1",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#fichero-etcfstab-1",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Fichero /etc/fstab",
+    "text": "Fichero /etc/fstab\nEjemplo de contenido del fichero /etc/fstab:\nLABEL=/    /              ext4     defaults,usrquota  0 1\n/dev/sda3  /windows       vfat     defaults           0 0\n/dev/dvd   /media/dvd     iso9660  noauto,owner,ro    0 0\n/dev/fd0   /media/floppy  vfat     noauto,uid=500     0 0\n/dev/sda4  /otrolinux     ext3     defaults           0 2\n/dev/sda2  swap           swap     defaults           0 0\n\nAl ejecutar mount como root:\n\nmount /media/dvd: coge las opciones que faltan del fichero.\nmount -t iso9660 -r /dev/dvd /media/dvd: no las coge.\n\nSi se asigna permisos de montaje a los usuarios (opciones user, users u owner), sólo pueden ejecutar mount /media/dvd (sin opciones).\nmount -a: montar todas las unidades que sean auto.\nAutomontado de unidades: udev y dbus.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#nombres-efímeros-y-uuid",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#nombres-efímeros-y-uuid",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Nombres efímeros y UUID",
+    "text": "Nombres efímeros y UUID\n\nLas referencias tipo /dev/sda3 tienen el problema de que no son robustas.\nSi se añade un disco nuevo, o incluso a veces al reiniciar, /dev/sda puede pasar a ser /dev/sdb.\nPor esto es más robusto utilizar identificadores únicos UUID y permanentes para particiones.\n\n# Ejemplo de líneas de fstab usando UUID\n# / was on /dev/nvme0n1p3 during installation\nUUID=eca06da0-02e9-4c2b-9fe0-1fd03743502c /               ext4    errors=remount-ro 0       1\n\nPuedes ver varias alternativas para identificar discos y particiones en /dev/disk/.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#concepto-y-herramientas-de-chequeo",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#concepto-y-herramientas-de-chequeo",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Concepto y herramientas de chequeo",
+    "text": "Concepto y herramientas de chequeo\n\nDurante el arranque, fsck o e2fsck chequearán la consistencia o estado del sistema de ficheros, detectando problemas e intentando repararlos.\nSe actúa sobre la estructura (no sobre el contenido):\n\nBloques que pertenezcan a varios ficheros.\nBloques que están marcados como libres, pero que se encuentran en uso.\nBloques que se encuentran marcados como en uso, pero que están libres.\nInconsistencias en cuanto al número de enlaces hacia un nodo-i.\nNodos-i marcados como libres, pero que están en uso.\nNodos-i marcados como en uso, pero que están libres.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#comprobación-del-sistema-de-ficheros-1",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#comprobación-del-sistema-de-ficheros-1",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Comprobación del sistema de ficheros",
+    "text": "Comprobación del sistema de ficheros\n\nPara chequear un SF siempre debe estar desmontado o montado en modo de sólo lectura.\nEl SF raíz debe estar montado en modo de sólo lectura (el SF raíz no se puede desmontar, ¿por qué?).\n\n. . .\n\nSi al arrancar el proceso de chequeo encuentra problemas que no puede solucionar, obliga al administrador a que realice el chequeo “a mano” ejecutando la orden fsck o e2fsck (modo monousuario).",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#journaling",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#journaling",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Journaling",
+    "text": "Journaling\n\nJournaling: para evitar la verificación completa (con fsck) de sistemas de ficheros de gran tamaño, que sería muy costosa, se implementa un modelo de control transaccional basado en logging (un diario).\n\nLas suboperaciones que modifiquen los metadatos y datos de un mismo archivo se agrupan en la misma transacción.\nSi el sistema falla, las acciones parcialmente realizadas se deshacen o completan, recorriendo el log.\nNo se garantiza que el sistema esté actualizado al finalizar la recuperación, sino que es consistente.\n\nSistemas con esta filosofía: JFS (IBM), NTFS, ext3/4 y la gran mayoría de sistemas de archivos modernos.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#journaling-1",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#journaling-1",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Journaling",
+    "text": "Journaling\nTxBegin(&tid);\n/* ...\n   Sub-operaciones\n   ... */\nTxCommit(tid);\nTxEnd(tid);\n\nPor cada sub-operación que altera las estructuras de disco se escribe un registro en el log, que incluye las modificaciones en los buffers de i-nodos y de bloques.\nCuando se ha copiado a disco (log) el registro de commit, se empiezan a procesar realmente los buffers.\nDespués de una caída:\n\nSe completan las transacciones commited.\nSe descartan el resto de transacciones.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#obtener-información-de-nuestro-sistema-de-ficheros",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#obtener-información-de-nuestro-sistema-de-ficheros",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Obtener información de nuestro sistema de ficheros",
+    "text": "Obtener información de nuestro sistema de ficheros\n\nListado de discos y particiones: sudo fdisk -l\nListado de puntos de montaje: mount\nInformación sobre parámetros del sistema de ficheros:\n\nsudo tune2fs -l /dev/sda2\n\nComprobar última comprobación y veces que se ha montado.\n\n$ sudo tune2fs -l /dev/sda2 | grep Last\\ c\nLast checked:             Fri Mar  5 11:59:50 2021\n\n$ sudo tune2fs -l /dev/sda2 | grep Mount\nMount count:              303\n\nIntenta usar fsck con cada una de las particiones.\n¿Cómo podrías comprobar la partición raíz del sistema?",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#obtener-información-del-journal-curiosidad",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#obtener-información-del-journal-curiosidad",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Obtener información del journal (curiosidad)",
+    "text": "Obtener información del journal (curiosidad)\n\nInformación sobre soporte journal en el sistema de ficheros:\n\nsudo dumpe2fs /dev/sda2 | grep -i journal\n\nHerramientas de depuración de sistemas de ficheros:\n\nsudo apt install sleuthkit\nsudo debugfs -R 'logdump -S' /dev/sdb1",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#pasos-necesarios",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#pasos-necesarios",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Pasos necesarios",
+    "text": "Pasos necesarios\n\nAñadir un nuevo disco o SF:\n\nRealizar la conexión física. Crear un fichero especial de dispositivo (si es necesario).\nConsultar ficheros de bloques: lsblk\nCrear las particiones: fdisk (o parted).\nCrear sistema de ficheros: mke2fs -t ext2 /dev/sdb3\nEtiquetar la partición usando e2label  asigna una etiqueta al SF que se puede usar en el fichero /etc/fstab, en el campo fi_especial, mediante LABEL=etiqueta.\nCrear el directorio que hará de punto de montaje.\nMontar el nuevo sistema de ficheros.\nActualizar /etc/fstab con las opciones necesarias.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#diferencias-entre-ext2-ext3-y-ext4",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#diferencias-entre-ext2-ext3-y-ext4",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Diferencias entre ext2, ext3 y ext4",
+    "text": "Diferencias entre ext2, ext3 y ext4\n\nDiferencias ext2, ext3 y ext4:\n\next3 tiene el mismo formato que ext2 pero además es transaccional: añade un registro o journal que permite recuperar la consistencia tras una caída del sistema.\next4 tiene un formato similar a ext3, pero además incluye:\n\nUna extensión describe un conjunto de bloques lógicos contiguos de un fichero que también se encuentran contiguos en disco: muy útil para ficheros grandes.\nSe retrasa la reserva de bloques de disco hasta que se va a escribir en él: mayor número de bloques contiguos en disco.\nImplementa una herramienta de desfragmentación online, e4defrag (capaz de funcionar mientras se usa el SF).\nManejo de sistemas de ficheros y ficheros de mayor tamaño.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#qué-sistema-elegir",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#qué-sistema-elegir",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "¿Qué sistema elegir?",
+    "text": "¿Qué sistema elegir?\n\next2  muy rápido en general, pero no tiene journaling. Se puede usar en un SF en el que se guardarán ficheros temporales.\next3  buen rendimiento en general y journaling.\next4  menor uso del CPU y mayor rapidez en los procesos de lectura y escritura que ext3. Estándar de facto en Linux.\n\nHay muchas más opciones de sistemas de ficheros modernos. Particularmente interesantes son ZFS and Btrfs.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#tune2fs",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#tune2fs",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "tune2fs",
+    "text": "tune2fs\ntune2fs  Conocer y ajustar parámetros de un SF ext4/ext3/ext2.\n\n-l dispositivo: Listar el contenido del superbloque del SF.\n-c max-mount-counts dispositivo: Establecer el nº de montajes máximo sin realizar un fsck.\n-i numero[d|m|w] dispositivo: Indicar el tiempo máximo entre dos chequeos.\n-L etiqueta dispositivo: Poner una etiqueta al sistema de ficheros.\n-m porcentaje dispositivo: Fijar el porcentaje de bloques reservados para procesos especiales (de root). Por defecto, \\(5\\%\\).",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#parámetros-del-sf-ext4",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#parámetros-del-sf-ext4",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Parámetros del SF ext4",
+    "text": "Parámetros del SF ext4\n$ sudo tune2fs -l /dev/sda2 \ntune2fs 1.45.5 (07-Jan-2020)\nFilesystem volume name:   &lt;none&gt;\nLast mounted on:          /\nFilesystem UUID:          1ccdff3f-4fa5-4222-85b9-81f463ac9da1\nFilesystem magic number:  0xEF53\nFilesystem revision #:    1 (dynamic)\nFilesystem features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum\nFilesystem flags:         signed_directory_hash \nDefault mount options:    user_xattr acl\nFilesystem state:         clean\nErrors behavior:          Continue\nFilesystem OS type:       Linux\nInode count:              2433024\nBlock count:              9701161\n...",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#raid-y-lvm",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#raid-y-lvm",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "RAID y LVM",
+    "text": "RAID y LVM\n\nRAID: Array redundante de discos independientes.\n\nVarias unidades de disco se ven como una sola unidad lógica.\nSe pueden implementar por software o por hardware.\n\nLVM (Logical Volume Management) : agrupar las particiones de uno o distintos discos en volúmenes. Permite redimensionar y mover particiones.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#raid-y-sistemas-de-ficheros-contemporáneos",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#raid-y-sistemas-de-ficheros-contemporáneos",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "RAID y sistemas de ficheros contemporáneos",
+    "text": "RAID y sistemas de ficheros contemporáneos\n\nLa mayoría de sistemas de ficheros necesitan una implementación a parte (hardware o software) de LVM sobre la que construir un RAID.\nLos sistemas de ficheros ZFS, Btrfs o XFS están diseñados para integrar distintos dispositivos físicos como parte del sistema de ficheros sin gestores LVM externos.\nAl ser este soporte nativo y a medida de estos sistemas de ficheros el rendimiento y robustez es mayor. Para más información ver RAID-Z en Wikipedia.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#raid-0",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#raid-0",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "RAID 0",
+    "text": "RAID 0\n\n\nRAID nivel 0:\n\nExpande la información en diversos discos, que se ven como un único SF.\nAumenta el espacio según el número de discos usado.\nSe consigue E/S paralela en lecturas y escrituras, siempre que los bloques a tratar no sean del mismo disco.\nNo hay redundancia de datos.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#raid-1",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#raid-1",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "RAID 1",
+    "text": "RAID 1\n\n\nRAID nivel 1:\n\nSe utilizan dos o más discos duros, que forman un único SF (SF replicado en varios discos).\nSon discos espejos (todos guardan la misma información).\nSI hay redundancia de datos.\nLas lecturas pueden ser en paralelo, las escrituras no.\nCuando uno de los discos falla, el sistema sigue trabajando con el otro sin problemas.\nLa recuperación de un disco es transparente al usuario.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#raid-45",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#raid-45",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "RAID 4/5",
+    "text": "RAID 4/5\n\n\n\nDivisión de los datos a nivel de bloques.\nRAID 4: Mínimo 3 discos duros, de los cuales 1 almacenará la paridad de los otros discos, que son usados para datos.\nProblema: el disco con paridad es un cuello de botella. RAID 5: repartir paridad entre todos los discos.\nSe consigue un dispositivo de almacenamiento más grande.\nSI hay redundancia de datos.\nLecturas y escrituras en paralelo.\nRAID 5 ofrece la mejor relación rendimiento-coste en un entorno con varias unidades.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#paridad-cálculo",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#paridad-cálculo",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Paridad: cálculo",
+    "text": "Paridad: cálculo\nParidad: cada vez que se escriben datos, se calcula el XOR bit a bit (1 número de unos impar, 0: número de unos par) de los bloques implicados en cada cada disco.\nBasada en operaciones XOR:\n\n\n\nDisco 1:\n00101010\n(Datos)\n\n\nDisco 2:\n10001110\n(Datos)\n\n\nDisco 3:\n11110111\n(Datos)\n\n\nDisco 4:\n10110101\n(Datos)\n\n\nDisco 5:\n11100110\n(Paridad)",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#paridad-recuperación",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#paridad-recuperación",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Paridad: recuperación",
+    "text": "Paridad: recuperación\nParidad: Si uno de los discos falla (p.ej. el disco 4), el contenido se puede restaurar a partir de la paridad:\n\n\n\nDisco 1:\n00101010\n(Datos)\n\n\nDisco 2:\n10001110\n(Datos)\n\n\nDisco 3:\n11110111\n(Datos)\n\n\nDisco 5:\n11100110\n(Paridad)\n\n\nDisco 4:\n10110101\n(Datos)",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#concepto-de-cuotas-de-disco",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#concepto-de-cuotas-de-disco",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Concepto de cuotas de disco",
+    "text": "Concepto de cuotas de disco\n\nLas cuotas de disco permiten limitar el número de bloques y/o ficheros (nodos-i) que un usuario puede usar en una partición (también se pueden establecer para grupos de usuarios).\n\n\nHay dos tipos de límites:\n\nLímite hard: el usuario no puede sobrepasarlo. Si lo hace, ya no podrá usar más bloques o crear más ficheros.\nLímite soft: es inferior al límite hard y se puede sobrepasar durante cierto tiempo, siempre que no se alcance el límite hard.\n\nPeriodo de gracia: tiempo durante el que se puede sobrepasar el límite soft. Se informa al usuario de que ha superado el límite y que debe liberar espacio o nodos-i (ficheros).\n\nLos periodos y los límites se establecen, de forma independiente, para bloques y nodos-i.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#referencias-1",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#referencias-1",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Referencias",
+    "text": "Referencias\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 20. Storage, Addison-Wesley. 5th Edition. 2018.\nAeleen Frisch. Essential system administration. Capítulo 10. Filesystems and disks. O’Reilly and Associates. Tercera edición. 2002.\nExt4 Design. https://ext4.wiki.kernel.org/index.php/Ext4_Design\nAnatomy of the Linux virtual file system switch. https://developer.ibm.com/technologies/linux/tutorials/l-virtual-filesystem-switch/\nOverview of the Linux Virtual File System. https://www.kernel.org/doc/html/latest/filesystems/vfs.html\nWikipedia. Standard RAID levels. https://en.wikipedia.org/wiki/Standard_RAID_levels",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
   }
 ]
