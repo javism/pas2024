@@ -1,63 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://javism.github.io/pas2023/tema02-organizacion/tema02-webuco.html</loc>
+    <loc>https://javism.github.io/pas2024/tema02-organizacion/tema02-webuco.html</loc>
     <lastmod>2024-03-04T10:56:41.863Z</lastmod>
   </url>
   <url>
-    <loc>https://javism.github.io/pas2023/tema02-organizacion/tema02-ficheros.html</loc>
+    <loc>https://javism.github.io/pas2024/tema02-organizacion/tema02-ficheros.html</loc>
     <lastmod>2024-03-04T12:31:00.610Z</lastmod>
   </url>
   <url>
-    <loc>https://javism.github.io/pas2023/tema01-introduccion/tema01a-introduccion.html</loc>
+    <loc>https://javism.github.io/pas2024/tema01-introduccion/tema01a-introduccion.html</loc>
     <lastmod>2024-02-26T18:23:04.362Z</lastmod>
   </url>
   <url>
-    <loc>https://javism.github.io/pas2023/tema01-introduccion/tema01b-software-libre.html</loc>
+    <loc>https://javism.github.io/pas2024/tema01-introduccion/tema01b-software-libre.html</loc>
     <lastmod>2024-02-26T18:23:11.026Z</lastmod>
   </url>
   <url>
-    <loc>https://javism.github.io/pas2023/enlaces.html</loc>
-    <lastmod>2024-02-27T11:34:37.603Z</lastmod>
-  </url>
-  <url>
-    <loc>https://javism.github.io/pas2023/index.html</loc>
-    <lastmod>2024-04-08T12:54:26.361Z</lastmod>
-  </url>
-  <url>
-    <loc>https://javism.github.io/pas2023/tema00-presentacion/presentacion.html</loc>
-    <lastmod>2024-02-19T22:28:54.256Z</lastmod>
-  </url>
-  <url>
-    <loc>https://javism.github.io/pas2023/tema03-usuarios/tema03-usuarios.html</loc>
-    <lastmod>2024-03-08T07:18:16.615Z</lastmod>
-  </url>
-  <url>
-    <loc>https://javism.github.io/pas2023/tema05-recursos/tema05-recursos.html</loc>
+    <loc>https://javism.github.io/pas2024/tema05-recursos/tema05-recursos.html</loc>
     <lastmod>2024-04-04T16:56:05.926Z</lastmod>
   </url>
   <url>
-    <loc>https://javism.github.io/pas2023/tema01-introduccion/tema01c-proyecto.html</loc>
-    <lastmod>2024-02-27T13:20:04.013Z</lastmod>
+    <loc>https://javism.github.io/pas2024/tema07-administracionsf/tema07-RAID-cuotas.html</loc>
+    <lastmod>2024-04-15T12:01:17.663Z</lastmod>
   </url>
   <url>
-    <loc>https://javism.github.io/pas2023/tema04-arranque/tema04-arranque.html</loc>
-    <lastmod>2024-03-19T12:37:20.735Z</lastmod>
+    <loc>https://javism.github.io/pas2024/tema03-usuarios/tema03-usuarios.html</loc>
+    <lastmod>2024-03-08T07:18:16.615Z</lastmod>
   </url>
   <url>
-    <loc>https://javism.github.io/pas2023/tema02-organizacion/tema02-ejercicios.html</loc>
-    <lastmod>2024-03-04T11:08:43.269Z</lastmod>
+    <loc>https://javism.github.io/pas2024/tema00-presentacion/presentacion.html</loc>
+    <lastmod>2024-02-19T22:28:54.256Z</lastmod>
   </url>
   <url>
-    <loc>https://javism.github.io/pas2023/varios/moodle-compacto.html</loc>
+    <loc>https://javism.github.io/pas2024/varios/moodle-compacto.html</loc>
     <lastmod>2024-04-03T09:14:37.967Z</lastmod>
   </url>
   <url>
-    <loc>https://javism.github.io/pas2023/tema06-sf/tema06-sf.html</loc>
+    <loc>https://javism.github.io/pas2024/tema06-sf/tema06-sf.html</loc>
     <lastmod>2024-04-12T12:04:48.505Z</lastmod>
+  </url>
+  <url>
+    <loc>https://javism.github.io/pas2024/index.html</loc>
+    <lastmod>2024-04-08T12:54:26.361Z</lastmod>
   </url>
   <url>
     <loc>https://javism.github.io/pas2024/tema07-administracionsf/tema07-administracionsf.html</loc>
     <lastmod>2024-04-15T12:50:05.881Z</lastmod>
+  </url>
+  <url>
+    <loc>https://javism.github.io/pas2024/enlaces.html</loc>
+    <lastmod>2024-02-27T11:34:37.603Z</lastmod>
+  </url>
+  <url>
+    <loc>https://javism.github.io/pas2024/tema10-virtualizacion/notas.html</loc>
+    <lastmod>2024-04-16T06:48:28.171Z</lastmod>
+  </url>
+  <url>
+    <loc>https://javism.github.io/pas2024/tema01-introduccion/tema01c-proyecto.html</loc>
+    <lastmod>2024-02-27T13:20:04.013Z</lastmod>
+  </url>
+  <url>
+    <loc>https://javism.github.io/pas2024/tema04-arranque/tema04-arranque.html</loc>
+    <lastmod>2024-03-19T12:37:20.735Z</lastmod>
+  </url>
+  <url>
+    <loc>https://javism.github.io/pas2024/tema02-organizacion/tema02-ejercicios.html</loc>
+    <lastmod>2024-03-04T11:08:43.269Z</lastmod>
   </url>
 </urlset>
