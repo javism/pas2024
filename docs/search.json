@@ -4286,5 +4286,35 @@
     "crumbs": [
       "Tema 2: Ejercicios permisos"
     ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#comprobación-del-sistema-de-ficheros",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#comprobación-del-sistema-de-ficheros",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Comprobación del sistema de ficheros",
+    "text": "Comprobación del sistema de ficheros\n\nPara chequear un SF siempre debe estar desmontado o montado en modo de sólo lectura.\nEl SF raíz debe estar montado en modo de sólo lectura (el SF raíz no se puede desmontar, ¿por qué?).\n\n. . .\n\nSi al arrancar el proceso de chequeo encuentra problemas que no puede solucionar, obliga al administrador a que realice el chequeo “a mano” ejecutando la orden fsck o e2fsck (modo monousuario).",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#comprobación-del-estado-físico-del-disco",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#comprobación-del-estado-físico-del-disco",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Comprobación del estado físico del disco",
+    "text": "Comprobación del estado físico del disco\nA veces, los errores en el sistema de ficheros están relacionados con un deterioro del disco duro.\n\n\n\n\nS.M.A.R.T./SMART (acrónimo de Self-Monitoring, Analysis, and Reporting Technology) es un sistema de monitorización incluído en discos HDD y SDD.\nSu función principal es detectar y notificar diversos indicadores de fiabilidad de la unidad para anticiparse a fallos de hardware inminentes.\nSe pueden monitorizar y configurar notificaciones ante eventos:\n\nTest If Linux Server SCSI / SATA / SSD Hard Disk Going Bad\nMonitoring hard disk health with smartd under Linux or UNIX operating systems",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-administracionsf.html#journaling-esquema",
+    "href": "tema07-administracionsf/tema07-administracionsf.html#journaling-esquema",
+    "title": "Tema 7: Administración de sistemas de ficheros",
+    "section": "Journaling: esquema",
+    "text": "Journaling: esquema\nFuente de la imagen Journaling FileSystem and Its 3 types\n\n\nPor cada sub-operación que altera las estructuras de disco se escribe un registro en el log, que incluye las modificaciones en los buffers de i-nodos y de bloques.\nCuando se ha copiado a disco (log) el registro de commit, se empiezan a procesar realmente los buffers.\nDespués de una caída:\n\nSe completan las transacciones commited.\nSe descartan el resto de transacciones.",
+    "crumbs": [
+      "Tema 7: Administración de sistemas de ficheros"
+    ]
   }
 ]

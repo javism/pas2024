@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -274,7 +274,7 @@ window.Quarto = {
   <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">2</span> Introducción</a></li>
   <li><a href="#i-just-want-to-add-a-disk" id="toc-i-just-want-to-add-a-disk" class="nav-link" data-scroll-target="#i-just-want-to-add-a-disk"><span class="header-section-number">3</span> I just want to add a disk!</a></li>
   <li><a href="#montaje-y-desmontaje-de-sistemas-de-ficheros" id="toc-montaje-y-desmontaje-de-sistemas-de-ficheros" class="nav-link" data-scroll-target="#montaje-y-desmontaje-de-sistemas-de-ficheros"><span class="header-section-number">4</span> Montaje y desmontaje de sistemas de ficheros</a></li>
-  <li><a href="#comprobación-del-sistema-de-ficheros" id="toc-comprobación-del-sistema-de-ficheros" class="nav-link" data-scroll-target="#comprobación-del-sistema-de-ficheros"><span class="header-section-number">5</span> Comprobación del sistema de ficheros</a></li>
+  <li><a href="#comprobación-del-sistema-de-ficheros-y-disco" id="toc-comprobación-del-sistema-de-ficheros-y-disco" class="nav-link" data-scroll-target="#comprobación-del-sistema-de-ficheros-y-disco"><span class="header-section-number">5</span> Comprobación del sistema de ficheros y disco</a></li>
   <li><a href="#sistema-de-journaling" id="toc-sistema-de-journaling" class="nav-link" data-scroll-target="#sistema-de-journaling"><span class="header-section-number">6</span> Sistema de journaling</a></li>
   <li><a href="#creación-de-sistemas-de-ficheros" id="toc-creación-de-sistemas-de-ficheros" class="nav-link" data-scroll-target="#creación-de-sistemas-de-ficheros"><span class="header-section-number">7</span> Creación de sistemas de ficheros</a></li>
   <li><a href="#administración-de-volúmenes-dinámicos" id="toc-administración-de-volúmenes-dinámicos" class="nav-link" data-scroll-target="#administración-de-volúmenes-dinámicos"><span class="header-section-number">8</span> Administración de volúmenes dinámicos</a></li>
@@ -319,7 +319,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">18 de abril de 2024</p>
+      <p class="date">24 de abril de 2024</p>
     </div>
   </div>
   
@@ -577,8 +577,8 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="comprobación-del-sistema-de-ficheros" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Comprobación del sistema de ficheros</h1>
+<section id="comprobación-del-sistema-de-ficheros-y-disco" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Comprobación del sistema de ficheros y disco</h1>
 <section id="concepto-y-herramientas-de-chequeo" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="concepto-y-herramientas-de-chequeo">Concepto y herramientas de chequeo</h2>
 <ul>
@@ -594,8 +594,8 @@ window.Quarto = {
 </ul></li>
 </ul>
 </section>
-<section id="comprobación-del-sistema-de-ficheros-1" class="level2">
-<h2 class="anchored" data-anchor-id="comprobación-del-sistema-de-ficheros-1">Comprobación del sistema de ficheros</h2>
+<section id="comprobación-del-sistema-de-ficheros" class="level2">
+<h2 class="anchored" data-anchor-id="comprobación-del-sistema-de-ficheros">Comprobación del sistema de ficheros</h2>
 <ul>
 <li><p>Para chequear un SF siempre debe estar desmontado o montado en modo de sólo lectura.</p></li>
 <li><p>El SF raíz debe estar montado en modo de sólo lectura (el SF raíz no se puede desmontar, <span class="rojo">¿por qué?</span>).</p></li>
@@ -604,6 +604,23 @@ window.Quarto = {
 <ul>
 <li>Si al arrancar el proceso de chequeo encuentra problemas que no puede solucionar, obliga al administrador a que realice el chequeo “a mano” ejecutando la orden <code>fsck</code> o <code>e2fsck</code> (modo monousuario).</li>
 </ul>
+</section>
+<section id="comprobación-del-estado-físico-del-disco" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="comprobación-del-estado-físico-del-disco">Comprobación del estado físico del disco</h2>
+<p>A veces, los errores en el sistema de ficheros están relacionados con un deterioro del disco duro.</p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><img src="images/smart_monitoring.png" class="img-fluid"></p>
+</div><div class="column smaller" style="width:70%;">
+<p><strong>S.M.A.R.T./SMART</strong> (acrónimo de <em>Self-Monitoring, Analysis, and Reporting Technology</em>) es un sistema de monitorización incluído en discos HDD y SDD.</p>
+<p>Su función principal es detectar y notificar diversos indicadores de fiabilidad de la unidad para anticiparse a fallos de hardware inminentes.</p>
+<p>Se pueden monitorizar y configurar notificaciones ante eventos:</p>
+<ul>
+<li><a href="https://www.cyberciti.biz/tips/linux-find-out-if-harddisk-failing.html">Test If Linux Server SCSI / SATA / SSD Hard Disk Going Bad</a></li>
+<li><a href="https://www.cyberciti.biz/tips/monitoring-hard-disk-health-with-smartd-under-linux-or-unix-operating-systems.html">Monitoring hard disk health with smartd under Linux or UNIX operating systems</a></li>
+</ul>
+</div>
+</div>
 </section>
 </section>
 <section id="sistema-de-journaling" class="level1" data-number="6">
@@ -620,14 +637,10 @@ window.Quarto = {
 <li><p>Sistemas con esta filosofía: JFS (IBM), NTFS, <code>ext3/4</code> y la gran mayoría de sistemas de archivos modernos.</p></li>
 </ul>
 </section>
-<section id="journaling-1" class="level2">
-<h2 class="anchored" data-anchor-id="journaling-1">Journaling</h2>
-<pre><code>TxBegin(&amp;tid);
-/* ...
-   Sub-operaciones
-   ... */
-TxCommit(tid);
-TxEnd(tid);</code></pre>
+<section id="journaling-esquema" class="level2 scrollable nostretch">
+<h2 class="scrollable nostretch anchored" data-anchor-id="journaling-esquema">Journaling: esquema</h2>
+<p>Fuente de la imagen <a href="https://foxutech.com/journaling-filesystem/">Journaling FileSystem and Its 3 types</a></p>
+<p><img src="images/journaling-filesystem.png" class="img-fluid"></p>
 <ul>
 <li><p>Por cada sub-operación que altera las estructuras de disco se escribe un registro en el <em>log</em>, que incluye las modificaciones en los <em>buffers</em> de i-nodos y de bloques.</p></li>
 <li><p>Cuando se ha copiado a disco (<em>log</em>) el registro de <em>commit</em>, se empiezan a procesar realmente los <em>buffers</em>.</p></li>
@@ -645,15 +658,15 @@ TxEnd(tid);</code></pre>
 <li><p>Listado de puntos de montaje: <code>mount</code></p></li>
 <li><p>Información sobre parámetros del sistema de ficheros:</p></li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> tune2fs <span class="at">-l</span> /dev/sda2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> tune2fs <span class="at">-l</span> /dev/sda2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="4" type="1">
 <li>Comprobar última comprobación y veces que se ha montado.</li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo tune2fs <span class="at">-l</span> /dev/sda2 <span class="kw">|</span> <span class="fu">grep</span> Last<span class="dt">\ </span>c</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Last</span> checked:             Fri Mar  5 11:59:50 2021</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo tune2fs <span class="at">-l</span> /dev/sda2 <span class="kw">|</span> <span class="fu">grep</span> Mount</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Mount</span> count:              303</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo tune2fs <span class="at">-l</span> /dev/sda2 <span class="kw">|</span> <span class="fu">grep</span> Last<span class="dt">\ </span>c</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Last</span> checked:             Fri Mar  5 11:59:50 2021</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo tune2fs <span class="at">-l</span> /dev/sda2 <span class="kw">|</span> <span class="fu">grep</span> Mount</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Mount</span> count:              303</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="5" type="1">
 <li><p>Intenta usar <code>fsck</code> con cada una de las particiones.</p></li>
 <li><p>¿Cómo podrías comprobar la partición raíz del sistema?</p></li>
@@ -665,7 +678,7 @@ TxEnd(tid);</code></pre>
 <ol start="7" type="1">
 <li>Información sobre soporte <em>journal</em> en el sistema de ficheros:</li>
 </ol>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dumpe2fs /dev/sda2 <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> journal</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dumpe2fs /dev/sda2 <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> journal</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="8" type="1">
 <li>Herramientas de depuración de sistemas de ficheros:
 <ol type="1">
@@ -731,22 +744,22 @@ TxEnd(tid);</code></pre>
 </section>
 <section id="parámetros-del-sf-ext4" class="level2">
 <h2 class="anchored" data-anchor-id="parámetros-del-sf-ext4">Parámetros del SF ext4</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo tune2fs <span class="at">-l</span> /dev/sda2 </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tune2fs</span> 1.45.5 <span class="er">(</span><span class="ex">07-Jan-2020</span><span class="kw">)</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> volume name:   <span class="op">&lt;</span>none<span class="op">&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Last</span> mounted on:          /</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> UUID:          1ccdff3f-4fa5-4222-85b9-81f463ac9da1</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> magic number:  0xEF53</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> revision <span class="co">#:    1 (dynamic)</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> flags:         signed_directory_hash </span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Default</span> mount options:    user_xattr acl</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> state:         clean</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Errors</span> behavior:          Continue</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> OS type:       Linux</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Inode</span> count:              2433024</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="ex">Block</span> count:              9701161</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo tune2fs <span class="at">-l</span> /dev/sda2 </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tune2fs</span> 1.45.5 <span class="er">(</span><span class="ex">07-Jan-2020</span><span class="kw">)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> volume name:   <span class="op">&lt;</span>none<span class="op">&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Last</span> mounted on:          /</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> UUID:          1ccdff3f-4fa5-4222-85b9-81f463ac9da1</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> magic number:  0xEF53</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> revision <span class="co">#:    1 (dynamic)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> flags:         signed_directory_hash </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Default</span> mount options:    user_xattr acl</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> state:         clean</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Errors</span> behavior:          Continue</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> OS type:       Linux</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Inode</span> count:              2433024</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="ex">Block</span> count:              9701161</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="administración-de-volúmenes-dinámicos" class="level1" data-number="8">
