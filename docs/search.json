@@ -2875,7 +2875,7 @@
     "href": "tema07-administracionsf/tema07-RAID-cuotas.html",
     "title": "Tema 7: Implementación RAID software y cuotas",
     "section": "",
-    "text": "En esta receta vamos a implementar una configuración típica:\n\nRAID software para la carpeta /home para aumentar tamaño, fiabilidad ante fallos…\nUso de cuotas para restringir el espacio y cantidad de ficheros/directorios por usuarios o grupos.\n\nEsta combinación, junto con el uso de NFS (y obviamente más cosas), es la que tenemos en las aulas de prácticas de la UCO.\nNecesitarás añadir al menos dos discos duros virtuales en VirtualBox. No necesitan ser formateados previamente. Después de añadirlos, verás algo así:\n$ lsblk \nNAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS\nsda      8:0    0    8G  0 disk \n├─sda1   8:1    0  3,7G  0 part /\n├─sda2   8:2    0    1K  0 part \n├─sda5   8:5    0  953M  0 part [SWAP]\n├─sda6   8:6    0  1,9G  0 part /var\n└─sda7   8:7    0  1,5G  0 part /tmp\nsdb      8:16   0  100M  0 disk \nsdc      8:32   0  100M  0 disk \nsdd      8:48   0  100M  0 disk \nsr0     11:0    1 1024M  0 rom",
+    "text": "En esta receta vamos a implementar una configuración típica:\n\nRAID software para la carpeta /home para aumentar tamaño, fiabilidad ante fallos…\nUso de cuotas para restringir el espacio y cantidad de ficheros/directorios por usuarios o grupos.\n\nEsta combinación, junto con el uso de NFS (y obviamente más cosas), es la que tenemos en las aulas de prácticas de la UCO.\n\n\n\n\n\n\n\nNecesitarás añadir al menos dos discos duros virtuales en VirtualBox. No necesitan ser formateados previamente. Después de añadirlos, verás algo así:\n$ lsblk \nNAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS\nsda      8:0    0    8G  0 disk \n├─sda1   8:1    0  3,7G  0 part /\n├─sda2   8:2    0    1K  0 part \n├─sda5   8:5    0  953M  0 part [SWAP]\n├─sda6   8:6    0  1,9G  0 part /var\n└─sda7   8:7    0  1,5G  0 part /tmp\nsdb      8:16   0  100M  0 disk \nsdc      8:32   0  100M  0 disk \nsdd      8:48   0  100M  0 disk \nsr0     11:0    1 1024M  0 rom",
     "crumbs": [
       "Tema 7: Receta RAID + Cuotas"
     ]
@@ -2885,7 +2885,7 @@
     "href": "tema07-administracionsf/tema07-RAID-cuotas.html#receta-1",
     "title": "Tema 7: Implementación RAID software y cuotas",
     "section": "",
-    "text": "En esta receta vamos a implementar una configuración típica:\n\nRAID software para la carpeta /home para aumentar tamaño, fiabilidad ante fallos…\nUso de cuotas para restringir el espacio y cantidad de ficheros/directorios por usuarios o grupos.\n\nEsta combinación, junto con el uso de NFS (y obviamente más cosas), es la que tenemos en las aulas de prácticas de la UCO.\nNecesitarás añadir al menos dos discos duros virtuales en VirtualBox. No necesitan ser formateados previamente. Después de añadirlos, verás algo así:\n$ lsblk \nNAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS\nsda      8:0    0    8G  0 disk \n├─sda1   8:1    0  3,7G  0 part /\n├─sda2   8:2    0    1K  0 part \n├─sda5   8:5    0  953M  0 part [SWAP]\n├─sda6   8:6    0  1,9G  0 part /var\n└─sda7   8:7    0  1,5G  0 part /tmp\nsdb      8:16   0  100M  0 disk \nsdc      8:32   0  100M  0 disk \nsdd      8:48   0  100M  0 disk \nsr0     11:0    1 1024M  0 rom",
+    "text": "En esta receta vamos a implementar una configuración típica:\n\nRAID software para la carpeta /home para aumentar tamaño, fiabilidad ante fallos…\nUso de cuotas para restringir el espacio y cantidad de ficheros/directorios por usuarios o grupos.\n\nEsta combinación, junto con el uso de NFS (y obviamente más cosas), es la que tenemos en las aulas de prácticas de la UCO.",
     "crumbs": [
       "Tema 7: Receta RAID + Cuotas"
     ]
@@ -4288,6 +4288,16 @@
     "text": "Referencias\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 2. Booting and System Management Daemons, Capítulo 10. Logging. Addison-Wesley. 5th Edition. 2018.\nAeleen Frisch. Essential system administration. Capítulo 4. Startup and shut down. O’Reilly and Associates. Tercera edición. 2002.\nEjemplo de acceso al modo monousuario sin contraseña de root: https://blog.sleeplessbeastie.eu/2014/05/01/how-to-access-single-user-mode-without-password/",
     "crumbs": [
       "Tema 4: Arranque y Parada"
+    ]
+  },
+  {
+    "objectID": "tema07-administracionsf/tema07-RAID-cuotas.html#añadir-discos",
+    "href": "tema07-administracionsf/tema07-RAID-cuotas.html#añadir-discos",
+    "title": "Tema 7: Implementación RAID software y cuotas",
+    "section": "",
+    "text": "Necesitarás añadir al menos dos discos duros virtuales en VirtualBox. No necesitan ser formateados previamente. Después de añadirlos, verás algo así:\n$ lsblk \nNAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS\nsda      8:0    0    8G  0 disk \n├─sda1   8:1    0  3,7G  0 part /\n├─sda2   8:2    0    1K  0 part \n├─sda5   8:5    0  953M  0 part [SWAP]\n├─sda6   8:6    0  1,9G  0 part /var\n└─sda7   8:7    0  1,5G  0 part /tmp\nsdb      8:16   0  100M  0 disk \nsdc      8:32   0  100M  0 disk \nsdd      8:48   0  100M  0 disk \nsr0     11:0    1 1024M  0 rom",
+    "crumbs": [
+      "Tema 7: Receta RAID + Cuotas"
     ]
   }
 ]
