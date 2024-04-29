@@ -319,7 +319,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">24 de abril de 2024</p>
+      <p class="date">29 de abril de 2024</p>
     </div>
   </div>
   
@@ -530,7 +530,7 @@ window.Quarto = {
 <li><p><code>suid/nosuid</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Permitido (o no) que los bits suid o sgid tengan efecto.</p></li>
 <li><p><code>auto/noauto</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Montar automáticamente (o no) (ejecutando <code>mount -a</code> se montan todos los automáticos <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> siempre se ejecuta al arrancar el sistema).</p></li>
 <li><p><code>exec/noexec</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Permitir (o no) la ejecución de ficheros.</p></li>
-<li><p><code>usrquota, grpquota</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Activar cuotas.</p></li>
+<li><p><code>usrquota, grpquota</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Activar cuotas. <strong>Nota: </strong> anticuado en versiones modernas. Se activan como parámetros del sistema de ficheros con <code>tune2fs</code>.</p></li>
 <li><p><code>uid=500, gid=100</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Propietario y grupo propietario de los ficheros del SF (si el SF no incorpora esta información o si se quiere cambiar).</p></li>
 <li><p><code>umask=137</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Permisos de los ficheros (en este caso, 640) (si el SF no incorpora esta información o si se quieren cambiar).</p></li>
 <li><p><code>dev</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Interpretar ficheros especiales en el sistema de archivos.</p></li>

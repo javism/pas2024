@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -281,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">18 de abril de 2024</p>
+      <p class="date">29 de abril de 2024</p>
     </div>
   </div>
   
@@ -303,7 +303,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Uso de cuotas para restringir el espacio y cantidad de ficheros/directorios por usuarios o grupos.</li>
 </ul>
 <p>Esta combinación, junto con el uso de NFS (y obviamente más cosas), es la que tenemos en las aulas de prácticas de la UCO.</p>
-<p>Necesitarás añadir al menos dos discos duros virtuales en VirtualBox. No necesitan ser formateados previamente.</p>
+<p>Necesitarás añadir al menos dos discos duros virtuales en VirtualBox. No necesitan ser formateados previamente. Después de añadirlos, verás algo así:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> lsblk </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sda</span>      8:0    0    8G  0 disk </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda1</span>   8:1    0  3,7G  0 part /</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda2</span>   8:2    0    1K  0 part </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda5</span>   8:5    0  953M  0 part <span class="pp">[</span><span class="ss">SWAP</span><span class="pp">]</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda6</span>   8:6    0  1,9G  0 part /var</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">└─sda7</span>   8:7    0  1,5G  0 part /tmp</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">sdb</span>      8:16   0  100M  0 disk </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">sdc</span>      8:32   0  100M  0 disk </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">sdd</span>      8:48   0  100M  0 disk </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">sr0</span>     11:0    1 1024M  0 rom  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="raid-software" class="level1" data-number="2">
@@ -320,64 +332,102 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="instalación-mdadm" class="level2">
 <h2 class="anchored" data-anchor-id="instalación-mdadm">Instalación <code>mdadm</code></h2>
 <p>Instalamos la herramienta <code>mdadm</code> y también <code>rsync</code> que nos servirá para la migración de datos.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install mdadm</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install rsync</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install mdadm</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install rsync</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ejemplo-de-creación-de-un-raid0" class="level2 scrollable">
 <h2 class="scrollable anchored" data-anchor-id="ejemplo-de-creación-de-un-raid0">Ejemplo de creación de un RAID0</h2>
 <p>Listar dispositivos RAID previos:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat /proc/mdstat</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Personalities</span> : </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">unused</span> devices: <span class="op">&lt;</span>none<span class="op">&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat /proc/mdstat</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Personalities</span> : <span class="pp">[</span><span class="ss">linear</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">multipath</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid0</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid1</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid6</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid5</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid4</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid10</span><span class="pp">]</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">unused</span> devices: <span class="op">&lt;</span>none<span class="op">&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Si existe alguno tendrás que <a href="https://www.digitalocean.com/community/tutorials/how-to-create-raid-arrays-with-mdadm-on-ubuntu-22-04#resetting-existing-raid-devices-optional">reiniciarlos</a>.</p>
-<p>Encontrar los dispositivos sobre los que construiremos el RAID (<code>sdb</code> y <code>sdb</code> en nuestro caso):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lsblk</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Encontrar los dispositivos sobre los que construiremos el RAID (<code>sdb</code>, <code>sdc</code> y <code>sdd</code> en nuestro caso):</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lsblk</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Salida:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sda</span>      8:0    0    4G  0 disk </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda1</span>   8:1    0  1,6G  0 part /</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda2</span>   8:2    0    1K  0 part </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda5</span>   8:5    0  976M  0 part <span class="pp">[</span><span class="ss">SWAP</span><span class="pp">]</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">└─sda6</span>   8:6    0  1,4G  0 part /home</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">sdb</span>      8:16   0  100M  0 disk </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">sdc</span>      8:32   0  100M  0 disk </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">sr0</span>     11:0    1 1024M  0 rom  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Crear el RAID 0:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mdadm <span class="at">--create</span> <span class="at">--verbose</span> /dev/md0 <span class="at">--level</span><span class="op">=</span>0 <span class="at">--raid-devices</span><span class="op">=</span>2 /dev/sdb /dev/sdc</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> lsblk </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sda</span>      8:0    0    8G  0 disk </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda1</span>   8:1    0  3,7G  0 part /</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda2</span>   8:2    0    1K  0 part </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda5</span>   8:5    0  953M  0 part <span class="pp">[</span><span class="ss">SWAP</span><span class="pp">]</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda6</span>   8:6    0  1,9G  0 part /var</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">└─sda7</span>   8:7    0  1,5G  0 part /tmp</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">sdb</span>      8:16   0  100M  0 disk </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">sdc</span>      8:32   0  100M  0 disk </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ex">sdd</span>      8:48   0  100M  0 disk </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ex">sr0</span>     11:0    1 1024M  0 rom  </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Vamos a crear el RAID 5:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mdadm <span class="at">--create</span> <span class="at">--verbose</span> /dev/md0 <span class="at">--level</span><span class="op">=</span>5 <span class="at">--raid-devices</span><span class="op">=</span>3 /dev/sdb /dev/sdc /dev/sdd</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Salida:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mdadm:</span> chunk size defaults to 512K</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mdadm:</span> Defaulting to version 1.2 metadata</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mdadm:</span> array /dev/md0 started.</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mdadm:</span> layout defaults to left-symmetric</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mdadm:</span> layout defaults to left-symmetric</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mdadm:</span> chunk size defaults to 512K</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">mdadm:</span> size set to 100352K</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mdadm:</span> Defaulting to version 1.2 metadata</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">mdadm:</span> array /dev/md0 started.</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Confirmar que se ha creado:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /proc/mdstat</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /proc/mdstat</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Personalities</span> : <span class="pp">[</span><span class="ss">linear</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">multipath</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid0</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid1</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid6</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid5</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid4</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid10</span><span class="pp">]</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">md0</span> : active raid5 sdd<span class="pp">[</span><span class="ss">3</span><span class="pp">]</span> sdc<span class="pp">[</span><span class="ss">1</span><span class="pp">]</span> sdb<span class="pp">[</span><span class="ss">0</span><span class="pp">]</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      <span class="ex">200704</span> blocks super 1.2 level 5, 512k chunk, algorithm 2 <span class="pp">[</span><span class="ss">3/3</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">UUU</span><span class="pp">]</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">unused</span> devices: <span class="op">&lt;</span>none<span class="op">&gt;</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Crear un sistema de archivos en el RAID:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkfs.ext4 <span class="at">-F</span> /dev/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkfs.ext4 <span class="at">-F</span> /dev/md0</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mke2fs</span> 1.47.0 <span class="er">(</span><span class="ex">5-Feb-2023</span><span class="kw">)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Creating</span> filesystem with 200704 1k blocks and 50200 inodes</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Filesystem</span> UUID: 015bee08-b8b0-4b98-9a7d-b0f205f2ea8d</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Superblock</span> backups stored on blocks: </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">8193,</span> 24577, 40961, 57345, 73729</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Allocating</span> group tables: done                            </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Writing</span> inode tables: done                            </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Creating</span> journal <span class="er">(</span><span class="ex">4096</span> blocks<span class="kw">)</span><span class="bu">:</span> done</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Writing</span> superblocks and filesystem accounting information: done </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Veamos cómo va nuestro sistema de ficheros:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> lsblk </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">NAME</span>   MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINTS</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sda</span>      8:0    0    8G  0 disk  </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda1</span>   8:1    0  3,7G  0 part  /</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda2</span>   8:2    0    1K  0 part  </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda5</span>   8:5    0  953M  0 part  <span class="pp">[</span><span class="ss">SWAP</span><span class="pp">]</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="ex">├─sda6</span>   8:6    0  1,9G  0 part  /var</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">└─sda7</span>   8:7    0  1,5G  0 part  /tmp</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="ex">sdb</span>      8:16   0  100M  0 disk  </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ex">└─md0</span>    9:0    0  196M  0 raid5 </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="ex">sdc</span>      8:32   0  100M  0 disk  </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="ex">└─md0</span>    9:0    0  196M  0 raid5 </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="ex">sdd</span>      8:48   0  100M  0 disk  </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="ex">└─md0</span>    9:0    0  196M  0 raid5 </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A continuación, crear un punto de montaje para montar el nuevo sistema de archivos:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir <span class="at">-p</span> /mnt/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir <span class="at">-p</span> /mnt/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Puedes montar el sistema de archivos con el siguiente comando:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/md0 /mnt/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/md0 /mnt/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Después, comprueba si el nuevo espacio está disponible:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span> <span class="at">-h</span> <span class="at">-x</span> devtmpfs <span class="at">-x</span> tmpfs</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span> <span class="at">-h</span> <span class="at">-x</span> devtmpfs <span class="at">-x</span> tmpfs</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Salida:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">S.ficheros</span>     Tamaño Usados  Disp Uso% Montado en</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda1</span>        1,6G   1,1G  424M  73% /</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda6</span>        1,4G   479M  844M  37% /home</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/md0</span>         185M    14K  171M   1% /mnt/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">S.ficheros</span>     Tamaño Usados  Disp Uso% Montado en</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda1</span>        3,6G   1,6G  1,9G  46% /</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda6</span>        1,8G   275M  1,5G  16% /var</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda7</span>        1,5G    40K  1,4G   1% /tmp</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/md0</span>         179M    14K  165M   1% /mnt/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Información sobre el estado:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mdadm <span class="at">--detail</span> <span class="at">--scan</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mdadm <span class="at">--detail</span> <span class="at">--scan</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ARRAY</span> /dev/md0 metadata=1.2 name=debian:0 UUID=cbb045c1:8b657f24:54e78477:2f05318b</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Para asegurarnos de que la configuración se aplica en cada inicio y se incluye en el <code>initramfs</code> (ver tema de arranque):</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mdadm <span class="at">--detail</span> <span class="at">--scan</span> <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/mdadm/mdadm.conf</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-initramfs <span class="at">-u</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mdadm <span class="at">--detail</span> <span class="at">--scan</span> <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/mdadm/mdadm.conf</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> update-initramfs <span class="at">-u</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Finalmente añadimos el punto de montaje nuevo:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'/dev/md0 /mnt/md0 ext4 defaults,nofail,discard 0 0'</span> <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/fstab</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'/dev/md0 /mnt/md0 ext4 defaults 0 0'</span> <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/fstab</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="nuevo-home" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="nuevo-home">Nuevo <code>/home</code></h2>
 <p>Idealmente el <code>/home</code> se montaría sobre un <strong>RAID1</strong> o <strong>RAID5</strong> (mínimo 3 discos):</p>
 <ul>
-<li>RAID1: <code>--level=1</code></li>
+<li>RAID1: <code>--level=1 --raid-devices=2</code></li>
 <li>RAID5: <code>--level=5 --raid-devices=3</code></li>
 </ul>
 </section>
@@ -388,32 +438,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Poner el sistema en modo monousuario de forma programada y avisando previamente a usuarios.</li>
 </ol>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl isolate rescue.target</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl isolate rescue.target</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li>Montar el sistema nuevo:</li>
 </ol>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir <span class="at">-p</span> /home2</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/dm0 /home2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir <span class="at">-p</span> /home2</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/md0 /mnt/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
-<li>Copiar todo el contenido de la partición antigua a la nueva. Por ejemplo con <code>rsync</code>:</li>
+<li>Copiar todo el contenido de la partición antigua a la nueva. Por ejemplo con <code>rsync</code>. <strong>Es importante no poner la barra al final de <code>md0</code> para no crear una carpeta home dentro de md0</strong>:</li>
 </ol>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> rsync <span class="at">-avr</span> /home /home2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> rsync <span class="at">-avr</span> /home /mnt/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
-<li>Eliminar anterior partición:</li>
+<li>Eliminar anterior partición (renombramos en vez de eliminar por precaución):</li>
 </ol>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv /home /home-old</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv /home /home-old</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> umount /mnt/md0</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="4" type="1">
 <li>Añadir nueva en <code>/etc/fstab</code>:</li>
 </ol>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/md0</span> /home ext4 defaults 0 2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/md0</span> /home ext4 defaults 0 2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="5" type="1">
 <li>Aplicar cambios con:</li>
 </ol>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mount</span> <span class="at">-a</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="at">-a</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="6" type="1">
-<li>Reiniciar o volver a modo multiusuario.</li>
+<li><p>Comprobar que los datos están en su sitio.</p></li>
+<li><p>Volver a modo multiusuario (o reiniciar):</p></li>
 </ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl isolate multi-user.target</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="8" type="1">
+<li>Si todo ha ido bien debes tener una salida así:</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> df <span class="at">-h</span> <span class="at">-x</span> devtmpfs <span class="at">-x</span> tmpfs</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">S.ficheros</span>     Tamaño Usados  Disp Uso% Montado en</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda1</span>        3,6G   1,6G  1,9G  46% /</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda6</span>        1,8G   275M  1,5G  16% /var</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda7</span>        1,5G    40K  1,4G   1% /tmp</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/md0</span>         179M    24M  141M  15% /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- ## Coda: 
 
 Creación de un RAID1 con un disco que ya tiene datos:
@@ -439,64 +501,90 @@ Creación de un RAID1 con un disco que ya tiene datos:
 </section>
 <section id="cuotas" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Cuotas</h1>
-<section id="establecer-cuotas-de-disco-i" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="establecer-cuotas-de-disco-i">Establecer cuotas de disco (I)</h2>
+<p>En cualquier entorno multiusuario necesitaremos limitar recursos por usuario para dimensionar recursos y para evitar problemas de seguridad o rendimiento.</p>
+<p>Imaginemos que un usuario almacena más información de la que cabe en un sistema de ficheros:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> fallocate <span class="at">--length</span> 200MB ~/fichero</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">fallocate:</span> fallocate ha fallado: No queda espacio en el dispositivo</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> df <span class="at">-h</span> /home</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="ex">S.ficheros</span>     Tamaño Usados  Disp Uso% Montado en</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/md0</span>         179M   165M     0 100% /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>¿Cómo podríamos evitar este problema?</p>
+<section id="activar-las-cuotas-en-el-sistema-de-ficheros" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="activar-las-cuotas-en-el-sistema-de-ficheros">Activar las cuotas en el sistema de ficheros</h2>
 <p>Pasos a realizar para establecer las cuotas de disco:</p>
 <ol type="1">
 <li>Instalar las utilidades de cuota:</li>
 </ol>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install quota</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install quota</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li>Opcional. En algunas imágenes de servidores virtuales Ubuntu puede no estar disponible el módulo del kernel y será necesario instalar:</li>
 </ol>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install linux-image-extra-virtual</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install linux-image-extra-virtual</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
-<li>Indicarlo en <code>fstab</code> (<code>ext4</code> con <a href="https://unix.stackexchange.com/questions/493199/difference-between-journaled-and-plain-quota/552720#552720">cuota integrada en el <em>journal</em></a> y en <code>ext3</code>):</li>
+<li>Activar opción de quota a nivel de sistema de ficheros. En versiones antiguas de ext4 y anteriores era una opción en fstab y aún muchos tutoriales lo indican así. Como root:</li>
 </ol>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ext4 con cuota integrada en journal</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sdb1</span> /home   ext4  defaults,usrjquota=aquota.user,grpjquota=aquota.group,jqfmt=vfsv1  0  2</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ext3 sin cuota integrada en journal</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sdb1</span> /home   ext3  defaults,usrquota,grpquota 0  2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="4" type="1">
-<li>Remontar la partición para que se activen las opciones:</li>
-</ol>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mount</span> <span class="at">-o</span> remount /home</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Puedes verificar con </span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /proc/mounts <span class="kw">|</span> <span class="fu">grep</span> <span class="st">' /home '</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl isolate rescue.target</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">umount</span> /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puede que tengamos que expulsar usuarios o procesos.</p>
+<p><img src="images/sistema_ficheros_ocupado.png" class="img-fluid"></p>
+<p>Con el sistema de ficheros desmontado:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">umount</span> /home</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tune2fs</span> <span class="at">-O</span> quota /dev/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nota: al crear el sistema de ficheros se podría haber activado la cuota (<code>mkfs ... -O quota ...</code>)</p>
+<!-- 4.  Indicarlo en `fstab` (`ext4` con [cuota integrada en el *journal*](https://unix.stackexchange.com/questions/493199/difference-between-journaled-and-plain-quota/552720#552720) y en `ext3`):
+```bash
+# Formato anticuado
+# ext3 en el RAID sin cuota integrada en journal
+# /dev/md0 /home   ext3  defaults,usrquota,grpquota 0  2
+# ext4 en el RAID con cuota integrada en journal
+/dev/md0 /home   ext4  defaults,usrjquota=aquota.user,grpjquota=aquota.group,jqfmt=vfsv1  0  2
+
+``` 
+4.  Remontar la partición para que se activen las opciones: 
+```bash
+#Puedes verificar con 
+tune2fs -l /dev/md0 | grep -i quota 
+sudo mount -a 
+# opcional si nos lo sugiere el sistema
+# sudo systemctl daemon-reload
+cat /proc/mounts | grep ' /home '
+```
+
+-->
 </section>
-<section id="establecer-cuotas-de-disco-ii" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="establecer-cuotas-de-disco-ii">Establecer cuotas de disco (II)</h2>
+<section id="activar-cuotas-de-disco" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="activar-cuotas-de-disco">Activar cuotas de disco</h2>
 <ol start="5" type="1">
-<li>Antes de activar finalmente el sistema de cuotas, es necesario ejecutar manualmente el comando <code>quotacheck</code> una vez. Este comando crea los archivos <code>/home/aquota.user</code> y <code>/home/aquota.group</code> que contienen información sobre los límites y el uso del sistema de archivos, y deben existir antes de activar la supervisión de cuotas.</li>
+<li>Activar la cuotas en el sistema de ficheros. Este comando crea los archivos <code>/home/aquota.user</code> y <code>/home/aquota.group</code> que contienen información sobre los límites y el uso del sistema de archivos, y deben existir antes de activar la supervisión de cuotas.</li>
 </ol>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> quotacheck <span class="at">-avugm</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>quotacheck -avugm</code>: añade el contenido de los ficheros de control de cuotas.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -u cuotas usuario</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -g activaría las de grupo</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> quotaon <span class="at">-vug</span> /home</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Podemos desactivar con </span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> quotaoff <span class="at">-vug</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>quotaon</code>: añade el contenido de los ficheros de control de cuotas.</p>
 <ul>
-<li><p><strong>a</strong>: todos los dispositivos con cuotas.</p></li>
 <li><p><strong>v</strong>: <em>verbose</em>.</p></li>
 <li><p><strong>u</strong>: cuotas para usuarios.</p></li>
 <li><p><strong>g</strong>: cuotas para grupos.</p></li>
-<li><p><strong>m</strong>: no remontar los archivos en modo solo lectura.</p></li>
+<li><p><strong>a</strong>: activa cuotas en todos los dispositivos.</p></li>
 </ul>
 </section>
-<section id="establecer-cuotas-de-disco-iii" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="establecer-cuotas-de-disco-iii">Establecer cuotas de disco (III)</h2>
+<section id="establecer-cuotas-de-disco" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="establecer-cuotas-de-disco">Establecer cuotas de disco</h2>
 <ol start="6" type="1">
-<li><p>Activar las cuotas: <code>sudo quotaon -avug</code>.</p></li>
-<li><p>Desactivarlas: <code>sudo quotaoff -avug</code>.</p></li>
-<li><p>Editar la cuota del usuario pagutierrez (esto abre un editor de texto por defecto):</p></li>
+<li>Fijar la cuota del usuario pas (esto abre un editor de texto por defecto):</li>
 </ol>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> edquota pagutierrez</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Cuotas</span> de disco para user pagutierrez <span class="er">(</span><span class="ex">uid</span> 1008<span class="kw">)</span><span class="bu">:</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Sist.</span> arch. bloques    blando      duro inodos blando  duro</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">/dev/sdb1</span>  39884712 130000000 140000000 507523      0     0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="9" type="1">
-<li>Fijar límite con una sola orden para bloques e inodos:</li>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> setquota <span class="at">-u</span> pas 50M 50M 0 0 /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="7" type="1">
+<li>O alternativamente con <code>edquota</code> que abre un editor de texto (tendrás que especificar el tamaño en Ks). La columna <code>blocks</code> y <code>inodes</code> informa de cuántos bloques e inodos están en uso respectivamente.</li>
 </ol>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> setquota <span class="at">-u</span> pagutierrez 50M 50M 0 0 /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> edquota pas</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Disk</span> quotas for user pas <span class="er">(</span><span class="ex">uid</span> 1000<span class="kw">)</span><span class="bu">:</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Filesystem</span>                   blocks       soft       hard     inodes     soft     hard</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">/dev/md0</span>                      24423      51200      51200      21392        0        0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="exampleblock">
-<p>Nota: El concepto de bloque no está bien especificado y puede cambiar dependiendo de muchos factores, incluyendo la herramienta de línea de comandos que los esté proporcionando. En el contexto de cuotas en Ubuntu, es bastante seguro asumir que 1 bloque equivale a 1 kilobyte de espacio en disco.</p>
+<p>Nota: El concepto de bloque no está bien especificado y puede cambiar dependiendo de muchos factores, incluyendo la herramienta de línea de comandos que los esté proporcionando. En el contexto de cuotas en Ubuntu y Debian, es bastante seguro asumir que 1 bloque equivale a 1 kilobyte de espacio en disco.</p>
 </div>
 </section>
 <section id="establecer-cuotas-de-disco-iv" class="level2 smaller">
@@ -504,25 +592,37 @@ Creación de un RAID1 con un disco que ya tiene datos:
 <ol start="8" type="1">
 <li>Establecer el periodo de gracia: <code>edquota -t</code></li>
 </ol>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Período</span> de gracia antes de imponer límites blandos para users:</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">La</span> unidad de tiempo puede ser: días, horas, minutos, o segundos</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Sist.</span> arch.          Periodo gracia bloque   Periodo gracia inodo</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">/dev/sdb1</span>                    7día                 7día</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Grace</span> period before enforcing soft limits for users:</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Time</span> units may be: days, hours, minutes, or seconds</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Filesystem</span>             Block grace period     Inode grace period</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">/dev/md0</span>                      7days                  7days</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="9" type="1">
-<li><p>Copiar cuotas: <code>edquota -up pagutierrez jsanchez</code></p></li>
-<li><p>Estadísticas de las cuotas: <code>repquota /dev/sdb1</code> (<code>-s</code> muestra información en formato entendible por personas)</p></li>
+<li><p>Copiar cuotas: <code>edquota -up pas usuario</code></p></li>
+<li><p>Estadísticas de las cuotas: <code>repquota /dev/md0</code> (<code>-s</code> muestra información en formato entendible por personas)</p></li>
 </ol>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">***</span> Informe para user quotas en dispositivo /dev/sdb1</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Periodo</span> de gracia de bloque: 7días<span class="kw">;</span> <span class="ex">periodo</span> de gracia de inodo: 7días</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">Límites</span> de bloque límites de archivo</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Usuario</span>        usado       blando      duro       usado blando duro</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ex">----------------------------------------------------------------------</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="ex">root</span>      <span class="at">--</span> 10093264         0         0      199316     0     0</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="ex">pagutierrez</span> <span class="at">--</span> 39884712 130000000 140000000      507523     0     0</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="ex">jsanchezm</span>  <span class="at">--</span>  31940744 130000000 140000000      864578     0     0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo repquota <span class="at">-s</span> /dev/md0</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ex">***</span> Report for user quotas on device /dev/md0</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Block</span> grace time: 7days<span class="kw">;</span> <span class="ex">Inode</span> grace time: 7days</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                        <span class="ex">Space</span> limits                File limits</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="ex">User</span>            used    soft    hard  grace    used  soft  hard  grace</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="ex">----------------------------------------------------------------------</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="ex">root</span>      <span class="at">--</span>     27K      0K      0K              4     0     0       </span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="ex">pas</span>       <span class="at">--</span>  24423K  51200K  51200K          21392     0     0       </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="11" type="1">
+<li>Probemos nuestro caso de agotar el espacio.</li>
+</ol>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> fallocate <span class="at">--length</span> 200MB ~/fichero</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">md0:</span> write failed, user block limit reached.</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="ex">md0:</span> write failed, user block limit reached.</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="ex">md0:</span> write failed, user block limit reached.</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> df <span class="at">-h</span> /home</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="ex">S.ficheros</span>     Tamaño Usados  Disp Uso% Montado en</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/md0</span>         179M    51M  115M  31% /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="referencias" class="level2">
 <h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<p>Debian 12 Bookworm Set Disk Quota <a href="https://www.server-world.info/en/note?os=Debian_12&amp;p=quota" class="uri">https://www.server-world.info/en/note?os=Debian_12&amp;p=quota</a></p>
 <p>How To Create RAID Arrays with mdadm on Ubuntu 22.04 <a href="https://www.digitalocean.com/community/tutorials/how-to-create-raid-arrays-with-mdadm-on-ubuntu-22-04" class="uri">https://www.digitalocean.com/community/tutorials/how-to-create-raid-arrays-with-mdadm-on-ubuntu-22-04</a></p>
 <p>How To Set Filesystem Quotas on Ubuntu 20.04 <a href="https://www.digitalocean.com/community/tutorials/how-to-set-filesystem-quotas-on-ubuntu-20-04" class="uri">https://www.digitalocean.com/community/tutorials/how-to-set-filesystem-quotas-on-ubuntu-20-04</a></p>
 
