@@ -344,8 +344,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install mdadm</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install rsync</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="ejemplo-de-creación-de-un-raid0" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="ejemplo-de-creación-de-un-raid0">Ejemplo de creación de un RAID0</h2>
+<section id="ejemplo-de-creación-de-un-raid5" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="ejemplo-de-creación-de-un-raid5">Ejemplo de creación de un RAID5</h2>
 <p>Listar dispositivos RAID previos:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat /proc/mdstat</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Personalities</span> : <span class="pp">[</span><span class="ss">linear</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">multipath</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid0</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid1</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid6</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid5</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid4</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">raid10</span><span class="pp">]</span> </span>
@@ -594,8 +594,8 @@ cat /proc/mounts | grep ' /home '
 <p>Nota: El concepto de bloque no está bien especificado y puede cambiar dependiendo de muchos factores, incluyendo la herramienta de línea de comandos que los esté proporcionando. En el contexto de cuotas en Ubuntu y Debian, es bastante seguro asumir que 1 bloque equivale a 1 kilobyte de espacio en disco.</p>
 </div>
 </section>
-<section id="establecer-cuotas-de-disco-iv" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="establecer-cuotas-de-disco-iv">Establecer cuotas de disco (IV)</h2>
+<section id="periodo-de-gracia" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="periodo-de-gracia">Periodo de gracia</h2>
 <ol start="8" type="1">
 <li>Establecer el periodo de gracia: <code>edquota -t</code></li>
 </ol>
