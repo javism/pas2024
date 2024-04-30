@@ -281,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">29 de abril de 2024</p>
+      <p class="date">30 de abril de 2024</p>
     </div>
   </div>
   
@@ -452,29 +452,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir <span class="at">-p</span> /home2</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount /dev/md0 /mnt/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
-<li>Copiar todo el contenido de la partición antigua a la nueva. Por ejemplo con <code>rsync</code>. <strong>Es importante no poner la barra al final de <code>md0</code> para no crear una carpeta home dentro de md0</strong>:</li>
+<li>Copiar todo el contenido de la partición antigua a la nueva. Por ejemplo con <code>rsync</code>. <strong>Es importante poner la barra al final de las rutas para no crear una carpeta <code>home</code> dentro de <code>md0</code></strong>:</li>
 </ol>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> rsync <span class="at">-avr</span> /home /mnt/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="3" type="1">
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> rsync <span class="at">-avr</span> /home/ /mnt/md0/</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
 <li>Eliminar anterior partición (renombramos en vez de eliminar por precaución):</li>
 </ol>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv /home /home-old</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> umount /mnt/md0</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="4" type="1">
-<li>Añadir nueva en <code>/etc/fstab</code>:</li>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir <span class="at">-p</span> /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Nota</strong>. Si <code>/home</code> ya era una partición bastará con desmontarla.</p>
+<p>Puede que tengamos que expulsar usuarios o procesos.</p>
+<p><img src="images/sistema_ficheros_ocupado.png" class="img-fluid"></p>
+<ol start="5" type="1">
+<li>Añadir nueva línea en <code>/etc/fstab</code>:</li>
 </ol>
 <div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/md0</span> /home ext4 defaults 0 2</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="5" type="1">
+<ol start="6" type="1">
 <li>Aplicar cambios con:</li>
 </ol>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="at">-a</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="6" type="1">
+<ol start="7" type="1">
 <li><p>Comprobar que los datos están en su sitio.</p></li>
 <li><p>Volver a modo multiusuario (o reiniciar):</p></li>
 </ol>
 <div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl isolate multi-user.target</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="8" type="1">
+<ol start="9" type="1">
 <li>Si todo ha ido bien debes tener una salida así:</li>
 </ol>
 <div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> df <span class="at">-h</span> <span class="at">-x</span> devtmpfs <span class="at">-x</span> tmpfs</span>
@@ -483,6 +486,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda6</span>        1,8G   275M  1,5G  16% /var</span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/sda7</span>        1,5G    40K  1,4G   1% /tmp</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="ex">/dev/md0</span>         179M    24M  141M  15% /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="10" type="1">
+<li>Puedes añadir discos de repuesto con (<code>spare</code>) con: <code>mdadm /dev/md0 -a /dev/DISCO</code></li>
+</ol>
 <!-- ## Coda: 
 
 Creación de un RAID1 con un disco que ya tiene datos:
@@ -524,7 +530,7 @@ Creación de un RAID1 con un disco que ya tiene datos:
 </ol>
 <div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install quota</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
-<li>Opcional. En algunas imágenes de servidores virtuales Ubuntu puede no estar disponible el módulo del kernel y será necesario instalar:</li>
+<li>Opcional. En algunas imágenes de servidores virtuales <strong>Ubuntu</strong> puede no estar disponible el módulo del kernel y será necesario instalar:</li>
 </ol>
 <div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install linux-image-extra-virtual</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
@@ -532,12 +538,11 @@ Creación de un RAID1 con un disco que ya tiene datos:
 </ol>
 <div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl isolate rescue.target</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">umount</span> /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Puede que tengamos que expulsar usuarios o procesos.</p>
-<p><img src="images/sistema_ficheros_ocupado.png" class="img-fluid"></p>
 <p>Con el sistema de ficheros desmontado:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">umount</span> /home</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tune2fs</span> <span class="at">-O</span> quota /dev/md0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Nota: al crear el sistema de ficheros se podría haber activado la cuota (<code>mkfs ... -O quota ...</code>)</p>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">tune2fs</span> <span class="at">-O</span> quota /dev/md0</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mount</span> /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Nota</strong>: al crear el sistema de ficheros se podría haber activado la cuota (<code>mkfs ... -O quota ...</code>)</p>
 <!-- 4.  Indicarlo en `fstab` (`ext4` con [cuota integrada en el *journal*](https://unix.stackexchange.com/questions/493199/difference-between-journaled-and-plain-quota/552720#552720) y en `ext3`):
 ```bash
 # Formato anticuado
@@ -561,7 +566,7 @@ cat /proc/mounts | grep ' /home '
 </section>
 <section id="activar-cuotas-de-disco" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="activar-cuotas-de-disco">Activar cuotas de disco</h2>
-<ol start="5" type="1">
+<ol start="4" type="1">
 <li>Activar la cuotas en el sistema de ficheros. Este comando crea los archivos <code>/home/aquota.user</code> y <code>/home/aquota.group</code> que contienen información sobre los límites y el uso del sistema de archivos, y deben existir antes de activar la supervisión de cuotas.</li>
 </ol>
 <div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -u cuotas usuario</span></span>
@@ -579,12 +584,12 @@ cat /proc/mounts | grep ' /home '
 </section>
 <section id="establecer-cuotas-de-disco" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="establecer-cuotas-de-disco">Establecer cuotas de disco</h2>
-<ol start="6" type="1">
-<li>Fijar la cuota del usuario pas (esto abre un editor de texto por defecto):</li>
+<ol start="5" type="1">
+<li>Fijar la cuota del usuario pas a 50MB de límite <em>blando</em> y 60MB de límite <em>duro</em>. No hay límte en número de archivos/directorios (inodos) creados :</li>
 </ol>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> setquota <span class="at">-u</span> pas 50M 50M 0 0 /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="7" type="1">
-<li>O alternativamente con <code>edquota</code> que abre un editor de texto (tendrás que especificar el tamaño en Ks). La columna <code>blocks</code> y <code>inodes</code> informa de cuántos bloques e inodos están en uso respectivamente.</li>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> setquota <span class="at">-u</span> pas 50M 60M 0 0 /home</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="1">
+<li>O alternativamente con <code>edquota</code> que abre un editor de texto (tendrás que especificar el tamaño en Ks). La columna <code>blocks</code> y <code>inodes</code> informa de cuántos bloques e inodos están en uso respectivamente y puede confundir, ya que mezcla información del sistema con el fichero de configuración.</li>
 </ol>
 <div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> edquota pas</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Disk</span> quotas for user pas <span class="er">(</span><span class="ex">uid</span> 1000<span class="kw">)</span><span class="bu">:</span></span>
@@ -596,14 +601,14 @@ cat /proc/mounts | grep ' /home '
 </section>
 <section id="periodo-de-gracia" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="periodo-de-gracia">Periodo de gracia</h2>
-<ol start="8" type="1">
-<li>Establecer el periodo de gracia: <code>edquota -t</code></li>
+<ol start="7" type="1">
+<li>Establecer el periodo de gracia (tiempo en el que se puede superar el límite <em>blando</em>): <code>edquota -t</code></li>
 </ol>
 <div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Grace</span> period before enforcing soft limits for users:</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Time</span> units may be: days, hours, minutes, or seconds</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Filesystem</span>             Block grace period     Inode grace period</span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">/dev/md0</span>                      7days                  7days</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="9" type="1">
+<ol start="8" type="1">
 <li><p>Copiar cuotas: <code>edquota -up pas usuario</code></p></li>
 <li><p>Estadísticas de las cuotas: <code>repquota /dev/md0</code> (<code>-s</code> muestra información en formato entendible por personas)</p></li>
 </ol>
@@ -615,7 +620,7 @@ cat /proc/mounts | grep ' /home '
 <span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="ex">----------------------------------------------------------------------</span></span>
 <span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="ex">root</span>      <span class="at">--</span>     27K      0K      0K              4     0     0       </span>
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="ex">pas</span>       <span class="at">--</span>  24423K  51200K  51200K          21392     0     0       </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="11" type="1">
+<ol start="10" type="1">
 <li>Probemos nuestro caso de agotar el espacio.</li>
 </ol>
 <div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> fallocate <span class="at">--length</span> 200MB ~/fichero</span>
