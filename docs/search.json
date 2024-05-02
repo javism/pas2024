@@ -4319,5 +4319,292 @@
     "crumbs": [
       "Tema 7: Receta RAID + Cuotas"
     ]
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html",
+    "href": "tema08-backup/tema08-backup.html",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "",
+    "text": "Justificar la necesidad de establecer planes de prevención de catástrofes en la administración de cualquier sistema informático.\nIdentificar distintos escenarios en los que pueda perderse información y establecer medidas de prevención: errores humanos, virus y software destructivo, personas malintencionadas y fallos del hardware.\nProporcionar una serie de consejos generales a la hora de planear las copias de seguridad de un sistema.\nEstablecer los factores que determinan la forma en que se realizan las copias de seguridad.\nDiferenciar los tres *tipos de estrategias** a seguir a la hora de realizar copias de seguridad: completa, parcial e incremental.\nIdentificar diferentes soportes hardware en los que realizar las copias de seguridad.\nUtilizar la herramienta tar para realizar copias de seguridad en un sistema GNU/Linux.\nUtilizar la herramienta dump para realizar copias de seguridad en un sistema GNU/Linux y restore para restaurarlas.\nUtilizar la herramienta cpio para realizar copias de seguridad en un sistema GNU/Linux.\n\n\n\n\n\nCuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.\nNOTA: Como en otros temas, aquí veremos muchos parámetros de configuración que no tiene sentido memorizar, pero si hay que saber qué posibilidades tenemos en la administración de sistemas de ficheros."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#objetivos",
+    "href": "tema08-backup/tema08-backup.html#objetivos",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "",
+    "text": "Justificar la necesidad de establecer planes de prevención de catástrofes en la administración de cualquier sistema informático.\nIdentificar distintos escenarios en los que pueda perderse información y establecer medidas de prevención: errores humanos, virus y software destructivo, personas malintencionadas y fallos del hardware.\nProporcionar una serie de consejos generales a la hora de planear las copias de seguridad de un sistema.\nEstablecer los factores que determinan la forma en que se realizan las copias de seguridad.\nDiferenciar los tres *tipos de estrategias** a seguir a la hora de realizar copias de seguridad: completa, parcial e incremental.\nIdentificar diferentes soportes hardware en los que realizar las copias de seguridad.\nUtilizar la herramienta tar para realizar copias de seguridad en un sistema GNU/Linux.\nUtilizar la herramienta dump para realizar copias de seguridad en un sistema GNU/Linux y restore para restaurarlas.\nUtilizar la herramienta cpio para realizar copias de seguridad en un sistema GNU/Linux."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#evaluación",
+    "href": "tema08-backup/tema08-backup.html#evaluación",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "",
+    "text": "Cuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.\nNOTA: Como en otros temas, aquí veremos muchos parámetros de configuración que no tiene sentido memorizar, pero si hay que saber qué posibilidades tenemos en la administración de sistemas de ficheros."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#de-marzo-día-mundial-del-backup",
+    "href": "tema08-backup/tema08-backup.html#de-marzo-día-mundial-del-backup",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "31 de marzo, día mundial del backup",
+    "text": "31 de marzo, día mundial del backup\n\nhttps://www.worldbackupday.com"
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#qué-dónde-cómo-y-cuándo",
+    "href": "tema08-backup/tema08-backup.html#qué-dónde-cómo-y-cuándo",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "qué, dónde, cómo y cuándo",
+    "text": "qué, dónde, cómo y cuándo\n\n\n\nEn cualquier momento, algunos archivos serán totalmente ilegibles por algún motivo: se exige capacidad de recuperación.\nLas copias de seguridad dependen de la situación y es necesario determinar: qué, dónde, cómo y cuándo...\nEl administrador/a del sistema debe:\nPlanear e implementar un sistema de copias de seguridad.\nPeriódicamente, hacer copias de seguridad de los ficheros.\nGuardar las copias de seguridad en un lugar seguro."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#planes-de-prevención-de-catástrofes-1",
+    "href": "tema08-backup/tema08-backup.html#planes-de-prevención-de-catástrofes-1",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Planes de prevención de catástrofes",
+    "text": "Planes de prevención de catástrofes\nLa estrategia de copias de seguridad tiene que ser efectiva, para conseguir seguridad:\n\nEl tiempo empleado es un esfuerzo que prevé futuras pérdidas.\nEl dinero gastado se compensa al evitar el desastre que supone una pérdida de datos (que conlleva enormes pérdidas de trabajo y, por tanto, dinero).\n\nTener en cuenta:\n\nCapacidad restaurar el sistema entero o parte del mismo, en un tiempo aceptable.\nTiempo que tarda en hacerse la copia de seguridad.\nFacilidad de recuperar algún fichero de forma independiente.\n\nSi valoramos los costes, merece la pena incluir mecanismos/dispositivos específicos para esta labor."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#escenarios-de-pérdida-de-información",
+    "href": "tema08-backup/tema08-backup.html#escenarios-de-pérdida-de-información",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Escenarios de pérdida de información",
+    "text": "Escenarios de pérdida de información\nCausas:\n\nErrores de usuario.\nVirus y software destructivo.\nPersonas malintencionadas.\nFallos mecánicos.\nFuerzas mayores: desastres naturales, electricidad estática..."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#errores-humanos",
+    "href": "tema08-backup/tema08-backup.html#errores-humanos",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Errores humanos",
+    "text": "Errores humanos\nComandos mal escritos:\n$ rm foo *\nErrores durante el redireccionamiento y uso de tuberías:\n$ cat fstab | sed 's/ext2/ext3' &gt; fstab\nUsuarios con acceso de root:\n\nLos errores anteriores serían catastróficos si ocurrieran sobre directorios o archivos de sistema."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#prevención-de-errores-humanos",
+    "href": "tema08-backup/tema08-backup.html#prevención-de-errores-humanos",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Prevención de errores humanos",
+    "text": "Prevención de errores humanos\nMedidas de prevención sencillas:\n\nUtilizar alias:\nalias rm='rm -i' # El -i fuerza confirmacion\nUtilizar sistema de control de versiones (Git...):\nConservan el archivo original y llevan un histórico de los cambios realizados sobre éste.\nCrear copias de seguridad personales.\nUtilizar sudo para limitar el acceso de los usuarios con privilegios de root:\nSe limitará el acceso únicamente a los comandos necesarios para que el usuario pueda llevar a cabo su tarea."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#malware-o-programas-maliciosos",
+    "href": "tema08-backup/tema08-backup.html#malware-o-programas-maliciosos",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Malware o programas maliciosos",
+    "text": "Malware o programas maliciosos\n(Más en https://es.wikipedia.org/wiki/Malware)\n\nVirus: programa que se adhiere a un ejecutable y se propaga a otros al mismo tiempo que realiza otra acción (desde escribir un mensaje hasta mezclar las tablas de particiones).\nUn ransomware (del inglés ransom, ‘rescate’, y ware, acortamiento de software) o ‘secuestro de datos’ en español, es un tipo de programa dañino que restringe el acceso a determinadas partes o archivos del sistema operativo infectado y pide un rescate a cambio de quitar esta restricción.\nCaballos de Troya: Programas que se hacen pasar por otros, funcionando como éstos, pero además realizando otras operaciones como obtener y enviar contraseñas. El grado de destrucción depende de quien los ejecuta.\nGusanos: Programas que se aprovechan de las debilidades de un sistema para propagarse a otros.\nSoftware destructivo: Aplicaciones no mal intencionadas pero con errores de programación que pueden ser muy dañinos.\nLinux dispone de mecanismos de seguridad que dificultan su propagación (jerarquía usuarios, protección de la memoria, límite de procesos, etc.)."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#software-destructivo-prevención",
+    "href": "tema08-backup/tema08-backup.html#software-destructivo-prevención",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Software destructivo: prevención",
+    "text": "Software destructivo: prevención\nMedidas de prevención sencillas:\n\nSoftware específico de búsqueda y destrucción de virus (antivirus).\nConfiguración del entorno: p.ej. la variable PATH no incluye la carpeta actual:\n\n$ echo $PATH\n/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games\n\nDirectrices en /etc/security/\nHost y redes víctimas:\nSe usan ciertos equipos y redes para probar software (sandbox) nuevo o descubrir nuevos tipos de ataques asumiendo que puede resultar dañado (honeypots y honeynets).\nSe suelen basar en un sistema de detección de intrusos (IDS) que genera reglas para el firewall separando el tráfico normal del anómalo (complementario a reglas explícitas del cortafuegos y antivirus)."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#honeypots",
+    "href": "tema08-backup/tema08-backup.html#honeypots",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Honeypots",
+    "text": "Honeypots"
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#personas-malintencionadas",
+    "href": "tema08-backup/tema08-backup.html#personas-malintencionadas",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Personas malintencionadas",
+    "text": "Personas malintencionadas\n\n\n\n\n\nCrackers (\\(\\neq\\) Hackers): Personas que entran en los sistemas de forma, a veces, ilegal con fines malintencionados.\nUsuarios descontentos: Usuario con acceso al sistema y recelo (algunas historias en la página de Logic Bombs).\n\n\n\nMedidas preventivas:\n\nCortafuegos y Seguridad Física para los crackers.\nSeguimiento de personas sospechosas de ser “usuarios descontentos” controlando sus accesos y sus privilegios."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#usuarios",
+    "href": "tema08-backup/tema08-backup.html#usuarios",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Usuarios",
+    "text": "Usuarios\n\nEl usuario puede destruir información de forma no intencionada (Vídeo No te olvides de poner el Where en el Delete From)"
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#fallos-de-hardware-i",
+    "href": "tema08-backup/tema08-backup.html#fallos-de-hardware-i",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Fallos de hardware (I)",
+    "text": "Fallos de hardware (I)\nFallo en la unidad de disco duro:\n\nEl kernel suele avisar antes de un fallo completo.\n\nFallo de la memoria:\n\nPérdida de información por la caída del sistema o información corrupta en memoria es copiada a disco."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#fallos-de-hardware-ii",
+    "href": "tema08-backup/tema08-backup.html#fallos-de-hardware-ii",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Fallos de hardware (II)",
+    "text": "Fallos de hardware (II)\nPrevención y recuperación:\n\nRedundancia de la información: utilizar RAID.\nSupervisión de registros del sistema (orden dmesg, datos y pruebas SMART, ver smartctl/nvme, ).\nRecuperación desde copias de seguridad.\nIntentar leer bloques para construir una imagen con ‘dd’.\nSoftware de recuperación (TestDisk, PhotoRec...)\nRecuperación en entorno estéril: empresa dedicada."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#consejos-generales",
+    "href": "tema08-backup/tema08-backup.html#consejos-generales",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Consejos generales",
+    "text": "Consejos generales\n\n\nPrevención: Ante cualquiera de los escenarios de pérdida de información debemos tener la capacidad de recuperarnos inmediatamente o en un corto lapso de tiempo.\nUna opción es utilizar copias de seguridad."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#consejos-generales-1",
+    "href": "tema08-backup/tema08-backup.html#consejos-generales-1",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Consejos generales",
+    "text": "Consejos generales\nConsejos generales para las copias de seguridad:\n\n\nEtiquetar siempre las copias realizadas.\nElegir correctamente la frecuencia de copias.\nUsar particiones distintas para el sistema de ficheros.\nHacer que el backup diario quepa en la unidad.\nLlevarse la copia a otro lugar y proteger ese lugar.\nLimitar la carga computacional durante el proceso de backup.\nNo esperar a que ocurra un problema para verificar las copias.\nTener en cuenta el tiempo de vida de los dispositivos.\nPrepararse para lo peor."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#factores",
+    "href": "tema08-backup/tema08-backup.html#factores",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Factores",
+    "text": "Factores\nFactores a considerar en una estrategia de copias de seguridad:\n\n\n¿Qué ficheros se deben copiar y dónde están esos ficheros?.\nConocer qué es lo más importante del sistema.\n¿Quién hará la copia?\n¿el administrador o el propietario de los ficheros?.\n¿Dónde, cuándo y bajo qué condiciones se deben hacer?\nMejor hacer las copias cuando no haya usuarios trabajando (por la noche, a la hora de comer...).\nFrecuencia de cambios en los ficheros \\(\\Leftrightarrow\\) Frecuencia de las copias.\n¿Cada cuánto tiempo habrá que recuperar ficheros dañados o perdidos? (muy difícil saberlo).\n¿Dónde se restaurarán los datos?.\nRutinas de restauración sencillas.\nProteger las copias de seguridad contra escritura.\nSeguridad de las copias:\nLugar donde se almacenan, condiciones ambientales, propiedades de los medios empleados..."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#estrategias-copia-de-seguridad-completa",
+    "href": "tema08-backup/tema08-backup.html#estrategias-copia-de-seguridad-completa",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Estrategias: copia de seguridad completa",
+    "text": "Estrategias: copia de seguridad completa\n\nSe guardan todos los archivos asociados a un ordenador.\nLa restauración necesita un solo fichero pero mucho tiempo.\nPuede ser difícil recuperar un archivo suelto.\nSi los ficheros no cambian muy a menudo no tiene sentido.\nSi cambian mucho y son vitales para el trabajo de mucha gente: están justificadas incluso a diario.\nHacerla ante grandes cambios: nuevo software, nuevo SO, . . ."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#estrategias-copia-de-seguridad-parcial",
+    "href": "tema08-backup/tema08-backup.html#estrategias-copia-de-seguridad-parcial",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Estrategias: copia de seguridad parcial",
+    "text": "Estrategias: copia de seguridad parcial\n\nSe copia sólo algunos archivos específicos (por ejemplo, la carpeta /etc).\nProceso de restauración sencillo, ya que hay menos archivos implicados.\nProblema: nos dejamos archivos sin copiar."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#estrategias-copia-de-seguridad-incremental",
+    "href": "tema08-backup/tema08-backup.html#estrategias-copia-de-seguridad-incremental",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Estrategias: copia de seguridad incremental",
+    "text": "Estrategias: copia de seguridad incremental\n\nSolo aquellos ficheros que hayan cambiado desde la última copia.\nSe deben realizar casi a diario.\nSe mantiene una copia completa del sistema, y se incorporan cambios muy pequeños, de los que se irán haciendo copias incrementales."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#estrategias-niveles-de-copias-incrementales",
+    "href": "tema08-backup/tema08-backup.html#estrategias-niveles-de-copias-incrementales",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Estrategias: niveles de copias incrementales",
+    "text": "Estrategias: niveles de copias incrementales\nCopias incrementales organizadas por niveles.\n\nNivel 0 \\(\\rightarrow\\) Backup completo.\nNivel 1 \\(\\rightarrow\\) Todos los ficheros que han cambiado desde el último backup de nivel 0.\nNivel 2 \\(\\rightarrow\\) Todos los ficheros que han cambiado desde el último backup de nivel 1.\n...\n\nPosibilidades de estrategias:\n\nLunes: nivel 0. Resto de días: nivel 1.\nLunes: nivel 0. Martes: nivel 1. Miércoles: nivel 2. Jueves: nivel 1. Viernes: nivel 2.\n\nTambién hay que asociar una estrategia de restauración."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#ejercicio-estrategia-de-backup",
+    "href": "tema08-backup/tema08-backup.html#ejercicio-estrategia-de-backup",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Ejercicio: estrategia de backup",
+    "text": "Ejercicio: estrategia de backup\n\nImagina que tenemos un servidor Linux con una aplicación wordpress:\n\nguarda los datos de la web en /var/www/wordpress (cambia a diario)\nguarda su base de datos SQL en /var/lib/mysql (cambia varias veces al día)\nguarda su configuración en /etc/apache2 (cambia cada varios días o semanas)\n\n\nCon la ayuda de la jerarquía estándar de directorios y elige qué debería entrar dentro de la política de copias del sistema operativo y el servicio web.\n¿Qué tipo de copia harías para el sistema operativo y para la web?\n¿Con qué frecuencia para cada caso?¿Cómo podríamos automatizarlas en Linux?"
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#soportes-para-realizar-las-copias",
+    "href": "tema08-backup/tema08-backup.html#soportes-para-realizar-las-copias",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Soportes para realizar las copias",
+    "text": "Soportes para realizar las copias\n\nGuardar la copia de seguridad en el mismo disco (o en otro disco conectado a la máquina) no es seguro.\nMultitud de dispositivos:\n\nCintas magnéticas (/dev/st0, normal, o /dev/nst0, non-rewinding, para unidades de cinta SCSI). Mira un ejemplo del MareNostum 5.\n\n\n\nEstantería de cintas o jukeboxes, stackloaders y similares...\n\nDiscos extraíbles (disco duro que puedes extraer sin apagar la máquina).\n\n\n\nDisquetes (La última persona que sigue vendiendo disquetes en 2022).\n\netc."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#opcional-criterios-para-elegir-el-soporte",
+    "href": "tema08-backup/tema08-backup.html#opcional-criterios-para-elegir-el-soporte",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "[Opcional] Criterios para elegir el soporte",
+    "text": "[Opcional] Criterios para elegir el soporte\n\nCoste: no solo del dispositivo sino también del soporte físico de almacenamiento.\nSoporte del kernel para el dispositivo.\nCapacidad de almacenamiento de datos de los soportes físicos.\nTasa de transferencia de datos para realizar copias de seguridad.\nMecanismo de cargador automático.\nCuando se llena una cinta se inserta otra automáticamente.\nPermite las copias no supervisadas de grandes volúmenes."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#comparativa-discos-vs-cintas",
+    "href": "tema08-backup/tema08-backup.html#comparativa-discos-vs-cintas",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Comparativa discos vs cintas",
+    "text": "Comparativa discos vs cintas\n\nDeventajas: acceso aleatorio lento, necesitan un mantenimiento especial, el tiempo de recuperación es mayor, se duplica mucha información... cuestiones que no afectan a los discos.\nVentajas de las cintas de backup:\n\nAlta capacidad por cinta (580TB).\nDispositivo con menor coste.\nSeguridad: las cintas se desconectan al terminar las copias e implementan sistemas para evitar que los datos se sobreescriban lo que impide algunos ciberataques populares como los de ransomware.\nFiabilidad: los discos están permanente conectados y en marcha.\nDurabilidad: en promedio pueden durar hasta 30 años.\nVelocidad (secuencial): Cinta 800MB/s, HDD 130MB/s, SSD 280MB/s"
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#comando-tar-tape-archiver",
+    "href": "tema08-backup/tema08-backup.html#comando-tar-tape-archiver",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Comando tar (Tape ARchiver)",
+    "text": "Comando tar (Tape ARchiver)\nRealiza copias de seguridad de ficheros o “dispositivos”.\n\nFuente: Archivo sobre tar en Wikipedia"
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#tldr-tar",
+    "href": "tema08-backup/tema08-backup.html#tldr-tar",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "TLDR tar",
+    "text": "TLDR tar\n\nArchiving utility. Often combined with a compression method, such as gzip or bzip2. More information: https://www.gnu.org/software/tar.\n\n\n[c]reate an archive and write it to a [f]ile:\n\ntar cf {{path/to/target.tar}} {{path/to/file1 path/to/file2 ...}}\n\n[c]reate a g[z]ipped archive and write it to a [f]ile:\n\ntar czf {{path/to/target.tar.gz}} {{path/to/file1 path/to/file2 ...}}\n\n[c]reate a g[z]ipped archive from a directory using relative paths:\n\ntar czf {{path/to/target.tar.gz}} --directory={{path/to/directory}} .\n\nE[x]tract a (compressed) archive [f]ile into the current directory [v]erbosely:\n\ntar xvf {{path/to/source.tar[.gz|.bz2|.xz]}}\n\nE[x]tract a (compressed) archive [f]ile into the target directory:\n\ntar xf {{path/to/source.tar[.gz|.bz2|.xz]}} --directory={{path/to/directory}}\n\n[c]reate a compressed archive and write it to a [f]ile, using the file extension to [a]utomatically determine the compression program:\n\ntar caf {{path/to/target.tar.xz}} {{path/to/file1 path/to/file2 ...}}\n\nLis[t] the contents of a tar [f]ile [v]erbosely:\n\ntar tvf {{path/to/source.tar}}\n\nE[x]tract files matching a pattern from an archive [f]ile:\n\ntar xf {{path/to/source.tar}} --wildcards \"{{*.html}}\""
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#opcional-comando-tar-tape-archiver",
+    "href": "tema08-backup/tema08-backup.html#opcional-comando-tar-tape-archiver",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "[Opcional] Comando tar (Tape ARchiver)",
+    "text": "[Opcional] Comando tar (Tape ARchiver)\n\nAlgunas opciones son:\nc \\(\\rightarrow\\) Crea un fichero contenedor.\nx \\(\\rightarrow\\) Extrae ficheros de un fichero contenedor.\nv \\(\\rightarrow\\) Modo verbose (mayor cantidad de mensajes).\nf \\(\\rightarrow\\) Permite especificar el nombre del fichero contenedor.\nz \\(\\rightarrow\\) Comprime o descomprime mediante gzip.\nj \\(\\rightarrow\\) Comprime o descomprime mediante bz2.\np \\(\\rightarrow\\) Conserva los permisos de los ficheros.\nP \\(\\rightarrow\\) Guarda los ficheros con su ruta absoluta.\nN \\(\\rightarrow\\) Considera solo archivos cuya fecha sea superior al argumento."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#comando-tar-tape-archiver-1",
+    "href": "tema08-backup/tema08-backup.html#comando-tar-tape-archiver-1",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Comando tar (Tape ARchiver)",
+    "text": "Comando tar (Tape ARchiver)\n\ntar cPf /dev/nst0 /home \\(\\Rightarrow\\) copia todos los ficheros del directorio /home en la unidad de cinta.\ntar czvf /dev/sda1 /home \\(\\Rightarrow\\) ¿qué sucede con la partición /dev/sda1?\ntar czvf /dev/nst0 /dev/sda1\ntar czvf practicas.tgz prac_pas\ntar tzvf practicas.tgz \\(\\Rightarrow\\) listar el contenido de la copia de seguridad realizada en el fichero.\ntar xzvf practicas.tgz \\(\\Rightarrow\\) descomprimir.\ntar xzvf practicas.tgz prac_aso/boletin1.pdf \\(\\Rightarrow\\) recuperar el fichero boletin1.pdf (observa que hay que indicar la ruta con la que tar lo almacenó).\ntar cf practicas.tar -N ’3 days ago’ \\(\\Rightarrow\\) copia los ficheros creados/modificados hace menos de 3 días"
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#opcional-cpio",
+    "href": "tema08-backup/tema08-backup.html#opcional-cpio",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "[Opcional] cpio",
+    "text": "[Opcional] cpio\n\nCopias de seguridad de conjuntos de ficheros seleccionados arbitrariamente.\nEmpaqueta los datos en una cinta más eficientemente que tar (al restaurar es capaz de saltar trozos de la cinta defectuosos).\nLee de la entrada estándar el nombre de los ficheros a guardar, para usarlo enlazado con otras órdenes con tuberías.\nAlgunas opciones:\n\no \\(\\rightarrow\\) Copiar “fuera” (out) (crear la copia).\ni \\(\\rightarrow\\) Copiar “dentro” (in) (descomprimir).\nm \\(\\rightarrow\\) Conserva fecha y hora de los ficheros.\nt \\(\\rightarrow\\) Muestra la tabla de contenidos, es decir, muestra el contenido de la copia.\nA \\(\\rightarrow\\) Añade ficheros a un contenedor existente.\nd \\(\\rightarrow\\) Crear directorios al descomprimir.\nv \\(\\rightarrow\\) Modo verbose.\nF \\(\\rightarrow\\) Crear la copia en un fichero. :::"
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#opcional-cpio-1",
+    "href": "tema08-backup/tema08-backup.html#opcional-cpio-1",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "[Opcional] cpio",
+    "text": "[Opcional] cpio\n\nfind /home | cpio -o &gt; /dev/nst0 \\(\\rightarrow\\) se copia en la unidad de cinta.\nfind /home | cpio -o -F h.cpio \\(\\rightarrow\\) la copia la realiza en un fichero.\ncpio -i &lt; h.cpio \\(\\rightarrow\\) restaura la copia de seguridad de ese fichero.\ncpio -i -F h.cpio fichero \\(\\rightarrow\\) restaura sólo el fichero indicado. :::"
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#comando-dump",
+    "href": "tema08-backup/tema08-backup.html#comando-dump",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Comando dump",
+    "text": "Comando dump\n\nHace copias de seguridad de un sistema de ficheros Ext2, Ext3 o Ext4, copiando la partición completa.\nPermite realizar copias de seguridad por niveles: desde el nivel 0, copia completa, al nivel 9 (que es el valor por defecto).\nActúa solo a nivel de dispositivo.\n/etc/dumpdates \\(\\rightarrow\\) información sobre las copias de seguridad de cada SF y de qué nivel son:\n/dev/sda1 0 Mon Feb 14 09:56:44 2017 +0100\nAlgunas opciones son:\n0-9 \\(\\rightarrow\\) Nivel de la copia de seguridad, no requiere argumento.\n-u \\(\\rightarrow\\) Actualiza /etc/dumpdates, no requiere argumento.\n-f \\(\\rightarrow\\) Indica fichero destino diferente al usado por defecto, sí requiere argumento. Por defecto, se usa la unidad de cinta."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#restore",
+    "href": "tema08-backup/tema08-backup.html#restore",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "restore",
+    "text": "restore\n\nRestaura copias de seguridad creadas con dump.\nPermite recuperar ficheros, directorios y SF enteros.\nSe ha de recuperar el más reciente de cada nivel empezando por el 0. ¡Mucho cuidado con las fechas!\nPara recuperar SF \\(\\rightarrow\\) crear y montar un SF limpio y vacío, entrar en el punto de montaje y deshacer el backup.\nAlgunas opciones son:\n-r \\(\\rightarrow\\) Restaura la copia completa, no requiere argumento.\n-f \\(\\rightarrow\\) Indica el dispositivo o archivo donde está el backup, sí requiere argumento.\n-i \\(\\rightarrow\\) Modo interactivo, no requiere argumento.\n-x \\(\\rightarrow\\) Extrae los archivos y directorios desde el directorio actual.\n-t \\(\\rightarrow\\) Imprime los nombres de los archivos de la copia, no requiere argumentos."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#ejemplos-de-dump-y-restore",
+    "href": "tema08-backup/tema08-backup.html#ejemplos-de-dump-y-restore",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Ejemplos de dump y restore",
+    "text": "Ejemplos de dump y restore\n\ndump 0 -u -f /dev/nst0 /dev/sda1 \\(\\rightarrow\\)\nCopia de nivel 0 de /dev/sda1 en la unidad de cinta, actualizando /etc/dumpdates.\ndump 1 -u -f /dev/nst0 /dev/sda1 \\(\\rightarrow\\)\nCopia de nivel 1 de /dev/sda1 en la unidad de cinta, actualizando /etc/dumpdates.\ndump 0 -f jj.dump /dev/sda1 \\(\\rightarrow\\)\nCopia de nivel 0 de /dev/sda1 en el fichero jj.dump.\nrestore -t -f fichero_backup \\(\\rightarrow\\) listado de la copia.\nrestore -x -f fichero_backup practicas/smallsh.c \\(\\rightarrow\\) restaura sólo el fichero practicas/smallsh.c.\nrestore -r -f /dev/nst0 \\(\\rightarrow\\) restaura una copia completa.\nrestore -i -f /dev/nst0 \\(\\rightarrow\\) permite restaurar ficheros interactivamente (con ls, cd, pwd, add y extract)."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#restauración-del-sistema",
+    "href": "tema08-backup/tema08-backup.html#restauración-del-sistema",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Restauración del sistema",
+    "text": "Restauración del sistema\n\nSi se tiene una copia de todo el sistema:\n\nArrancar desde un dispositivo distinto (p.e. un DVD).\nSi es necesario, crear los ficheros especiales de dispositivos para los discos (/dev/sda1, etc.).\nPreparar el disco duro, e.d., crear las particiones.\nCrear el sistema de ficheros en la partición donde se restaurarán los datos y montarlo en un directorio.\nRestaurar la copia de seguridad sobre ese sistema de ficheros.\n\n\nRestaurar la copia más reciente de nivel 0.\nRestaurar la copia más reciente del nivel más bajo después del último restaurado.\nSi quedan más copias por restaurar, volver al paso anterior.\n\n\nDesmontar el sistema de ficheros restaurado.\nVolver al paso 2, para restaurar otros SF adicionales."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#restauración-del-sistema-1",
+    "href": "tema08-backup/tema08-backup.html#restauración-del-sistema-1",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Restauración del sistema",
+    "text": "Restauración del sistema\n\nDe las siguientes copias realizadas, ¿qué copias de seguridad se restaurarían?:\n0 0 0 0 0 0 0.\n0 5 5 5 5 5.\n0 3 2 5 4 5.\n0 9 9 5 9 9 3 9 9 5 9 9.\n0 3 5 9 3 5 9."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#restauración-del-sistema-2",
+    "href": "tema08-backup/tema08-backup.html#restauración-del-sistema-2",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Restauración del sistema",
+    "text": "Restauración del sistema\n\nSolución (restauraciones en negrita):\n0 0 0 0 0 0 0.\n0 5 5 5 5 5.\n0 3 2 5 4 5.\n0 9 9 5 9 9 3 9 9 5 9 9.\n0 3 5 9 3 5 9."
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#ejercicio-diseño-completo-sistema-backup-y-restauración",
+    "href": "tema08-backup/tema08-backup.html#ejercicio-diseño-completo-sistema-backup-y-restauración",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Ejercicio: diseño completo sistema backup y restauración",
+    "text": "Ejercicio: diseño completo sistema backup y restauración\nSupongamos el ejemplo del servidor web. Podemos simplificarlo sólo a archivos. Utilizando: - tar o dump/restore - el cron de Linux - disco externo local o remoto por ssh"
+  },
+  {
+    "objectID": "tema08-backup/tema08-backup.html#referencias-1",
+    "href": "tema08-backup/tema08-backup.html#referencias-1",
+    "title": "Tema 8: Restauración y copias de seguridad",
+    "section": "Referencias",
+    "text": "Referencias\n\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Addison-Wesley. 5th Edition. 2018.\nhttps://www.reddit.com/r/sysadmin/wiki/backups/\nhttps://www.tutorialspoint.com/linux_admin/linux_admin_backup_and_recovery.htm\nAeleen Frisch. Essential system administration. Capítulo 11. Backup and restore. O’Reilly and Associates. Tercera edición. 2002."
   }
 ]

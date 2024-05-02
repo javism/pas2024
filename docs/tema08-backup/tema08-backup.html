@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Javier Sánchez Monedero">
+
+<title>Programación y Administración de Sistemas (2023-2024) - Tema 8: Restauración y copias de seguridad</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Programación y Administración de Sistemas (2023-2024)
+      </li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Programación y Administración de Sistemas (2023-2024)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inicio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema00-presentacion/presentacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 0: Presentación</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01a-introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.a: Introducción</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01b-software-libre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.b: Software Libre y GNU/Linux</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01c-proyecto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.c: Virtual Box, Debian y configuración básica</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-ficheros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Organización de GNU/Linux</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Ejercicios permisos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-webuco.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Ejercicios web personal en la UCO</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema03-usuarios/tema03-usuarios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 3: Gestión de usuarios</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema04-arranque/tema04-arranque.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 4: Arranque y Parada</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema05-recursos/tema05-recursos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 5: Gestión de recursos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema06-sf/tema06-sf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 6: Sistemas de ficheros y discos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema07-administracionsf/tema07-administracionsf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 7: Administración de sistemas de ficheros</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema07-administracionsf/tema07-RAID-cuotas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 7: Receta RAID + Cuotas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../enlaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Enlaces</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-y-evaluación" id="toc-objetivos-y-evaluación" class="nav-link active" data-scroll-target="#objetivos-y-evaluación"><span class="header-section-number">1</span> Objetivos y evaluación</a></li>
+  <li><a href="#planes-de-prevención-de-catástrofes" id="toc-planes-de-prevención-de-catástrofes" class="nav-link" data-scroll-target="#planes-de-prevención-de-catástrofes"><span class="header-section-number">2</span> Planes de prevención de catástrofes</a></li>
+  <li><a href="#copias-de-seguridad-y-restauración" id="toc-copias-de-seguridad-y-restauración" class="nav-link" data-scroll-target="#copias-de-seguridad-y-restauración"><span class="header-section-number">3</span> Copias de seguridad y restauración</a></li>
+  <li><a href="#restauración-de-un-sistema-completo" id="toc-restauración-de-un-sistema-completo" class="nav-link" data-scroll-target="#restauración-de-un-sistema-completo"><span class="header-section-number">4</span> Restauración de un sistema completo</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">5</span> Referencias</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tema 8: Restauración y copias de seguridad</h1>
+<p class="subtitle lead">Programación y Administración de Sistemas <br> (2023-2024)</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Autor/a</div>
+  <div class="quarto-title-meta-heading">Afiliaciones</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Javier Sánchez Monedero </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Depto. Informática y Análisis Numérico
+          </p>
+        <p class="affiliation">
+            Escuela Politécnica Superior
+          </p>
+        <p class="affiliation">
+            Universidad de Córdoba
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2 de mayo de 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objetivos-y-evaluación" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Objetivos y evaluación</h1>
+<section id="objetivos" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="objetivos">Objetivos</h2>
+<ul>
+<li>Justificar la necesidad de establecer <strong>planes de prevención</strong> de catástrofes en la administración de cualquier sistema informático.</li>
+<li>Identificar distintos <strong>escenarios</strong> en los que pueda perderse información y establecer medidas de <strong>prevención</strong>: errores humanos, virus y <em>software</em> destructivo, personas malintencionadas y fallos del <em>hardware</em>.</li>
+<li>Proporcionar una serie de <strong>consejos generales</strong> a la hora de planear las copias de seguridad de un sistema.</li>
+<li>Establecer los <strong>factores</strong> que determinan la forma en que se realizan las copias de seguridad.</li>
+<li>Diferenciar los tres *tipos de estrategias** a seguir a la hora de realizar copias de seguridad: completa, parcial e incremental.</li>
+<li>Identificar diferentes <strong>soportes <em>hardware</em></strong> en los que realizar las copias de seguridad.</li>
+<li>Utilizar la herramienta <code>tar</code> para realizar copias de seguridad en un sistema GNU/Linux.</li>
+<li>Utilizar la herramienta <code>dump</code> para realizar copias de seguridad en un sistema GNU/Linux y <code>restore</code> para restaurarlas.</li>
+<li>Utilizar la herramienta <code>cpio</code> para realizar copias de seguridad en un sistema GNU/Linux.</li>
+</ul>
+</section>
+<section id="evaluación" class="level2">
+<h2 class="anchored" data-anchor-id="evaluación">Evaluación</h2>
+<ul>
+<li><p>Cuestionarios objetivos.</p></li>
+<li><p>Pruebas de respuesta libre.</p></li>
+<li><p>Tareas de administración.</p></li>
+<li><p><strong>NOTA</strong>: Como en otros temas, aquí veremos muchos parámetros de configuración que no tiene sentido memorizar, pero si hay que saber qué posibilidades tenemos en la administración de sistemas de ficheros.</p></li>
+</ul>
+</section>
+</section>
+<section id="planes-de-prevención-de-catástrofes" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Planes de prevención de catástrofes</h1>
+<section id="de-marzo-día-mundial-del-backup" class="level2">
+<h2 class="anchored" data-anchor-id="de-marzo-día-mundial-del-backup">31 de marzo, día mundial del backup</h2>
+<p><img src="images/worldbackupday.png" class="img-fluid"></p>
+<p><a href="https://www.worldbackupday.com" class="uri">https://www.worldbackupday.com</a></p>
+</section>
+<section id="qué-dónde-cómo-y-cuándo" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="qué-dónde-cómo-y-cuándo">qué, dónde, cómo y cuándo</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li><p>En cualquier momento, algunos archivos serán totalmente ilegibles por algún motivo: se exige capacidad de <strong>recuperación</strong>.</p></li>
+<li><p>Las copias de seguridad dependen de la situación y es necesario determinar: qué, dónde, cómo y cuándo...</p></li>
+<li><p>El administrador/a del sistema debe:</p></li>
+<li><p>Planear e implementar un sistema de copias de seguridad.</p></li>
+<li><p>Periódicamente, hacer copias de seguridad de los ficheros.</p></li>
+<li><p>Guardar las copias de seguridad en un lugar seguro.</p></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<p><img src="images/ordenadorquemado.jpg" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="planes-de-prevención-de-catástrofes-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="planes-de-prevención-de-catástrofes-1">Planes de prevención de catástrofes</h2>
+<p>La estrategia de copias de seguridad tiene que ser efectiva, para conseguir <strong>seguridad</strong>:</p>
+<ul>
+<li><p>El tiempo empleado es un esfuerzo que prevé futuras pérdidas.</p></li>
+<li><p>El dinero gastado se compensa al evitar el desastre que supone una pérdida de datos (que conlleva enormes pérdidas de trabajo y, por tanto, dinero).</p></li>
+</ul>
+<p>Tener en cuenta:</p>
+<ul>
+<li><p>Capacidad restaurar el sistema entero o parte del mismo, en un tiempo aceptable.</p></li>
+<li><p>Tiempo que tarda en hacerse la copia de seguridad.</p></li>
+<li><p>Facilidad de recuperar algún fichero de forma independiente.</p></li>
+</ul>
+<p>Si valoramos los costes, merece la pena incluir mecanismos/dispositivos específicos para esta labor.</p>
+<div class="center">
+<p><img src="images/copia-seguridad.jpg" style="height:2cm"></p>
+</div>
+</section>
+<section id="escenarios-de-pérdida-de-información" class="level2">
+<h2 class="anchored" data-anchor-id="escenarios-de-pérdida-de-información">Escenarios de pérdida de información</h2>
+<p>Causas:</p>
+<ul>
+<li><p>Errores de usuario.</p></li>
+<li><p>Virus y software destructivo.</p></li>
+<li><p>Personas malintencionadas.</p></li>
+<li><p>Fallos mecánicos.</p></li>
+<li><p>Fuerzas mayores: desastres naturales, electricidad estática...</p></li>
+</ul>
+</section>
+<section id="errores-humanos" class="level2">
+<h2 class="anchored" data-anchor-id="errores-humanos">Errores humanos</h2>
+<p>Comandos mal escritos:</p>
+<div class="sourceCode" id="cb1" data-code-copy="false"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm foo <span class="pp">*</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Errores durante el redireccionamiento y uso de tuberías:</p>
+<div class="sourceCode" id="cb2" data-code-copy="false"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat fstab <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/ext2/ext3'</span> <span class="op">&gt;</span> fstab</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Usuarios con acceso de <code>root</code>:</p>
+<ul>
+<li>Los errores anteriores serían catastróficos si ocurrieran sobre directorios o archivos de sistema.</li>
+</ul>
+<div class="center">
+<p><img src="images/human-error1.jpg" class="img-fluid"></p>
+</div>
+</section>
+<section id="prevención-de-errores-humanos" class="level2">
+<h2 class="anchored" data-anchor-id="prevención-de-errores-humanos">Prevención de errores humanos</h2>
+<p>Medidas de prevención sencillas:</p>
+<ul>
+<li><p>Utilizar alias:</p>
+<pre><code>alias rm='rm -i' # El -i fuerza confirmacion</code></pre></li>
+<li><p>Utilizar sistema de control de versiones (Git...):</p></li>
+<li><p>Conservan el archivo original y llevan un histórico de los cambios realizados sobre éste.</p></li>
+<li><p>Crear copias de seguridad personales.</p></li>
+<li><p>Utilizar <code>sudo</code> para limitar el acceso de los usuarios con privilegios de <code>root</code>:</p></li>
+<li><p>Se limitará el acceso únicamente a los comandos necesarios para que el usuario pueda llevar a cabo su tarea.</p></li>
+</ul>
+</section>
+<section id="malware-o-programas-maliciosos" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="malware-o-programas-maliciosos">Malware o programas maliciosos</h2>
+<p>(Más en <a href="https://es.wikipedia.org/wiki/Malware" class="uri">https://es.wikipedia.org/wiki/Malware</a>)</p>
+<ul>
+<li><p><strong>Virus</strong>: programa que se adhiere a un ejecutable y se propaga a otros al mismo tiempo que realiza otra acción (desde escribir un mensaje hasta mezclar las tablas de particiones).</p></li>
+<li><p>Un <strong>ransomware</strong> (del inglés ransom, ‘rescate’, y ware, acortamiento de software) o ‘secuestro de datos’ en español, es un tipo de programa dañino que restringe el acceso a determinadas partes o archivos del sistema operativo infectado y pide un rescate a cambio de quitar esta restricción.</p></li>
+<li><p><strong>Caballos de Troya</strong>: Programas que se hacen pasar por otros, funcionando como éstos, pero además realizando otras operaciones como obtener y enviar contraseñas. El grado de destrucción depende de quien los ejecuta.</p></li>
+<li><p><strong>Gusanos</strong>: Programas que se aprovechan de las debilidades de un sistema para propagarse a otros.</p></li>
+<li><p><strong>Software destructivo</strong>: Aplicaciones no mal intencionadas pero con errores de programación que pueden ser muy dañinos.</p></li>
+<li><p>Linux dispone de mecanismos de seguridad que dificultan su propagación (jerarquía usuarios, protección de la memoria, límite de procesos, etc.).</p></li>
+</ul>
+</section>
+<section id="software-destructivo-prevención" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="software-destructivo-prevención">Software destructivo: prevención</h2>
+<p>Medidas de prevención sencillas:</p>
+<ul>
+<li><p>Software específico de búsqueda y destrucción de virus (<strong>antivirus</strong>).</p></li>
+<li><p>Configuración del entorno: p.ej. la variable PATH no incluye la carpeta actual:</p></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="va">$PATH</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>Directrices en <code>/etc/security/</code></p></li>
+<li><p><em>Host</em> y redes víctimas:</p></li>
+<li><p>Se usan ciertos equipos y redes para probar <em>software</em> (<strong>sandbox</strong>) nuevo o descubrir nuevos tipos de ataques asumiendo que puede resultar dañado (<strong>honeypots</strong> y <strong>honeynets</strong>).</p></li>
+<li><p>Se suelen basar en un sistema de detección de intrusos (IDS) que genera reglas para el <em>firewall</em> separando el tráfico normal del anómalo (complementario a reglas explícitas del cortafuegos y antivirus).</p></li>
+</ul>
+</section>
+<section id="honeypots" class="level2">
+<h2 class="anchored" data-anchor-id="honeypots">Honeypots</h2>
+<div class="center">
+<p><img src="images/honeypot.jpg" class="img-fluid"></p>
+</div>
+</section>
+<section id="personas-malintencionadas" class="level2">
+<h2 class="anchored" data-anchor-id="personas-malintencionadas">Personas malintencionadas</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><img src="images/AD7_genoma-hackers.jpg" class="img-fluid"></p>
+</div><div class="column" style="width:70%;">
+<ul>
+<li><p><em>Crackers</em> (<span class="math inline">\(\neq\)</span> <em>Hackers</em>): Personas que entran en los sistemas de forma, a veces, ilegal con fines malintencionados.</p></li>
+<li><p>Usuarios descontentos: Usuario con acceso al sistema y recelo (algunas historias en la página de <a href="https://en.wikipedia.org/wiki/Logic_bomb">Logic Bombs</a>).</p></li>
+</ul>
+</div>
+</div>
+<p>Medidas preventivas:</p>
+<ul>
+<li><p>Cortafuegos y Seguridad Física para los <em>crackers</em>.</p></li>
+<li><p>Seguimiento de personas sospechosas de ser “usuarios descontentos” controlando sus accesos y sus privilegios.</p></li>
+</ul>
+</section>
+<section id="usuarios" class="level2">
+<h2 class="anchored" data-anchor-id="usuarios">Usuarios</h2>
+<p><img src="images/meme_bd_produccion.png" class="img-fluid"></p>
+<p>El usuario puede destruir información de forma no intencionada (<a href="https://www.youtube.com/watch?v=i_cVJgIz_Cs">Vídeo No te olvides de poner el Where en el Delete From</a>)</p>
+</section>
+<section id="fallos-de-hardware-i" class="level2">
+<h2 class="anchored" data-anchor-id="fallos-de-hardware-i">Fallos de <em>hardware</em> (I)</h2>
+<p>Fallo en la unidad de disco duro:</p>
+<ul>
+<li>El kernel suele avisar antes de un fallo completo.</li>
+</ul>
+<p>Fallo de la memoria:</p>
+<ul>
+<li>Pérdida de información por la caída del sistema o información corrupta en memoria es copiada a disco.</li>
+</ul>
+<div class="center">
+<p><img src="images/hardware-malfunction.jpg" style="height:5cm"><img src="images/hardware-malfunction2.jpg" style="height:5cm"></p>
+</div>
+</section>
+<section id="fallos-de-hardware-ii" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="fallos-de-hardware-ii">Fallos de <em>hardware</em> (II)</h2>
+<p>Prevención y recuperación:</p>
+<ul>
+<li><p>Redundancia de la información: utilizar RAID.</p></li>
+<li><p>Supervisión de registros del sistema (orden <code>dmesg</code>, datos y pruebas SMART, ver <code>smartctl/nvme</code>, ).</p></li>
+<li><p>Recuperación desde copias de seguridad.</p></li>
+<li><p>Intentar leer bloques para construir una imagen con ‘<code>dd</code>’.</p></li>
+<li><p>Software de recuperación (TestDisk, PhotoRec...)</p></li>
+<li><p>Recuperación en entorno estéril: empresa dedicada.</p></li>
+</ul>
+<p><img src="images/smart.png" class="img-fluid"></p>
+</section>
+<section id="consejos-generales" class="level2">
+<h2 class="anchored" data-anchor-id="consejos-generales">Consejos generales</h2>
+<p><img src="images/shrodinguer_backup.jpg" class="img-fluid"></p>
+<ul>
+<li><p><strong>Prevención</strong>: Ante cualquiera de los escenarios de pérdida de información debemos tener la capacidad de recuperarnos inmediatamente o en un corto lapso de tiempo.</p></li>
+<li><p>Una opción es utilizar <strong>copias de seguridad</strong>.</p></li>
+</ul>
+</section>
+<section id="consejos-generales-1" class="level2">
+<h2 class="anchored" data-anchor-id="consejos-generales-1">Consejos generales</h2>
+<p>Consejos generales para las <strong>copias de seguridad</strong>:</p>
+<div class="incremental">
+<ul class="incremental">
+<li><p>Etiquetar siempre las copias realizadas.</p></li>
+<li><p>Elegir correctamente la frecuencia de copias.</p></li>
+<li><p>Usar particiones distintas para el sistema de ficheros.</p></li>
+<li><p>Hacer que el <em>backup</em> diario quepa en la unidad.</p></li>
+<li><p>Llevarse la copia a otro lugar y proteger ese lugar.</p></li>
+<li><p>Limitar la carga computacional durante el proceso de <em>backup</em>.</p></li>
+<li><p>No esperar a que ocurra un problema para verificar las copias.</p></li>
+<li><p>Tener en cuenta el tiempo de vida de los dispositivos.</p></li>
+<li><p><strong>Prepararse para lo peor</strong>.</p></li>
+</ul>
+</div>
+<!-- TODO: REDUCIR o REFORMULAR -->
+</section>
+<section id="factores" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="factores">Factores</h2>
+<p>Factores a considerar en una estrategia de copias de seguridad:</p>
+<div class="incremental">
+<ul class="incremental">
+<li><p>¿Qué ficheros se deben copiar y dónde están esos ficheros?.</p></li>
+<li><p>Conocer qué es lo más importante del sistema.</p></li>
+<li><p>¿Quién hará la copia?</p></li>
+<li><p>¿el <strong>administrador</strong> o el <strong>propietario</strong> de los ficheros?.</p></li>
+<li><p>¿Dónde, cuándo y bajo qué condiciones se deben hacer?</p></li>
+<li><p>Mejor hacer las copias cuando no haya usuarios trabajando (por la noche, a la hora de comer...).</p></li>
+<li><p>Frecuencia de cambios en los ficheros <span class="math inline">\(\Leftrightarrow\)</span> Frecuencia de las copias.</p></li>
+<li><p>¿Cada cuánto tiempo habrá que recuperar ficheros dañados o perdidos? (muy difícil saberlo).</p></li>
+<li><p><strong>¿Dónde se restaurarán los datos?</strong>.</p></li>
+<li><p>Rutinas de restauración sencillas.</p></li>
+<li><p>Proteger las copias de seguridad contra escritura.</p></li>
+<li><p>Seguridad de las copias:</p></li>
+<li><p>Lugar donde se almacenan, condiciones ambientales, propiedades de los medios empleados...</p></li>
+</ul>
+</div>
+</section>
+<section id="estrategias-copia-de-seguridad-completa" class="level2">
+<h2 class="anchored" data-anchor-id="estrategias-copia-de-seguridad-completa">Estrategias: copia de seguridad completa</h2>
+<ul>
+<li><p>Se guardan todos los archivos asociados a un ordenador.</p></li>
+<li><p>La restauración necesita un solo fichero pero <strong>mucho tiempo</strong>.</p></li>
+<li><p>Puede ser difícil recuperar un archivo suelto.</p></li>
+<li><p>Si los ficheros no cambian muy a menudo no tiene sentido.</p></li>
+<li><p>Si cambian mucho y son vitales para el trabajo de mucha gente: están justificadas incluso a diario.</p></li>
+<li><p>Hacerla ante grandes cambios: nuevo <em>software</em>, nuevo SO, . . .</p></li>
+</ul>
+</section>
+<section id="estrategias-copia-de-seguridad-parcial" class="level2">
+<h2 class="anchored" data-anchor-id="estrategias-copia-de-seguridad-parcial">Estrategias: copia de seguridad parcial</h2>
+<ul>
+<li><p>Se copia sólo algunos archivos específicos (por ejemplo, la carpeta <code>/etc</code>).</p></li>
+<li><p>Proceso de restauración sencillo, ya que hay menos archivos implicados.</p></li>
+<li><p>Problema: nos dejamos archivos sin copiar.</p></li>
+</ul>
+</section>
+<section id="estrategias-copia-de-seguridad-incremental" class="level2">
+<h2 class="anchored" data-anchor-id="estrategias-copia-de-seguridad-incremental">Estrategias: copia de seguridad incremental</h2>
+<ul>
+<li><p>Solo aquellos ficheros que hayan cambiado desde la última copia.</p></li>
+<li><p>Se deben realizar casi a diario.</p></li>
+<li><p>Se mantiene una copia completa del sistema, y se incorporan cambios muy pequeños, de los que se irán haciendo copias incrementales.</p></li>
+</ul>
+</section>
+<section id="estrategias-niveles-de-copias-incrementales" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="estrategias-niveles-de-copias-incrementales">Estrategias: niveles de copias incrementales</h2>
+<p>Copias incrementales organizadas por niveles.</p>
+<ul>
+<li><p><strong>Nivel 0</strong> <span class="math inline">\(\rightarrow\)</span> <em>Backup</em> completo.</p></li>
+<li><p><strong>Nivel 1</strong> <span class="math inline">\(\rightarrow\)</span> Todos los ficheros que han cambiado desde el último <em>backup</em> de nivel 0.</p></li>
+<li><p><strong>Nivel 2</strong> <span class="math inline">\(\rightarrow\)</span> Todos los ficheros que han cambiado desde el último <em>backup</em> de nivel 1.</p></li>
+<li><p><strong>...</strong></p></li>
+</ul>
+<p>Posibilidades de estrategias:</p>
+<ul>
+<li><p>Lunes: nivel 0. Resto de días: nivel 1.</p></li>
+<li><p>Lunes: nivel 0. Martes: nivel 1. Miércoles: nivel 2. Jueves: nivel 1. Viernes: nivel 2.</p></li>
+</ul>
+<p>También hay que asociar una <strong>estrategia de restauración</strong>.</p>
+</section>
+<section id="ejercicio-estrategia-de-backup" class="level2 scrollable" data-background-color="lightgreen">
+<h2 class="scrollable anchored" data-background-color="lightgreen" data-anchor-id="ejercicio-estrategia-de-backup">Ejercicio: estrategia de backup</h2>
+<p><img src="images/Directory-Filesystem-Hierarchy-Standard.png" class="img-fluid"></p>
+<p>Imagina que tenemos un servidor Linux con una aplicación wordpress:</p>
+<ol type="a">
+<li>guarda los datos de la web en <code>/var/www/wordpress</code> (cambia a diario)</li>
+<li>guarda su base de datos SQL en <code>/var/lib/mysql</code> (cambia varias veces al día)</li>
+<li>guarda su configuración en <code>/etc/apache2</code> (cambia cada varios días o semanas)</li>
+</ol>
+<ol type="1">
+<li><p>Con la ayuda de la jerarquía estándar de directorios y elige qué debería entrar dentro de la política de copias del sistema operativo y el servicio web.</p></li>
+<li><p>¿Qué tipo de copia harías para el sistema operativo y para la web?</p></li>
+<li><p>¿Con qué frecuencia para cada caso?¿Cómo podríamos automatizarlas en Linux?</p></li>
+</ol>
+</section>
+<section id="soportes-para-realizar-las-copias" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="soportes-para-realizar-las-copias">Soportes para realizar las copias</h2>
+<ul>
+<li><p>Guardar la copia de seguridad en el mismo disco (o en otro disco conectado a la máquina) <strong>no es seguro</strong>.</p></li>
+<li><p>Multitud de dispositivos:</p>
+<ul>
+<li>Cintas magnéticas (<code>/dev/st0</code>, normal, o <code>/dev/nst0</code>, <em>non-rewinding</em>, para unidades de cinta SCSI). <a href="https://www.instagram.com/reel/CnwS82qpIBE/">Mira un ejemplo del MareNostum 5</a>.</li>
+</ul>
+<p><img src="images/backup_tapes.jpg" style="height:5cm"></p>
+<ul>
+<li><p>Estantería de cintas o <em>jukeboxes</em>, <em>stackloaders</em> y similares...</p>
+<p><img src="images/tapelibrary1.jpg" style="height:5cm"><img src="images/autoloader.jpg" style="height:5cm"></p></li>
+<li><p>Discos extraíbles (disco duro que puedes extraer sin apagar la máquina).</p></li>
+</ul>
+<p><img src="images/disco-extraible.jpg" style="height:5cm"></p>
+<ul>
+<li>Disquetes (<a href="https://www.xataka.com/empresas-y-economia/resulta-que-hay-ultima-persona-haciendo-negocio-disquetes-esta-su-historia">La última persona que sigue vendiendo disquetes en 2022</a>).</li>
+</ul></li>
+<li><p>etc.</p></li>
+</ul>
+</section>
+<section id="opcional-criterios-para-elegir-el-soporte" class="level2">
+<h2 class="anchored" data-anchor-id="opcional-criterios-para-elegir-el-soporte">[Opcional] Criterios para elegir el soporte</h2>
+<ul>
+<li><p>Coste: no solo del dispositivo sino también del soporte físico de almacenamiento.</p></li>
+<li><p>Soporte del <em>kernel</em> para el dispositivo.</p></li>
+<li><p>Capacidad de almacenamiento de datos de los soportes físicos.</p></li>
+<li><p>Tasa de transferencia de datos para realizar copias de seguridad.</p></li>
+<li><p>Mecanismo de cargador automático.</p></li>
+<li><p>Cuando se llena una cinta se inserta otra automáticamente.</p></li>
+<li><p>Permite las copias no supervisadas de grandes volúmenes.</p></li>
+</ul>
+</section>
+<section id="comparativa-discos-vs-cintas" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="comparativa-discos-vs-cintas">Comparativa discos vs cintas</h2>
+<p><img src="images/cintas_capacidad.png" class="img-fluid"></p>
+<p><span class="rojo">Deventajas</span>: acceso aleatorio lento, necesitan un mantenimiento especial, el tiempo de recuperación es mayor, se duplica mucha información... cuestiones que no afectan a los discos.</p>
+<p><span class="verde">Ventajas</span> de las cintas de backup:</p>
+<ul>
+<li><p>Alta capacidad por cinta (580TB).</p></li>
+<li><p>Dispositivo con menor coste.</p></li>
+<li><p>Seguridad: las cintas se desconectan al terminar las copias e implementan sistemas para evitar que los datos se sobreescriban lo que impide algunos ciberataques populares como los de <em>ransomware</em>.</p></li>
+<li><p>Fiabilidad: los discos están permanente conectados y en marcha.</p></li>
+<li><p>Durabilidad: en promedio pueden durar hasta 30 años.</p></li>
+<li><p>Velocidad (secuencial): Cinta 800MB/s, HDD 130MB/s, SSD 280MB/s</p></li>
+</ul>
+</section>
+</section>
+<section id="copias-de-seguridad-y-restauración" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Copias de seguridad y restauración</h1>
+<section id="comando-tar-tape-archiver" class="level2">
+<h2 class="anchored" data-anchor-id="comando-tar-tape-archiver">Comando tar (Tape ARchiver)</h2>
+<p>Realiza copias de seguridad de ficheros o “dispositivos”.</p>
+<p><img src="images/targzip.png" class="img-fluid"></p>
+<p>Fuente: Archivo sobre tar en Wikipedia</p>
+</section>
+<section id="tldr-tar" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="tldr-tar">TLDR tar</h2>
+<blockquote class="blockquote">
+<p>Archiving utility. Often combined with a compression method, such as <code>gzip</code> or <code>bzip2</code>. More information: <a href="https://www.gnu.org/software/tar" class="uri">https://www.gnu.org/software/tar</a>.</p>
+</blockquote>
+<ul>
+<li>[c]reate an archive and write it to a [f]ile:</li>
+</ul>
+<p><code>tar cf {{path/to/target.tar}} {{path/to/file1 path/to/file2 ...}}</code></p>
+<ul>
+<li>[c]reate a g[z]ipped archive and write it to a [f]ile:</li>
+</ul>
+<p><code>tar czf {{path/to/target.tar.gz}} {{path/to/file1 path/to/file2 ...}}</code></p>
+<ul>
+<li>[c]reate a g[z]ipped archive from a directory using relative paths:</li>
+</ul>
+<p><code>tar czf {{path/to/target.tar.gz}} --directory={{path/to/directory}} .</code></p>
+<ul>
+<li>E[x]tract a (compressed) archive [f]ile into the current directory [v]erbosely:</li>
+</ul>
+<p><code>tar xvf {{path/to/source.tar[.gz|.bz2|.xz]}}</code></p>
+<ul>
+<li>E[x]tract a (compressed) archive [f]ile into the target directory:</li>
+</ul>
+<p><code>tar xf {{path/to/source.tar[.gz|.bz2|.xz]}} --directory={{path/to/directory}}</code></p>
+<ul>
+<li>[c]reate a compressed archive and write it to a [f]ile, using the file extension to [a]utomatically determine the compression program:</li>
+</ul>
+<p><code>tar caf {{path/to/target.tar.xz}} {{path/to/file1 path/to/file2 ...}}</code></p>
+<ul>
+<li>Lis[t] the contents of a tar [f]ile [v]erbosely:</li>
+</ul>
+<p><code>tar tvf {{path/to/source.tar}}</code></p>
+<ul>
+<li>E[x]tract files matching a pattern from an archive [f]ile:</li>
+</ul>
+<p><code>tar xf {{path/to/source.tar}} --wildcards "{{*.html}}"</code></p>
+</section>
+<section id="opcional-comando-tar-tape-archiver" class="level2">
+<h2 class="anchored" data-anchor-id="opcional-comando-tar-tape-archiver">[Opcional] Comando tar (Tape ARchiver)</h2>
+<ul>
+<li><p>Algunas opciones son:</p></li>
+<li><p><strong><code>c</code></strong> <span class="math inline">\(\rightarrow\)</span> Crea un fichero contenedor.</p></li>
+<li><p><strong><code>x</code></strong> <span class="math inline">\(\rightarrow\)</span> Extrae ficheros de un fichero contenedor.</p></li>
+<li><p><strong><code>v</code></strong> <span class="math inline">\(\rightarrow\)</span> Modo <em>verbose</em> (mayor cantidad de mensajes).</p></li>
+<li><p><strong><code>f</code></strong> <span class="math inline">\(\rightarrow\)</span> Permite especificar el nombre del fichero contenedor.</p></li>
+<li><p><strong><code>z</code></strong> <span class="math inline">\(\rightarrow\)</span> Comprime o descomprime mediante <code>gzip</code>.</p></li>
+<li><p><strong><code>j</code></strong> <span class="math inline">\(\rightarrow\)</span> Comprime o descomprime mediante <code>bz2</code>.</p></li>
+<li><p><strong><code>p</code></strong> <span class="math inline">\(\rightarrow\)</span> Conserva los permisos de los ficheros.</p></li>
+<li><p><strong><code>P</code></strong> <span class="math inline">\(\rightarrow\)</span> Guarda los ficheros con su ruta absoluta.</p></li>
+<li><p><strong><code>N</code></strong> <span class="math inline">\(\rightarrow\)</span> Considera <strong>solo</strong> archivos cuya fecha sea superior al argumento.</p></li>
+</ul>
+</section>
+<section id="comando-tar-tape-archiver-1" class="level2">
+<h2 class="anchored" data-anchor-id="comando-tar-tape-archiver-1">Comando tar (Tape ARchiver)</h2>
+<ul>
+<li><p><code>tar cPf /dev/nst0 /home</code> <span class="math inline">\(\Rightarrow\)</span> copia todos los ficheros del directorio <code>/home</code> en la unidad de cinta.</p></li>
+<li><p><code>tar czvf /dev/sda1 /home</code> <span class="math inline">\(\Rightarrow\)</span> ¿qué sucede con la partición <code>/dev/sda1</code>?</p></li>
+<li><p><code>tar czvf /dev/nst0 /dev/sda1</code></p></li>
+<li><p><code>tar czvf practicas.tgz prac_pas</code></p></li>
+<li><p><code>tar tzvf practicas.tgz</code> <span class="math inline">\(\Rightarrow\)</span> listar el contenido de la copia de seguridad realizada en el fichero.</p></li>
+<li><p><code>tar xzvf practicas.tgz</code> <span class="math inline">\(\Rightarrow\)</span> descomprimir.</p></li>
+<li><p><code>tar xzvf practicas.tgz prac_aso/boletin1.pdf</code> <span class="math inline">\(\Rightarrow\)</span> recuperar el fichero <code>boletin1.pdf</code> (observa que hay que indicar la ruta con la que <code>tar</code> lo almacenó).</p></li>
+<li><p><code>tar cf practicas.tar -N ’3 days ago’</code> <span class="math inline">\(\Rightarrow\)</span> copia los ficheros creados/modificados hace menos de 3 días</p></li>
+</ul>
+</section>
+<section id="opcional-cpio" class="level2">
+<h2 class="anchored" data-anchor-id="opcional-cpio">[Opcional] cpio</h2>
+<ul>
+<li><p>Copias de seguridad de conjuntos de ficheros seleccionados arbitrariamente.</p></li>
+<li><p>Empaqueta los datos en una cinta más eficientemente que <code>tar</code> (al restaurar es capaz de saltar trozos de la cinta defectuosos).</p></li>
+<li><p>Lee de la entrada estándar el nombre de los ficheros a guardar, para usarlo enlazado con otras órdenes con tuberías.</p></li>
+<li><p>Algunas opciones:</p>
+<ul>
+<li><p><strong><code>o</code></strong> <span class="math inline">\(\rightarrow\)</span> Copiar “fuera” (<em>out</em>) (crear la copia).</p></li>
+<li><p><strong><code>i</code></strong> <span class="math inline">\(\rightarrow\)</span> Copiar “dentro” (<em>in</em>) (descomprimir).</p></li>
+<li><p><strong><code>m</code></strong> <span class="math inline">\(\rightarrow\)</span> Conserva fecha y hora de los ficheros.</p></li>
+<li><p><strong><code>t</code></strong> <span class="math inline">\(\rightarrow\)</span> Muestra la tabla de contenidos, es decir, muestra el contenido de la copia.</p></li>
+<li><p><strong><code>A</code></strong> <span class="math inline">\(\rightarrow\)</span> Añade ficheros a un contenedor existente.</p></li>
+<li><p><strong><code>d</code></strong> <span class="math inline">\(\rightarrow\)</span> Crear directorios al descomprimir.</p></li>
+<li><p><strong><code>v</code></strong> <span class="math inline">\(\rightarrow\)</span> Modo <em>verbose</em>.</p></li>
+<li><p><strong><code>F</code></strong> <span class="math inline">\(\rightarrow\)</span> Crear la copia en un fichero. :::</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="opcional-cpio-1" class="level2">
+<h2 class="anchored" data-anchor-id="opcional-cpio-1">[Opcional] cpio</h2>
+<ul>
+<li><p><code>find /home | cpio -o &gt; /dev/nst0</code> <span class="math inline">\(\rightarrow\)</span> se copia en la unidad de cinta.</p></li>
+<li><p><code>find /home | cpio -o -F h.cpio</code> <span class="math inline">\(\rightarrow\)</span> la copia la realiza en un fichero.</p></li>
+<li><p><code>cpio -i &lt; h.cpio</code> <span class="math inline">\(\rightarrow\)</span> restaura la copia de seguridad de ese fichero.</p></li>
+<li><p><code>cpio -i -F h.cpio fichero</code> <span class="math inline">\(\rightarrow\)</span> restaura sólo el fichero indicado. :::</p></li>
+</ul>
+</section>
+<section id="comando-dump" class="level2">
+<h2 class="anchored" data-anchor-id="comando-dump">Comando dump</h2>
+<ul>
+<li><p>Hace copias de seguridad de un sistema de ficheros <code>Ext2</code>, <code>Ext3</code> o <code>Ext4</code>, copiando la partición completa.</p></li>
+<li><p>Permite realizar <strong>copias de seguridad por niveles</strong>: desde el nivel 0, copia completa, al nivel 9 (que es el valor por defecto).</p></li>
+<li><p>Actúa solo a nivel de dispositivo.</p></li>
+<li><p><code>/etc/dumpdates</code> <span class="math inline">\(\rightarrow\)</span> información sobre las copias de seguridad de cada SF y de qué nivel son:<br>
+<code>/dev/sda1 0 Mon Feb 14 09:56:44 2017 +0100</code></p></li>
+<li><p>Algunas opciones son:</p></li>
+<li><p><strong><code>0-9</code></strong> <span class="math inline">\(\rightarrow\)</span> Nivel de la copia de seguridad, no requiere argumento.</p></li>
+<li><p><strong><code>-u</code></strong> <span class="math inline">\(\rightarrow\)</span> Actualiza <code>/etc/dumpdates</code>, no requiere argumento.</p></li>
+<li><p><strong><code>-f</code></strong> <span class="math inline">\(\rightarrow\)</span> Indica fichero destino diferente al usado por defecto, sí requiere argumento. Por defecto, se usa la unidad de cinta.</p></li>
+</ul>
+</section>
+<section id="restore" class="level2">
+<h2 class="anchored" data-anchor-id="restore">restore</h2>
+<ul>
+<li><p>Restaura copias de seguridad creadas con <code>dump</code>.</p></li>
+<li><p>Permite recuperar ficheros, directorios y SF enteros.</p></li>
+<li><p>Se ha de recuperar el más reciente de cada nivel empezando por el 0. ¡Mucho cuidado con las fechas!</p></li>
+<li><p>Para recuperar SF <span class="math inline">\(\rightarrow\)</span> crear y montar un SF limpio y vacío, entrar en el punto de montaje y deshacer el <em>backup</em>.</p></li>
+<li><p>Algunas opciones son:</p></li>
+<li><p><strong><code>-r</code></strong> <span class="math inline">\(\rightarrow\)</span> Restaura la copia completa, no requiere argumento.</p></li>
+<li><p><strong><code>-f</code></strong> <span class="math inline">\(\rightarrow\)</span> Indica el dispositivo o archivo donde está el <em>backup</em>, sí requiere argumento.</p></li>
+<li><p><strong><code>-i</code></strong> <span class="math inline">\(\rightarrow\)</span> Modo interactivo, no requiere argumento.</p></li>
+<li><p><strong><code>-x</code></strong> <span class="math inline">\(\rightarrow\)</span> Extrae los archivos y directorios desde el directorio actual.</p></li>
+<li><p><strong><code>-t</code></strong> <span class="math inline">\(\rightarrow\)</span> Imprime los nombres de los archivos de la copia, no requiere argumentos.</p></li>
+</ul>
+</section>
+<section id="ejemplos-de-dump-y-restore" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplos-de-dump-y-restore">Ejemplos de dump y restore</h2>
+<ul>
+<li><p><code>dump 0 -u -f /dev/nst0 /dev/sda1</code> <span class="math inline">\(\rightarrow\)</span><br>
+Copia de nivel 0 de <code>/dev/sda1</code> en la unidad de cinta, actualizando <code>/etc/dumpdates</code>.</p></li>
+<li><p><code>dump 1 -u -f /dev/nst0 /dev/sda1</code> <span class="math inline">\(\rightarrow\)</span><br>
+Copia de nivel 1 de <code>/dev/sda1</code> en la unidad de cinta, actualizando <code>/etc/dumpdates</code>.</p></li>
+<li><p><code>dump 0 -f jj.dump /dev/sda1</code> <span class="math inline">\(\rightarrow\)</span><br>
+Copia de nivel 0 de <code>/dev/sda1</code> en el fichero jj.dump.</p></li>
+<li><p><code>restore -t -f fichero_backup</code> <span class="math inline">\(\rightarrow\)</span> listado de la copia.</p></li>
+<li><p><code>restore -x -f fichero_backup practicas/smallsh.c</code> <span class="math inline">\(\rightarrow\)</span> restaura sólo el fichero <code>practicas/smallsh.c</code>.</p></li>
+<li><p><code>restore -r -f /dev/nst0</code> <span class="math inline">\(\rightarrow\)</span> restaura una copia completa.</p></li>
+<li><p><code>restore -i -f /dev/nst0</code> <span class="math inline">\(\rightarrow\)</span> permite restaurar ficheros interactivamente (con ls, cd, pwd, add y extract).</p></li>
+</ul>
+</section>
+</section>
+<section id="restauración-de-un-sistema-completo" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Restauración de un sistema completo</h1>
+<section id="restauración-del-sistema" class="level2">
+<h2 class="anchored" data-anchor-id="restauración-del-sistema">Restauración del sistema</h2>
+<ul>
+<li><p>Si se tiene una copia de todo el sistema:</p>
+<ol type="1">
+<li><p>Arrancar desde un dispositivo distinto (p.e. un DVD).</p></li>
+<li><p>Si es necesario, crear los ficheros especiales de dispositivos para los discos (<code>/dev/sda1</code>, etc.).</p></li>
+<li><p>Preparar el disco duro, e.d., crear las particiones.</p></li>
+<li><p>Crear el sistema de ficheros en la partición donde se restaurarán los datos y montarlo en un directorio.</p></li>
+<li><p>Restaurar la copia de seguridad sobre ese sistema de ficheros.</p></li>
+</ol>
+<ul>
+<li><p>Restaurar la copia más reciente de nivel 0.</p></li>
+<li><p>Restaurar la copia más reciente del nivel más bajo después del último restaurado.</p></li>
+<li><p>Si quedan más copias por restaurar, volver al paso anterior.</p></li>
+</ul>
+<ol start="6" type="1">
+<li><p>Desmontar el sistema de ficheros restaurado.</p></li>
+<li><p>Volver al paso 2, para restaurar otros SF adicionales.</p></li>
+</ol></li>
+</ul>
+</section>
+<section id="restauración-del-sistema-1" class="level2">
+<h2 class="anchored" data-anchor-id="restauración-del-sistema-1">Restauración del sistema</h2>
+<ul>
+<li><p>De las siguientes copias realizadas, ¿qué copias de seguridad se restaurarían?:</p></li>
+<li><p>0 0 0 0 0 0 0.</p></li>
+<li><p>0 5 5 5 5 5.</p></li>
+<li><p>0 3 2 5 4 5.</p></li>
+<li><p>0 9 9 5 9 9 3 9 9 5 9 9.</p></li>
+<li><p>0 3 5 9 3 5 9.</p></li>
+</ul>
+</section>
+<section id="restauración-del-sistema-2" class="level2">
+<h2 class="anchored" data-anchor-id="restauración-del-sistema-2">Restauración del sistema</h2>
+<ul>
+<li><p>Solución (restauraciones en negrita):</p></li>
+<li><p>0 0 0 0 0 0 <strong>0</strong>.</p></li>
+<li><p><strong>0</strong> 5 5 5 5 <strong>5</strong>.</p></li>
+<li><p><strong>0</strong> 3 <strong>2</strong> 5 <strong>4</strong> <strong>5</strong>.</p></li>
+<li><p><strong>0</strong> 9 9 5 9 9 <strong>3</strong> 9 9 <strong>5</strong> 9 <strong>9</strong>.</p></li>
+<li><p><strong>0</strong> 3 5 9 <strong>3</strong> <strong>5</strong> <strong>9</strong>.</p></li>
+</ul>
+</section>
+<section id="ejercicio-diseño-completo-sistema-backup-y-restauración" class="level2" data-background-color="lightgreen">
+<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-diseño-completo-sistema-backup-y-restauración">Ejercicio: diseño completo sistema backup y restauración</h2>
+<p>Supongamos el ejemplo del servidor web. Podemos simplificarlo sólo a archivos. Utilizando: - tar o dump/restore - el cron de Linux - disco externo local o remoto por ssh</p>
+</section>
+</section>
+<section id="referencias" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Referencias</h1>
+<section id="referencias-1" class="level2">
+<h2 class="anchored" data-anchor-id="referencias-1">Referencias</h2>
+<div class="thebibliography">
+<p>Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Addison-Wesley. 5th Edition. 2018.</p>
+<p><a href="https://www.reddit.com/r/sysadmin/wiki/backups/" class="uri">https://www.reddit.com/r/sysadmin/wiki/backups/</a></p>
+<p><a href="https://www.tutorialspoint.com/linux_admin/linux_admin_backup_and_recovery.htm" class="uri">https://www.tutorialspoint.com/linux_admin/linux_admin_backup_and_recovery.htm</a></p>
+<p>Aeleen Frisch. Essential system administration. Capítulo 11. <em>Backup and restore</em>. O’Reilly and Associates. Tercera edición. 2002.</p>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
