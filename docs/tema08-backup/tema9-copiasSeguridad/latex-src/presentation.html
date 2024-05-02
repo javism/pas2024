@@ -8,7 +8,7 @@
 
 <meta name="author" content="Javier Sánchez Monedero">
 
-<title>Programación y Administración de Sistemas (2023-2024) - Tema 8: Restauración y copias de seguridad</title>
+<title>Programación y Administración de Sistemas (2023-2024)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,59 +21,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -143,7 +109,9 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tema08-backup/tema08-backup.html">Tema 8: Restauración y copias de seguridad</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Programación y Administración de Sistemas (2023-2024)
+      </li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -158,7 +126,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Programación y Administración de Sistemas (2023-2024)</a> 
+      <a href="../../../">Programación y Administración de Sistemas (2023-2024)</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -170,97 +138,97 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Inicio</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema00-presentacion/presentacion.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema00-presentacion/presentacion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 0: Presentación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema01-introduccion/tema01a-introduccion.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema01-introduccion/tema01a-introduccion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 1.a: Introducción</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema01-introduccion/tema01b-software-libre.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema01-introduccion/tema01b-software-libre.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 1.b: Software Libre y GNU/Linux</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema01-introduccion/tema01c-proyecto.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema01-introduccion/tema01c-proyecto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 1.c: Virtual Box, Debian y configuración básica</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema02-organizacion/tema02-ficheros.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema02-organizacion/tema02-ficheros.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 2: Organización de GNU/Linux</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema02-organizacion/tema02-ejercicios.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema02-organizacion/tema02-ejercicios.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 2: Ejercicios permisos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema02-organizacion/tema02-webuco.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema02-organizacion/tema02-webuco.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 2: Ejercicios web personal en la UCO</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema03-usuarios/tema03-usuarios.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema03-usuarios/tema03-usuarios.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 3: Gestión de usuarios</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema04-arranque/tema04-arranque.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema04-arranque/tema04-arranque.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 4: Arranque y Parada</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema05-recursos/tema05-recursos.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema05-recursos/tema05-recursos.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 5: Gestión de recursos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema06-sf/tema06-sf.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema06-sf/tema06-sf.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 6: Sistemas de ficheros y discos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema07-administracionsf/tema07-administracionsf.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema07-administracionsf/tema07-administracionsf.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 7: Administración de sistemas de ficheros</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema07-administracionsf/tema07-RAID-cuotas.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../tema07-administracionsf/tema07-RAID-cuotas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 7: Receta RAID + Cuotas</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tema08-backup/tema08-backup.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../tema08-backup/tema08-backup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tema 8: Restauración y copias de seguridad</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../enlaces.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../enlaces.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Enlaces</span></a>
   </div>
 </li>
@@ -274,11 +242,12 @@ window.Quarto = {
     <h2 id="toc-title">En esta página</h2>
    
   <ul>
-  <li><a href="#objetivos-y-evaluación" id="toc-objetivos-y-evaluación" class="nav-link active" data-scroll-target="#objetivos-y-evaluación"><span class="header-section-number">1</span> Objetivos y evaluación</a></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link active" data-scroll-target="#objetivos"><span class="header-section-number">1</span> Objetivos</a></li>
   <li><a href="#planes-de-prevención-de-catástrofes" id="toc-planes-de-prevención-de-catástrofes" class="nav-link" data-scroll-target="#planes-de-prevención-de-catástrofes"><span class="header-section-number">2</span> Planes de prevención de catástrofes</a></li>
-  <li><a href="#copias-de-seguridad-y-restauración" id="toc-copias-de-seguridad-y-restauración" class="nav-link" data-scroll-target="#copias-de-seguridad-y-restauración"><span class="header-section-number">3</span> Copias de seguridad y restauración</a></li>
-  <li><a href="#restauración-de-un-sistema-completo" id="toc-restauración-de-un-sistema-completo" class="nav-link" data-scroll-target="#restauración-de-un-sistema-completo"><span class="header-section-number">4</span> Restauración de un sistema completo</a></li>
-  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">5</span> Referencias</a></li>
+  <li><a href="#soportes-de-seguridad" id="toc-soportes-de-seguridad" class="nav-link" data-scroll-target="#soportes-de-seguridad"><span class="header-section-number">3</span> Soportes de seguridad</a></li>
+  <li><a href="#copias-de-seguridad-y-restauración" id="toc-copias-de-seguridad-y-restauración" class="nav-link" data-scroll-target="#copias-de-seguridad-y-restauración"><span class="header-section-number">4</span> Copias de seguridad y restauración</a></li>
+  <li><a href="#restauración-de-un-sistema-completo" id="toc-restauración-de-un-sistema-completo" class="nav-link" data-scroll-target="#restauración-de-un-sistema-completo"><span class="header-section-number">5</span> Restauración de un sistema completo</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">6</span> Referencias</a></li>
   </ul>
 </nav>
     </div>
@@ -287,8 +256,6 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tema 8: Restauración y copias de seguridad</h1>
-<p class="subtitle lead">Programación y Administración de Sistemas <br> (2023-2024)</p>
 </div>
 
 
@@ -330,186 +297,191 @@ window.Quarto = {
 </header>
 
 
-<section id="objetivos-y-evaluación" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Objetivos y evaluación</h1>
-<section id="objetivos" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="objetivos">Objetivos</h2>
-<ul>
-<li>Justificar la necesidad de establecer <strong>planes de prevención</strong> de catástrofes en la administración de cualquier sistema informático.</li>
-<li>Identificar distintos <strong>escenarios</strong> en los que pueda perderse información y establecer medidas de <strong>prevención</strong>: errores humanos, virus y <em>software</em> destructivo, personas malintencionadas y fallos del <em>hardware</em>.</li>
-<li>Proporcionar una serie de <strong>consejos generales</strong> a la hora de planear las copias de seguridad de un sistema.</li>
-<li>Establecer los <strong>factores</strong> que determinan la forma en que se realizan las copias de seguridad.</li>
-<li>Diferenciar los tres *tipos de estrategias** a seguir a la hora de realizar copias de seguridad: completa, parcial e incremental.</li>
-<li>Identificar diferentes <strong>soportes <em>hardware</em></strong> en los que realizar las copias de seguridad.</li>
-<li>Utilizar la herramienta <code>tar</code> para realizar copias de seguridad en un sistema GNU/Linux.</li>
-<li>Utilizar la herramienta <code>dump</code> para realizar copias de seguridad en un sistema GNU/Linux y <code>restore</code> para restaurarlas.</li>
-<li>Utilizar la herramienta <code>cpio</code> para realizar copias de seguridad en un sistema GNU/Linux.</li>
-</ul>
-</section>
-<section id="evaluación" class="level2">
-<h2 class="anchored" data-anchor-id="evaluación">Evaluación</h2>
-<ul>
-<li><p>Cuestionarios objetivos.</p></li>
-<li><p>Pruebas de respuesta libre.</p></li>
-<li><p>Tareas de administración.</p></li>
-<li><p><strong>NOTA</strong>: Como en otros temas, aquí veremos muchos parámetros de configuración que no tiene sentido memorizar, pero si hay que saber qué posibilidades tenemos en la administración de sistemas de ficheros.</p></li>
-</ul>
-</section>
+<p>[default]</p>
+<p>[PAS] Asignatura “Programación y Administración de Sistemas”<br>
+2º Curso Grado en Ingeniería Informática<br>
+Escuela Politécnica Superior<br>
+(Universidad de Córdoba)<br>
+<a href="mailto:jsanchezm@uco.es?subject=Cuestiones%20acerca%20de%20la%20presentación">jsanchezm@uco.es</a></p>
+<section id="objetivos" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Objetivos</h1>
 </section>
 <section id="planes-de-prevención-de-catástrofes" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Planes de prevención de catástrofes</h1>
-<section id="de-marzo-día-mundial-del-backup" class="level2">
-<h2 class="anchored" data-anchor-id="de-marzo-día-mundial-del-backup">31 de marzo, día mundial del backup</h2>
-<p><img src="images/worldbackupday.png" class="img-fluid"></p>
-<p><a href="https://www.worldbackupday.com" class="uri">https://www.worldbackupday.com</a></p>
-</section>
-<section id="qué-dónde-cómo-y-cuándo" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="qué-dónde-cómo-y-cuándo">qué, dónde, cómo y cuándo</h2>
-<div class="columns">
-<div class="column" style="width:70%;">
+<section id="planes-de-prevención-de-catástrofes-1" class="level2">
+<h2 class="anchored" data-anchor-id="planes-de-prevención-de-catástrofes-1">Planes de prevención de catástrofes</h2>
 <ul>
-<li><p>En cualquier momento, algunos archivos serán totalmente ilegibles por algún motivo: se exige capacidad de <strong>recuperación</strong>.</p></li>
-<li><p>Las copias de seguridad dependen de la situación y es necesario determinar: qué, dónde, cómo y cuándo...</p></li>
-<li><p>El administrador/a del sistema debe:</p></li>
+<li><p>En cualquier momento, algunos archivos serán totalmente ilegibles por algún motivo:</p>
+<ul>
+<li>Se exige capacidad de recuperación.</li>
+</ul></li>
+<li><p>Las copias de seguridad dependen de la situación y es necesario determinar:</p>
+<ul>
+<li>De qué archivos hacer la copia, dónde, cómo y cuándo...</li>
+</ul></li>
+<li><p>El administrador del sistema debe:</p>
+<ul>
 <li><p>Planear e implementar un sistema de copias de seguridad.</p></li>
 <li><p>Periódicamente, hacer copias de seguridad de los ficheros.</p></li>
 <li><p>Guardar las copias de seguridad en un lugar seguro.</p></li>
+</ul></li>
 </ul>
-</div><div class="column" style="width:30%;">
-<p><img src="images/ordenadorquemado.jpg" class="img-fluid"></p>
-</div>
+<div class="center">
+<p><img src="images/copia_seguridad.png" style="height:2cm"> <img src="images/ordenadorquemado.jpg" style="height:2cm"></p>
 </div>
 </section>
-<section id="planes-de-prevención-de-catástrofes-1" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="planes-de-prevención-de-catástrofes-1">Planes de prevención de catástrofes</h2>
-<p>La estrategia de copias de seguridad tiene que ser efectiva, para conseguir <strong>seguridad</strong>:</p>
+<section id="planes-de-prevención-de-catástrofes-2" class="level2">
+<h2 class="anchored" data-anchor-id="planes-de-prevención-de-catástrofes-2">Planes de prevención de catástrofes</h2>
+<ul>
+<li><p>La estrategia de copias de seguridad tiene que ser efectiva, para conseguir <strong>seguridad</strong>:</p>
 <ul>
 <li><p>El tiempo empleado es un esfuerzo que prevé futuras pérdidas.</p></li>
 <li><p>El dinero gastado se compensa al evitar el desastre que supone una pérdida de datos (que conlleva enormes pérdidas de trabajo y, por tanto, dinero).</p></li>
-</ul>
-<p>Tener en cuenta:</p>
+</ul></li>
+<li><p>Tener en cuenta:</p>
 <ul>
 <li><p>Capacidad restaurar el sistema entero o parte del mismo, en un tiempo aceptable.</p></li>
 <li><p>Tiempo que tarda en hacerse la copia de seguridad.</p></li>
 <li><p>Facilidad de recuperar algún fichero de forma independiente.</p></li>
+</ul></li>
 </ul>
-<p>Si valoramos los costes, merece la pena incluir mecanismos/dispositivos específicos para esta labor.</p>
-<div class="center">
-<p><img src="images/copia-seguridad.jpg" style="height:2cm"></p>
-</div>
 </section>
 <section id="escenarios-de-pérdida-de-información" class="level2">
 <h2 class="anchored" data-anchor-id="escenarios-de-pérdida-de-información">Escenarios de pérdida de información</h2>
-<p>Causas:</p>
+</section>
+<section id="escenarios-de-pérdida-de-información-1" class="level2">
+<h2 class="anchored" data-anchor-id="escenarios-de-pérdida-de-información-1">Escenarios de pérdida de información</h2>
+<ul>
+<li><p>Causas:</p>
 <ul>
 <li><p>Errores de usuario.</p></li>
 <li><p>Virus y software destructivo.</p></li>
 <li><p>Personas malintencionadas.</p></li>
 <li><p>Fallos mecánicos.</p></li>
 <li><p>Fuerzas mayores: desastres naturales, electricidad estática...</p></li>
+</ul></li>
+<li><p>Si valoramos los costes, merece la pena incluir mecanismos/dispositivos específicos para esta labor.</p>
+<p>::: center <img src="images/copia-seguridad.jpg" style="height:2cm"> :::</p></li>
 </ul>
 </section>
-<section id="errores-humanos" class="level2">
-<h2 class="anchored" data-anchor-id="errores-humanos">Errores humanos</h2>
-<p>Comandos mal escritos:</p>
-<div class="sourceCode" id="cb1" data-code-copy="false"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm foo <span class="pp">*</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Errores durante el redireccionamiento y uso de tuberías:</p>
-<div class="sourceCode" id="cb2" data-code-copy="false"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat fstab <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/ext2/ext3'</span> <span class="op">&gt;</span> fstab</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Usuarios con acceso de <code>root</code>:</p>
+<section id="escenarios-de-pérdida-de-información-errores-humanos" class="level2">
+<h2 class="anchored" data-anchor-id="escenarios-de-pérdida-de-información-errores-humanos">Escenarios de pérdida de información: errores humanos</h2>
+<ul>
+<li><p>Comandos mal escritos:</p>
+<pre><code>  $ rm foo *</code></pre></li>
+<li><p>Errores durante el redireccionamiento y uso de tuberías:</p>
+<pre><code>  $ cat fstab | sed 's/ext2/ext3' &gt; fstab</code></pre></li>
+<li><p>Usuarios con acceso de <code>root</code>:</p>
 <ul>
 <li>Los errores anteriores serían catastróficos si ocurrieran sobre directorios o archivos de sistema.</li>
+</ul></li>
 </ul>
 <div class="center">
-<p><img src="images/human-error1.jpg" class="img-fluid"></p>
+<p><img src="images/human-error1.jpg" style="height:2cm"></p>
 </div>
 </section>
-<section id="prevención-de-errores-humanos" class="level2">
-<h2 class="anchored" data-anchor-id="prevención-de-errores-humanos">Prevención de errores humanos</h2>
-<p>Medidas de prevención sencillas:</p>
+<section id="escenarios-de-pérdida-de-información-prevención-de-errores-humanos" class="level2">
+<h2 class="anchored" data-anchor-id="escenarios-de-pérdida-de-información-prevención-de-errores-humanos">Escenarios de pérdida de información: prevención de errores humanos</h2>
+<ul>
+<li><p>Medidas de prevención sencillas:</p>
 <ul>
 <li><p>Utilizar alias:</p>
-<pre><code>alias rm='rm -i' # El -i fuerza confirmacion</code></pre></li>
-<li><p>Utilizar sistema de control de versiones (Git...):</p></li>
-<li><p>Conservan el archivo original y llevan un histórico de los cambios realizados sobre éste.</p></li>
+<pre><code>  alias rm='rm -i' # El -i fuerza confirmacion</code></pre></li>
+<li><p>Utilizar sistema de control de versiones (Git...):</p>
+<ul>
+<li>Conservan el archivo original y llevan un histórico de los cambios realizados sobre éste.</li>
+</ul></li>
 <li><p>Crear copias de seguridad personales.</p></li>
-<li><p>Utilizar <code>sudo</code> para limitar el acceso de los usuarios con privilegios de <code>root</code>:</p></li>
-<li><p>Se limitará el acceso únicamente a los comandos necesarios para que el usuario pueda llevar a cabo su tarea.</p></li>
+<li><p>Utilizar <code>sudo</code> para limitar el acceso de los usuarios con privilegios de <code>root</code>:</p>
+<ul>
+<li>Se limitará el acceso únicamente a los comandos necesarios para que el usuario pueda llevar a cabo su tarea.</li>
+</ul></li>
+</ul></li>
 </ul>
 </section>
-<section id="malware-o-programas-maliciosos" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="malware-o-programas-maliciosos">Malware o programas maliciosos</h2>
-<p>(Más en <a href="https://es.wikipedia.org/wiki/Malware" class="uri">https://es.wikipedia.org/wiki/Malware</a>)</p>
+<section id="virus-y-software-destructivo" class="level2">
+<h2 class="anchored" data-anchor-id="virus-y-software-destructivo">Virus y software destructivo</h2>
 <ul>
-<li><p><strong>Virus</strong>: programa que se adhiere a un ejecutable y se propaga a otros al mismo tiempo que realiza otra acción (desde escribir un mensaje hasta mezclar las tablas de particiones).</p></li>
-<li><p>Un <strong>ransomware</strong> (del inglés ransom, ‘rescate’, y ware, acortamiento de software) o ‘secuestro de datos’ en español, es un tipo de programa dañino que restringe el acceso a determinadas partes o archivos del sistema operativo infectado y pide un rescate a cambio de quitar esta restricción.</p></li>
+<li><p><strong>Virus</strong>: programa que se adhiere a un ejecutable y se propaga a otros al mismo tiempo que realiza otra acción (desde escribir un mensaje hasta mezclar las tablas de particiones).</p>
+<ul>
 <li><p><strong>Caballos de Troya</strong>: Programas que se hacen pasar por otros, funcionando como éstos, pero además realizando otras operaciones como obtener y enviar contraseñas. El grado de destrucción depende de quien los ejecuta.</p></li>
 <li><p><strong>Gusanos</strong>: Programas que se aprovechan de las debilidades de un sistema para propagarse a otros.</p></li>
 <li><p><strong>Software destructivo</strong>: Aplicaciones no mal intencionadas pero con errores de programación que pueden ser muy dañinos.</p></li>
-<li><p>Linux dispone de mecanismos de seguridad que dificultan su propagación (jerarquía usuarios, protección de la memoria, límite de procesos, etc.).</p></li>
+</ul></li>
+<li><p>Linux dispone de mecanismos de seguridad que dificultan su propagación (jerarquía usuarios, protección de la memoria, etc.).</p></li>
 </ul>
 </section>
-<section id="software-destructivo-prevención" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="software-destructivo-prevención">Software destructivo: prevención</h2>
-<p>Medidas de prevención sencillas:</p>
+<section id="virus-y-software-destructivo-prevención" class="level2">
+<h2 class="anchored" data-anchor-id="virus-y-software-destructivo-prevención">Virus y software destructivo: prevención</h2>
 <ul>
-<li><p>Software específico de búsqueda y destrucción de virus (<strong>antivirus</strong>).</p></li>
-<li><p>Configuración del entorno: p.ej. la variable PATH no incluye la carpeta actual:</p></li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> echo <span class="va">$PATH</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li><p>Medidas de prevención sencillas:</p>
 <ul>
-<li><p>Directrices en <code>/etc/security/</code></p></li>
-<li><p><em>Host</em> y redes víctimas:</p></li>
-<li><p>Se usan ciertos equipos y redes para probar <em>software</em> (<strong>sandbox</strong>) nuevo o descubrir nuevos tipos de ataques asumiendo que puede resultar dañado (<strong>honeypots</strong> y <strong>honeynets</strong>).</p></li>
-<li><p>Se suelen basar en un sistema de detección de intrusos (IDS) que genera reglas para el <em>firewall</em> separando el tráfico normal del anómalo (complementario a reglas explícitas del cortafuegos y antivirus).</p></li>
+<li><p>Software específico de búsqueda y destrucción de virus.</p></li>
+<li><p>Configuración del entorno: p.ej. la variable PATH no incluye la carpeta actual:</p>
+<pre><code>  $ echo $PATH
+  /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games</code></pre></li>
+<li><p><em>Host</em> y redes víctimas:</p>
+<ul>
+<li><p>Se usan ciertos equipos y redes para probar <em>software</em> nuevo o descubrir nuevos tipos de ataques asumiendo que puede resultar dañado (<em>honeypots</em> y <em>honeynets</em>).</p></li>
+<li><p>Se suelen basar en un sistema de detección de intrusos (IDS) que genera reglas para el <em>firewall</em> separando el tráfico normal del anómalo (complementario a reglas explícitas del cortafuegos y antivirus). :::</p></li>
+</ul></li>
+</ul></li>
 </ul>
 </section>
 <section id="honeypots" class="level2">
-<h2 class="anchored" data-anchor-id="honeypots">Honeypots</h2>
+<h2 class="anchored" data-anchor-id="honeypots">honeypots</h2>
 <div class="center">
-<p><img src="images/honeypot.jpg" class="img-fluid"></p>
+<p><img src="images/honeypot.jpg" style="height:6cm"></p>
 </div>
 </section>
 <section id="personas-malintencionadas" class="level2">
 <h2 class="anchored" data-anchor-id="personas-malintencionadas">Personas malintencionadas</h2>
-<div class="columns">
-<div class="column" style="width:30%;">
-<p><img src="images/AD7_genoma-hackers.jpg" class="img-fluid"></p>
-</div><div class="column" style="width:70%;">
+<div class="center">
+<p><img src="images/AD7_genoma-hackers.jpg" style="height:2.6cm"><img src="images/hacker.jpg" style="height:2.6cm"></p>
+</div>
 <ul>
-<li><p><em>Crackers</em> (<span class="math inline">\(\neq\)</span> <em>Hackers</em>): Personas que entran en los sistemas de forma, a veces, ilegal con fines malintencionados.</p></li>
-<li><p>Usuarios descontentos: Usuario con acceso al sistema y recelo (algunas historias en la página de <a href="https://en.wikipedia.org/wiki/Logic_bomb">Logic Bombs</a>).</p></li>
-</ul>
-</div>
-</div>
-<p>Medidas preventivas:</p>
+<li><p><em>Crackers</em> (<span class="math inline">\(\neq\)</span> <em>Hackers</em>):</p>
+<ul>
+<li>Personas que entran en los sistemas de forma, a veces, ilegal con fines malintencionados.</li>
+</ul></li>
+<li><p>Usuarios descontentos:</p>
+<ul>
+<li>Usuario con acceso al sistema y recelo.</li>
+</ul></li>
+<li><p>Medidas preventivas:</p>
 <ul>
 <li><p>Cortafuegos y Seguridad Física para los <em>crackers</em>.</p></li>
 <li><p>Seguimiento de personas sospechosas de ser “usuarios descontentos” controlando sus accesos y sus privilegios.</p></li>
+</ul></li>
 </ul>
 </section>
 <section id="usuarios" class="level2">
 <h2 class="anchored" data-anchor-id="usuarios">Usuarios</h2>
-<p><img src="images/meme_bd_produccion.png" class="img-fluid"></p>
+<div class="center">
+<p><img src="images/meme_bd_produccion.png" style="height:4cm"></p>
+</div>
 <p>El usuario puede destruir información de forma no intencionada (<a href="https://www.youtube.com/watch?v=i_cVJgIz_Cs">Vídeo No te olvides de poner el Where en el Delete From</a>)</p>
 </section>
 <section id="fallos-de-hardware-i" class="level2">
 <h2 class="anchored" data-anchor-id="fallos-de-hardware-i">Fallos de <em>hardware</em> (I)</h2>
-<p>Fallo en la unidad de disco duro:</p>
+<ul>
+<li><p>Fallo en la unidad de disco duro:</p>
 <ul>
 <li>El kernel suele avisar antes de un fallo completo.</li>
-</ul>
-<p>Fallo de la memoria:</p>
+</ul></li>
+<li><p>Fallo de la memoria:</p>
 <ul>
 <li>Pérdida de información por la caída del sistema o información corrupta en memoria es copiada a disco.</li>
+</ul></li>
 </ul>
 <div class="center">
-<p><img src="images/hardware-malfunction.jpg" style="height:5cm"><img src="images/hardware-malfunction2.jpg" style="height:5cm"></p>
+<p><img src="images/hardware-malfunction.jpg" style="height:3cm"><img src="images/hardware-malfunction2.jpg" style="height:2cm"></p>
 </div>
 </section>
-<section id="fallos-de-hardware-ii" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="fallos-de-hardware-ii">Fallos de <em>hardware</em> (II)</h2>
-<p>Prevención y recuperación:</p>
+<section id="fallos-de-hardware-ii" class="level2">
+<h2 class="anchored" data-anchor-id="fallos-de-hardware-ii">Fallos de <em>hardware</em> (II)</h2>
+<ul>
+<li><p>Prevención y recuperación:</p>
 <ul>
 <li><p>Redundancia de la información: utilizar RAID.</p></li>
 <li><p>Supervisión de registros del sistema (orden <code>dmesg</code>, datos y pruebas SMART, ver <code>smartctl/nvme</code>, ).</p></li>
@@ -517,22 +489,30 @@ window.Quarto = {
 <li><p>Intentar leer bloques para construir una imagen con ‘<code>dd</code>’.</p></li>
 <li><p>Software de recuperación (TestDisk, PhotoRec...)</p></li>
 <li><p>Recuperación en entorno estéril: empresa dedicada.</p></li>
+</ul></li>
 </ul>
-<p><img src="images/smart.png" class="img-fluid"></p>
+<div class="center">
+<p><img src="images/smart.png" style="height:4cm"></p>
+</div>
 </section>
 <section id="consejos-generales" class="level2">
 <h2 class="anchored" data-anchor-id="consejos-generales">Consejos generales</h2>
-<p><img src="images/shrodinguer_backup.jpg" class="img-fluid"></p>
+</section>
+<section id="consejos-generales-1" class="level2">
+<h2 class="anchored" data-anchor-id="consejos-generales-1">Consejos generales</h2>
+<div class="center">
+<p><img src="images/shrodinguer_backup.jpg" style="height:4cm"></p>
+</div>
 <ul>
 <li><p><strong>Prevención</strong>: Ante cualquiera de los escenarios de pérdida de información debemos tener la capacidad de recuperarnos inmediatamente o en un corto lapso de tiempo.</p></li>
 <li><p>Una opción es utilizar <strong>copias de seguridad</strong>.</p></li>
 </ul>
 </section>
-<section id="consejos-generales-1" class="level2">
-<h2 class="anchored" data-anchor-id="consejos-generales-1">Consejos generales</h2>
-<p>Consejos generales para las <strong>copias de seguridad</strong>:</p>
-<div class="incremental">
-<ul class="incremental">
+<section id="consejos-generales-2" class="level2">
+<h2 class="anchored" data-anchor-id="consejos-generales-2">Consejos generales</h2>
+<div class="block">
+<p>Consejos generales:</p>
+<ul>
 <li><p>Etiquetar siempre las copias realizadas.</p></li>
 <li><p>Elegir correctamente la frecuencia de copias.</p></li>
 <li><p>Usar particiones distintas para el sistema de ficheros.</p></li>
@@ -544,125 +524,126 @@ window.Quarto = {
 <li><p><strong>Prepararse para lo peor</strong>.</p></li>
 </ul>
 </div>
-<!-- TODO: REDUCIR o REFORMULAR -->
 </section>
-<section id="factores" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="factores">Factores</h2>
+<section id="factores" class="level2">
+<h2 class="anchored" data-anchor-id="factores">Factores</h2>
+<p>: ## Factores</p>
+<div class="block">
 <p>Factores a considerar en una estrategia de copias de seguridad:</p>
-<div class="incremental">
-<ul class="incremental">
+<ul>
 <li><p>¿Qué ficheros se deben copiar y dónde están esos ficheros?.</p></li>
 <li><p>Conocer qué es lo más importante del sistema.</p></li>
-<li><p>¿Quién hará la copia?</p></li>
-<li><p>¿el <strong>administrador</strong> o el <strong>propietario</strong> de los ficheros?.</p></li>
-<li><p>¿Dónde, cuándo y bajo qué condiciones se deben hacer?</p></li>
-<li><p>Mejor hacer las copias cuando no haya usuarios trabajando (por la noche, a la hora de comer...).</p></li>
+<li><p>¿Quién hará la copia?</p>
+<ul>
+<li>¿el <strong>administrador</strong> o el <strong>propietario</strong> de los ficheros?.</li>
+</ul></li>
+<li><p>¿Dónde, cuándo y bajo qué condiciones se deben hacer?</p>
+<ul>
+<li>Mejor hacer las copias cuando no haya usuarios trabajando (por la noche, a la hora de comer...).</li>
+</ul></li>
 <li><p>Frecuencia de cambios en los ficheros <span class="math inline">\(\Leftrightarrow\)</span> Frecuencia de las copias.</p></li>
-<li><p>¿Cada cuánto tiempo habrá que recuperar ficheros dañados o perdidos? (muy difícil saberlo).</p></li>
-<li><p><strong>¿Dónde se restaurarán los datos?</strong>.</p></li>
-<li><p>Rutinas de restauración sencillas.</p></li>
-<li><p>Proteger las copias de seguridad contra escritura.</p></li>
-<li><p>Seguridad de las copias:</p></li>
-<li><p>Lugar donde se almacenan, condiciones ambientales, propiedades de los medios empleados...</p></li>
 </ul>
 </div>
+<div class="block">
+<p>Factores a considerar en una estrategia de copias de seguridad:</p>
+<ul>
+<li><p>¿Cada cuánto tiempo habrá que recuperar ficheros dañados o perdidos? (muy difícil saberlo).</p></li>
+<li><p>¿Dónde se restaurarán los datos?.</p></li>
+<li><p>Rutinas de restauración sencillas.</p></li>
+<li><p>Proteger las copias de seguridad contra escritura.</p></li>
+<li><p>Seguridad de las copias:</p>
+<ul>
+<li>Lugar donde se almacenan, condiciones ambientales, propiedades de los medios empleados...</li>
+</ul></li>
+</ul>
+</div>
+<p>:</p>
 </section>
-<section id="estrategias-copia-de-seguridad-completa" class="level2">
-<h2 class="anchored" data-anchor-id="estrategias-copia-de-seguridad-completa">Estrategias: copia de seguridad completa</h2>
+<section id="estrategias" class="level2">
+<h2 class="anchored" data-anchor-id="estrategias">Estrategias</h2>
+<p>:: ## Estrategias de copias de seguridad</p>
+<div class="block">
+<p>Copia de seguridad completa</p>
 <ul>
 <li><p>Se guardan todos los archivos asociados a un ordenador.</p></li>
 <li><p>La restauración necesita un solo fichero pero <strong>mucho tiempo</strong>.</p></li>
 <li><p>Puede ser difícil recuperar un archivo suelto.</p></li>
-<li><p>Si los ficheros no cambian muy a menudo no tiene sentido.</p></li>
+<li><p>Si los ficheros no cambian muy a menudo: no hay justificación.</p></li>
 <li><p>Si cambian mucho y son vitales para el trabajo de mucha gente: están justificadas incluso a diario.</p></li>
 <li><p>Hacerla ante grandes cambios: nuevo <em>software</em>, nuevo SO, . . .</p></li>
 </ul>
-</section>
-<section id="estrategias-copia-de-seguridad-parcial" class="level2">
-<h2 class="anchored" data-anchor-id="estrategias-copia-de-seguridad-parcial">Estrategias: copia de seguridad parcial</h2>
+</div>
+<div class="block">
+<p>Copia de seguridad parcial</p>
 <ul>
 <li><p>Se copia sólo algunos archivos específicos (por ejemplo, la carpeta <code>/etc</code>).</p></li>
 <li><p>Proceso de restauración sencillo, ya que hay menos archivos implicados.</p></li>
 <li><p>Problema: nos dejamos archivos sin copiar.</p></li>
 </ul>
-</section>
-<section id="estrategias-copia-de-seguridad-incremental" class="level2">
-<h2 class="anchored" data-anchor-id="estrategias-copia-de-seguridad-incremental">Estrategias: copia de seguridad incremental</h2>
+</div>
+<div class="block">
+<p>Copia de seguridad incremental</p>
 <ul>
 <li><p>Solo aquellos ficheros que hayan cambiado desde la última copia.</p></li>
 <li><p>Se deben realizar casi a diario.</p></li>
 <li><p>Se mantiene una copia completa del sistema, y se incorporan cambios muy pequeños, de los que se irán haciendo copias incrementales.</p></li>
 </ul>
-</section>
-<section id="estrategias-niveles-de-copias-incrementales" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="estrategias-niveles-de-copias-incrementales">Estrategias: niveles de copias incrementales</h2>
-<p>Copias incrementales organizadas por niveles.</p>
+</div>
+<ul>
+<li><p>Copias incrementales organizadas por niveles.</p>
 <ul>
 <li><p><strong>Nivel 0</strong> <span class="math inline">\(\rightarrow\)</span> <em>Backup</em> completo.</p></li>
 <li><p><strong>Nivel 1</strong> <span class="math inline">\(\rightarrow\)</span> Todos los ficheros que han cambiado desde el último <em>backup</em> de nivel 0.</p></li>
 <li><p><strong>Nivel 2</strong> <span class="math inline">\(\rightarrow\)</span> Todos los ficheros que han cambiado desde el último <em>backup</em> de nivel 1.</p></li>
 <li><p><strong>...</strong></p></li>
-</ul>
-<p>Posibilidades de estrategias:</p>
+</ul></li>
+<li><p>Posibilidades de estrategias:</p>
 <ul>
 <li><p>Lunes: nivel 0. Resto de días: nivel 1.</p></li>
 <li><p>Lunes: nivel 0. Martes: nivel 1. Miércoles: nivel 2. Jueves: nivel 1. Viernes: nivel 2.</p></li>
+</ul></li>
+<li><p>También hay que asociar una <strong>estrategia de restauración</strong>. ::</p></li>
 </ul>
-<p>También hay que asociar una <strong>estrategia de restauración</strong>.</p>
 </section>
-<section id="ejercicio-estrategia-de-backup" class="level2 scrollable" data-background-color="lightgreen">
-<h2 class="scrollable anchored" data-background-color="lightgreen" data-anchor-id="ejercicio-estrategia-de-backup">Ejercicio: estrategia de backup</h2>
-<p><img src="images/Directory-Filesystem-Hierarchy-Standard.png" class="img-fluid"></p>
-<p>Imagina que tenemos un servidor Linux con una aplicación wordpress:</p>
-<ol type="a">
-<li>guarda los datos de la web en <code>/var/www/wordpress</code> (cambia a diario)</li>
-<li>guarda su base de datos SQL en <code>/var/lib/mysql</code> (cambia varias veces al día)</li>
-<li>guarda su configuración en <code>/etc/apache2</code> (cambia cada varios días o semanas)</li>
-</ol>
-<ol type="1">
-<li><p>Con la ayuda de la jerarquía estándar de directorios y elige qué debería entrar dentro de la política de copias del sistema operativo y el servicio web.</p></li>
-<li><p>¿Qué tipo de copia harías para el sistema operativo y para la web?</p></li>
-<li><p>¿Con qué frecuencia para cada caso?¿Cómo podríamos automatizarlas en Linux?</p></li>
-</ol>
 </section>
-<section id="soportes-para-realizar-las-copias" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="soportes-para-realizar-las-copias">Soportes para realizar las copias</h2>
+<section id="soportes-de-seguridad" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Soportes de seguridad</h1>
+<section id="soportes-para-realizar-las-copias" class="level2">
+<h2 class="anchored" data-anchor-id="soportes-para-realizar-las-copias">Soportes para realizar las copias</h2>
 <ul>
 <li><p>Guardar la copia de seguridad en el mismo disco (o en otro disco conectado a la máquina) <strong>no es seguro</strong>.</p></li>
 <li><p>Multitud de dispositivos:</p>
 <ul>
-<li>Cintas magnéticas (<code>/dev/st0</code>, normal, o <code>/dev/nst0</code>, <em>non-rewinding</em>, para unidades de cinta SCSI). <a href="https://www.instagram.com/reel/CnwS82qpIBE/">Mira un ejemplo del MareNostum 5</a>.</li>
-</ul>
-<p><img src="images/backup_tapes.jpg" style="height:5cm"></p>
-<ul>
-<li><p>Estantería de cintas o <em>jukeboxes</em>, <em>stackloaders</em> y similares...</p>
-<p><img src="images/tapelibrary1.jpg" style="height:5cm"><img src="images/autoloader.jpg" style="height:5cm"></p></li>
-<li><p>Discos extraíbles (disco duro que puedes extraer sin apagar la máquina).</p></li>
-</ul>
-<p><img src="images/disco-extraible.jpg" style="height:5cm"></p>
-<ul>
-<li>Disquetes (<a href="https://www.xataka.com/empresas-y-economia/resulta-que-hay-ultima-persona-haciendo-negocio-disquetes-esta-su-historia">La última persona que sigue vendiendo disquetes en 2022</a>).</li>
-</ul></li>
+<li><p>Cintas magnéticas (<code>/dev/st0</code>, normal, o <code>/dev/nst0</code>, <em>non-rewinding</em>, para unidades de cinta SCSI):</p>
+<p>::: center <img src="images/backup_tapes.jpg" style="height:1.5cm"> :::</p></li>
+<li><p>Discos extraíbles (disco duro que puedes extraer sin apagar la máquina).</p>
+<p>::: center <img src="images/disco-extraible.jpg" style="height:1.5cm"> :::</p></li>
+<li><p>CD-Roms o DVD’s regrablables.</p>
+<p>::: center <img src="images/cddvd.jpg" style="height:1.5cm"> :::</p></li>
+<li><p>Disquetes (<a href="https://www.xataka.com/empresas-y-economia/resulta-que-hay-ultima-persona-haciendo-negocio-disquetes-esta-su-historia">La última persona que sigue vendiendo disquetes en 2022</a>).</p></li>
+<li><p>Librería de cintas o <em>jukeboxes</em>, <em>stackloaders</em> y similares...</p>
+<p>::: center <img src="images/tapelibrary1.jpg" style="height:3cm"><img src="images/autoloader.jpg" style="height:3cm"> :::</p></li>
 <li><p>etc.</p></li>
+</ul></li>
 </ul>
 </section>
-<section id="opcional-criterios-para-elegir-el-soporte" class="level2">
-<h2 class="anchored" data-anchor-id="opcional-criterios-para-elegir-el-soporte">[Opcional] Criterios para elegir el soporte</h2>
+<section id="criterios-para-elegir-el-soporte" class="level2">
+<h2 class="anchored" data-anchor-id="criterios-para-elegir-el-soporte">Criterios para elegir el soporte</h2>
 <ul>
 <li><p>Coste: no solo del dispositivo sino también del soporte físico de almacenamiento.</p></li>
 <li><p>Soporte del <em>kernel</em> para el dispositivo.</p></li>
 <li><p>Capacidad de almacenamiento de datos de los soportes físicos.</p></li>
 <li><p>Tasa de transferencia de datos para realizar copias de seguridad.</p></li>
-<li><p>Mecanismo de cargador automático.</p></li>
+<li><p>Mecanismo de cargador automático.</p>
+<ul>
 <li><p>Cuando se llena una cinta se inserta otra automáticamente.</p></li>
 <li><p>Permite las copias no supervisadas de grandes volúmenes.</p></li>
+</ul></li>
 </ul>
 </section>
-<section id="comparativa-discos-vs-cintas" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="comparativa-discos-vs-cintas">Comparativa discos vs cintas</h2>
-<p><img src="images/cintas_capacidad.png" class="img-fluid"></p>
-<p><span class="rojo">Deventajas</span>: acceso aleatorio lento, necesitan un mantenimiento especial, el tiempo de recuperación es mayor, se duplica mucha información... cuestiones que no afectan a los discos.</p>
-<p><span class="verde">Ventajas</span> de las cintas de backup:</p>
+<section id="comparativa-discos-vs-cintas" class="level2">
+<h2 class="anchored" data-anchor-id="comparativa-discos-vs-cintas">Comparativa discos vs cintas</h2>
+<p>Ventajas de las cintas de backup:</p>
 <ul>
 <li><p>Alta capacidad por cinta (580TB).</p></li>
 <li><p>Dispositivo con menor coste.</p></li>
@@ -671,58 +652,30 @@ window.Quarto = {
 <li><p>Durabilidad: en promedio pueden durar hasta 30 años.</p></li>
 <li><p>Velocidad (secuencial): Cinta 800MB/s, HDD 130MB/s, SSD 280MB/s</p></li>
 </ul>
+<div class="center">
+<p><img src="images/cintas_capacidad.png" style="height:3cm"></p>
+</div>
+<p>Deventajas: acceso aleatorio lento, necesitan un mantenimiento especial, el tiempo de recuperación es mayor, se duplica mucha información... cuestiones que no afectan a los discos.</p>
 </section>
 </section>
-<section id="copias-de-seguridad-y-restauración" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Copias de seguridad y restauración</h1>
+<section id="copias-de-seguridad-y-restauración" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Copias de seguridad y restauración</h1>
+<section id="tar" class="level2">
+<h2 class="anchored" data-anchor-id="tar">tar</h2>
+</section>
 <section id="comando-tar-tape-archiver" class="level2">
 <h2 class="anchored" data-anchor-id="comando-tar-tape-archiver">Comando tar (Tape ARchiver)</h2>
 <p>Realiza copias de seguridad de ficheros o “dispositivos”.</p>
-<p><img src="images/targzip.png" class="img-fluid"></p>
+<div class="center">
+<p><img src="images/targzip.png" style="height:3cm"></p>
+</div>
 <p>Fuente: Archivo sobre tar en Wikipedia</p>
 </section>
-<section id="tldr-tar" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="tldr-tar">TLDR tar</h2>
-<blockquote class="blockquote">
-<p>Archiving utility. Often combined with a compression method, such as <code>gzip</code> or <code>bzip2</code>. More information: <a href="https://www.gnu.org/software/tar" class="uri">https://www.gnu.org/software/tar</a>.</p>
-</blockquote>
+<section id="comando-tar-tape-archiver-1" class="level2">
+<h2 class="anchored" data-anchor-id="comando-tar-tape-archiver-1">Comando tar (Tape ARchiver)</h2>
 <ul>
-<li>[c]reate an archive and write it to a [f]ile:</li>
-</ul>
-<p><code>tar cf {{path/to/target.tar}} {{path/to/file1 path/to/file2 ...}}</code></p>
+<li><p>Algunas opciones son:</p>
 <ul>
-<li>[c]reate a g[z]ipped archive and write it to a [f]ile:</li>
-</ul>
-<p><code>tar czf {{path/to/target.tar.gz}} {{path/to/file1 path/to/file2 ...}}</code></p>
-<ul>
-<li>[c]reate a g[z]ipped archive from a directory using relative paths:</li>
-</ul>
-<p><code>tar czf {{path/to/target.tar.gz}} --directory={{path/to/directory}} .</code></p>
-<ul>
-<li>E[x]tract a (compressed) archive [f]ile into the current directory [v]erbosely:</li>
-</ul>
-<p><code>tar xvf {{path/to/source.tar[.gz|.bz2|.xz]}}</code></p>
-<ul>
-<li>E[x]tract a (compressed) archive [f]ile into the target directory:</li>
-</ul>
-<p><code>tar xf {{path/to/source.tar[.gz|.bz2|.xz]}} --directory={{path/to/directory}}</code></p>
-<ul>
-<li>[c]reate a compressed archive and write it to a [f]ile, using the file extension to [a]utomatically determine the compression program:</li>
-</ul>
-<p><code>tar caf {{path/to/target.tar.xz}} {{path/to/file1 path/to/file2 ...}}</code></p>
-<ul>
-<li>Lis[t] the contents of a tar [f]ile [v]erbosely:</li>
-</ul>
-<p><code>tar tvf {{path/to/source.tar}}</code></p>
-<ul>
-<li>E[x]tract files matching a pattern from an archive [f]ile:</li>
-</ul>
-<p><code>tar xf {{path/to/source.tar}} --wildcards "{{*.html}}"</code></p>
-</section>
-<section id="opcional-comando-tar-tape-archiver" class="level2">
-<h2 class="anchored" data-anchor-id="opcional-comando-tar-tape-archiver">[Opcional] Comando tar (Tape ARchiver)</h2>
-<ul>
-<li><p>Algunas opciones son:</p></li>
 <li><p><strong><code>c</code></strong> <span class="math inline">\(\rightarrow\)</span> Crea un fichero contenedor.</p></li>
 <li><p><strong><code>x</code></strong> <span class="math inline">\(\rightarrow\)</span> Extrae ficheros de un fichero contenedor.</p></li>
 <li><p><strong><code>v</code></strong> <span class="math inline">\(\rightarrow\)</span> Modo <em>verbose</em> (mayor cantidad de mensajes).</p></li>
@@ -732,10 +685,11 @@ window.Quarto = {
 <li><p><strong><code>p</code></strong> <span class="math inline">\(\rightarrow\)</span> Conserva los permisos de los ficheros.</p></li>
 <li><p><strong><code>P</code></strong> <span class="math inline">\(\rightarrow\)</span> Guarda los ficheros con su ruta absoluta.</p></li>
 <li><p><strong><code>N</code></strong> <span class="math inline">\(\rightarrow\)</span> Considera <strong>solo</strong> archivos cuya fecha sea superior al argumento.</p></li>
+</ul></li>
 </ul>
 </section>
-<section id="comando-tar-tape-archiver-1" class="level2">
-<h2 class="anchored" data-anchor-id="comando-tar-tape-archiver-1">Comando tar (Tape ARchiver)</h2>
+<section id="comando-tar-tape-archiver-2" class="level2">
+<h2 class="anchored" data-anchor-id="comando-tar-tape-archiver-2">Comando tar (Tape ARchiver)</h2>
 <ul>
 <li><p><code>tar cPf /dev/nst0 /home</code> <span class="math inline">\(\Rightarrow\)</span> copia todos los ficheros del directorio <code>/home</code> en la unidad de cinta.</p></li>
 <li><p><code>tar czvf /dev/sda1 /home</code> <span class="math inline">\(\Rightarrow\)</span> ¿qué sucede con la partición <code>/dev/sda1</code>?</p></li>
@@ -747,10 +701,14 @@ window.Quarto = {
 <li><p><code>tar cf practicas.tar -N ’3 days ago’</code> <span class="math inline">\(\Rightarrow\)</span> copia los ficheros creados/modificados hace menos de 3 días</p></li>
 </ul>
 </section>
-<section id="opcional-cpio" class="level2">
-<h2 class="anchored" data-anchor-id="opcional-cpio">[Opcional] cpio</h2>
+<section id="cpio" class="level2">
+<h2 class="anchored" data-anchor-id="cpio">cpio</h2>
+</section>
+<section id="comando-cpio" class="level2">
+<h2 class="anchored" data-anchor-id="comando-cpio">Comando cpio</h2>
 <ul>
-<li><p>Copias de seguridad de conjuntos de ficheros seleccionados arbitrariamente.</p></li>
+<li><p>Copias de seguridad de conjuntos de ficheros seleccionados arbitrariamente.</p>
+<ul>
 <li><p>Empaqueta los datos en una cinta más eficientemente que <code>tar</code> (al restaurar es capaz de saltar trozos de la cinta defectuosos).</p></li>
 <li><p>Lee de la entrada estándar el nombre de los ficheros a guardar, para usarlo enlazado con otras órdenes con tuberías.</p></li>
 <li><p>Algunas opciones:</p>
@@ -764,16 +722,20 @@ window.Quarto = {
 <li><p><strong><code>v</code></strong> <span class="math inline">\(\rightarrow\)</span> Modo <em>verbose</em>.</p></li>
 <li><p><strong><code>F</code></strong> <span class="math inline">\(\rightarrow\)</span> Crear la copia en un fichero. :::</p></li>
 </ul></li>
+</ul></li>
 </ul>
 </section>
-<section id="opcional-cpio-1" class="level2">
-<h2 class="anchored" data-anchor-id="opcional-cpio-1">[Opcional] cpio</h2>
+<section id="comando-cpio-1" class="level2">
+<h2 class="anchored" data-anchor-id="comando-cpio-1">Comando cpio</h2>
 <ul>
 <li><p><code>find /home | cpio -o &gt; /dev/nst0</code> <span class="math inline">\(\rightarrow\)</span> se copia en la unidad de cinta.</p></li>
 <li><p><code>find /home | cpio -o -F h.cpio</code> <span class="math inline">\(\rightarrow\)</span> la copia la realiza en un fichero.</p></li>
 <li><p><code>cpio -i &lt; h.cpio</code> <span class="math inline">\(\rightarrow\)</span> restaura la copia de seguridad de ese fichero.</p></li>
 <li><p><code>cpio -i -F h.cpio fichero</code> <span class="math inline">\(\rightarrow\)</span> restaura sólo el fichero indicado. :::</p></li>
 </ul>
+</section>
+<section id="dump" class="level2">
+<h2 class="anchored" data-anchor-id="dump">dump</h2>
 </section>
 <section id="comando-dump" class="level2">
 <h2 class="anchored" data-anchor-id="comando-dump">Comando dump</h2>
@@ -783,25 +745,32 @@ window.Quarto = {
 <li><p>Actúa solo a nivel de dispositivo.</p></li>
 <li><p><code>/etc/dumpdates</code> <span class="math inline">\(\rightarrow\)</span> información sobre las copias de seguridad de cada SF y de qué nivel son:<br>
 <code>/dev/sda1 0 Mon Feb 14 09:56:44 2017 +0100</code></p></li>
-<li><p>Algunas opciones son:</p></li>
+<li><p>Algunas opciones son:</p>
+<ul>
 <li><p><strong><code>0-9</code></strong> <span class="math inline">\(\rightarrow\)</span> Nivel de la copia de seguridad, no requiere argumento.</p></li>
 <li><p><strong><code>-u</code></strong> <span class="math inline">\(\rightarrow\)</span> Actualiza <code>/etc/dumpdates</code>, no requiere argumento.</p></li>
 <li><p><strong><code>-f</code></strong> <span class="math inline">\(\rightarrow\)</span> Indica fichero destino diferente al usado por defecto, sí requiere argumento. Por defecto, se usa la unidad de cinta.</p></li>
+</ul></li>
 </ul>
 </section>
 <section id="restore" class="level2">
 <h2 class="anchored" data-anchor-id="restore">restore</h2>
+</section>
+<section id="comando-restore" class="level2">
+<h2 class="anchored" data-anchor-id="comando-restore">Comando restore</h2>
 <ul>
 <li><p>Restaura copias de seguridad creadas con <code>dump</code>.</p></li>
 <li><p>Permite recuperar ficheros, directorios y SF enteros.</p></li>
 <li><p>Se ha de recuperar el más reciente de cada nivel empezando por el 0. ¡Mucho cuidado con las fechas!</p></li>
 <li><p>Para recuperar SF <span class="math inline">\(\rightarrow\)</span> crear y montar un SF limpio y vacío, entrar en el punto de montaje y deshacer el <em>backup</em>.</p></li>
-<li><p>Algunas opciones son:</p></li>
+<li><p>Algunas opciones son:</p>
+<ul>
 <li><p><strong><code>-r</code></strong> <span class="math inline">\(\rightarrow\)</span> Restaura la copia completa, no requiere argumento.</p></li>
 <li><p><strong><code>-f</code></strong> <span class="math inline">\(\rightarrow\)</span> Indica el dispositivo o archivo donde está el <em>backup</em>, sí requiere argumento.</p></li>
 <li><p><strong><code>-i</code></strong> <span class="math inline">\(\rightarrow\)</span> Modo interactivo, no requiere argumento.</p></li>
 <li><p><strong><code>-x</code></strong> <span class="math inline">\(\rightarrow\)</span> Extrae los archivos y directorios desde el directorio actual.</p></li>
 <li><p><strong><code>-t</code></strong> <span class="math inline">\(\rightarrow\)</span> Imprime los nombres de los archivos de la copia, no requiere argumentos.</p></li>
+</ul></li>
 </ul>
 </section>
 <section id="ejemplos-de-dump-y-restore" class="level2">
@@ -820,8 +789,8 @@ Copia de nivel 0 de <code>/dev/sda1</code> en el fichero jj.dump.</p></li>
 </ul>
 </section>
 </section>
-<section id="restauración-de-un-sistema-completo" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Restauración de un sistema completo</h1>
+<section id="restauración-de-un-sistema-completo" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Restauración de un sistema completo</h1>
 <section id="restauración-del-sistema" class="level2">
 <h2 class="anchored" data-anchor-id="restauración-del-sistema">Restauración del sistema</h2>
 <ul>
@@ -831,14 +800,12 @@ Copia de nivel 0 de <code>/dev/sda1</code> en el fichero jj.dump.</p></li>
 <li><p>Si es necesario, crear los ficheros especiales de dispositivos para los discos (<code>/dev/sda1</code>, etc.).</p></li>
 <li><p>Preparar el disco duro, e.d., crear las particiones.</p></li>
 <li><p>Crear el sistema de ficheros en la partición donde se restaurarán los datos y montarlo en un directorio.</p></li>
-<li><p>Restaurar la copia de seguridad sobre ese sistema de ficheros.</p></li>
-</ol>
+<li><p>Restaurar la copia de seguridad sobre ese sistema de ficheros.</p>
 <ul>
 <li><p>Restaurar la copia más reciente de nivel 0.</p></li>
 <li><p>Restaurar la copia más reciente del nivel más bajo después del último restaurado.</p></li>
 <li><p>Si quedan más copias por restaurar, volver al paso anterior.</p></li>
-</ul>
-<ol start="6" type="1">
+</ul></li>
 <li><p>Desmontar el sistema de ficheros restaurado.</p></li>
 <li><p>Volver al paso 2, para restaurar otros SF adicionales.</p></li>
 </ol></li>
@@ -847,38 +814,36 @@ Copia de nivel 0 de <code>/dev/sda1</code> en el fichero jj.dump.</p></li>
 <section id="restauración-del-sistema-1" class="level2">
 <h2 class="anchored" data-anchor-id="restauración-del-sistema-1">Restauración del sistema</h2>
 <ul>
-<li><p>De las siguientes copias realizadas, ¿qué copias de seguridad se restaurarían?:</p></li>
+<li><p>De las siguientes copias realizadas, ¿qué copias de seguridad se restaurarían?:</p>
+<ul>
 <li><p>0 0 0 0 0 0 0.</p></li>
 <li><p>0 5 5 5 5 5.</p></li>
 <li><p>0 3 2 5 4 5.</p></li>
 <li><p>0 9 9 5 9 9 3 9 9 5 9 9.</p></li>
 <li><p>0 3 5 9 3 5 9.</p></li>
+</ul></li>
 </ul>
 </section>
 <section id="restauración-del-sistema-2" class="level2">
 <h2 class="anchored" data-anchor-id="restauración-del-sistema-2">Restauración del sistema</h2>
 <ul>
-<li><p>Solución (restauraciones en negrita):</p></li>
+<li><p>Solución (restauraciones en negrita):</p>
+<ul>
 <li><p>0 0 0 0 0 0 <strong>0</strong>.</p></li>
 <li><p><strong>0</strong> 5 5 5 5 <strong>5</strong>.</p></li>
 <li><p><strong>0</strong> 3 <strong>2</strong> 5 <strong>4</strong> <strong>5</strong>.</p></li>
 <li><p><strong>0</strong> 9 9 5 9 9 <strong>3</strong> 9 9 <strong>5</strong> 9 <strong>9</strong>.</p></li>
 <li><p><strong>0</strong> 3 5 9 <strong>3</strong> <strong>5</strong> <strong>9</strong>.</p></li>
+</ul></li>
 </ul>
 </section>
-<section id="ejercicio-diseño-completo-sistema-backup-y-restauración" class="level2" data-background-color="lightgreen">
-<h2 data-background-color="lightgreen" class="anchored" data-anchor-id="ejercicio-diseño-completo-sistema-backup-y-restauración">Ejercicio: diseño completo sistema backup y restauración</h2>
-<p>Supongamos el ejemplo del servidor web. Podemos simplificarlo sólo a archivos. Utilizando: - tar o dump/restore - el cron de Linux - disco externo local o remoto por ssh</p>
 </section>
-</section>
-<section id="referencias" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Referencias</h1>
+<section id="referencias" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Referencias</h1>
 <section id="referencias-1" class="level2">
 <h2 class="anchored" data-anchor-id="referencias-1">Referencias</h2>
 <div class="thebibliography">
-<p>Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Addison-Wesley. 5th Edition. 2018.</p>
-<p><a href="https://www.reddit.com/r/sysadmin/wiki/backups/" class="uri">https://www.reddit.com/r/sysadmin/wiki/backups/</a></p>
-<p><a href="https://www.tutorialspoint.com/linux_admin/linux_admin_backup_and_recovery.htm" class="uri">https://www.tutorialspoint.com/linux_admin/linux_admin_backup_and_recovery.htm</a></p>
+<p>Evi Nemeth, Garth Snyder, Trent R. Hein y Ben Whaley Unix and Linux system administration handbook. Capítulo 10. <em>Backups</em>, Capítulo 32. <em>Management, policy and politics</em> (sección <em>Disaster recovery</em>). Prentice Hall. Cuarta edición. 2010.</p>
 <p>Aeleen Frisch. Essential system administration. Capítulo 11. <em>Backup and restore</em>. O’Reilly and Associates. Tercera edición. 2002.</p>
 </div>
 
