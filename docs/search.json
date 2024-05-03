@@ -3273,7 +3273,7 @@
     "href": "tema07-administracionsf/tema07-RAID-cuotas.html",
     "title": "Tema 7: Implementación RAID software y cuotas",
     "section": "",
-    "text": "En esta receta vamos a implementar una configuración típica:\n\nRAID software para la carpeta /home para aumentar tamaño, fiabilidad ante fallos…\nUso de cuotas para restringir el espacio y cantidad de ficheros/directorios por usuarios o grupos.\n\nEsta combinación, junto con el uso de NFS (y obviamente más cosas), es la que tenemos en las aulas de prácticas de la UCO.\n\n\n\n\n\n\n\nNecesitarás añadir al menos dos discos duros virtuales en VirtualBox. No necesitan ser formateados previamente. Después de añadirlos, verás algo así:\n$ lsblk \nNAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS\nsda      8:0    0    8G  0 disk \n├─sda1   8:1    0  3,7G  0 part /\n├─sda2   8:2    0    1K  0 part \n├─sda5   8:5    0  953M  0 part [SWAP]\n├─sda6   8:6    0  1,9G  0 part /var\n└─sda7   8:7    0  1,5G  0 part /tmp\nsdb      8:16   0  100M  0 disk \nsdc      8:32   0  100M  0 disk \nsdd      8:48   0  100M  0 disk \nsr0     11:0    1 1024M  0 rom",
+    "text": "En esta receta vamos a implementar una configuración típica:\n\nRAID software para la carpeta /home para aumentar tamaño, fiabilidad ante fallos…\nUso de cuotas para restringir el espacio y cantidad de ficheros/directorios por usuarios o grupos.\n\nEsta combinación, junto con el uso de NFS (y obviamente más cosas), es la que tenemos en las aulas de prácticas de la UCO.\nEstos pasos y configuración han sido probados en Debian 12.\n\n\n\n\n\n\n\nNecesitarás añadir al menos dos discos duros virtuales en VirtualBox. No necesitan ser formateados previamente. Después de añadirlos, verás algo así:\n$ lsblk \nNAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS\nsda      8:0    0    8G  0 disk \n├─sda1   8:1    0  3,7G  0 part /\n├─sda2   8:2    0    1K  0 part \n├─sda5   8:5    0  953M  0 part [SWAP]\n├─sda6   8:6    0  1,9G  0 part /var\n└─sda7   8:7    0  1,5G  0 part /tmp\nsdb      8:16   0  100M  0 disk \nsdc      8:32   0  100M  0 disk \nsdd      8:48   0  100M  0 disk \nsr0     11:0    1 1024M  0 rom",
     "crumbs": [
       "Tema 7: Receta RAID + Cuotas"
     ]
@@ -3283,7 +3283,7 @@
     "href": "tema07-administracionsf/tema07-RAID-cuotas.html#receta-1",
     "title": "Tema 7: Implementación RAID software y cuotas",
     "section": "",
-    "text": "En esta receta vamos a implementar una configuración típica:\n\nRAID software para la carpeta /home para aumentar tamaño, fiabilidad ante fallos…\nUso de cuotas para restringir el espacio y cantidad de ficheros/directorios por usuarios o grupos.\n\nEsta combinación, junto con el uso de NFS (y obviamente más cosas), es la que tenemos en las aulas de prácticas de la UCO.",
+    "text": "En esta receta vamos a implementar una configuración típica:\n\nRAID software para la carpeta /home para aumentar tamaño, fiabilidad ante fallos…\nUso de cuotas para restringir el espacio y cantidad de ficheros/directorios por usuarios o grupos.\n\nEsta combinación, junto con el uso de NFS (y obviamente más cosas), es la que tenemos en las aulas de prácticas de la UCO.\nEstos pasos y configuración han sido probados en Debian 12.",
     "crumbs": [
       "Tema 7: Receta RAID + Cuotas"
     ]
