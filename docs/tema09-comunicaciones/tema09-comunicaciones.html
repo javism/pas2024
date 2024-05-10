@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Javier Sánchez Monedero">
+
+<title>Programación y Administración de Sistemas (2023-2024) - Tema 9: Gestión de las comunicaciones</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tema09-comunicaciones/tema09-comunicaciones.html">Tema 9: Gestión de las comunicaciones</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Programación y Administración de Sistemas (2023-2024)</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inicio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema00-presentacion/presentacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 0: Presentación</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01a-introduccion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.a: Introducción</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01b-software-libre.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.b: Software Libre y GNU/Linux</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema01-introduccion/tema01c-proyecto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 1.c: Virtual Box, Debian y configuración básica</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-ficheros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Organización de GNU/Linux</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-ejercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Ejercicios permisos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema02-organizacion/tema02-webuco.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 2: Ejercicios web personal en la UCO</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema03-usuarios/tema03-usuarios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 3: Gestión de usuarios</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema04-arranque/tema04-arranque.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 4: Arranque y Parada</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema05-recursos/tema05-recursos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 5: Gestión de recursos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema06-sf/tema06-sf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 6: Sistemas de ficheros y discos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema07-administracionsf/tema07-administracionsf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 7: Administración de sistemas de ficheros</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema07-administracionsf/tema07-RAID-cuotas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 7: Receta RAID + Cuotas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema08-backup/tema08-backup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 8: Restauración y copias de seguridad</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema08-backup/tema08-Receta-monitorizacion-backup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tema 8: Receta monitorización y copias de seguridad</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tema09-comunicaciones/tema09-comunicaciones.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Tema 9: Gestión de las comunicaciones</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../enlaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Enlaces</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">En esta página</h2>
+   
+  <ul>
+  <li><a href="#objetivos-y-evaluación" id="toc-objetivos-y-evaluación" class="nav-link active" data-scroll-target="#objetivos-y-evaluación"><span class="header-section-number">1</span> Objetivos y evaluación</a></li>
+  <li><a href="#conceptos-básicos" id="toc-conceptos-básicos" class="nav-link" data-scroll-target="#conceptos-básicos"><span class="header-section-number">2</span> Conceptos básicos</a></li>
+  <li><a href="#autenticación-única" id="toc-autenticación-única" class="nav-link" data-scroll-target="#autenticación-única"><span class="header-section-number">3</span> Autenticación única</a></li>
+  <li><a href="#nis-network-information-system" id="toc-nis-network-information-system" class="nav-link" data-scroll-target="#nis-network-information-system"><span class="header-section-number">4</span> NIS: Network Information System</a></li>
+  <li><a href="#nfs-network-file-system" id="toc-nfs-network-file-system" class="nav-link" data-scroll-target="#nfs-network-file-system"><span class="header-section-number">5</span> NFS: Network File System</a></li>
+  <li><a href="#samba" id="toc-samba" class="nav-link" data-scroll-target="#samba"><span class="header-section-number">6</span> SAMBA</a></li>
+  <li><a href="#configuración" id="toc-configuración" class="nav-link" data-scroll-target="#configuración"><span class="header-section-number">7</span> Configuración</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">8</span> Referencias</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tema 9: Gestión de las comunicaciones</h1>
+<p class="subtitle lead">Programación y Administración de Sistemas <br> (2023-2024)</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Autor/a</div>
+  <div class="quarto-title-meta-heading">Afiliaciones</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Javier Sánchez Monedero </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Depto. Informática y Análisis Numérico
+          </p>
+        <p class="affiliation">
+            Escuela Politécnica Superior
+          </p>
+        <p class="affiliation">
+            Universidad de Córdoba
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">10 de mayo de 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objetivos-y-evaluación" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Objetivos y evaluación</h1>
+<section id="objetivos" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="objetivos">Objetivos</h2>
+<ul>
+<li><p>Describir la complejidad existente en la correcta gestión de una red para un sistema informático y las tareas de administración asociadas.</p></li>
+<li><p>Nombrar los servicios de red más comunes en un sistema informático GNU/Linux y explicar su cometido.</p></li>
+<li><p>Identificar el objetivo del sistema de ficheros distribuido <em>Network FileSystem</em> (NFS) y explicar su arquitectura.</p></li>
+<li><p>Establecer el cometido de cada uno de los demonios de NFS.</p></li>
+<li><p>Configurar NFS en el lado servidor y en el lado cliente.</p></li>
+<li><p>Discutir sobre los posibles problemas de seguridad asociados a NFS.</p></li>
+<li><p>Identificar el objetivo del servicio de información de red <em>Network Information Service</em> (NIS) y su funcionamiento.</p></li>
+<li><p>Establecer el cometido de cada uno de los demonios de NIS.</p></li>
+<li><p>Configurar NIS en el lado servidor y en el lado cliente.</p></li>
+<li><p>Discutir sobre los posibles problemas de seguridad asociados a NIS.</p></li>
+<li><p>Justificar la necesidad de SAMBA.</p></li>
+<li><p>Configurar un servicio SAMBA que permita interactuar con sistemas operativos <em>Microsoft Windows</em>.</p></li>
+</ul>
+</section>
+<section id="evaluación" class="level2">
+<h2 class="anchored" data-anchor-id="evaluación">Evaluación</h2>
+<ul>
+<li><p>Cuestionarios objetivos.</p></li>
+<li><p>Pruebas de respuesta libre.</p></li>
+<li><p>Tareas de administración.</p></li>
+</ul>
+</section>
+</section>
+<section id="conceptos-básicos" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Conceptos básicos</h1>
+<section id="tareas-de-gestión-de-la-red" class="level2 smaller scollable">
+<h2 class="smaller scollable anchored" data-anchor-id="tareas-de-gestión-de-la-red">Tareas de gestión de la red</h2>
+<p><img src="images/internet-network-diagram-template.png" class="img-fluid" style="width:50.0%"> Fuente imagen visual-paradigm.com</p>
+<ul>
+<li><p>Manejo de la red.</p></li>
+<li><p>Monitorizar el tráfico</p></li>
+<li><p>Añadir nuevos <em>hosts</em>.</p></li>
+<li><p>Montar discos remotos o exportar los discos locales: <strong>NFS</strong>.</p></li>
+<li><p>Servicio de información: usuarios, grupos, etc. (<em>Single Sign-On</em>).</p></li>
+<li><p>Configurar y administrar otros servicios de red (<em>web</em>, correo, DNS, etc.).</p></li>
+<li><p>Prevenir problemas de <strong>seguridad</strong>.</p></li>
+<li><p>Enrutado de tráfico.</p></li>
+<li><p>Programar estrategias de crecimiento de la red, para que la eficiencia pueda mantenerse.</p></li>
+<li><p>…</p></li>
+</ul>
+</section>
+<section id="conceptos-básicos-1" class="level2">
+<h2 class="anchored" data-anchor-id="conceptos-básicos-1">Conceptos básicos</h2>
+<p><strong>Labor mínima</strong>:</p>
+<ul>
+<li>Opciones de configuración de la red más importantes.</li>
+<li>Entender la configuración de la red actual.</li>
+<li>Dimensionado de la red y estrategias de crecimiento.</li>
+</ul>
+<p><strong>Repaso de conceptos</strong>:</p>
+<div class="incremental">
+<ul class="incremental">
+<li>Interfaces de red</li>
+<li>IP: IP interna vs IP externa</li>
+<li>Hosts y DNS</li>
+<li>Pasarela</li>
+<li>Puerto</li>
+</ul>
+</div>
+</section>
+<section id="demonios-del-sistema-y-red" class="level2">
+<h2 class="anchored" data-anchor-id="demonios-del-sistema-y-red">Demonios del sistema y red</h2>
+<ul>
+<li><p>A veces encontramos un superservidor que levanta demonios de uso poco frecuente. Antiguamente <code>xinetd</code>, hoy reemplazado por <code>systemd</code> y <em>firewalls</em> con esta funcionalidad.</p></li>
+<li><p>Algunos los podemos listar con sytemd: <code>systemctl --type=service --state=running</code></p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">UNIT</span>                      LOAD   ACTIVE SUB     DESCRIPTION                                   </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">cron.service</span>              loaded active running Regular background program processing daemon</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dbus.service</span>              loaded active running D-Bus System Message Bus</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">getty@tty1.service</span>        loaded active running Getty on tty1</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ssh.service</span>               loaded active running OpenBSD Secure Shell server</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">systemd-journald.service</span>  loaded active running Journal Service</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">systemd-logind.service</span>    loaded active running User Login Management</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">systemd-timesyncd.service</span> loaded active running Network Time Synchronization</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">systemd-udevd.service</span>     loaded active running Rule-based Manager for Device Events and Files</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">user@1000.service</span>         loaded active running User Manager for UID 1000</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">wpa_supplicant.service</span>    loaded active running WPA supplicant</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ex">LOAD</span>   = Reflects whether the unit definition was properly loaded.</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">ACTIVE</span> = The high-level unit activation state, i.e. generalization of SUB.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ex">SUB</span>    = The low-level unit activation state, values depend on unit type.</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ex">10</span> loaded units listed.</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejercicio-de-conceptos-básicos" class="level2 scrollable" data-background-color="lightgreen">
+<h2 class="scrollable anchored" data-background-color="lightgreen" data-anchor-id="ejercicio-de-conceptos-básicos">EJERCICIO de conceptos básicos</h2>
+<ol type="1">
+<li>Consulta los datos básicos de la red de tu equipo y de tu máquina virtual. Puedes usar el comando <code>ip</code>.
+<ol type="1">
+<li>ip local, interna y externa</li>
+<li>configuración DNS</li>
+<li>pasarela</li>
+<li>prueba la ruta a algún dominio: <code>traceroute uco.es</code>, <code>traceroute stanford.edu</code>. <a href="https://visualtraceroute.net/" class="uri">https://visualtraceroute.net/</a></li>
+</ol></li>
+<li>Lista los servicios del sistema:</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> <span class="at">--type</span><span class="op">=</span>service </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">systemctl</span> <span class="at">--type</span><span class="op">=</span>service <span class="at">--state</span><span class="op">=</span>running</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># crear un alias </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> running_services=<span class="st">'systemctl list-units  --type=service  --state=running'</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>¿Cómo encontramos qué programa está escuchando en un puerto?</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> lsof <span class="at">-i</span> <span class="at">-P</span> <span class="at">-n</span> <span class="kw">|</span> <span class="fu">grep</span> LISTEN</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> netstat <span class="at">-tulpn</span> <span class="kw">|</span> <span class="fu">grep</span> LISTEN</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> ss <span class="at">-tulpn</span> <span class="kw">|</span> <span class="fu">grep</span> LISTEN</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> lsof <span class="at">-i:22</span> <span class="co">## see a specific port such as 22 ##</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nmap <span class="at">-sTU</span> <span class="at">-O</span> IP-address-Here</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li><p>En Ubuntu: <code>resolvectl</code>. En Windows: <code>netstat -bano</code></p></li>
+<li><p>¿Cómo cambiarías la IP en Debian? (pista <code>/etc/network/interfaces</code>)</p></li>
+</ol>
+<!-- https://linuxconfig.org/ubuntu-22-04-network-configuration
+
+https://linuxconfig.org/netplan-network-configuration-tutorial-for-beginners
+
+https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/
+
+https://www.cyberciti.biz/faq/how-to-find-gateway-ip-address/ -->
+</section>
+<section id="algunos-demonios-de-red" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="algunos-demonios-de-red">Algunos demonios de red</h2>
+<p><code>/etc/init.d/networking</code> script que activa la red en tiempo de arranque (también en <code>/etc/systemd/network/</code> y <code>/etc/init.d/network-manager</code>).</p>
+<ul>
+<li><p><code>ntpd</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> demonio encargado de sincronizar la hora del sistema.</p></li>
+<li><p><code>dhcpd</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> demonio encargado del servicio de <em>Dynamic Host Configuration Protocol</em> (servidor proporciona IPs privadas a las máquinas que se conecten).</p></li>
+<li><p><code>named</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> demonio encargado del servicio de <em>Domain Name System</em> (servidor traduce nombres de dominio).</p></li>
+<li><p><code>sendmail</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> demonio encargado del correo electrónico.</p></li>
+<li><p><code>sshd</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> demonio que permite <code>ssh</code> (conexión remota segura).</p></li>
+<li><p><code>httpd</code>,<code>nginx</code>,<code>apache2</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> servidor <em>web</em>.</p></li>
+<li><p><code>smbd</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> servicio de compartición de ficheros con Windows.</p></li>
+</ul>
+</section>
+</section>
+<section id="autenticación-única" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Autenticación única</h1>
+<section id="sistemas-de-autenticación-única" class="level2">
+<h2 class="anchored" data-anchor-id="sistemas-de-autenticación-única">Sistemas de autenticación única</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/sso.png" class="img-fluid figure-img"></p>
+<figcaption>Single Sign-On components, Fuente [Nemeth 2018]</figcaption>
+</figure>
+</div>
+</section>
+<section id="sistemas-de-autenticación-única-en-la-uco" class="level2">
+<h2 class="anchored" data-anchor-id="sistemas-de-autenticación-única-en-la-uco">Sistemas de autenticación única en la UCO</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/esquema-autenticacion.png" class="img-fluid figure-img"></p>
+<figcaption>Sistema de autenticación de usuarios y servicios en la UCO.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="nis-network-information-system" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> NIS: Network Information System</h1>
+<section id="nis-conceptos-básicos" class="level2">
+<h2 class="anchored" data-anchor-id="nis-conceptos-básicos">NIS: conceptos básicos</h2>
+<p><strong>Ficheros de configuración</strong>: en un entorno real, muchos ficheros de configuración son similares de una máquina a otra. <code>/etc/passwd</code> o <code>/etc/shadow</code>.</p>
+<p><span class="math inline">\(n\)</span> máquinas <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <span class="math inline">\(n\)</span> réplicas de los ficheros que gestionar:</p>
+<ul>
+<li><p>Muy difícil.</p></li>
+<li><p>Los cambios tardan en propagarse.</p></li>
+</ul>
+<p><strong><em>Network Information Service</em></strong> (<strong>NIS</strong>).</p>
+<ul>
+<li><p>Todos los servicios acceden a una misma base de datos de configuraciones.</p></li>
+<li><p>Permite centralizar la <strong>autenticación</strong> de servicios.</p></li>
+</ul>
+</section>
+<section id="nis-esquema-ejemplo" class="level2">
+<h2 class="anchored" data-anchor-id="nis-esquema-ejemplo">NIS: esquema ejemplo</h2>
+<p><img src="images/NIS.png" class="img-fluid"></p>
+</section>
+<section id="nis-limitaciones" class="level2">
+<h2 class="anchored" data-anchor-id="nis-limitaciones">NIS: limitaciones</h2>
+<p>NIS presenta inconvenientes/limitaciones (subsanados por LDAP) pero es más sencillo de desplegar que LDAP:</p>
+<ul>
+<li><p>Sólo para una subred y no cifra los datos.</p></li>
+<li><p>No permite establecer jerarquías de usuarios complejas.</p></li>
+<li><p>Un cambio <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> reconstruir todo y redistribuirlo.</p></li>
+<li><p>Usuario del servicio <span class="math inline">\(\Leftrightarrow\)</span> usuario sistema operativo.</p></li>
+</ul>
+</section>
+<section id="nis-conceptos-básicos-1" class="level2">
+<h2 class="anchored" data-anchor-id="nis-conceptos-básicos-1">NIS: conceptos básicos</h2>
+<p>Los ficheros de las bases de datos están en el equipo <strong>servidor</strong> y contienen información como:</p>
+<ul>
+<li><p><em>login names</em> / <em>passwords</em> / <em>home directories</em> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <code>/etc/passwd</code>.</p></li>
+<li><p><em>group information</em> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <code>/etc/group</code>.</p></li>
+<li><p>…</p></li>
+</ul>
+<p>El <strong>servidor</strong> distribuye esta información a los <strong>clientes</strong>.</p>
+<p>En el lado servidor:</p>
+<ul>
+<li><p>Los ficheros se preprocesan para convertirlos a un formato binario con <em>hashing</em> (Berkeley DataBase) (mejor eficiencia).</p></li>
+<li><p><strong>Dominio NIS</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> clave para poder localizar al servidor (p.ej. <code>pas.es</code> o <code>pas_nis</code>).</p></li>
+<li><p>Los ficheros de las BDs residen a partir del directorio <code>/var/yp/</code>, en un subdirectorio con el nombre del dominio.</p></li>
+</ul>
+</section>
+</section>
+<section id="nfs-network-file-system" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> NFS: Network File System</h1>
+<section id="nfs-servicio-de-archivos-compartidos" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="nfs-servicio-de-archivos-compartidos">NFS: servicio de archivos compartidos</h2>
+<ul>
+<li><p>Posibilita que un Sistema de Ficheros, que físicamente reside en un <em>host</em> remoto, sea usado por otros ordenadores, vía red, como si fuese un sistema de ficheros local.</p></li>
+<li><p>Disponible en sistemas Unix/Linux y Windows (desde 2008).</p></li>
+<li><p>En el <strong>servidor</strong> se indica:</p>
+<ul>
+<li><p>Qué sistemas de ficheros se <strong>exportan</strong> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Se puede exportar un sistema de ficheros completo o un directorio.</p></li>
+<li><p>A qué ordenadores se exportan (se les permite acceder) <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> a un equipo concreto o a todos los equipos de una red.</p></li>
+<li><p>Condiciones para la exportación.</p></li>
+</ul></li>
+<li><p>Los equipos <strong>cliente</strong> montan el sistema de ficheros remoto con la orden <code>mount</code> y acceden a los datos como si fuesen locales</p>
+<ul>
+<li>Incorporan, en cada operación, una <strong><em>cookie</em> secreta</strong> que se les manda cuando montan el directorio.</li>
+</ul></li>
+</ul>
+</section>
+<section id="nfs-servicio-de-archivos-compartidos-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="nfs-servicio-de-archivos-compartidos-1">NFS: servicio de archivos compartidos</h2>
+<ul>
+<li><p>Al exportar un fichero, se exporta su <strong>nodo-i</strong> y sus bloques de datos <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> ¿propietario y grupo propietario?. ¿Qué pasa si en el equipo cliente no existe ese usuario o ese grupo propietario?.</p></li>
+<li><p>Un equipo puede ser <strong>servidor</strong> y <strong>cliente</strong> NFS al mismo tiempo.</p></li>
+</ul>
+<div class="block">
+<p>Versiones:</p>
+<ul>
+<li><p><span class="math inline">\(NFS\le 2\)</span>: operaciones de escritura bloqueantes (en espera de un ACK).</p></li>
+<li><p><span class="math inline">\(NFS=3\)</span>: esquema de coherencia que permite escrituras asíncronas sin peligro <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> [mayor eficiencia`.</p></li>
+<li><p><span class="math inline">\(NFS=4\)</span>: incorpora funcionalidades adicionales (montaje, bloqueo, autenticación) dentro del propio protocolo.</p></li>
+</ul>
+</div>
+</section>
+<section id="organización-y-arquitectura" class="level2">
+<h2 class="anchored" data-anchor-id="organización-y-arquitectura">Organización y arquitectura</h2>
+<div class="exampleblock">
+<p>Organización:</p>
+<ul>
+<li><p>Se basa en el protocolo <em>Remote Call Procedure</em> (RPC), para encapsular llamadas al servidor cuando se piden archivos remotos (de manera <strong>transparente</strong> para el usuario).</p></li>
+<li><p><strong><em>Stateless</em></strong> (v2/v3): el servidor trabaja sin mantener información del <strong>estado</strong> de cada uno de los clientes (ficheros abiertos, último fichero o última posición escrita).</p>
+<ol type="1">
+<li><p>Necesidad de <strong>bloquear archivos</strong> accedidos concurrentemente por varios clientes <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> demonios independientes.</p></li>
+<li><p>El cliente es responsable de mantener la coherencia.</p></li>
+</ol></li>
+<li><p><strong><em>Statefull</em></strong> (v4): el servidor trabaja manteniendo el [estado` de las operaciones (ej. 1 y 2).</p></li>
+<li><p>NFS tiene bastantes problemas de seguridad (UID y GID locales, falsificación de direcciones IP, ficheros que pertenecen a <code>root</code>...) <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> uso de [herramientas adicionales.</p></li>
+</ul>
+</div>
+</section>
+<section id="organización-y-arquitectura-1" class="level2">
+<h2 class="anchored" data-anchor-id="organización-y-arquitectura-1">Organización y arquitectura</h2>
+<p><img src="images/ArquitecturaNFS.png" class="img-fluid" style="width:80.0%"></p>
+</section>
+<section id="nfs-configuración-del-lado-servidor" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="nfs-configuración-del-lado-servidor">NFS: configuración del lado servidor</h2>
+<ul>
+<li><p><code>/etc/exports</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Fichero en el que se indica qué SFs se exportan, bajo qué condiciones y a qué ordenadores.</p></li>
+<li><p><code>/usr/sbin/exportfs</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Actualiza la información de los SFs exportados y muestra un listado con dicha información (realiza un <code>restart</code> de los demonios <code>nfsd</code> y <code>rpc.mountd</code>):</p>
+<ul>
+<li><p><code>-r</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> re-exporta los directorios indicados en <code>/etc/exports</code>.</p></li>
+<li><p><code>-a</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> exporta o deja de exportar <code>/etc/exports</code>.</p></li>
+<li><p><code>-v</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> muestra los directorios exportados y las opciones.</p></li>
+</ul></li>
+<li><p><code>/usr/sbin/showmount</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> información en un servidor NFS:</p>
+<ul>
+<li><p><code>-a</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> clientes conectados y directorios utilizados.</p></li>
+<li><p><code>-d</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> listado de los directorios montados.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="nfs-configuración-del-lado-servidor-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="nfs-configuración-del-lado-servidor-1">NFS: configuración del lado servidor</h2>
+<div class="block">
+<p>Demonios en el lado servidor</p>
+<ul>
+<li><p><code>rpcbind</code> o <code>portmap</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Facilita la conexión entre el cliente y el servidor mediante las llamadas RPC. Tiene que estar lanzado para que NFS funcione.</p></li>
+<li><p><code>nfsd</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Implementa, en el nivel de usuario, los servicios NFS. La principal funcionalidad está implementada por el módulo del kernel <code>nfsd.ko</code>. Los <em>threads</em> del kernel aparecen como <code>[nfsd]</code>, al ejecutar <code>ps aux</code>.</p></li>
+<li><p><code>rpc.mountd</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Maneja las peticiones de montaje de directorios de los clientes, comprobando la petición con la lista de sistemas de ficheros exportados.</p></li>
+</ul>
+</div>
+<p><code>/etc/init.d/nfs-kernel-server</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Lanza <code>rpc.mountd</code> y <code>rpc.nfsd</code>.</p>
+</section>
+<section id="nfs-configuración-del-lado-servidor-2" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="nfs-configuración-del-lado-servidor-2">NFS: configuración del lado servidor</h2>
+<p><code>/etc/exports</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Para configurar qué “directorios” se exportan, bajo qué condiciones y a qué equipos <code>ruta dirección(opción)</code>:</p>
+<ul>
+<li><p><code>ruta</code> es el nombre del directorio a exportar vía NFS.</p></li>
+<li><p><code>dirección</code> a quién es exportado (IP, dirección de red, etc.).</p></li>
+<li><p><code>opción</code> especifica el tipo de acceso al directorio:</p>
+<ul>
+<li><p><code>rw</code> ó <code>ro</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Modo lectura-escritura o sólo lectura.</p></li>
+<li><p><code>root_squash</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Mapea los uid/gid 0 a los uid/gid anónimo (<strong>nobody</strong> o <strong>nfsnobody</strong>) (controlar al <strong>root</strong> cliente).</p></li>
+<li><p><code>no_root_squash</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> No hacer lo anterior ([peligro`).</p></li>
+<li><p><code>all_squash</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Mapea todos los usuarios al usuario anónimo.</p></li>
+<li><p><code>anonuid</code> ó <code>anongid</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Establecer el <code>uid</code> o el <code>gid</code> del usuario al que realizar el mapeo, distinto del usuario anónimo.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="nfs-configuración-del-lado-cliente" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="nfs-configuración-del-lado-cliente">NFS: configuración del lado cliente</h2>
+<ul>
+<li>La propia orden <code>mount</code> permite montar el SF remoto:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount <span class="at">-t</span> nfs <span class="at">-o</span> opciones_nfs 191.168.6.10:/home /datos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p><code>-t nfs</code>: tipo de SF.</p></li>
+<li><p><code>191.168.6.10:/home</code> servidor y directorio remoto a montar.</p></li>
+<li><p>Si en el fichero <code>/etc/fstab</code> se indica el listado de los sistemas de ficheros remotos a montar, el punto de montaje y las opciones, el montaje se puede realizar en tiempo de arranque:</p></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contenido /etc/fstab</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">191.168.6.10:/home</span>  /datos  nfs  defaults,opciones_nfs 0 0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="nfs-configuración-del-lado-cliente-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="nfs-configuración-del-lado-cliente-1">NFS: configuración del lado cliente</h2>
+<ul>
+<li><p>Opciones para <code>mount</code>:</p>
+<ul>
+<li><p><code>soft</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Si el servidor NFS falla durante un tiempo, las operaciones que intentaban acceder a él recibirán un código de error.</p></li>
+<li><p><code>hard</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Si un proceso está realizando una operación de E/S con un fichero vía NFS y el servidor NFS no responde, el proceso no puede ser interrumpido o matado (no acepta la señal KILL) salvo que se especifique la opción <code>intr</code>. Siempre que usemos <code>rw</code> deberíamos usar <strong>hard</strong>, para no dejar el SF remoto inconsistente.</p></li>
+<li><p><code>intr</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Se permite señales de interrupción para los procesos bloqueados en una operación de E/S en un servidor NFS.</p></li>
+<li><p><code>soft</code> va en contra de la filosofía de NFS.</p></li>
+<li><p><code>bg</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Si el montaje del SF remoto falla, que siga intentándolo en <em>background</em>, hasta que lo consiga o desista porque se han hecho <code>retry</code> intentos</p></li>
+<li><p><code>retry=n</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Nº de intentos que se deben hacer para montar el SF remoto, antes de desistir si la conexión falla.</p></li>
+<li><p><code>timeo=n</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Tiempo a esperar entre cada intento de montaje si la conexión falla.</p></li>
+</ul>
+<p><!-- - `rsize=8192` o `wsize=8192`  Tamaño de los *buffers* de lectura o escritura. --></p></li>
+</ul>
+</section>
+<section id="nfs-ejemplos" class="level2">
+<h2 class="anchored" data-anchor-id="nfs-ejemplos">NFS: ejemplos</h2>
+<p>Ejemplos en el [<strong>servidor</strong><code>(fichero</code>/etc/exports`):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/home</span> 191.168.6.15<span class="er">(</span><span class="ex">rw,root_squash</span><span class="kw">)</span> <span class="ex">191.168.6.16</span><span class="er">(</span><span class="ex">rw,no_root_squash</span><span class="kw">)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/import</span> 191.168.8.20<span class="er">(</span><span class="ex">rw,all_squash</span><span class="kw">)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/tools</span> 191.168.6.0/24<span class="er">(</span><span class="ex">ro,all_squash,anonuid=500,anongid=100</span><span class="kw">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ejemplos en el <strong>cliente</strong>, en el fichero <code>/etc/fstab</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julieta:/home</span>       /home         nfs  defaults,rw,bg,hard,intr 0 0</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">julieta:/import</span>     /nfs/import   nfs  defaults,rw,bg,hard,intr 0 0</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">191.168.6.10:/tools</span> /nfs/tools    nfs  defaults,ro,bg,soft      0 0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>También se puede realizar el montaje de forma manual:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount /home        <span class="co">#(configurado /etc/fstab)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount /nfs/import  <span class="co">#(configurado /etc/fstab)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount <span class="at">-t</span> nfs <span class="at">-o</span> rw,bg,hard,intr julieta:/home /home</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount <span class="at">-t</span> nfs <span class="at">-o</span> rw,bg,hard,intr julieta:/import /nfs/import</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount <span class="at">-t</span> nfs <span class="at">-o</span> ro,soft,bg 191.168.6.10:/tools /nfs/tools</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- ### NFS: ejemplos
+
+- Instalación en un sistema Debian/Ubuntu:
+
+
+    # IP del servidor 192.168.56.101, IP del cliente 192.168.56.1
+    # ------------ Lado servidor 
+    pas@pas-virtual-debian:~$ sudo apt-get install nfs-kernel-server
+    pas@pas-virtual-debian:~$ sudo mkdir /home/carpetaNFS
+    pas@pas-virtual-debian:~$ sudo gedit /etc/exports 
+    # Incluir en dicho fichero:
+    /home/carpetaNFS    192.168.56.1(rw,no_subtree_check)
+    pas@pas-virtual-debian:~$ sudo chmod o+w /home/carpetaNFS # OJO => Poco seguro
+    pas@pas-virtual-debian:~$ sudo service nfs-kernel-server restart
+    # ------------ Lado cliente
+    pas@pas-virtual-debianCliente:~$ sudo apt-get install nfs-common
+    pas@pas-virtual-debianCliente:~$ mkdir puntoMontaje
+    # Montaje manual
+    pas@pas-virtual-debianCliente:~$ sudo mount -t nfs -o hard,intr,bg 192.168.56.101:/home/carpetaNFS ./puntoMontaje
+    # Montaje con fstab
+    pas@pas-virtual-debianCliente:~$ sudo gedit /etc/fstab
+    # Incluir en dicho fichero:
+    192.168.56.101:/home/carpetaNFS /home/pagutierrez/puntoMontaje  nfs user,hard,intr,bg   0   0
+    pas@pas-virtual-debianCliente:~$ mount ~/puntoMontaje
+-->
+</section>
+</section>
+<section id="samba" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> SAMBA</h1>
+<section id="samba-necesidad" class="level2">
+<h2 class="anchored" data-anchor-id="samba-necesidad">SAMBA: necesidad</h2>
+<ul>
+<li><p>Entre maquinas GNU/Linux, es posible usar el protocolo <strong>NFS</strong> para compartir ficheros.</p></li>
+<li><p>Presenta una serie de inconvenientes:</p>
+<ul>
+<li><p>Problemas de seguridad.</p></li>
+<li><p>No existe una buena implementación libre de NFS para equipos Windows.</p></li>
+</ul></li>
+<li><p>Lleva menos trabajo utilizar el protocolo utilizado por las maquinas Windows.</p></li>
+<li><p>Este protocolo, llamado <em>Common Internet FileSystem</em> (<strong>CIFS</strong>), tiene implementaciones sobre un gran numero de plataformas.</p></li>
+<li><p>Existe una implementación libre de este protocolo llamada <strong>SaMBa</strong>, que permite utilizarlo sobre servidores GNU/Linux</p></li>
+</ul>
+</section>
+<section id="samba-introducción" class="level2">
+<h2 class="anchored" data-anchor-id="samba-introducción">SAMBA: introducción</h2>
+<ul>
+<li><p>¿Qué es?</p>
+<ul>
+<li><p>Es un sistema de compartición de <strong>archivos e impresoras en red</strong>.</p></li>
+<li><p>Permite la interconexión de sistemas <strong>heterogéneos</strong> entre sí (GNU/Linux y Windows).</p></li>
+<li><p>Los clientes Windows tendrán la sensación de estar ante un servidor Windows NT.</p></li>
+<li><p>Controlar el acceso de clientes Windows a servicios de red Windows o Unix.</p></li>
+</ul></li>
+<li><p>Protocolos:</p>
+<ul>
+<li><p><strong>SMB</strong> (<em>Server Message Block</em>): Compartir los recursos.</p></li>
+<li><p><strong>CIFS</strong> (<em>Common Internet File System</em>): Implementación mejorada de SMB.</p></li>
+<li><p><strong>NetBIOS</strong> (<em>Network Basic Input/Output System</em>): Servicio de nombres:</p>
+<ul>
+<li><p>Nombres lógicos en la red.</p></li>
+<li><p>Sesiones entre los nombres.</p></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="samba-introducción-1" class="level2">
+<h2 class="anchored" data-anchor-id="samba-introducción-1">SAMBA: introducción</h2>
+<ul>
+<li><p>¿Cuándo es útil?</p>
+<ul>
+<li><p>No quieres pagar un servidor Windows NT para obtener las funcionalidades que este proporciona.</p></li>
+<li><p>Homogeneizar la red local ante clientes Windows y Unix.</p></li>
+<li><p>Compartir impresora entre clientes Windows y Unix.</p></li>
+</ul></li>
+<li><p>Utiliza dos demonios:</p>
+<ul>
+<li><p><code>smbd</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Permite la compartición de archivos e impresoras sobre una red SMB y proporciona autentificación y autorización de acceso para clientes SMB.</p></li>
+<li><p><code>nmbd</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Se ocupa de anunciar servicios, es decir, informa a las máquinas en la red de cuales son los servicios disponibles.</p></li>
+</ul></li>
+<li><p>Podemos configurar SAMBA mediante:</p>
+<ul>
+<li><p>El fichero <code>smb.conf</code>.</p></li>
+<li><p>El <em>front-end</em> SWAT (no se recomienda, poco seguro).</p></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="configuración" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Configuración</h1>
+<section id="samba-configuración" class="level2">
+<h2 class="anchored" data-anchor-id="samba-configuración">SAMBA: configuración</h2>
+<ul>
+<li><p>A través de <code>/etc/samba/smb.conf</code></p>
+<ul>
+<li><p>Qué recursos del sistemas vas a compartir y que restricciones deseas poner en ellos.</p></li>
+<li><p>Consta de varias secciones distintas que empiezan por <code>[nombre-recurso]</code>.</p>
+<ul>
+<li><p><code>[global]</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Define variables de carácter general y aplicables a todos los recursos.</p></li>
+<li><p><code>[homes]</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Permite a los usuarios remotos acceder a su directorio personal desde su máquina local (ya sean clientes Windows o Linux), pero han de tener cuenta en la máquina servidora.</p></li>
+<li><p><code>[printers]</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Para compartir impresoras.</p></li>
+</ul></li>
+<li><p>Inicio y parada de Samba con <code>/etc/init.d/samba ``start/stop</code></p></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="referencias" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Referencias</h1>
+<section id="referencias-1" class="level2">
+<h2 class="anchored" data-anchor-id="referencias-1">Referencias</h2>
+<div class="thebibliography">
+<p>Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 17. <em>Single Sign-On</em>, Capítulo 21. <em>The Network File System</em>, Capítulo 22. <em>SMB</em>. Addison-Wesley. 5th Edition. 2018.</p>
+<p>Aeleen Frisch. Essential system administration. Capítulo 10. <em>Filesystems and disks</em>. O’Reilly and Associates. Tercera edición. 2002.</p>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

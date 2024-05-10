@@ -8,7 +8,7 @@
 
 <meta name="author" content="Javier Sánchez Monedero">
 
-<title>Programación y Administración de Sistemas (2023-2024) - Cómo hacer más compacto (o menos irritante) moodle 4.x</title>
+<title>Programación y Administración de Sistemas (2023-2024)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -40,6 +40,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -68,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -228,20 +259,32 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Cómo hacer más compacto (o menos irritante) moodle 4.x</h1>
 </div>
 
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Autor/a</div>
+  <div class="quarto-title-meta-heading">Afiliaciones</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Javier Sánchez Monedero </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Depto. Informática y Análisis Numérico
+          </p>
+        <p class="affiliation">
+            Escuela Politécnica Superior
+          </p>
+        <p class="affiliation">
+            Universidad de Córdoba
+          </p>
+      </div>
+  </div>
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Autor/a</div>
-    <div class="quarto-title-meta-contents">
-             <p>Javier Sánchez Monedero </p>
-          </div>
-  </div>
-    
+      
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
@@ -257,32 +300,218 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Moodle 4.x se une a la web moderna pensada para ser simple en lo visual pero extremadamente ineficiente para trabajar con más de 3 elementos de información a la vez. ¡Por suerte podemos cambiarlo!</p>
-<p><img src="moodle.jpeg" class="img-fluid" style="width:60.0%"></p>
+<section id="nis-configuración" class="level3">
+<h3 class="anchored" data-anchor-id="nis-configuración">NIS: configuración</h3>
+<ul>
+<li><p>Existe la posibilidad de configurar varios <strong>servidores </strong>secundarios****, que tendrán una copia de las bases de datos.</p>
+<ul>
+<li>Un cliente puede acudir a varios servidores (dominios).</li>
+</ul></li>
+<li><p><code>NSS (Name Service Switch)</code>:</p>
+<ul>
+<li><p>Indicar cómo se resolverá cierta información de configuración.</p></li>
+<li><p><code>/etc/nsswitch.conf</code></p></li>
+</ul></li>
+<li><p>Demonios:</p>
+<ul>
+<li><p><code>rpcbind</code> o <code>portmap</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Facilita la conexión entre el cliente y el servidor mediante las llamadas RPC (en cliente y en servidor).</p></li>
+<li><p><code>ypserv</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Este demonio es el encargado de gestionar el servicio NIS. Tiene que estar en ejecución en el servidor.</p></li>
+<li><p><code>rpc.yppasswdd</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Permite la actualización de las contraseñas desde los equipos cliente. En ejecución en el servidor.</p></li>
+<li><p><code>ypbind</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Es el encargado de gestionar las peticiones. En el cliente (en el servidor, si se quiere que sea cliente de sí mismo).</p></li>
+</ul></li>
+</ul>
 </section>
-<section id="pasos" class="level2">
-<h2 class="anchored" data-anchor-id="pasos">Pasos</h2>
-<p>Instala <a href="Tamper Monkey">https://www.tampermonkey.net/</a> en tu navegador favorito. TL;DR: Tampermonkey permite incluir scripts de usuario para cambiar en parte el aspecto, comportamiento, etc. de webs.</p>
-<p>Añade el siguente script desde la URL: <a href="https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js" class="uri">https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js</a>. El script está pensado para la web de la UCO pero puede adaptarse a cualquier otro cambiando la línea <code>// @match        https://moodle.uco.es/m2324/*</code>.</p>
+<section id="lado-servidor" class="level2">
+<h2 class="anchored" data-anchor-id="lado-servidor">Lado servidor</h2>
+<section id="nis-instalación-del-servidor" class="level3 frame">
+<h3 class="anchored" data-anchor-id="nis-instalación-del-servidor">NIS: instalación del servidor</h3>
+<ul>
+<li><p>Pasos en el servidor (<strong>Ubuntu/Debian</strong>):</p>
 <ol type="1">
-<li>Acceso al panel/dashboard de Tampermonkey</li>
+<li><p>Instalar paquete <code>nis</code> (instala <code>portmap</code>). Indicar dominio a utilizar (<code>pas_nis</code>) y esperar intento fallido de <em>binding</em>.</p></li>
+<li><p>Cambiar el fichero <code>/etc/default/nis</code> e indicar <code>NISSERVER=master</code>.</p></li>
+<li><p>Añadir la IP del servidor al fichero <code>/etc/yp.conf</code>:</p>
+<pre><code>ypserver localhost</code></pre></li>
+<li><p>Configurar el servidor (crea las bases de datos): <code>sudo /usr/lib/yp/ypinit -m</code>. [Este paso habrá que repetirlo cada vez que cambiemos las bases de datos`.</p></li>
+<li><p>Reiniciar el servicio: (<code>sudo /etc/init.d/nis restart</code>).</p></li>
+<li><p>Comprobar que todo funciona: <code>rpcinfo -p</code>.</p></li>
+<li><p>Configurar el NSS (<code>/etc/nsswitch.conf</code>)</p>
+<pre><code>passwd:         compat nis
+group:          compat nis
+shadow:         compat nis</code></pre></li>
+</ol></li>
+</ul>
+</section>
+</section>
+<section id="lado-cliente" class="level2">
+<h2 class="anchored" data-anchor-id="lado-cliente">Lado cliente</h2>
+<section id="nis-instalación-del-cliente" class="level3 frame">
+<h3 class="anchored" data-anchor-id="nis-instalación-del-cliente">NIS: instalación del cliente</h3>
+<ul>
+<li><p>Pasos en el cliente (<strong>Ubuntu/Debian</strong>):</p>
+<ol type="1">
+<li><p>Instalar paquete <code>nis</code> (instala <code>portmap</code>). Indicar dominio a utilizar (<code>pas_nis</code>) y esperar intento fallido de <em>binding</em>.</p></li>
+<li><p>Añadir la IP del servidor al fichero <code>/etc/yp.conf</code>:</p>
+<pre><code>ypserver 192.168.56.101</code></pre></li>
+<li><p>Configurar el NSS (<code>/etc/nsswitch.conf</code>)</p>
+<pre><code>passwd:         compat nis
+group:          compat nis
+shadow:         compat nis</code></pre></li>
+<li><p>Reiniciar el servicio: (<code>sudo /etc/init.d/nis restart</code>).</p></li>
+<li><p>El dominio por defecto se encuentra en <code>/etc/defaultdomain</code>.</p></li>
+</ol></li>
+</ul>
+</section>
+<section id="nis-ejemplos" class="level3 frame">
+<h3 class="anchored" data-anchor-id="nis-ejemplos">NIS: ejemplos</h3>
+<ul>
+<li>Instalación en un sistema Debian/Ubuntu:</li>
+</ul>
+<!-- -->
+<pre><code># IP del servidor 192.168.56.101
+# ------------ Lado servidor 
+pas@pas-virtual-debian:/home$ sudo apt-get install nis
+pas@pas-virtual-debian:/home$ sudo gedit /etc/default/nis
+# Cambiar el fichero y poner:
+NISSERVER=master
+pas@pas-virtual-debian:/home$ sudo gedit /etc/yp.conf 
+# Añadir a dicho fichero:
+domain pas.es ypserver localhost
+pas@pas-virtual-debian:/home$ sudo /usr/lib/yp/ypinit -m
+pas@pas-virtual-debian:/home$ sudo service nis restart
+pas@pas-virtual-debian:/home$ sudo rpcinfo -p
+pas@pas-virtual-debian:/home$ sudo gedit /etc/nsswitch.conf 
+#Añadir nis en las líneas correspondientes:
+passwd:         compat nis
+group:          compat nis
+shadow:         compat nis
+
+# ------------ Lado cliente 
+pas@pas-virtual-debianCliente:~$ sudo apt-get install nis
+pas@pas-virtual-debianCliente:~$ sudo gedit /etc/yp.conf
+
+# Añadir a dicho fichero:
+domain pas.es ypserver 192.168.56.101
+pas@pas-virtual-debianCliente:~$ sudo gedit /etc/nsswitch.conf 
+#Añadir nis en las líneas correspondientes:
+passwd:         compat nis
+group:          compat nis
+shadow:         compat nis
+pas@pas-virtual-debianCliente:~$ sudo service nis restart</code></pre>
+</section>
+<section id="nis-añadir-usuario" class="level3 frame">
+<h3 class="anchored" data-anchor-id="nis-añadir-usuario">NIS: añadir usuario</h3>
+<ol type="1">
+<li><p>Añadir el usuario desde la máquina principal (master NIS) con <code>adduser</code>.</p></li>
+<li><p>Recontruir y distribuir los mapas NIS: <code>make -C /var/yp</code>.</p></li>
+<li><p>El usuario está listo para usarse dentro de la red NIS (habitualmente habríamos exportado <code>/home</code> por NFS para que esté disponible en toda la red).</p></li>
 </ol>
-<p><img src="tm1.png" class="img-fluid"></p>
-<ol start="2" type="1">
-<li>Acceso a la pestaña de utilidades</li>
-</ol>
-<p><img src="tm2.png" class="img-fluid"></p>
-<ol start="3" type="1">
-<li>Cargar script desde URL <a href="https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js" class="uri">https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js</a>.</li>
-</ol>
-<p><img src="tm3.png" class="img-fluid"></p>
-<ol start="4" type="1">
-<li>Recarga tu moodle.</li>
-</ol>
+</section>
+</section>
+<section id="seguridad" class="level2">
+<h2 class="anchored" data-anchor-id="seguridad">Seguridad</h2>
+<section id="nis-seguridad" class="level3 frame">
+<h3 class="anchored" data-anchor-id="nis-seguridad">NIS: seguridad</h3>
+<ul>
+<li><p>Utilidades como clientes:</p>
+<ul>
+<li><p><code>yppasswd</code>: Permite que los usuarios puedan cambiar su contraseña en el servidor NIS (gracias al demonio <code>yppasswdd</code> que se ejecuta en el servidor).</p></li>
+<li><p><code>ypchsh</code>: Permite cambiar el <em>shell</em> del usuario en el servidor NIS.</p></li>
+<li><p><code>ypchfn</code>: Cambia el campo <code>gecos</code> del usuario en el servidor NIS.</p></li>
+<li><p><code>ypcat</code>: Permite conocer el contenido de un mapa NIS. Por ejemplo:</p>
+<ul>
+<li><p><code>ypcat passwd</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> visualiza el fichero de passwords</p></li>
+<li><p><code>ypcat ypservers</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> muestra los servidores disponibles</p></li>
+</ul></li>
+<li><p><code>ypwhich</code>: Devuelve el nombre del servidor NIS.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="nis-seguridad-1" class="level3 frame">
+<h3 class="anchored" data-anchor-id="nis-seguridad-1">NIS: seguridad</h3>
+<ul>
+<li><p>**[Seguridad<code>**: En el fichero</code>/etc/ypserv.conf` se pueden indicar listas de control de acceso.</p></li>
+<li><p>Formato: <code>host:nisdomain:map:security</code> (se interpretan por orden):</p>
+<pre><code>  128.138.24.0/255.255.252.0:atrustnis:*:none # permite acceso de 128.138.24/22
+  *:*:passwd.byuid:deny  # deniega acceso a passwd por uid a cualquier dominio
+  *:*:passwd.byname:deny # deniega acceso a passwd por name a cualquier dominio
+  128.138.:atrustnis:*:port # permite acceso de 128.138/16, siempre que la petición provenga de un puerto con privilegios
+  *:*:*:deny # deniega por defecto</code></pre></li>
+<li><p>Las BDDs se indexan para mejorar el acceso:</p>
+<pre><code>  pagutierrez@PEDROLaptop:/var/yp/pas_nis$ ls 
+  group.bygid   netgroup.byhost  protocols.byname    services.byservicename
+  group.byname  netgroup.byuser  protocols.bynumber  shadow.byname
+  hosts.byaddr  netid.byname     rpc.byname          ypservers
+  hosts.byname  passwd.byname    rpc.bynumber
+  netgroup      passwd.byuid     services.byname</code></pre></li>
+</ul>
+</section>
+<section id="samba" class="level3">
+<h3 class="anchored" data-anchor-id="samba">SAMBA</h3>
+<ul>
+<li><p>Instalación en un sistema Debian/Ubuntu:</p>
+<p>pas@pas-virtual-debian:~$ sudo apt-get install samba samba-common cups pas@pas-virtual-debian:~$ sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.bak pas@pas-virtual-debian:~$ sudo gedit /etc/samba/smb.conf # Cambiar el fichero y poner el siguiente contenido: [global] workgroup = WORKGROUP server string = Samba Server %v netbios name = debian01 security = user map to guest = bad user dns proxy = no pas@pas-virtual-debian:~$ sudo service nmbd restart pas@pas-virtual-debian:~$ sudo service smbd restart</p></li>
+<li><p>Crear carpetas compartidas:</p>
+<p>pas@pas-virtual-debian:~$ sudo mkdir -p /home/shares/allusers pas@pas-virtual-debian:~$ sudo chown -R root:users /home/shares/allusers/ pas@pas-virtual-debian:~$ sudo chmod -R ug+rwx,o+rx-w /home/shares/allusers/ pas@pas-virtual-debian:~$ sudo mkdir -p /home/shares/anonymous pas@pas-virtual-debian:~$ sudo chown -R root:users /home/shares/anonymous/ pas@pas-virtual-debian:~$ sudo chmod -R ug+rwx,o+rx-w /home/shares/anonymous/</p></li>
+<li><p>Accesibles para todos los usuarios del grupo <code>users</code>. Añadir lo siguiente:</p>
+<p>pas@pas-virtual-debian:~$ sudo gedit /etc/samba/smb.conf [allusers] comment = All Users path = /home/shares/allusers valid users = <span class="citation" data-cites="users">(<a href="#ref-users" role="doc-biblioref"><strong>users?</strong></a>)</span> force group = users create mask = 0660 directory mask = 0771 writable = yes</p></li>
+<li><p>Que los usuarios puedan acceder a su <strong>$HOME</strong>. Añadir lo siguiente:</p></li>
+</ul>
+<!-- -->
+<pre><code>[homes]
+   comment = Home Directories
+   browseable = no
+   valid users = %S
+   writable = yes
+   create mask = 0700
+   directory mask = 0700</code></pre>
+<ul>
+<li>Acceso anónimo. Añadir lo siguiente:</li>
+</ul>
+<!-- -->
+<pre><code>[anonymous]
+   path = /home/shares/anonymous
+   force group = users
+   create mask = 0660
+   directory mask = 0771
+   browsable =yes
+   writable = yes
+   guest ok = yes</code></pre>
+<ul>
+<li>Compartir una impresora:</li>
+</ul>
+<!-- -->
+<pre><code>[ImpresoraCupsPDF]
+   comment=Impresora Cups-pdf
+   printer=ImpresoraVirtual2
+   path=/var/spool/samba
+   printing=cups
+   printable=yes
+   printer admin=@admin root
+   user client driver=yes
+   # Permitir al invitado imprimir
+   guest ok=no
+   writable=no
+   write list=@adm root
+   valid users=@adm root pas</code></pre>
+<ul>
+<li>Samba utiliza su propio sistema de contraseñas. Por tanto, tendremos que hacer lo siguiente por cada usuario que queramos contemplar:</li>
+</ul>
+<!-- -->
+<pre><code>pas@pas-virtual-debian:~$ sudo smbpasswd -a pedroa
+New SMB password:
+Retype new SMB password:
+Added user pedroa.</code></pre>
+<ul>
+<li><p>Para acceder a las carpetas compartidas:</p>
+<ul>
+<li><p>En Windows, escribimos <span class="math inline">\(\backslash\backslash\)</span><code>pas-virtual-debian</code> en la barra de direcciones.</p></li>
+<li><p>En GNU/Linux, escribimos <code>smb://pas-virtual-debian</code> en la barra de direcciones. :::</p></li>
+</ul></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
