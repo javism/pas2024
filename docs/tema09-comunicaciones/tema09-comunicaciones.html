@@ -335,7 +335,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">10 de mayo de 2024</p>
+      <p class="date">14 de mayo de 2024</p>
     </div>
   </div>
   
@@ -484,24 +484,36 @@ https://www.cyberciti.biz/faq/how-to-find-gateway-ip-address/ -->
 <li><p><code>smbd</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> servicio de compartición de ficheros con Windows.</p></li>
 </ul>
 </section>
+<section id="algunos-demonios-de-red-y-systemd" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="algunos-demonios-de-red-y-systemd">Algunos demonios de red y systemd</h2>
+<p>Algunos de los demonios típicos de UNIX/Linux se van integrando como unidades de systemd, por ejemplo la sincronización de hora <em>Network Time Synchronization</em> es la unidad <code>systemd-timesyncd.service</code> e incluye su propia herramienta.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> timedatectl</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>               <span class="ex">Local</span> time: lun 2024-05-13 23:38:47 CEST</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>           <span class="ex">Universal</span> time: lun 2024-05-13 21:38:47 UTC</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                 <span class="ex">RTC</span> time: lun 2024-05-13 21:38:47</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                <span class="ex">Time</span> zone: Europe/Madrid <span class="er">(</span><span class="ex">CEST,</span> +0200<span class="kw">)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">System</span> clock synchronized: yes</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>              <span class="ex">NTP</span> service: active</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>          <span class="ex">RTC</span> in local TZ: no</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 </section>
 <section id="autenticación-única" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Autenticación única</h1>
-<section id="sistemas-de-autenticación-única" class="level2">
-<h2 class="anchored" data-anchor-id="sistemas-de-autenticación-única">Sistemas de autenticación única</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/sso.png" class="img-fluid figure-img"></p>
-<figcaption>Single Sign-On components, Fuente [Nemeth 2018]</figcaption>
-</figure>
-</div>
-</section>
 <section id="sistemas-de-autenticación-única-en-la-uco" class="level2">
 <h2 class="anchored" data-anchor-id="sistemas-de-autenticación-única-en-la-uco">Sistemas de autenticación única en la UCO</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/esquema-autenticacion.png" class="img-fluid figure-img"></p>
 <figcaption>Sistema de autenticación de usuarios y servicios en la UCO.</figcaption>
+</figure>
+</div>
+</section>
+<section id="sistemas-de-autenticación-única" class="level2">
+<h2 class="anchored" data-anchor-id="sistemas-de-autenticación-única">Sistemas de autenticación única</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/sso.png" class="img-fluid figure-img"></p>
+<figcaption>Single Sign-On components, Fuente [Nemeth 2018]</figcaption>
 </figure>
 </div>
 </section>
@@ -657,14 +669,14 @@ https://www.cyberciti.biz/faq/how-to-find-gateway-ip-address/ -->
 <ul>
 <li>La propia orden <code>mount</code> permite montar el SF remoto:</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount <span class="at">-t</span> nfs <span class="at">-o</span> opciones_nfs 191.168.6.10:/home /datos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount <span class="at">-t</span> nfs <span class="at">-o</span> opciones_nfs 191.168.6.10:/home /datos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p><code>-t nfs</code>: tipo de SF.</p></li>
 <li><p><code>191.168.6.10:/home</code> servidor y directorio remoto a montar.</p></li>
 <li><p>Si en el fichero <code>/etc/fstab</code> se indica el listado de los sistemas de ficheros remotos a montar, el punto de montaje y las opciones, el montaje se puede realizar en tiempo de arranque:</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contenido /etc/fstab</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">191.168.6.10:/home</span>  /datos  nfs  defaults,opciones_nfs 0 0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contenido /etc/fstab</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">191.168.6.10:/home</span>  /datos  nfs  defaults,opciones_nfs 0 0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="nfs-configuración-del-lado-cliente-1" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="nfs-configuración-del-lado-cliente-1">NFS: configuración del lado cliente</h2>
@@ -685,19 +697,19 @@ https://www.cyberciti.biz/faq/how-to-find-gateway-ip-address/ -->
 <section id="nfs-ejemplos" class="level2">
 <h2 class="anchored" data-anchor-id="nfs-ejemplos">NFS: ejemplos</h2>
 <p>Ejemplos en el [<strong>servidor</strong><code>(fichero</code>/etc/exports`):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/home</span> 191.168.6.15<span class="er">(</span><span class="ex">rw,root_squash</span><span class="kw">)</span> <span class="ex">191.168.6.16</span><span class="er">(</span><span class="ex">rw,no_root_squash</span><span class="kw">)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/import</span> 191.168.8.20<span class="er">(</span><span class="ex">rw,all_squash</span><span class="kw">)</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/tools</span> 191.168.6.0/24<span class="er">(</span><span class="ex">ro,all_squash,anonuid=500,anongid=100</span><span class="kw">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/home</span> 191.168.6.15<span class="er">(</span><span class="ex">rw,root_squash</span><span class="kw">)</span> <span class="ex">191.168.6.16</span><span class="er">(</span><span class="ex">rw,no_root_squash</span><span class="kw">)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/import</span> 191.168.8.20<span class="er">(</span><span class="ex">rw,all_squash</span><span class="kw">)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/tools</span> 191.168.6.0/24<span class="er">(</span><span class="ex">ro,all_squash,anonuid=500,anongid=100</span><span class="kw">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ejemplos en el <strong>cliente</strong>, en el fichero <code>/etc/fstab</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julieta:/home</span>       /home         nfs  defaults,rw,bg,hard,intr 0 0</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">julieta:/import</span>     /nfs/import   nfs  defaults,rw,bg,hard,intr 0 0</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">191.168.6.10:/tools</span> /nfs/tools    nfs  defaults,ro,bg,soft      0 0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julieta:/home</span>       /home         nfs  defaults,rw,bg,hard,intr 0 0</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">julieta:/import</span>     /nfs/import   nfs  defaults,rw,bg,hard,intr 0 0</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">191.168.6.10:/tools</span> /nfs/tools    nfs  defaults,ro,bg,soft      0 0</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>También se puede realizar el montaje de forma manual:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount /home        <span class="co">#(configurado /etc/fstab)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount /nfs/import  <span class="co">#(configurado /etc/fstab)</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount <span class="at">-t</span> nfs <span class="at">-o</span> rw,bg,hard,intr julieta:/home /home</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount <span class="at">-t</span> nfs <span class="at">-o</span> rw,bg,hard,intr julieta:/import /nfs/import</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount <span class="at">-t</span> nfs <span class="at">-o</span> ro,soft,bg 191.168.6.10:/tools /nfs/tools</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount /home        <span class="co">#(configurado /etc/fstab)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount /nfs/import  <span class="co">#(configurado /etc/fstab)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount <span class="at">-t</span> nfs <span class="at">-o</span> rw,bg,hard,intr julieta:/home /home</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount <span class="at">-t</span> nfs <span class="at">-o</span> rw,bg,hard,intr julieta:/import /nfs/import</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mount <span class="at">-t</span> nfs <span class="at">-o</span> ro,soft,bg 191.168.6.10:/tools /nfs/tools</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- ### NFS: ejemplos
 
 - Instalación en un sistema Debian/Ubuntu:
