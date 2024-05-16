@@ -600,7 +600,7 @@ https://www.cyberciti.biz/faq/how-to-find-gateway-ip-address/ -->
 <p>Versiones:</p>
 <ul>
 <li><p><span class="math inline">\(NFS\le 2\)</span>: operaciones de escritura bloqueantes (en espera de un ACK).</p></li>
-<li><p><span class="math inline">\(NFS=3\)</span>: esquema de coherencia que permite escrituras asíncronas sin peligro <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> [mayor eficiencia`.</p></li>
+<li><p><span class="math inline">\(NFS=3\)</span>: esquema de coherencia que permite escrituras asíncronas sin peligro <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> mayor eficiencia.</p></li>
 <li><p><span class="math inline">\(NFS=4\)</span>: incorpora funcionalidades adicionales (montaje, bloqueo, autenticación) dentro del propio protocolo.</p></li>
 </ul>
 </div>
@@ -616,8 +616,8 @@ https://www.cyberciti.biz/faq/how-to-find-gateway-ip-address/ -->
 <li><p>Necesidad de <strong>bloquear archivos</strong> accedidos concurrentemente por varios clientes <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> demonios independientes.</p></li>
 <li><p>El cliente es responsable de mantener la coherencia.</p></li>
 </ol></li>
-<li><p><strong><em>Statefull</em></strong> (v4): el servidor trabaja manteniendo el [estado` de las operaciones (ej. 1 y 2).</p></li>
-<li><p>NFS tiene bastantes problemas de seguridad (UID y GID locales, falsificación de direcciones IP, ficheros que pertenecen a <code>root</code>...) <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> uso de [herramientas adicionales.</p></li>
+<li><p><strong><em>Statefull</em></strong> (v4): el servidor trabaja manteniendo el <strong>estado</strong> de las operaciones (ej. 1 y 2).</p></li>
+<li><p>NFS tiene bastantes problemas de seguridad (UID y GID locales, falsificación de direcciones IP, ficheros que pertenecen a <code>root</code>...) <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> uso de herramientas adicionales como Kerberos.</p></li>
 </ul>
 </div>
 </section>
@@ -664,7 +664,7 @@ https://www.cyberciti.biz/faq/how-to-find-gateway-ip-address/ -->
 <ul>
 <li><p><code>rw</code> ó <code>ro</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Modo lectura-escritura o sólo lectura.</p></li>
 <li><p><code>root_squash</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Mapea los uid/gid 0 a los uid/gid anónimo (<strong>nobody</strong> o <strong>nfsnobody</strong>) (controlar al <strong>root</strong> cliente).</p></li>
-<li><p><code>no_root_squash</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> No hacer lo anterior ([peligro`).</p></li>
+<li><p><code>no_root_squash</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> No hacer lo anterior, lo que implica riesgos de seguridad.</p></li>
 <li><p><code>all_squash</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Mapea todos los usuarios al usuario anónimo.</p></li>
 <li><p><code>anonuid</code> ó <code>anongid</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Establecer el <code>uid</code> o el <code>gid</code> del usuario al que realizar el mapeo, distinto del usuario anónimo.</p></li>
 </ul></li>
@@ -805,22 +805,25 @@ https://www.cyberciti.biz/faq/how-to-find-gateway-ip-address/ -->
 </section>
 <section id="configuración" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Configuración</h1>
-<section id="samba-configuración" class="level2">
-<h2 class="anchored" data-anchor-id="samba-configuración">SAMBA: configuración</h2>
-<ul>
-<li><p>A través de <code>/etc/samba/smb.conf</code></p>
-<ul>
-<li><p>Qué recursos del sistemas vas a compartir y que restricciones deseas poner en ellos.</p></li>
-<li><p>Consta de varias secciones distintas que empiezan por <code>[nombre-recurso]</code>.</p>
-<ul>
-<li><p><code>[global]</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Define variables de carácter general y aplicables a todos los recursos.</p></li>
-<li><p><code>[homes]</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Permite a los usuarios remotos acceder a su directorio personal desde su máquina local (ya sean clientes Windows o Linux), pero han de tener cuenta en la máquina servidora.</p></li>
-<li><p><code>[printers]</code> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> Para compartir impresoras.</p></li>
-</ul></li>
-<li><p>Inicio y parada de Samba con <code>/etc/init.d/samba ``start/stop</code></p></li>
-</ul></li>
-</ul>
-</section>
+<p>En la segunda parte del tema vemos un tutorial de NFS en Debian 12.</p>
+<!-- 
+
+## SAMBA: configuración
+
+- A través de `/etc/samba/smb.conf`
+
+    - Qué recursos del sistemas vas a compartir y que restricciones deseas poner en ellos.
+
+    - Consta de varias secciones distintas que empiezan por `[nombre-recurso]`.
+
+        - `[global]`  Define variables de carácter general y aplicables a todos los recursos.
+
+        - `[homes]`  Permite a los usuarios remotos acceder a su directorio personal desde su máquina local (ya sean clientes Windows o Linux), pero han de tener cuenta en la máquina servidora.
+
+        - `[printers]`  Para compartir impresoras.
+
+    - Inicio y parada de Samba con `/etc/init.d/samba ``start/stop`
+ -->
 </section>
 <section id="referencias" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Referencias</h1>
