@@ -3843,7 +3843,7 @@
     "href": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html",
     "title": "Tema 09: Gestión de las comunicaciones. Tutorial NFS",
     "section": "",
-    "text": "Escenario: - VirtualBox como proveedor de red - Debian como servidor NFS (necesitaríamos NIS/LDAP, pero para este tutorial podemos obviarlo) - Otro Linux (Debian/Mint/…) como cliente NFS. Puede simplemente clonar la máquina primera generando nuevas MAC o descargar una preinstalada de https://www.osboxes.org/debian/.\nPrecauciones: en la práctica un servicio y red NFS debe diseñarse con cuidado y en conjunto con otras herramientas como firewalls. Aquí vamos a enseñar un ejemplo básico.",
+    "text": "Escenario:\n\nVirtualBox como proveedor de red\nDebian como servidor NFS (necesitaríamos NIS/LDAP, pero para este tutorial podemos obviarlo)\nOtro Linux (Debian/Mint/…) como cliente NFS. Puede simplemente clonar la máquina primera generando nuevas MAC o descargar una preinstalada de https://www.osboxes.org/debian/.\n\nPrecauciones: en la práctica un servicio y red NFS debe diseñarse con cuidado y en conjunto con otras herramientas como firewalls. Aquí vamos a enseñar un ejemplo básico.",
     "crumbs": [
       "Tema 9: Receta NFS"
     ]
