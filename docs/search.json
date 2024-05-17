@@ -2690,332 +2690,295 @@
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones_eliminado_ejemplos.html",
-    "href": "tema09-comunicaciones/tema09-comunicaciones_eliminado_ejemplos.html",
-    "title": "Programación y Administración de Sistemas (2023-2024)",
+    "objectID": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html",
+    "href": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html",
+    "title": "Tema 09: Gestión de las comunicaciones. Tutorial NFS",
     "section": "",
-    "text": "Existe la posibilidad de configurar varios servidores secundarios****, que tendrán una copia de las bases de datos.\n\nUn cliente puede acudir a varios servidores (dominios).\n\nNSS (Name Service Switch):\n\nIndicar cómo se resolverá cierta información de configuración.\n/etc/nsswitch.conf\n\nDemonios:\n\nrpcbind o portmap  Facilita la conexión entre el cliente y el servidor mediante las llamadas RPC (en cliente y en servidor).\nypserv  Este demonio es el encargado de gestionar el servicio NIS. Tiene que estar en ejecución en el servidor.\nrpc.yppasswdd  Permite la actualización de las contraseñas desde los equipos cliente. En ejecución en el servidor.\nypbind  Es el encargado de gestionar las peticiones. En el cliente (en el servidor, si se quiere que sea cliente de sí mismo)."
+    "text": "Escenario:\n\nVirtualBox como proveedor de red\nDebian como servidor NFS (necesitaríamos NIS/LDAP, pero para este tutorial podemos obviarlo)\nOtro Linux (Debian/Mint/…) como cliente NFS. Puede simplemente clonar la máquina primera generando nuevas MAC o descargar una preinstalada de https://www.osboxes.org/debian/.\n\nPrecauciones: en la práctica un servicio y red NFS debe diseñarse con cuidado y en conjunto con otras herramientas como firewalls. Aquí vamos a enseñar un ejemplo básico.",
+    "crumbs": [
+      "Tema 9: Receta NFS"
+    ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones_eliminado_ejemplos.html#lado-servidor",
-    "href": "tema09-comunicaciones/tema09-comunicaciones_eliminado_ejemplos.html#lado-servidor",
-    "title": "Programación y Administración de Sistemas (2023-2024)",
-    "section": "Lado servidor",
-    "text": "Lado servidor\n\nNIS: instalación del servidor\n\nPasos en el servidor (Ubuntu/Debian):\n\nInstalar paquete nis (instala portmap). Indicar dominio a utilizar (pas_nis) y esperar intento fallido de binding.\nCambiar el fichero /etc/default/nis e indicar NISSERVER=master.\nAñadir la IP del servidor al fichero /etc/yp.conf:\nypserver localhost\nConfigurar el servidor (crea las bases de datos): sudo /usr/lib/yp/ypinit -m. [Este paso habrá que repetirlo cada vez que cambiemos las bases de datos`.\nReiniciar el servicio: (sudo /etc/init.d/nis restart).\nComprobar que todo funciona: rpcinfo -p.\nConfigurar el NSS (/etc/nsswitch.conf)\npasswd:         compat nis\ngroup:          compat nis\nshadow:         compat nis"
+    "objectID": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#en-el-servidor",
+    "href": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#en-el-servidor",
+    "title": "Tema 09: Gestión de las comunicaciones. Tutorial NFS",
+    "section": "En el servidor",
+    "text": "En el servidor\nInstalamos el paquete de sorpote NFS:\nsudo apt update\nsudo apt install nfs-kernel-server\nVamos a exportar el /home. En /etc/exports añadimos:\n/home               client_ip(rw,sync,no_root_squash,no_subtree_check)\nEcha un vistazo a lo que significa cada una de estas opciones:\n\nrw: Esta opción da al ordenador cliente acceso de lectura y escritura al volumen.\nsync: Esta opción obliga a NFS a escribir los cambios en el disco antes de responder. El resultado es un entorno más estable y consistente, ya que la respuesta refleja el estado real del volumen remoto. Sin embargo, también reduce la velocidad de las operaciones de archivo.\nno_subtree_check: Esta opción evita la comprobación de subárboles, que es un proceso en el que el host debe comprobar si el archivo sigue realmente disponible en el árbol exportado para cada solicitud. Esto puede causar muchos problemas cuando se cambia el nombre de un archivo mientras el cliente lo tiene abierto. En casi todos los casos, es mejor desactivar la comprobación de subárboles.\nno_root_squash: Por defecto, NFS traduce las peticiones de un usuario root de forma remota a un usuario sin privilegios en el servidor. Esto está pensado como una característica de seguridad para evitar que una cuenta root en el cliente utilice el sistema de archivos del host/servidor como root. no_root_squash desactiva este comportamiento para ciertos recursos compartidos.\n\nPregunta: ¿Activamos o no no_root_squash?\nsudo systemctl restart nfs-kernel-server",
+    "crumbs": [
+      "Tema 9: Receta NFS"
+    ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones_eliminado_ejemplos.html#lado-cliente",
-    "href": "tema09-comunicaciones/tema09-comunicaciones_eliminado_ejemplos.html#lado-cliente",
-    "title": "Programación y Administración de Sistemas (2023-2024)",
-    "section": "Lado cliente",
-    "text": "Lado cliente\n\nNIS: instalación del cliente\n\nPasos en el cliente (Ubuntu/Debian):\n\nInstalar paquete nis (instala portmap). Indicar dominio a utilizar (pas_nis) y esperar intento fallido de binding.\nAñadir la IP del servidor al fichero /etc/yp.conf:\nypserver 192.168.56.101\nConfigurar el NSS (/etc/nsswitch.conf)\npasswd:         compat nis\ngroup:          compat nis\nshadow:         compat nis\nReiniciar el servicio: (sudo /etc/init.d/nis restart).\nEl dominio por defecto se encuentra en /etc/defaultdomain.\n\n\n\n\nNIS: ejemplos\n\nInstalación en un sistema Debian/Ubuntu:\n\n\n# IP del servidor 192.168.56.101\n# ------------ Lado servidor \npas@pas-virtual-debian:/home$ sudo apt-get install nis\npas@pas-virtual-debian:/home$ sudo gedit /etc/default/nis\n# Cambiar el fichero y poner:\nNISSERVER=master\npas@pas-virtual-debian:/home$ sudo gedit /etc/yp.conf \n# Añadir a dicho fichero:\ndomain pas.es ypserver localhost\npas@pas-virtual-debian:/home$ sudo /usr/lib/yp/ypinit -m\npas@pas-virtual-debian:/home$ sudo service nis restart\npas@pas-virtual-debian:/home$ sudo rpcinfo -p\npas@pas-virtual-debian:/home$ sudo gedit /etc/nsswitch.conf \n#Añadir nis en las líneas correspondientes:\npasswd:         compat nis\ngroup:          compat nis\nshadow:         compat nis\n\n# ------------ Lado cliente \npas@pas-virtual-debianCliente:~$ sudo apt-get install nis\npas@pas-virtual-debianCliente:~$ sudo gedit /etc/yp.conf\n\n# Añadir a dicho fichero:\ndomain pas.es ypserver 192.168.56.101\npas@pas-virtual-debianCliente:~$ sudo gedit /etc/nsswitch.conf \n#Añadir nis en las líneas correspondientes:\npasswd:         compat nis\ngroup:          compat nis\nshadow:         compat nis\npas@pas-virtual-debianCliente:~$ sudo service nis restart\n\n\nNIS: añadir usuario\n\nAñadir el usuario desde la máquina principal (master NIS) con adduser.\nRecontruir y distribuir los mapas NIS: make -C /var/yp.\nEl usuario está listo para usarse dentro de la red NIS (habitualmente habríamos exportado /home por NFS para que esté disponible en toda la red)."
+    "objectID": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#en-el-cliente",
+    "href": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#en-el-cliente",
+    "title": "Tema 09: Gestión de las comunicaciones. Tutorial NFS",
+    "section": "En el cliente",
+    "text": "En el cliente\nInstalamos el paquete de funcionalidades NFS para el cliente:\nsudo apt update\nsudo apt install nfs-common\nCreación de puntos de montaje y montaje de directorios en el cliente.\nNota: Si hay archivos y directorios en su punto de montaje, se ocultarán en cuanto monte el recurso compartido NFS. Para evitar la pérdida de archivos importantes, asegurate de que, si monta en un directorio que ya existe, el directorio esté vacío.\n# Creamos directorio local\nsudo mkdir -p /srv/home\n# Montamos /home remoto en el local \nsudo mount host_ip:/home /srv/home\n# Comprobamos que se ha añadido a nuestro sistema de ficheros\ndf -h\nComprobación de que podemos escribir:\nsudo touch /srv/home/home.test\nls -l /srv/home/home.test\nPara hacer que el directorio NFS se monte al arrancar:\n# /etc/fstab\nhost_ip:/home               /srv/home      nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0",
+    "crumbs": [
+      "Tema 9: Receta NFS"
+    ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones_eliminado_ejemplos.html#seguridad",
-    "href": "tema09-comunicaciones/tema09-comunicaciones_eliminado_ejemplos.html#seguridad",
-    "title": "Programación y Administración de Sistemas (2023-2024)",
-    "section": "Seguridad",
-    "text": "Seguridad\n\nNIS: seguridad\n\nUtilidades como clientes:\n\nyppasswd: Permite que los usuarios puedan cambiar su contraseña en el servidor NIS (gracias al demonio yppasswdd que se ejecuta en el servidor).\nypchsh: Permite cambiar el shell del usuario en el servidor NIS.\nypchfn: Cambia el campo gecos del usuario en el servidor NIS.\nypcat: Permite conocer el contenido de un mapa NIS. Por ejemplo:\n\nypcat passwd  visualiza el fichero de passwords\nypcat ypservers  muestra los servidores disponibles\n\nypwhich: Devuelve el nombre del servidor NIS.\n\n\n\n\nNIS: seguridad\n\n**[Seguridad**: En el fichero/etc/ypserv.conf` se pueden indicar listas de control de acceso.\nFormato: host:nisdomain:map:security (se interpretan por orden):\n  128.138.24.0/255.255.252.0:atrustnis:*:none # permite acceso de 128.138.24/22\n  *:*:passwd.byuid:deny  # deniega acceso a passwd por uid a cualquier dominio\n  *:*:passwd.byname:deny # deniega acceso a passwd por name a cualquier dominio\n  128.138.:atrustnis:*:port # permite acceso de 128.138/16, siempre que la petición provenga de un puerto con privilegios\n  *:*:*:deny # deniega por defecto\nLas BDDs se indexan para mejorar el acceso:\n  pagutierrez@PEDROLaptop:/var/yp/pas_nis$ ls \n  group.bygid   netgroup.byhost  protocols.byname    services.byservicename\n  group.byname  netgroup.byuser  protocols.bynumber  shadow.byname\n  hosts.byaddr  netid.byname     rpc.byname          ypservers\n  hosts.byname  passwd.byname    rpc.bynumber\n  netgroup      passwd.byuid     services.byname\n\n\n\nSAMBA\n\nInstalación en un sistema Debian/Ubuntu:\npas@pas-virtual-debian:~$ sudo apt-get install samba samba-common cups pas@pas-virtual-debian:~$ sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.bak pas@pas-virtual-debian:~$ sudo gedit /etc/samba/smb.conf # Cambiar el fichero y poner el siguiente contenido: [global] workgroup = WORKGROUP server string = Samba Server %v netbios name = debian01 security = user map to guest = bad user dns proxy = no pas@pas-virtual-debian:~$ sudo service nmbd restart pas@pas-virtual-debian:~$ sudo service smbd restart\nCrear carpetas compartidas:\npas@pas-virtual-debian:~$ sudo mkdir -p /home/shares/allusers pas@pas-virtual-debian:~$ sudo chown -R root:users /home/shares/allusers/ pas@pas-virtual-debian:~$ sudo chmod -R ug+rwx,o+rx-w /home/shares/allusers/ pas@pas-virtual-debian:~$ sudo mkdir -p /home/shares/anonymous pas@pas-virtual-debian:~$ sudo chown -R root:users /home/shares/anonymous/ pas@pas-virtual-debian:~$ sudo chmod -R ug+rwx,o+rx-w /home/shares/anonymous/\nAccesibles para todos los usuarios del grupo users. Añadir lo siguiente:\npas@pas-virtual-debian:~$ sudo gedit /etc/samba/smb.conf [allusers] comment = All Users path = /home/shares/allusers valid users = (users?) force group = users create mask = 0660 directory mask = 0771 writable = yes\nQue los usuarios puedan acceder a su $HOME. Añadir lo siguiente:\n\n\n[homes]\n   comment = Home Directories\n   browseable = no\n   valid users = %S\n   writable = yes\n   create mask = 0700\n   directory mask = 0700\n\nAcceso anónimo. Añadir lo siguiente:\n\n\n[anonymous]\n   path = /home/shares/anonymous\n   force group = users\n   create mask = 0660\n   directory mask = 0771\n   browsable =yes\n   writable = yes\n   guest ok = yes\n\nCompartir una impresora:\n\n\n[ImpresoraCupsPDF]\n   comment=Impresora Cups-pdf\n   printer=ImpresoraVirtual2\n   path=/var/spool/samba\n   printing=cups\n   printable=yes\n   printer admin=@admin root\n   user client driver=yes\n   # Permitir al invitado imprimir\n   guest ok=no\n   writable=no\n   write list=@adm root\n   valid users=@adm root pas\n\nSamba utiliza su propio sistema de contraseñas. Por tanto, tendremos que hacer lo siguiente por cada usuario que queramos contemplar:\n\n\npas@pas-virtual-debian:~$ sudo smbpasswd -a pedroa\nNew SMB password:\nRetype new SMB password:\nAdded user pedroa.\n\nPara acceder a las carpetas compartidas:\n\nEn Windows, escribimos \\(\\backslash\\backslash\\)pas-virtual-debian en la barra de direcciones.\nEn GNU/Linux, escribimos smb://pas-virtual-debian en la barra de direcciones. :::"
-  },
-  {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html",
-    "title": "Tema 9: Gestión de las comunicaciones",
+    "objectID": "tema00-presentacion/presentacion.html",
+    "href": "tema00-presentacion/presentacion.html",
+    "title": "Tema 0: Presentación",
     "section": "",
-    "text": "Describir la complejidad existente en la correcta gestión de una red para un sistema informático y las tareas de administración asociadas.\nNombrar los servicios de red más comunes en un sistema informático GNU/Linux y explicar su cometido.\nIdentificar el objetivo del sistema de ficheros distribuido Network FileSystem (NFS) y explicar su arquitectura.\nEstablecer el cometido de cada uno de los demonios de NFS.\nConfigurar NFS en el lado servidor y en el lado cliente.\nDiscutir sobre los posibles problemas de seguridad asociados a NFS.\nIdentificar el objetivo del servicio de información de red Network Information Service (NIS) y su funcionamiento.\nEstablecer el cometido de cada uno de los demonios de NIS.\nConfigurar NIS en el lado servidor y en el lado cliente.\nDiscutir sobre los posibles problemas de seguridad asociados a NIS.\nJustificar la necesidad de SAMBA.\nConfigurar un servicio SAMBA que permita interactuar con sistemas operativos Microsoft Windows.\n\n\n\n\n\nCuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.",
+    "text": "Todo el material mínimo y opcional de la asignatura está disponible en la plataforma Moodle de la UCO:\n\nhttp://moodle.uco.es/m2324\nCurso: Programación y Administración de Sistemas ( GIINF-2-101390-1-1)\n\n\n\n\n\nCordinación y teoría: Javier Sánchez Monedero\n\n\nPrácticas:\n\nPrácticas 1-3: María Isabel Jiménez Velasco y Víctor Manuel Vargas Yun\nPráctica 4: Enrique García Salcines\n\n\nHorarios de tutoría y datos de contacto en Moodle.\n\n\n\nEl uso de los móviles en la educación puede tener tanto efectos positivos como negativos.\n\n\n\n\n\n\nEfectos positivos:\n\n\n\n\nFacilita el acceso a la información y recursos educativos en línea.\nMejora la colaboración y el trabajo en equipo a través de aplicaciones y herramientas en línea\nFomenta la independencia y el aprendizaje autónomo.\nAumenta la motivación y el interés por el aprendizaje.\n\n\n\n\n\n\n\n\n\n\n\n\nEfectos negativos:\n\n\n\n\nDistracción y pérdida de concentración en la clase.\nUso inadecuado y poco ético, como la trampa en exámenes o el acceso a contenido no apropiado.\nAdicción a los dispositivos y dependencia en la tecnología.\nDesigualdades socioeconómicas, ya que no todos los estudiantes tienen acceso a dispositivos de alta calidad o a una conexión a Internet confiable.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#objetivos",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#objetivos",
-    "title": "Tema 9: Gestión de las comunicaciones",
+    "objectID": "tema00-presentacion/presentacion.html#moodle",
+    "href": "tema00-presentacion/presentacion.html#moodle",
+    "title": "Tema 0: Presentación",
     "section": "",
-    "text": "Describir la complejidad existente en la correcta gestión de una red para un sistema informático y las tareas de administración asociadas.\nNombrar los servicios de red más comunes en un sistema informático GNU/Linux y explicar su cometido.\nIdentificar el objetivo del sistema de ficheros distribuido Network FileSystem (NFS) y explicar su arquitectura.\nEstablecer el cometido de cada uno de los demonios de NFS.\nConfigurar NFS en el lado servidor y en el lado cliente.\nDiscutir sobre los posibles problemas de seguridad asociados a NFS.\nIdentificar el objetivo del servicio de información de red Network Information Service (NIS) y su funcionamiento.\nEstablecer el cometido de cada uno de los demonios de NIS.\nConfigurar NIS en el lado servidor y en el lado cliente.\nDiscutir sobre los posibles problemas de seguridad asociados a NIS.\nJustificar la necesidad de SAMBA.\nConfigurar un servicio SAMBA que permita interactuar con sistemas operativos Microsoft Windows.",
+    "text": "Todo el material mínimo y opcional de la asignatura está disponible en la plataforma Moodle de la UCO:\n\nhttp://moodle.uco.es/m2324\nCurso: Programación y Administración de Sistemas ( GIINF-2-101390-1-1)",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#evaluación",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#evaluación",
-    "title": "Tema 9: Gestión de las comunicaciones",
+    "objectID": "tema00-presentacion/presentacion.html#profesorado",
+    "href": "tema00-presentacion/presentacion.html#profesorado",
+    "title": "Tema 0: Presentación",
     "section": "",
-    "text": "Cuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.",
+    "text": "Cordinación y teoría: Javier Sánchez Monedero\n\n\nPrácticas:\n\nPrácticas 1-3: María Isabel Jiménez Velasco y Víctor Manuel Vargas Yun\nPráctica 4: Enrique García Salcines\n\n\nHorarios de tutoría y datos de contacto en Moodle.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#tareas-de-gestión-de-la-red",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#tareas-de-gestión-de-la-red",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "Tareas de gestión de la red",
-    "text": "Tareas de gestión de la red\n Fuente imagen visual-paradigm.com\n\nManejo de la red.\nMonitorizar el tráfico\nAñadir nuevos hosts.\nMontar discos remotos o exportar los discos locales: NFS.\nServicio de información: usuarios, grupos, etc. (Single Sign-On).\nConfigurar y administrar otros servicios de red (web, correo, DNS, etc.).\nPrevenir problemas de seguridad.\nEnrutado de tráfico.\nProgramar estrategias de crecimiento de la red, para que la eficiencia pueda mantenerse.\n…",
+    "objectID": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-12",
+    "href": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-12",
+    "title": "Tema 0: Presentación",
+    "section": "",
+    "text": "El uso de los móviles en la educación puede tener tanto efectos positivos como negativos.\n\n\n\n\n\n\nEfectos positivos:\n\n\n\n\nFacilita el acceso a la información y recursos educativos en línea.\nMejora la colaboración y el trabajo en equipo a través de aplicaciones y herramientas en línea\nFomenta la independencia y el aprendizaje autónomo.\nAumenta la motivación y el interés por el aprendizaje.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#conceptos-básicos-1",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#conceptos-básicos-1",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "Conceptos básicos",
-    "text": "Conceptos básicos\nLabor mínima:\n\nOpciones de configuración de la red más importantes.\nEntender la configuración de la red actual.\nDimensionado de la red y estrategias de crecimiento.\n\nRepaso de conceptos:\n\n\nInterfaces de red\nIP: IP interna vs IP externa\nHosts y DNS\nPasarela\nPuerto",
+    "objectID": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-22",
+    "href": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-22",
+    "title": "Tema 0: Presentación",
+    "section": "",
+    "text": "Efectos negativos:\n\n\n\n\nDistracción y pérdida de concentración en la clase.\nUso inadecuado y poco ético, como la trampa en exámenes o el acceso a contenido no apropiado.\nAdicción a los dispositivos y dependencia en la tecnología.\nDesigualdades socioeconómicas, ya que no todos los estudiantes tienen acceso a dispositivos de alta calidad o a una conexión a Internet confiable.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#demonios-del-sistema-y-red",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#demonios-del-sistema-y-red",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "Demonios del sistema y red",
-    "text": "Demonios del sistema y red\n\nA veces encontramos un superservidor que levanta demonios de uso poco frecuente. Antiguamente xinetd, hoy reemplazado por systemd y firewalls con esta funcionalidad.\nAlgunos los podemos listar con sytemd: systemctl --type=service --state=running\n\nUNIT                      LOAD   ACTIVE SUB     DESCRIPTION                                   \ncron.service              loaded active running Regular background program processing daemon\ndbus.service              loaded active running D-Bus System Message Bus\ngetty@tty1.service        loaded active running Getty on tty1\nssh.service               loaded active running OpenBSD Secure Shell server\nsystemd-journald.service  loaded active running Journal Service\nsystemd-logind.service    loaded active running User Login Management\nsystemd-timesyncd.service loaded active running Network Time Synchronization\nsystemd-udevd.service     loaded active running Rule-based Manager for Device Events and Files\nuser@1000.service         loaded active running User Manager for UID 1000\nwpa_supplicant.service    loaded active running WPA supplicant\n\nLOAD   = Reflects whether the unit definition was properly loaded.\nACTIVE = The high-level unit activation state, i.e. generalization of SUB.\nSUB    = The low-level unit activation state, values depend on unit type.\n10 loaded units listed.",
+    "objectID": "tema00-presentacion/presentacion.html#actividad-en-clase",
+    "href": "tema00-presentacion/presentacion.html#actividad-en-clase",
+    "title": "Tema 0: Presentación",
+    "section": "Actividad en clase",
+    "text": "Actividad en clase\nEn buscadores genéricos o de empleo busca “administrador/a de sistemas”, “devops”, “sysadmin”\nEjemplos:\n\nhttps://www.linkedin.com/jobs/search/?currentJobId=3825905330&keywords=sysadmin\nhttps://www.infojobs.net/ofertas-trabajo/administrador-a-de-sistemas-informaticos",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#ejercicio-de-conceptos-básicos",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#ejercicio-de-conceptos-básicos",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "EJERCICIO de conceptos básicos",
-    "text": "EJERCICIO de conceptos básicos\n\nConsulta los datos básicos de la red de tu equipo y de tu máquina virtual. Puedes usar el comando ip.\n\nip local, interna y externa\nconfiguración DNS\npasarela\nprueba la ruta a algún dominio: traceroute uco.es, traceroute stanford.edu. https://visualtraceroute.net/\n\nLista los servicios del sistema:\n\nsystemctl --type=service \nsystemctl --type=service --state=running\n# crear un alias \nalias running_services='systemctl list-units  --type=service  --state=running'\n\n¿Cómo encontramos qué programa está escuchando en un puerto?\n\nsudo lsof -i -P -n | grep LISTEN\nsudo netstat -tulpn | grep LISTEN\nsudo ss -tulpn | grep LISTEN\nsudo lsof -i:22 ## see a specific port such as 22 ##\nsudo nmap -sTU -O IP-address-Here\n\nEn Ubuntu: resolvectl. En Windows: netstat -bano\n¿Cómo cambiarías la IP en Debian? (pista /etc/network/interfaces)",
+    "objectID": "tema00-presentacion/presentacion.html#administradora-de-sistemas",
+    "href": "tema00-presentacion/presentacion.html#administradora-de-sistemas",
+    "title": "Tema 0: Presentación",
+    "section": "Administrador/a de sistemas",
+    "text": "Administrador/a de sistemas\n\n\nSegún Wikipedia:\n\nUn Administrador/a de Sistemas es la persona que tiene la responsabilidad de implementar, configurar, mantener, monitorizar, documentar y asegurar el correcto funcionamiento de un sistema informático, o algún aspecto de éste.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#algunos-demonios-de-red",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#algunos-demonios-de-red",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "Algunos demonios de red",
-    "text": "Algunos demonios de red\n/etc/init.d/networking script que activa la red en tiempo de arranque (también en /etc/systemd/network/ y /etc/init.d/network-manager).\n\nntpd  demonio encargado de sincronizar la hora del sistema.\ndhcpd  demonio encargado del servicio de Dynamic Host Configuration Protocol (servidor proporciona IPs privadas a las máquinas que se conecten).\nnamed  demonio encargado del servicio de Domain Name System (servidor traduce nombres de dominio).\nsendmail  demonio encargado del correo electrónico.\nsshd  demonio que permite ssh (conexión remota segura).\nhttpd,nginx,apache2  servidor web.\nsmbd  servicio de compartición de ficheros con Windows.",
+    "objectID": "tema00-presentacion/presentacion.html#memes",
+    "href": "tema00-presentacion/presentacion.html#memes",
+    "title": "Tema 0: Presentación",
+    "section": "Memes",
+    "text": "Memes\n\nFuente: we are hiring.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#algunos-demonios-de-red-y-systemd",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#algunos-demonios-de-red-y-systemd",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "Algunos demonios de red y systemd",
-    "text": "Algunos demonios de red y systemd\nAlgunos de los demonios típicos de UNIX/Linux se van integrando como unidades de systemd, por ejemplo la sincronización de hora Network Time Synchronization es la unidad systemd-timesyncd.service e incluye su propia herramienta.\n$ timedatectl\n               Local time: lun 2024-05-13 23:38:47 CEST\n           Universal time: lun 2024-05-13 21:38:47 UTC\n                 RTC time: lun 2024-05-13 21:38:47\n                Time zone: Europe/Madrid (CEST, +0200)\nSystem clock synchronized: yes\n              NTP service: active\n          RTC in local TZ: no",
+    "objectID": "tema00-presentacion/presentacion.html#tareas",
+    "href": "tema00-presentacion/presentacion.html#tareas",
+    "title": "Tema 0: Presentación",
+    "section": "Tareas",
+    "text": "Tareas\n\n\nMantener el Sistema Informático de una empresa/institución.\nA nivel software:\n\nInstalar servicios utilizados por la empresa.\nInterconectar servicios (mismo login y contraseña para todo).\nMantener servicios (p.ej. Moodle, servidor de correo…).\nRealizar copias de respaldo de los datos.\nControlar la seguridad.\n\n¿A nivel hardware?",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#sistemas-de-autenticación-única-en-la-uco",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#sistemas-de-autenticación-única-en-la-uco",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "Sistemas de autenticación única en la UCO",
-    "text": "Sistemas de autenticación única en la UCO\n\n\n\nSistema de autenticación de usuarios y servicios en la UCO.",
+    "objectID": "tema00-presentacion/presentacion.html#software-libre",
+    "href": "tema00-presentacion/presentacion.html#software-libre",
+    "title": "Tema 0: Presentación",
+    "section": "Software libre",
+    "text": "Software libre\nAunque en el escritorio el software privativo sea líder el software libre y los sistemas Linux, FreeBSD, etc. son la opción mayoritaria servidores y supercomputadores.\n\nFuente: Usage share of operating systems en Wikipedia.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#sistemas-de-autenticación-única",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#sistemas-de-autenticación-única",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "Sistemas de autenticación única",
-    "text": "Sistemas de autenticación única\n\n\n\nSingle Sign-On components, Fuente [Nemeth 2018]",
+    "objectID": "tema00-presentacion/presentacion.html#por-qué-software-libre",
+    "href": "tema00-presentacion/presentacion.html#por-qué-software-libre",
+    "title": "Tema 0: Presentación",
+    "section": "¿Por qué software libre?",
+    "text": "¿Por qué software libre?\n\n\n\nEntorno empresarial y de investigación cooperativo.\nAdopción de estándares.\nFlexibilidad, fiabilidad, seguridad, transparencia.\nIndependencia de proveedores.\nÉtica y compromiso social.\nMás económico (¿?)\n\nhttps://www.uco.es/aulasoftwarelibre",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nis-conceptos-básicos",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nis-conceptos-básicos",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "NIS: conceptos básicos",
-    "text": "NIS: conceptos básicos\nFicheros de configuración: en un entorno real, muchos ficheros de configuración son similares de una máquina a otra. /etc/passwd o /etc/shadow.\n\\(n\\) máquinas  \\(n\\) réplicas de los ficheros que gestionar:\n\nMuy difícil.\nLos cambios tardan en propagarse.\n\nNetwork Information Service (NIS).\n\nTodos los servicios acceden a una misma base de datos de configuraciones.\nPermite centralizar la autenticación de servicios.",
+    "objectID": "tema00-presentacion/presentacion.html#objetivo",
+    "href": "tema00-presentacion/presentacion.html#objetivo",
+    "title": "Tema 0: Presentación",
+    "section": "Objetivo",
+    "text": "Objetivo\n\nEl objetivo fundamental es que el alumnado que curse la asignatura adquiera los conocimientos básicos y domine las técnicas fundamentales de la Administración de Sistemas Operativos.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nis-esquema-ejemplo",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nis-esquema-ejemplo",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "NIS: esquema ejemplo",
-    "text": "NIS: esquema ejemplo",
+    "objectID": "tema00-presentacion/presentacion.html#objetivos-concretos",
+    "href": "tema00-presentacion/presentacion.html#objetivos-concretos",
+    "title": "Tema 0: Presentación",
+    "section": "Objetivos concretos",
+    "text": "Objetivos concretos\n\n\n\nConocer los comandos básicos y las secuencias de pasos necesarias para instalar y administrar sistemas.\nConocer y manejar los ficheros de configuración de los sistemas.\nAdquirir conocimientos básicos sobre lenguajes de scripting y de programación de la Shell.\nComprender cómo se organiza el sistema operativo y los subsistemas POSIX para poder escribir aplicaciones que interaccionen con los mismos.\nInstalar y mantener servicios en Sistemas Distribuidos.\nAdquirir conceptos teóricos y prácticos de rendimiento y seguridad en sistemas.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nis-limitaciones",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nis-limitaciones",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "NIS: limitaciones",
-    "text": "NIS: limitaciones\nNIS presenta inconvenientes/limitaciones (subsanados por LDAP) pero es más sencillo de desplegar que LDAP:\n\nSólo para una subred y no cifra los datos.\nNo permite establecer jerarquías de usuarios complejas.\nUn cambio  reconstruir todo y redistribuirlo.\nUsuario del servicio \\(\\Leftrightarrow\\) usuario sistema operativo.",
+    "objectID": "tema00-presentacion/presentacion.html#temario",
+    "href": "tema00-presentacion/presentacion.html#temario",
+    "title": "Tema 0: Presentación",
+    "section": "Temario",
+    "text": "Temario\n\nIntroducción a la administración de sistemas.\nOrganización de un sistema operativo GNU/Linux.\nGestión de usuarios.\nArranque y parada del sistema y servicios.\nMonitorización y gestión de recursos.\nOrganización de sistemas de ficheros y discos.\nAdministración de sistemas de ficheros y discos.\nRestauración y copias de seguridad\nGestión de las comunicaciones.\nVirtualización.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nis-conceptos-básicos-1",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nis-conceptos-básicos-1",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "NIS: conceptos básicos",
-    "text": "NIS: conceptos básicos\nLos ficheros de las bases de datos están en el equipo servidor y contienen información como:\n\nlogin names / passwords / home directories  /etc/passwd.\ngroup information  /etc/group.\n…\n\nEl servidor distribuye esta información a los clientes.\nEn el lado servidor:\n\nLos ficheros se preprocesan para convertirlos a un formato binario con hashing (Berkeley DataBase) (mejor eficiencia).\nDominio NIS  clave para poder localizar al servidor (p.ej. pas.es o pas_nis).\nLos ficheros de las BDs residen a partir del directorio /var/yp/, en un subdirectorio con el nombre del dominio.",
+    "objectID": "tema00-presentacion/presentacion.html#temario-prácticas",
+    "href": "tema00-presentacion/presentacion.html#temario-prácticas",
+    "title": "Tema 0: Presentación",
+    "section": "Temario prácticas",
+    "text": "Temario prácticas\n\nBloque I:\n\nProgramación de la shell.\nExpresiones regulares para la programación de la shell.\n\n\n\nBloque II:\n\nProgramación en POSIX.\nAdministración de servidores web: Apache.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-servicio-de-archivos-compartidos",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-servicio-de-archivos-compartidos",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "NFS: servicio de archivos compartidos",
-    "text": "NFS: servicio de archivos compartidos\n\nPosibilita que un Sistema de Ficheros, que físicamente reside en un host remoto, sea usado por otros ordenadores, vía red, como si fuese un sistema de ficheros local.\nDisponible en sistemas Unix/Linux y Windows (desde 2008).\nEn el servidor se indica:\n\nQué sistemas de ficheros se exportan  Se puede exportar un sistema de ficheros completo o un directorio.\nA qué ordenadores se exportan (se les permite acceder)  a un equipo concreto o a todos los equipos de una red.\nCondiciones para la exportación.\n\nLos equipos cliente montan el sistema de ficheros remoto con la orden mount y acceden a los datos como si fuesen locales\n\nIncorporan, en cada operación, una cookie secreta que se les manda cuando montan el directorio.",
+    "objectID": "tema00-presentacion/presentacion.html#planificación-asignatura",
+    "href": "tema00-presentacion/presentacion.html#planificación-asignatura",
+    "title": "Tema 0: Presentación",
+    "section": "Planificación asignatura",
+    "text": "Planificación asignatura\nCalendario aproximado teoría\nCalendario aproximado prácticas\nProvisional: seminarios aulas y/o profesionales.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-servicio-de-archivos-compartidos-1",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-servicio-de-archivos-compartidos-1",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "NFS: servicio de archivos compartidos",
-    "text": "NFS: servicio de archivos compartidos\n\nAl exportar un fichero, se exporta su nodo-i y sus bloques de datos  ¿propietario y grupo propietario?. ¿Qué pasa si en el equipo cliente no existe ese usuario o ese grupo propietario?.\nUn equipo puede ser servidor y cliente NFS al mismo tiempo.\n\n\nVersiones:\n\n\\(NFS\\le 2\\): operaciones de escritura bloqueantes (en espera de un ACK).\n\\(NFS=3\\): esquema de coherencia que permite escrituras asíncronas sin peligro  mayor eficiencia.\n\\(NFS=4\\): incorpora funcionalidades adicionales (montaje, bloqueo, autenticación) dentro del propio protocolo.",
+    "objectID": "tema00-presentacion/presentacion.html#bibliografía-1",
+    "href": "tema00-presentacion/presentacion.html#bibliografía-1",
+    "title": "Tema 0: Presentación",
+    "section": "Bibliografía",
+    "text": "Bibliografía\nBásica para seguir la asignatura:\n\nUNIX and Linux System Administration Handbook, 5th Edition. Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley and Dan Mackin. Addison-Wesley. 2018.\nEssential System Administration (3a ed.). Aeleen Frisch. O’Reilly & Associates. 2002.\nEl Arte del Terminal, Joshua Levy, 2023.\n\nAdicional:\n\nAdministración de sistemas Linux. Adelstein, Tom. Lubanovic, Bill. Anaya multimedia, O Reilly. 2007.\nUnix shell programming, 3a Edición. Kochan, Wood. Sams Publishing. 2003.\nLPI Linux Certification in a Nutshell, Third Edition. Adam Haeder, Stephen Addison Schneiter, Bruno Gomes Pessanha, and James Stanger. 2010.\nK. A. Robbind, S. Robbins. Unix Systems Programming. Prentice Hall, 2003",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#organización-y-arquitectura",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#organización-y-arquitectura",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "Organización y arquitectura",
-    "text": "Organización y arquitectura\n\nOrganización:\n\nSe basa en el protocolo Remote Call Procedure (RPC), para encapsular llamadas al servidor cuando se piden archivos remotos (de manera transparente para el usuario).\nStateless (v2/v3): el servidor trabaja sin mantener información del estado de cada uno de los clientes (ficheros abiertos, último fichero o última posición escrita).\n\nNecesidad de bloquear archivos accedidos concurrentemente por varios clientes  demonios independientes.\nEl cliente es responsable de mantener la coherencia.\n\nStatefull (v4): el servidor trabaja manteniendo el estado de las operaciones (ej. 1 y 2).\nNFS tiene bastantes problemas de seguridad (UID y GID locales, falsificación de direcciones IP, ficheros que pertenecen a root...)  uso de herramientas adicionales como Kerberos.",
+    "objectID": "tema00-presentacion/presentacion.html#evaluación-1",
+    "href": "tema00-presentacion/presentacion.html#evaluación-1",
+    "title": "Tema 0: Presentación",
+    "section": "Evaluación",
+    "text": "Evaluación\n\nLeer detenidamente la guı́a docente.\nLa evaluación de la asignatura se divide en dos partes, parte teórica y parte práctica (Teorı́a 50 % + Práctica 50 %).\nPara aprobar la asignatura es necesario obtener al menos 5 sobre 10 puntos en la parte de prácticas y 5 sobre 10 puntos en la parte de teorı́a. En caso contrario, la asignatura se considera suspensa.\nSi se aprueba solo la teorı́a o solo la práctica, la nota correspondiente se guarda hasta la convocatoria de septiembre.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#organización-y-arquitectura-1",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#organización-y-arquitectura-1",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "Organización y arquitectura",
-    "text": "Organización y arquitectura",
+    "objectID": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas",
+    "href": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas",
+    "title": "Tema 0: Presentación",
+    "section": "Evaluación: exámenes y pruebas",
+    "text": "Evaluación: exámenes y pruebas\nLa parte de teorı́a (50 % de la nota) se evaluará con un examen final teórico que estará compuesto de:\n\nPruebas objetivas tipo test (20 %, mı́nimo 5 sobre 10).\nPruebas de respuesta corta con supuestos prácticos que versen sobre los contenido teóricos dados en clase (30 %, mı́nimo 5 sobre 10).\n\nLa parte de prácticas (50 % de la nota) se organiza en dos bloques. Consta de:\n\nExamen práctico de programación y administración de sistemas 50 %, mı́nimo 5 sobre 10). Existen dos posibilidades:\n\nExámenes prácticos parciales realizados durante el curso (eliminan materia de cara al examen final).\nExamen práctico final realizado durante el periodo de exámenes.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-servidor",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-servidor",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "NFS: configuración del lado servidor",
-    "text": "NFS: configuración del lado servidor\n\n/etc/exports  Fichero en el que se indica qué SFs se exportan, bajo qué condiciones y a qué ordenadores.\n/usr/sbin/exportfs  Actualiza la información de los SFs exportados y muestra un listado con dicha información (realiza un restart de los demonios nfsd y rpc.mountd):\n\n-r  re-exporta los directorios indicados en /etc/exports.\n-a  exporta o deja de exportar /etc/exports.\n-v  muestra los directorios exportados y las opciones.\n\n/usr/sbin/showmount  información en un servidor NFS:\n\n-a  clientes conectados y directorios utilizados.\n-d  listado de los directorios montados.",
+    "objectID": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas-1",
+    "href": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas-1",
+    "title": "Tema 0: Presentación",
+    "section": "Evaluación: exámenes y pruebas",
+    "text": "Evaluación: exámenes y pruebas\n\nPara aprobar las prácticas es necesario aprobar cada Bloque por separado con 5 sobre 10 puntos.\nPara presentarse a las prácticas en la convocatoria de junio es necesario haber asistido a un 80 % de las sesiones de prácticas.\nPara la convocatoria de julio y de septiembre, la asistencia a las prácticas no es requisito.\nLas calificaciones parciales no se guardan de un curso a otro.\nSe guardan calificaciones parciales (bloques de prácticas o teorı́a) dentro de las convocatorias del mismo curso académico.\nLos alumnos a tiempo parcial deben ponerse en contacto con el profesor.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-servidor-1",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-servidor-1",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "NFS: configuración del lado servidor",
-    "text": "NFS: configuración del lado servidor\n\nDemonios en el lado servidor\n\nrpcbind o portmap  Facilita la conexión entre el cliente y el servidor mediante las llamadas RPC. Tiene que estar lanzado para que NFS funcione.\nnfsd  Implementa, en el nivel de usuario, los servicios NFS. La principal funcionalidad está implementada por el módulo del kernel nfsd.ko. Los threads del kernel aparecen como [nfsd], al ejecutar ps aux.\nrpc.mountd  Maneja las peticiones de montaje de directorios de los clientes, comprobando la petición con la lista de sistemas de ficheros exportados.\n\n\n/etc/init.d/nfs-kernel-server  Lanza rpc.mountd y rpc.nfsd.",
+    "objectID": "tema00-presentacion/presentacion.html#tareas-de-administración-i",
+    "href": "tema00-presentacion/presentacion.html#tareas-de-administración-i",
+    "title": "Tema 0: Presentación",
+    "section": "Tareas de administración (I)",
+    "text": "Tareas de administración (I)\n\nResolución de ejercicios teóricos y/o prácticos propuestos y anunciados.\nLas alumnas/os podrán proponer tareas similares a las propuestas.\nEsta nota se guardará para todas las convocatorias del curso académico. Las tareas pueden llegar a valorarse hasta 2 puntos en el examen de teorı́a (sobre 5 puntos). Se tendrá en cuenta para aumentar nota una vez aprobado el examen.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-servidor-2",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-servidor-2",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "NFS: configuración del lado servidor",
-    "text": "NFS: configuración del lado servidor\n/etc/exports  Para configurar qué “directorios” se exportan, bajo qué condiciones y a qué equipos ruta dirección(opción):\n\nruta es el nombre del directorio a exportar vía NFS.\ndirección a quién es exportado (IP, dirección de red, etc.).\nopción especifica el tipo de acceso al directorio:\n\nrw ó ro  Modo lectura-escritura o sólo lectura.\nroot_squash  Mapea los uid/gid 0 a los uid/gid anónimo (nobody o nfsnobody) (controlar al root cliente).\nno_root_squash  No hacer lo anterior, lo que implica riesgos de seguridad.\nall_squash  Mapea todos los usuarios al usuario anónimo.\nanonuid ó anongid  Establecer el uid o el gid del usuario al que realizar el mapeo, distinto del usuario anónimo.",
+    "objectID": "tema00-presentacion/presentacion.html#tareas-de-administración-ii",
+    "href": "tema00-presentacion/presentacion.html#tareas-de-administración-ii",
+    "title": "Tema 0: Presentación",
+    "section": "Tareas de administración (II)",
+    "text": "Tareas de administración (II)\n\nSe deberá redactar un guión donde se detalle paso a paso los comandos y operaciones necesarios para llevar a cabo la tarea, acompañados de capturas cuando ası́ se requiera. El documento deberá ser autocontenido y explicativo y todo se deberá realizar sobre una imagen virtual de un sistema operativo GNU/Linux. Se presentará en clase durante un tiempo aproximado de 10-15 minutos.",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-cliente",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-cliente",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "NFS: configuración del lado cliente",
-    "text": "NFS: configuración del lado cliente\n\nLa propia orden mount permite montar el SF remoto:\n\n$ mount -t nfs -o opciones_nfs 191.168.6.10:/home /datos\n\n-t nfs: tipo de SF.\n191.168.6.10:/home servidor y directorio remoto a montar.\nSi en el fichero /etc/fstab se indica el listado de los sistemas de ficheros remotos a montar, el punto de montaje y las opciones, el montaje se puede realizar en tiempo de arranque:\n\n# Contenido /etc/fstab\n191.168.6.10:/home  /datos  nfs  defaults,opciones_nfs 0 0",
+    "objectID": "tema00-presentacion/presentacion.html#devops-1",
+    "href": "tema00-presentacion/presentacion.html#devops-1",
+    "title": "Tema 0: Presentación",
+    "section": "DevOps",
+    "text": "DevOps\nroadmap.sh/devops",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-cliente-1",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-cliente-1",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "NFS: configuración del lado cliente",
-    "text": "NFS: configuración del lado cliente\n\nOpciones para mount:\n\nsoft  Si el servidor NFS falla durante un tiempo, las operaciones que intentaban acceder a él recibirán un código de error.\nhard  Si un proceso está realizando una operación de E/S con un fichero vía NFS y el servidor NFS no responde, el proceso no puede ser interrumpido o matado (no acepta la señal KILL) salvo que se especifique la opción intr. Siempre que usemos rw deberíamos usar hard, para no dejar el SF remoto inconsistente.\nintr  Se permite señales de interrupción para los procesos bloqueados en una operación de E/S en un servidor NFS.\nsoft va en contra de la filosofía de NFS.\nbg  Si el montaje del SF remoto falla, que siga intentándolo en background, hasta que lo consiga o desista porque se han hecho retry intentos\nretry=n  Nº de intentos que se deben hacer para montar el SF remoto, antes de desistir si la conexión falla.\ntimeo=n  Tiempo a esperar entre cada intento de montaje si la conexión falla.",
+    "objectID": "tema00-presentacion/presentacion.html#dinamización-de-clases",
+    "href": "tema00-presentacion/presentacion.html#dinamización-de-clases",
+    "title": "Tema 0: Presentación",
+    "section": "Dinamización de clases",
+    "text": "Dinamización de clases\n\nIdeal: aula de prácticas para ir probando lo que hacemos…\nQuizz: 1 por tema (cada 2 clases)\nTareas administración\nResolución de casos prácticos\nMemes\n…",
     "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
+      "Tema 0: Presentación"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-ejemplos",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-ejemplos",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "NFS: ejemplos",
-    "text": "NFS: ejemplos\nEjemplos en el [servidor(fichero/etc/exports`):\n/home 191.168.6.15(rw,root_squash) 191.168.6.16(rw,no_root_squash)\n/import 191.168.8.20(rw,all_squash)\n/tools 191.168.6.0/24(ro,all_squash,anonuid=500,anongid=100)\nEjemplos en el cliente, en el fichero /etc/fstab:\njulieta:/home       /home         nfs  defaults,rw,bg,hard,intr 0 0\njulieta:/import     /nfs/import   nfs  defaults,rw,bg,hard,intr 0 0\n191.168.6.10:/tools /nfs/tools    nfs  defaults,ro,bg,soft      0 0\nTambién se puede realizar el montaje de forma manual:\n$ mount /home        #(configurado /etc/fstab)\n$ mount /nfs/import  #(configurado /etc/fstab)\n$ mount -t nfs -o rw,bg,hard,intr julieta:/home /home\n$ mount -t nfs -o rw,bg,hard,intr julieta:/import /nfs/import\n$ mount -t nfs -o ro,soft,bg 191.168.6.10:/tools /nfs/tools",
-    "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
-    ]
+    "objectID": "varios/moodle-compacto.html",
+    "href": "varios/moodle-compacto.html",
+    "title": "Cómo hacer más compacto (o menos irritante) moodle 4.x",
+    "section": "",
+    "text": "Moodle 4.x se une a la web moderna pensada para ser simple en lo visual pero extremadamente ineficiente para trabajar con más de 3 elementos de información a la vez. ¡Por suerte podemos cambiarlo!"
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#samba-necesidad",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#samba-necesidad",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "SAMBA: necesidad",
-    "text": "SAMBA: necesidad\n\nEntre maquinas GNU/Linux, es posible usar el protocolo NFS para compartir ficheros.\nPresenta una serie de inconvenientes:\n\nProblemas de seguridad.\nNo existe una buena implementación libre de NFS para equipos Windows.\n\nLleva menos trabajo utilizar el protocolo utilizado por las maquinas Windows.\nEste protocolo, llamado Common Internet FileSystem (CIFS), tiene implementaciones sobre un gran numero de plataformas.\nExiste una implementación libre de este protocolo llamada SaMBa, que permite utilizarlo sobre servidores GNU/Linux",
-    "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
-    ]
+    "objectID": "varios/moodle-compacto.html#abstract",
+    "href": "varios/moodle-compacto.html#abstract",
+    "title": "Cómo hacer más compacto (o menos irritante) moodle 4.x",
+    "section": "",
+    "text": "Moodle 4.x se une a la web moderna pensada para ser simple en lo visual pero extremadamente ineficiente para trabajar con más de 3 elementos de información a la vez. ¡Por suerte podemos cambiarlo!"
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#samba-introducción",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#samba-introducción",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "SAMBA: introducción",
-    "text": "SAMBA: introducción\n\n¿Qué es?\n\nEs un sistema de compartición de archivos e impresoras en red.\nPermite la interconexión de sistemas heterogéneos entre sí (GNU/Linux y Windows).\nLos clientes Windows tendrán la sensación de estar ante un servidor Windows NT.\nControlar el acceso de clientes Windows a servicios de red Windows o Unix.\n\nProtocolos:\n\nSMB (Server Message Block): Compartir los recursos.\nCIFS (Common Internet File System): Implementación mejorada de SMB.\nNetBIOS (Network Basic Input/Output System): Servicio de nombres:\n\nNombres lógicos en la red.\nSesiones entre los nombres.",
-    "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
-    ]
-  },
-  {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#samba-introducción-1",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#samba-introducción-1",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "SAMBA: introducción",
-    "text": "SAMBA: introducción\n\n¿Cuándo es útil?\n\nNo quieres pagar un servidor Windows NT para obtener las funcionalidades que este proporciona.\nHomogeneizar la red local ante clientes Windows y Unix.\nCompartir impresora entre clientes Windows y Unix.\n\nUtiliza dos demonios:\n\nsmbd  Permite la compartición de archivos e impresoras sobre una red SMB y proporciona autentificación y autorización de acceso para clientes SMB.\nnmbd  Se ocupa de anunciar servicios, es decir, informa a las máquinas en la red de cuales son los servicios disponibles.\n\nPodemos configurar SAMBA mediante:\n\nEl fichero smb.conf.\nEl front-end SWAT (no se recomienda, poco seguro).",
-    "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
-    ]
-  },
-  {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#samba-configuración",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#samba-configuración",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "SAMBA: configuración",
-    "text": "SAMBA: configuración\n\nA través de /etc/samba/smb.conf\n\nQué recursos del sistemas vas a compartir y que restricciones deseas poner en ellos.\nConsta de varias secciones distintas que empiezan por [nombre-recurso].\n\n[global]  Define variables de carácter general y aplicables a todos los recursos.\n[homes]  Permite a los usuarios remotos acceder a su directorio personal desde su máquina local (ya sean clientes Windows o Linux), pero han de tener cuenta en la máquina servidora.\n[printers]  Para compartir impresoras.\n\nInicio y parada de Samba con /etc/init.d/samba ``start/stop",
-    "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
-    ]
-  },
-  {
-    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#referencias-1",
-    "href": "tema09-comunicaciones/tema09-comunicaciones.html#referencias-1",
-    "title": "Tema 9: Gestión de las comunicaciones",
-    "section": "Referencias",
-    "text": "Referencias\n\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 17. Single Sign-On, Capítulo 21. The Network File System, Capítulo 22. SMB. Addison-Wesley. 5th Edition. 2018.\nAeleen Frisch. Essential system administration. Capítulo 10. Filesystems and disks. O’Reilly and Associates. Tercera edición. 2002.",
-    "crumbs": [
-      "Tema 9: Gestión de las comunicaciones"
-    ]
+    "objectID": "varios/moodle-compacto.html#pasos",
+    "href": "varios/moodle-compacto.html#pasos",
+    "title": "Cómo hacer más compacto (o menos irritante) moodle 4.x",
+    "section": "Pasos",
+    "text": "Pasos\nInstala https://www.tampermonkey.net/ en tu navegador favorito. TL;DR: Tampermonkey permite incluir scripts de usuario para cambiar en parte el aspecto, comportamiento, etc. de webs.\nAñade el siguente script desde la URL: https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js. El script está pensado para la web de la UCO pero puede adaptarse a cualquier otro cambiando la línea // @match        https://moodle.uco.es/m2324/*.\n\nAcceso al panel/dashboard de Tampermonkey\n\n\n\nAcceso a la pestaña de utilidades\n\n\n\nCargar script desde URL https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js.\n\n\n\nRecarga tu moodle."
   },
   {
     "objectID": "tema06-sf/tema06-sf.html",
@@ -3578,304 +3541,293 @@
     ]
   },
   {
-    "objectID": "varios/moodle-compacto.html",
-    "href": "varios/moodle-compacto.html",
-    "title": "Cómo hacer más compacto (o menos irritante) moodle 4.x",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html",
+    "title": "Tema 9: Gestión de las comunicaciones",
     "section": "",
-    "text": "Moodle 4.x se une a la web moderna pensada para ser simple en lo visual pero extremadamente ineficiente para trabajar con más de 3 elementos de información a la vez. ¡Por suerte podemos cambiarlo!"
+    "text": "Describir la complejidad existente en la correcta gestión de una red para un sistema informático y las tareas de administración asociadas.\nNombrar los servicios de red más comunes en un sistema informático GNU/Linux y explicar su cometido.\nIdentificar el objetivo del sistema de ficheros distribuido Network FileSystem (NFS) y explicar su arquitectura.\nEstablecer el cometido de cada uno de los demonios de NFS.\nConfigurar NFS en el lado servidor y en el lado cliente.\nDiscutir sobre los posibles problemas de seguridad asociados a NFS.\nIdentificar el objetivo del servicio de información de red Network Information Service (NIS) y su funcionamiento.\nEstablecer el cometido de cada uno de los demonios de NIS.\nConfigurar NIS en el lado servidor y en el lado cliente.\nDiscutir sobre los posibles problemas de seguridad asociados a NIS.\nJustificar la necesidad de SAMBA.\nConfigurar un servicio SAMBA que permita interactuar con sistemas operativos Microsoft Windows.\n\n\n\n\n\nCuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.",
+    "crumbs": [
+      "Tema 9: Gestión de las comunicaciones"
+    ]
   },
   {
-    "objectID": "varios/moodle-compacto.html#abstract",
-    "href": "varios/moodle-compacto.html#abstract",
-    "title": "Cómo hacer más compacto (o menos irritante) moodle 4.x",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#objetivos",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#objetivos",
+    "title": "Tema 9: Gestión de las comunicaciones",
     "section": "",
-    "text": "Moodle 4.x se une a la web moderna pensada para ser simple en lo visual pero extremadamente ineficiente para trabajar con más de 3 elementos de información a la vez. ¡Por suerte podemos cambiarlo!"
+    "text": "Describir la complejidad existente en la correcta gestión de una red para un sistema informático y las tareas de administración asociadas.\nNombrar los servicios de red más comunes en un sistema informático GNU/Linux y explicar su cometido.\nIdentificar el objetivo del sistema de ficheros distribuido Network FileSystem (NFS) y explicar su arquitectura.\nEstablecer el cometido de cada uno de los demonios de NFS.\nConfigurar NFS en el lado servidor y en el lado cliente.\nDiscutir sobre los posibles problemas de seguridad asociados a NFS.\nIdentificar el objetivo del servicio de información de red Network Information Service (NIS) y su funcionamiento.\nEstablecer el cometido de cada uno de los demonios de NIS.\nConfigurar NIS en el lado servidor y en el lado cliente.\nDiscutir sobre los posibles problemas de seguridad asociados a NIS.\nJustificar la necesidad de SAMBA.\nConfigurar un servicio SAMBA que permita interactuar con sistemas operativos Microsoft Windows.",
+    "crumbs": [
+      "Tema 9: Gestión de las comunicaciones"
+    ]
   },
   {
-    "objectID": "varios/moodle-compacto.html#pasos",
-    "href": "varios/moodle-compacto.html#pasos",
-    "title": "Cómo hacer más compacto (o menos irritante) moodle 4.x",
-    "section": "Pasos",
-    "text": "Pasos\nInstala https://www.tampermonkey.net/ en tu navegador favorito. TL;DR: Tampermonkey permite incluir scripts de usuario para cambiar en parte el aspecto, comportamiento, etc. de webs.\nAñade el siguente script desde la URL: https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js. El script está pensado para la web de la UCO pero puede adaptarse a cualquier otro cambiando la línea // @match        https://moodle.uco.es/m2324/*.\n\nAcceso al panel/dashboard de Tampermonkey\n\n\n\nAcceso a la pestaña de utilidades\n\n\n\nCargar script desde URL https://raw.githubusercontent.com/javism/TampermonkeyScripts/main/moodlecompact.js.\n\n\n\nRecarga tu moodle."
-  },
-  {
-    "objectID": "tema00-presentacion/presentacion.html",
-    "href": "tema00-presentacion/presentacion.html",
-    "title": "Tema 0: Presentación",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#evaluación",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#evaluación",
+    "title": "Tema 9: Gestión de las comunicaciones",
     "section": "",
-    "text": "Todo el material mínimo y opcional de la asignatura está disponible en la plataforma Moodle de la UCO:\n\nhttp://moodle.uco.es/m2324\nCurso: Programación y Administración de Sistemas ( GIINF-2-101390-1-1)\n\n\n\n\n\nCordinación y teoría: Javier Sánchez Monedero\n\n\nPrácticas:\n\nPrácticas 1-3: María Isabel Jiménez Velasco y Víctor Manuel Vargas Yun\nPráctica 4: Enrique García Salcines\n\n\nHorarios de tutoría y datos de contacto en Moodle.\n\n\n\nEl uso de los móviles en la educación puede tener tanto efectos positivos como negativos.\n\n\n\n\n\n\nEfectos positivos:\n\n\n\n\nFacilita el acceso a la información y recursos educativos en línea.\nMejora la colaboración y el trabajo en equipo a través de aplicaciones y herramientas en línea\nFomenta la independencia y el aprendizaje autónomo.\nAumenta la motivación y el interés por el aprendizaje.\n\n\n\n\n\n\n\n\n\n\n\n\nEfectos negativos:\n\n\n\n\nDistracción y pérdida de concentración en la clase.\nUso inadecuado y poco ético, como la trampa en exámenes o el acceso a contenido no apropiado.\nAdicción a los dispositivos y dependencia en la tecnología.\nDesigualdades socioeconómicas, ya que no todos los estudiantes tienen acceso a dispositivos de alta calidad o a una conexión a Internet confiable.",
+    "text": "Cuestionarios objetivos.\nPruebas de respuesta libre.\nTareas de administración.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#moodle",
-    "href": "tema00-presentacion/presentacion.html#moodle",
-    "title": "Tema 0: Presentación",
-    "section": "",
-    "text": "Todo el material mínimo y opcional de la asignatura está disponible en la plataforma Moodle de la UCO:\n\nhttp://moodle.uco.es/m2324\nCurso: Programación y Administración de Sistemas ( GIINF-2-101390-1-1)",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#tareas-de-gestión-de-la-red",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#tareas-de-gestión-de-la-red",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "Tareas de gestión de la red",
+    "text": "Tareas de gestión de la red\n Fuente imagen visual-paradigm.com\n\nManejo de la red.\nMonitorizar el tráfico\nAñadir nuevos hosts.\nMontar discos remotos o exportar los discos locales: NFS.\nServicio de información: usuarios, grupos, etc. (Single Sign-On).\nConfigurar y administrar otros servicios de red (web, correo, DNS, etc.).\nPrevenir problemas de seguridad.\nEnrutado de tráfico.\nProgramar estrategias de crecimiento de la red, para que la eficiencia pueda mantenerse.\n…",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#profesorado",
-    "href": "tema00-presentacion/presentacion.html#profesorado",
-    "title": "Tema 0: Presentación",
-    "section": "",
-    "text": "Cordinación y teoría: Javier Sánchez Monedero\n\n\nPrácticas:\n\nPrácticas 1-3: María Isabel Jiménez Velasco y Víctor Manuel Vargas Yun\nPráctica 4: Enrique García Salcines\n\n\nHorarios de tutoría y datos de contacto en Moodle.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#conceptos-básicos-1",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#conceptos-básicos-1",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "Conceptos básicos",
+    "text": "Conceptos básicos\nLabor mínima:\n\nOpciones de configuración de la red más importantes.\nEntender la configuración de la red actual.\nDimensionado de la red y estrategias de crecimiento.\n\nRepaso de conceptos:\n\n\nInterfaces de red\nIP: IP interna vs IP externa\nHosts y DNS\nPasarela\nPuerto",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-12",
-    "href": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-12",
-    "title": "Tema 0: Presentación",
-    "section": "",
-    "text": "El uso de los móviles en la educación puede tener tanto efectos positivos como negativos.\n\n\n\n\n\n\nEfectos positivos:\n\n\n\n\nFacilita el acceso a la información y recursos educativos en línea.\nMejora la colaboración y el trabajo en equipo a través de aplicaciones y herramientas en línea\nFomenta la independencia y el aprendizaje autónomo.\nAumenta la motivación y el interés por el aprendizaje.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#demonios-del-sistema-y-red",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#demonios-del-sistema-y-red",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "Demonios del sistema y red",
+    "text": "Demonios del sistema y red\n\nA veces encontramos un superservidor que levanta demonios de uso poco frecuente. Antiguamente xinetd, hoy reemplazado por systemd y firewalls con esta funcionalidad.\nAlgunos los podemos listar con sytemd: systemctl --type=service --state=running\n\nUNIT                      LOAD   ACTIVE SUB     DESCRIPTION                                   \ncron.service              loaded active running Regular background program processing daemon\ndbus.service              loaded active running D-Bus System Message Bus\ngetty@tty1.service        loaded active running Getty on tty1\nssh.service               loaded active running OpenBSD Secure Shell server\nsystemd-journald.service  loaded active running Journal Service\nsystemd-logind.service    loaded active running User Login Management\nsystemd-timesyncd.service loaded active running Network Time Synchronization\nsystemd-udevd.service     loaded active running Rule-based Manager for Device Events and Files\nuser@1000.service         loaded active running User Manager for UID 1000\nwpa_supplicant.service    loaded active running WPA supplicant\n\nLOAD   = Reflects whether the unit definition was properly loaded.\nACTIVE = The high-level unit activation state, i.e. generalization of SUB.\nSUB    = The low-level unit activation state, values depend on unit type.\n10 loaded units listed.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-22",
-    "href": "tema00-presentacion/presentacion.html#móviles-en-clase-qué-dice-chatgpt-22",
-    "title": "Tema 0: Presentación",
-    "section": "",
-    "text": "Efectos negativos:\n\n\n\n\nDistracción y pérdida de concentración en la clase.\nUso inadecuado y poco ético, como la trampa en exámenes o el acceso a contenido no apropiado.\nAdicción a los dispositivos y dependencia en la tecnología.\nDesigualdades socioeconómicas, ya que no todos los estudiantes tienen acceso a dispositivos de alta calidad o a una conexión a Internet confiable.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#ejercicio-de-conceptos-básicos",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#ejercicio-de-conceptos-básicos",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "EJERCICIO de conceptos básicos",
+    "text": "EJERCICIO de conceptos básicos\n\nConsulta los datos básicos de la red de tu equipo y de tu máquina virtual. Puedes usar el comando ip.\n\nip local, interna y externa\nconfiguración DNS\npasarela\nprueba la ruta a algún dominio: traceroute uco.es, traceroute stanford.edu. https://visualtraceroute.net/\n\nLista los servicios del sistema:\n\nsystemctl --type=service \nsystemctl --type=service --state=running\n# crear un alias \nalias running_services='systemctl list-units  --type=service  --state=running'\n\n¿Cómo encontramos qué programa está escuchando en un puerto?\n\nsudo lsof -i -P -n | grep LISTEN\nsudo netstat -tulpn | grep LISTEN\nsudo ss -tulpn | grep LISTEN\nsudo lsof -i:22 ## see a specific port such as 22 ##\nsudo nmap -sTU -O IP-address-Here\n\nEn Ubuntu: resolvectl. En Windows: netstat -bano\n¿Cómo cambiarías la IP en Debian? (pista /etc/network/interfaces)",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#actividad-en-clase",
-    "href": "tema00-presentacion/presentacion.html#actividad-en-clase",
-    "title": "Tema 0: Presentación",
-    "section": "Actividad en clase",
-    "text": "Actividad en clase\nEn buscadores genéricos o de empleo busca “administrador/a de sistemas”, “devops”, “sysadmin”\nEjemplos:\n\nhttps://www.linkedin.com/jobs/search/?currentJobId=3825905330&keywords=sysadmin\nhttps://www.infojobs.net/ofertas-trabajo/administrador-a-de-sistemas-informaticos",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#algunos-demonios-de-red",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#algunos-demonios-de-red",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "Algunos demonios de red",
+    "text": "Algunos demonios de red\n/etc/init.d/networking script que activa la red en tiempo de arranque (también en /etc/systemd/network/ y /etc/init.d/network-manager).\n\nntpd  demonio encargado de sincronizar la hora del sistema.\ndhcpd  demonio encargado del servicio de Dynamic Host Configuration Protocol (servidor proporciona IPs privadas a las máquinas que se conecten).\nnamed  demonio encargado del servicio de Domain Name System (servidor traduce nombres de dominio).\nsendmail  demonio encargado del correo electrónico.\nsshd  demonio que permite ssh (conexión remota segura).\nhttpd,nginx,apache2  servidor web.\nsmbd  servicio de compartición de ficheros con Windows.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#administradora-de-sistemas",
-    "href": "tema00-presentacion/presentacion.html#administradora-de-sistemas",
-    "title": "Tema 0: Presentación",
-    "section": "Administrador/a de sistemas",
-    "text": "Administrador/a de sistemas\n\n\nSegún Wikipedia:\n\nUn Administrador/a de Sistemas es la persona que tiene la responsabilidad de implementar, configurar, mantener, monitorizar, documentar y asegurar el correcto funcionamiento de un sistema informático, o algún aspecto de éste.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#algunos-demonios-de-red-y-systemd",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#algunos-demonios-de-red-y-systemd",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "Algunos demonios de red y systemd",
+    "text": "Algunos demonios de red y systemd\nAlgunos de los demonios típicos de UNIX/Linux se van integrando como unidades de systemd, por ejemplo la sincronización de hora Network Time Synchronization es la unidad systemd-timesyncd.service e incluye su propia herramienta.\n$ timedatectl\n               Local time: lun 2024-05-13 23:38:47 CEST\n           Universal time: lun 2024-05-13 21:38:47 UTC\n                 RTC time: lun 2024-05-13 21:38:47\n                Time zone: Europe/Madrid (CEST, +0200)\nSystem clock synchronized: yes\n              NTP service: active\n          RTC in local TZ: no",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#memes",
-    "href": "tema00-presentacion/presentacion.html#memes",
-    "title": "Tema 0: Presentación",
-    "section": "Memes",
-    "text": "Memes\n\nFuente: we are hiring.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#sistemas-de-autenticación-única-en-la-uco",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#sistemas-de-autenticación-única-en-la-uco",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "Sistemas de autenticación única en la UCO",
+    "text": "Sistemas de autenticación única en la UCO\n\n\n\nSistema de autenticación de usuarios y servicios en la UCO.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#tareas",
-    "href": "tema00-presentacion/presentacion.html#tareas",
-    "title": "Tema 0: Presentación",
-    "section": "Tareas",
-    "text": "Tareas\n\n\nMantener el Sistema Informático de una empresa/institución.\nA nivel software:\n\nInstalar servicios utilizados por la empresa.\nInterconectar servicios (mismo login y contraseña para todo).\nMantener servicios (p.ej. Moodle, servidor de correo…).\nRealizar copias de respaldo de los datos.\nControlar la seguridad.\n\n¿A nivel hardware?",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#sistemas-de-autenticación-única",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#sistemas-de-autenticación-única",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "Sistemas de autenticación única",
+    "text": "Sistemas de autenticación única\n\n\n\nSingle Sign-On components, Fuente [Nemeth 2018]",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#software-libre",
-    "href": "tema00-presentacion/presentacion.html#software-libre",
-    "title": "Tema 0: Presentación",
-    "section": "Software libre",
-    "text": "Software libre\nAunque en el escritorio el software privativo sea líder el software libre y los sistemas Linux, FreeBSD, etc. son la opción mayoritaria servidores y supercomputadores.\n\nFuente: Usage share of operating systems en Wikipedia.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nis-conceptos-básicos",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nis-conceptos-básicos",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "NIS: conceptos básicos",
+    "text": "NIS: conceptos básicos\nFicheros de configuración: en un entorno real, muchos ficheros de configuración son similares de una máquina a otra. /etc/passwd o /etc/shadow.\n\\(n\\) máquinas  \\(n\\) réplicas de los ficheros que gestionar:\n\nMuy difícil.\nLos cambios tardan en propagarse.\n\nNetwork Information Service (NIS).\n\nTodos los servicios acceden a una misma base de datos de configuraciones.\nPermite centralizar la autenticación de servicios.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#por-qué-software-libre",
-    "href": "tema00-presentacion/presentacion.html#por-qué-software-libre",
-    "title": "Tema 0: Presentación",
-    "section": "¿Por qué software libre?",
-    "text": "¿Por qué software libre?\n\n\n\nEntorno empresarial y de investigación cooperativo.\nAdopción de estándares.\nFlexibilidad, fiabilidad, seguridad, transparencia.\nIndependencia de proveedores.\nÉtica y compromiso social.\nMás económico (¿?)\n\nhttps://www.uco.es/aulasoftwarelibre",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nis-esquema-ejemplo",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nis-esquema-ejemplo",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "NIS: esquema ejemplo",
+    "text": "NIS: esquema ejemplo",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#objetivo",
-    "href": "tema00-presentacion/presentacion.html#objetivo",
-    "title": "Tema 0: Presentación",
-    "section": "Objetivo",
-    "text": "Objetivo\n\nEl objetivo fundamental es que el alumnado que curse la asignatura adquiera los conocimientos básicos y domine las técnicas fundamentales de la Administración de Sistemas Operativos.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nis-limitaciones",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nis-limitaciones",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "NIS: limitaciones",
+    "text": "NIS: limitaciones\nNIS presenta inconvenientes/limitaciones (subsanados por LDAP) pero es más sencillo de desplegar que LDAP:\n\nSólo para una subred y no cifra los datos.\nNo permite establecer jerarquías de usuarios complejas.\nUn cambio  reconstruir todo y redistribuirlo.\nUsuario del servicio \\(\\Leftrightarrow\\) usuario sistema operativo.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#objetivos-concretos",
-    "href": "tema00-presentacion/presentacion.html#objetivos-concretos",
-    "title": "Tema 0: Presentación",
-    "section": "Objetivos concretos",
-    "text": "Objetivos concretos\n\n\n\nConocer los comandos básicos y las secuencias de pasos necesarias para instalar y administrar sistemas.\nConocer y manejar los ficheros de configuración de los sistemas.\nAdquirir conocimientos básicos sobre lenguajes de scripting y de programación de la Shell.\nComprender cómo se organiza el sistema operativo y los subsistemas POSIX para poder escribir aplicaciones que interaccionen con los mismos.\nInstalar y mantener servicios en Sistemas Distribuidos.\nAdquirir conceptos teóricos y prácticos de rendimiento y seguridad en sistemas.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nis-conceptos-básicos-1",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nis-conceptos-básicos-1",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "NIS: conceptos básicos",
+    "text": "NIS: conceptos básicos\nLos ficheros de las bases de datos están en el equipo servidor y contienen información como:\n\nlogin names / passwords / home directories  /etc/passwd.\ngroup information  /etc/group.\n…\n\nEl servidor distribuye esta información a los clientes.\nEn el lado servidor:\n\nLos ficheros se preprocesan para convertirlos a un formato binario con hashing (Berkeley DataBase) (mejor eficiencia).\nDominio NIS  clave para poder localizar al servidor (p.ej. pas.es o pas_nis).\nLos ficheros de las BDs residen a partir del directorio /var/yp/, en un subdirectorio con el nombre del dominio.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#temario",
-    "href": "tema00-presentacion/presentacion.html#temario",
-    "title": "Tema 0: Presentación",
-    "section": "Temario",
-    "text": "Temario\n\nIntroducción a la administración de sistemas.\nOrganización de un sistema operativo GNU/Linux.\nGestión de usuarios.\nArranque y parada del sistema y servicios.\nMonitorización y gestión de recursos.\nOrganización de sistemas de ficheros y discos.\nAdministración de sistemas de ficheros y discos.\nRestauración y copias de seguridad\nGestión de las comunicaciones.\nVirtualización.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-servicio-de-archivos-compartidos",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-servicio-de-archivos-compartidos",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "NFS: servicio de archivos compartidos",
+    "text": "NFS: servicio de archivos compartidos\n\nPosibilita que un Sistema de Ficheros, que físicamente reside en un host remoto, sea usado por otros ordenadores, vía red, como si fuese un sistema de ficheros local.\nDisponible en sistemas Unix/Linux y Windows (desde 2008).\nEn el servidor se indica:\n\nQué sistemas de ficheros se exportan  Se puede exportar un sistema de ficheros completo o un directorio.\nA qué ordenadores se exportan (se les permite acceder)  a un equipo concreto o a todos los equipos de una red.\nCondiciones para la exportación.\n\nLos equipos cliente montan el sistema de ficheros remoto con la orden mount y acceden a los datos como si fuesen locales\n\nIncorporan, en cada operación, una cookie secreta que se les manda cuando montan el directorio.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#temario-prácticas",
-    "href": "tema00-presentacion/presentacion.html#temario-prácticas",
-    "title": "Tema 0: Presentación",
-    "section": "Temario prácticas",
-    "text": "Temario prácticas\n\nBloque I:\n\nProgramación de la shell.\nExpresiones regulares para la programación de la shell.\n\n\n\nBloque II:\n\nProgramación en POSIX.\nAdministración de servidores web: Apache.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-servicio-de-archivos-compartidos-1",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-servicio-de-archivos-compartidos-1",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "NFS: servicio de archivos compartidos",
+    "text": "NFS: servicio de archivos compartidos\n\nAl exportar un fichero, se exporta su nodo-i y sus bloques de datos  ¿propietario y grupo propietario?. ¿Qué pasa si en el equipo cliente no existe ese usuario o ese grupo propietario?.\nUn equipo puede ser servidor y cliente NFS al mismo tiempo.\n\n\nVersiones:\n\n\\(NFS\\le 2\\): operaciones de escritura bloqueantes (en espera de un ACK).\n\\(NFS=3\\): esquema de coherencia que permite escrituras asíncronas sin peligro  mayor eficiencia.\n\\(NFS=4\\): incorpora funcionalidades adicionales (montaje, bloqueo, autenticación) dentro del propio protocolo.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#planificación-asignatura",
-    "href": "tema00-presentacion/presentacion.html#planificación-asignatura",
-    "title": "Tema 0: Presentación",
-    "section": "Planificación asignatura",
-    "text": "Planificación asignatura\nCalendario aproximado teoría\nCalendario aproximado prácticas\nProvisional: seminarios aulas y/o profesionales.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#organización-y-arquitectura",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#organización-y-arquitectura",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "Organización y arquitectura",
+    "text": "Organización y arquitectura\n\nOrganización:\n\nSe basa en el protocolo Remote Call Procedure (RPC), para encapsular llamadas al servidor cuando se piden archivos remotos (de manera transparente para el usuario).\nStateless (v2/v3): el servidor trabaja sin mantener información del estado de cada uno de los clientes (ficheros abiertos, último fichero o última posición escrita).\n\nNecesidad de bloquear archivos accedidos concurrentemente por varios clientes  demonios independientes.\nEl cliente es responsable de mantener la coherencia.\n\nStatefull (v4): el servidor trabaja manteniendo el estado de las operaciones (ej. 1 y 2).\nNFS tiene bastantes problemas de seguridad (UID y GID locales, falsificación de direcciones IP, ficheros que pertenecen a root...)  uso de herramientas adicionales como Kerberos.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#bibliografía-1",
-    "href": "tema00-presentacion/presentacion.html#bibliografía-1",
-    "title": "Tema 0: Presentación",
-    "section": "Bibliografía",
-    "text": "Bibliografía\nBásica para seguir la asignatura:\n\nUNIX and Linux System Administration Handbook, 5th Edition. Evi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley and Dan Mackin. Addison-Wesley. 2018.\nEssential System Administration (3a ed.). Aeleen Frisch. O’Reilly & Associates. 2002.\nEl Arte del Terminal, Joshua Levy, 2023.\n\nAdicional:\n\nAdministración de sistemas Linux. Adelstein, Tom. Lubanovic, Bill. Anaya multimedia, O Reilly. 2007.\nUnix shell programming, 3a Edición. Kochan, Wood. Sams Publishing. 2003.\nLPI Linux Certification in a Nutshell, Third Edition. Adam Haeder, Stephen Addison Schneiter, Bruno Gomes Pessanha, and James Stanger. 2010.\nK. A. Robbind, S. Robbins. Unix Systems Programming. Prentice Hall, 2003",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#organización-y-arquitectura-1",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#organización-y-arquitectura-1",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "Organización y arquitectura",
+    "text": "Organización y arquitectura",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#evaluación-1",
-    "href": "tema00-presentacion/presentacion.html#evaluación-1",
-    "title": "Tema 0: Presentación",
-    "section": "Evaluación",
-    "text": "Evaluación\n\nLeer detenidamente la guı́a docente.\nLa evaluación de la asignatura se divide en dos partes, parte teórica y parte práctica (Teorı́a 50 % + Práctica 50 %).\nPara aprobar la asignatura es necesario obtener al menos 5 sobre 10 puntos en la parte de prácticas y 5 sobre 10 puntos en la parte de teorı́a. En caso contrario, la asignatura se considera suspensa.\nSi se aprueba solo la teorı́a o solo la práctica, la nota correspondiente se guarda hasta la convocatoria de septiembre.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-servidor",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-servidor",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "NFS: configuración del lado servidor",
+    "text": "NFS: configuración del lado servidor\n\n/etc/exports  Fichero en el que se indica qué SFs se exportan, bajo qué condiciones y a qué ordenadores.\n/usr/sbin/exportfs  Actualiza la información de los SFs exportados y muestra un listado con dicha información (realiza un restart de los demonios nfsd y rpc.mountd):\n\n-r  re-exporta los directorios indicados en /etc/exports.\n-a  exporta o deja de exportar /etc/exports.\n-v  muestra los directorios exportados y las opciones.\n\n/usr/sbin/showmount  información en un servidor NFS:\n\n-a  clientes conectados y directorios utilizados.\n-d  listado de los directorios montados.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas",
-    "href": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas",
-    "title": "Tema 0: Presentación",
-    "section": "Evaluación: exámenes y pruebas",
-    "text": "Evaluación: exámenes y pruebas\nLa parte de teorı́a (50 % de la nota) se evaluará con un examen final teórico que estará compuesto de:\n\nPruebas objetivas tipo test (20 %, mı́nimo 5 sobre 10).\nPruebas de respuesta corta con supuestos prácticos que versen sobre los contenido teóricos dados en clase (30 %, mı́nimo 5 sobre 10).\n\nLa parte de prácticas (50 % de la nota) se organiza en dos bloques. Consta de:\n\nExamen práctico de programación y administración de sistemas 50 %, mı́nimo 5 sobre 10). Existen dos posibilidades:\n\nExámenes prácticos parciales realizados durante el curso (eliminan materia de cara al examen final).\nExamen práctico final realizado durante el periodo de exámenes.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-servidor-1",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-servidor-1",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "NFS: configuración del lado servidor",
+    "text": "NFS: configuración del lado servidor\n\nDemonios en el lado servidor\n\nrpcbind o portmap  Facilita la conexión entre el cliente y el servidor mediante las llamadas RPC. Tiene que estar lanzado para que NFS funcione.\nnfsd  Implementa, en el nivel de usuario, los servicios NFS. La principal funcionalidad está implementada por el módulo del kernel nfsd.ko. Los threads del kernel aparecen como [nfsd], al ejecutar ps aux.\nrpc.mountd  Maneja las peticiones de montaje de directorios de los clientes, comprobando la petición con la lista de sistemas de ficheros exportados.\n\n\n/etc/init.d/nfs-kernel-server  Lanza rpc.mountd y rpc.nfsd.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas-1",
-    "href": "tema00-presentacion/presentacion.html#evaluación-exámenes-y-pruebas-1",
-    "title": "Tema 0: Presentación",
-    "section": "Evaluación: exámenes y pruebas",
-    "text": "Evaluación: exámenes y pruebas\n\nPara aprobar las prácticas es necesario aprobar cada Bloque por separado con 5 sobre 10 puntos.\nPara presentarse a las prácticas en la convocatoria de junio es necesario haber asistido a un 80 % de las sesiones de prácticas.\nPara la convocatoria de julio y de septiembre, la asistencia a las prácticas no es requisito.\nLas calificaciones parciales no se guardan de un curso a otro.\nSe guardan calificaciones parciales (bloques de prácticas o teorı́a) dentro de las convocatorias del mismo curso académico.\nLos alumnos a tiempo parcial deben ponerse en contacto con el profesor.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-servidor-2",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-servidor-2",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "NFS: configuración del lado servidor",
+    "text": "NFS: configuración del lado servidor\n/etc/exports  Para configurar qué “directorios” se exportan, bajo qué condiciones y a qué equipos ruta dirección(opción):\n\nruta es el nombre del directorio a exportar vía NFS.\ndirección a quién es exportado (IP, dirección de red, etc.).\nopción especifica el tipo de acceso al directorio:\n\nrw ó ro  Modo lectura-escritura o sólo lectura.\nroot_squash  Mapea los uid/gid 0 a los uid/gid anónimo (nobody o nfsnobody) (controlar al root cliente).\nno_root_squash  No hacer lo anterior, lo que implica riesgos de seguridad.\nall_squash  Mapea todos los usuarios al usuario anónimo.\nanonuid ó anongid  Establecer el uid o el gid del usuario al que realizar el mapeo, distinto del usuario anónimo.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#tareas-de-administración-i",
-    "href": "tema00-presentacion/presentacion.html#tareas-de-administración-i",
-    "title": "Tema 0: Presentación",
-    "section": "Tareas de administración (I)",
-    "text": "Tareas de administración (I)\n\nResolución de ejercicios teóricos y/o prácticos propuestos y anunciados.\nLas alumnas/os podrán proponer tareas similares a las propuestas.\nEsta nota se guardará para todas las convocatorias del curso académico. Las tareas pueden llegar a valorarse hasta 2 puntos en el examen de teorı́a (sobre 5 puntos). Se tendrá en cuenta para aumentar nota una vez aprobado el examen.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-cliente",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-cliente",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "NFS: configuración del lado cliente",
+    "text": "NFS: configuración del lado cliente\n\nLa propia orden mount permite montar el SF remoto:\n\n$ mount -t nfs -o opciones_nfs 191.168.6.10:/home /datos\n\n-t nfs: tipo de SF.\n191.168.6.10:/home servidor y directorio remoto a montar.\nSi en el fichero /etc/fstab se indica el listado de los sistemas de ficheros remotos a montar, el punto de montaje y las opciones, el montaje se puede realizar en tiempo de arranque:\n\n# Contenido /etc/fstab\n191.168.6.10:/home  /datos  nfs  defaults,opciones_nfs 0 0",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#tareas-de-administración-ii",
-    "href": "tema00-presentacion/presentacion.html#tareas-de-administración-ii",
-    "title": "Tema 0: Presentación",
-    "section": "Tareas de administración (II)",
-    "text": "Tareas de administración (II)\n\nSe deberá redactar un guión donde se detalle paso a paso los comandos y operaciones necesarios para llevar a cabo la tarea, acompañados de capturas cuando ası́ se requiera. El documento deberá ser autocontenido y explicativo y todo se deberá realizar sobre una imagen virtual de un sistema operativo GNU/Linux. Se presentará en clase durante un tiempo aproximado de 10-15 minutos.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-cliente-1",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-configuración-del-lado-cliente-1",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "NFS: configuración del lado cliente",
+    "text": "NFS: configuración del lado cliente\n\nOpciones para mount:\n\nsoft  Si el servidor NFS falla durante un tiempo, las operaciones que intentaban acceder a él recibirán un código de error.\nhard  Si un proceso está realizando una operación de E/S con un fichero vía NFS y el servidor NFS no responde, el proceso no puede ser interrumpido o matado (no acepta la señal KILL) salvo que se especifique la opción intr. Siempre que usemos rw deberíamos usar hard, para no dejar el SF remoto inconsistente.\nintr  Se permite señales de interrupción para los procesos bloqueados en una operación de E/S en un servidor NFS.\nsoft va en contra de la filosofía de NFS.\nbg  Si el montaje del SF remoto falla, que siga intentándolo en background, hasta que lo consiga o desista porque se han hecho retry intentos\nretry=n  Nº de intentos que se deben hacer para montar el SF remoto, antes de desistir si la conexión falla.\ntimeo=n  Tiempo a esperar entre cada intento de montaje si la conexión falla.",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#devops-1",
-    "href": "tema00-presentacion/presentacion.html#devops-1",
-    "title": "Tema 0: Presentación",
-    "section": "DevOps",
-    "text": "DevOps\nroadmap.sh/devops",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-ejemplos",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#nfs-ejemplos",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "NFS: ejemplos",
+    "text": "NFS: ejemplos\nEjemplos en el [servidor(fichero/etc/exports`):\n/home 191.168.6.15(rw,root_squash) 191.168.6.16(rw,no_root_squash)\n/import 191.168.8.20(rw,all_squash)\n/tools 191.168.6.0/24(ro,all_squash,anonuid=500,anongid=100)\nEjemplos en el cliente, en el fichero /etc/fstab:\njulieta:/home       /home         nfs  defaults,rw,bg,hard,intr 0 0\njulieta:/import     /nfs/import   nfs  defaults,rw,bg,hard,intr 0 0\n191.168.6.10:/tools /nfs/tools    nfs  defaults,ro,bg,soft      0 0\nTambién se puede realizar el montaje de forma manual:\n$ mount /home        #(configurado /etc/fstab)\n$ mount /nfs/import  #(configurado /etc/fstab)\n$ mount -t nfs -o rw,bg,hard,intr julieta:/home /home\n$ mount -t nfs -o rw,bg,hard,intr julieta:/import /nfs/import\n$ mount -t nfs -o ro,soft,bg 191.168.6.10:/tools /nfs/tools",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema00-presentacion/presentacion.html#dinamización-de-clases",
-    "href": "tema00-presentacion/presentacion.html#dinamización-de-clases",
-    "title": "Tema 0: Presentación",
-    "section": "Dinamización de clases",
-    "text": "Dinamización de clases\n\nIdeal: aula de prácticas para ir probando lo que hacemos…\nQuizz: 1 por tema (cada 2 clases)\nTareas administración\nResolución de casos prácticos\nMemes\n…",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#samba-necesidad",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#samba-necesidad",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "SAMBA: necesidad",
+    "text": "SAMBA: necesidad\n\nEntre maquinas GNU/Linux, es posible usar el protocolo NFS para compartir ficheros.\nPresenta una serie de inconvenientes:\n\nProblemas de seguridad.\nNo existe una buena implementación libre de NFS para equipos Windows.\n\nLleva menos trabajo utilizar el protocolo utilizado por las maquinas Windows.\nEste protocolo, llamado Common Internet FileSystem (CIFS), tiene implementaciones sobre un gran numero de plataformas.\nExiste una implementación libre de este protocolo llamada SaMBa, que permite utilizarlo sobre servidores GNU/Linux",
     "crumbs": [
-      "Tema 0: Presentación"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html",
-    "href": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html",
-    "title": "Tema 09: Gestión de las comunicaciones. Tutorial NFS",
-    "section": "",
-    "text": "Escenario:\n\nVirtualBox como proveedor de red\nDebian como servidor NFS (necesitaríamos NIS/LDAP, pero para este tutorial podemos obviarlo)\nOtro Linux (Debian/Mint/…) como cliente NFS. Puede simplemente clonar la máquina primera generando nuevas MAC o descargar una preinstalada de https://www.osboxes.org/debian/.\n\nPrecauciones: en la práctica un servicio y red NFS debe diseñarse con cuidado y en conjunto con otras herramientas como firewalls. Aquí vamos a enseñar un ejemplo básico.",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#samba-introducción",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#samba-introducción",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "SAMBA: introducción",
+    "text": "SAMBA: introducción\n\n¿Qué es?\n\nEs un sistema de compartición de archivos e impresoras en red.\nPermite la interconexión de sistemas heterogéneos entre sí (GNU/Linux y Windows).\nLos clientes Windows tendrán la sensación de estar ante un servidor Windows NT.\nControlar el acceso de clientes Windows a servicios de red Windows o Unix.\n\nProtocolos:\n\nSMB (Server Message Block): Compartir los recursos.\nCIFS (Common Internet File System): Implementación mejorada de SMB.\nNetBIOS (Network Basic Input/Output System): Servicio de nombres:\n\nNombres lógicos en la red.\nSesiones entre los nombres.",
     "crumbs": [
-      "Tema 9: Receta NFS"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#configuración-red-nat-en-virtualbox",
-    "href": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#configuración-red-nat-en-virtualbox",
-    "title": "Tema 09: Gestión de las comunicaciones. Tutorial NFS",
-    "section": "",
-    "text": "En VirtualBox añadimos una red NAT en archivos-&gt;preferencias. Nota: Esto es una red a nivel de VirtualBox que nos permitirá que puedan comunicarse las máquinas entre ellas. Podemos usar la subred 10.0.3.* para diferenciar de la anterior.\n\nRecuerda añadir reenvío de puertos para poder conectarnos por SSH a nuestro servidor Debian si no lo has hecho:\n –&gt;\nConfiguramos tanto la máquina servidor (Debian) como la cliente (Linux Mint) para que use la red NAT que hemos configurado. Para ello añadimos otro interfaz de red.\n\nIniciamos la máquina Debian. Comprobamos que tenemos el nuevo adaptador de red:\nip a\nDeben aparecer 3: lo, enp0s3 y enp0s8.\nVamos a configurar una IP fija para el servidor (10.0.3.3) y cliente (10.0.3.4) en la interfaz de la red NAT.\n$ cat /etc/network/interfaces\n# This file describes the network interfaces available on your system\n# and how to activate them. For more information, see interfaces(5).\n\nsource /etc/network/interfaces.d/*\n\n# The loopback network interface\nauto lo\niface lo inet loopback\n\n# The primary network interface\nallow-hotplug enp0s3\niface enp0s3 inet dhcp\n\n# IP secundaria red NAT\nauto enp0s8\niface enp0s8 inet static\n  address 10.0.3.3\n  netmask 255.255.255.0\nPuedes hacer el cambio sin que sea permanente con:\nsudo ip addr add 10.0.3.3/24 dev enp0s8\nSi queremos conectarnos por SSH tendremos que configurar el reenvío de puertos de la red NAT para esta IP o mantener la interfaz de red anterior (10.0.2.*)\nImportante: Tanto la conexión NAS como la Red NAS implementan por defecto un servidor DHCP. En el ejemplo anterior la una red sigue con DHCP, habrá que iniciar primero siempre la máquina del servidor para que su IP no la coja otra máquina.\n\n –&gt;",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#samba-introducción-1",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#samba-introducción-1",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "SAMBA: introducción",
+    "text": "SAMBA: introducción\n\n¿Cuándo es útil?\n\nNo quieres pagar un servidor Windows NT para obtener las funcionalidades que este proporciona.\nHomogeneizar la red local ante clientes Windows y Unix.\nCompartir impresora entre clientes Windows y Unix.\n\nUtiliza dos demonios:\n\nsmbd  Permite la compartición de archivos e impresoras sobre una red SMB y proporciona autentificación y autorización de acceso para clientes SMB.\nnmbd  Se ocupa de anunciar servicios, es decir, informa a las máquinas en la red de cuales son los servicios disponibles.\n\nPodemos configurar SAMBA mediante:\n\nEl fichero smb.conf.\nEl front-end SWAT (no se recomienda, poco seguro).",
     "crumbs": [
-      "Tema 9: Receta NFS"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
-    "objectID": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#configuración-nfs",
-    "href": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#configuración-nfs",
-    "title": "Tema 09: Gestión de las comunicaciones. Tutorial NFS",
-    "section": "",
-    "text": "Comprueba las ips en cada máquina y que pueden “verse” usando ping.\nEn mi caso: - host_ip: 10.0.3.3 - client_ip: 10.0.3.5\n\n\nInstalamos el paquete de sorpote NFS:\nsudo apt update\nsudo apt install nfs-kernel-server\nVamos a exportar el /home. En /etc/exports añadimos:\n/home               client_ip(rw,sync,no_root_squash,no_subtree_check)\nEcha un vistazo a lo que significa cada una de estas opciones:\n\nrw: Esta opción da al ordenador cliente acceso de lectura y escritura al volumen.\nsync: Esta opción obliga a NFS a escribir los cambios en el disco antes de responder. El resultado es un entorno más estable y consistente, ya que la respuesta refleja el estado real del volumen remoto. Sin embargo, también reduce la velocidad de las operaciones de archivo.\nno_subtree_check: Esta opción evita la comprobación de subárboles, que es un proceso en el que el host debe comprobar si el archivo sigue realmente disponible en el árbol exportado para cada solicitud. Esto puede causar muchos problemas cuando se cambia el nombre de un archivo mientras el cliente lo tiene abierto. En casi todos los casos, es mejor desactivar la comprobación de subárboles.\nno_root_squash: Por defecto, NFS traduce las peticiones de un usuario root de forma remota a un usuario sin privilegios en el servidor. Esto está pensado como una característica de seguridad para evitar que una cuenta root en el cliente utilice el sistema de archivos del host/servidor como root. no_root_squash desactiva este comportamiento para ciertos recursos compartidos.\n\nPregunta: ¿Activamos o no no_root_squash?\nsudo systemctl restart nfs-kernel-server\n\n\n\nInstalamos el paquete de funcionalidades NFS para el cliente:\nsudo apt update\nsudo apt install nfs-common\nCreación de puntos de montaje y montaje de directorios en el cliente.\nNota: Si hay archivos y directorios en su punto de montaje, se ocultarán en cuanto monte el recurso compartido NFS. Para evitar la pérdida de archivos importantes, asegurate de que, si monta en un directorio que ya existe, el directorio esté vacío.\n# Creamos directorio local\nsudo mkdir -p /srv/home\n# Montamos /home remoto en el local \nsudo mount host_ip:/home /srv/home\n# Comprobamos que se ha añadido a nuestro sistema de ficheros\ndf -h\nComprobación de que podemos escribir:\nsudo touch /srv/home/home.test\nls -l /srv/home/home.test\nPara hacer que el directorio NFS se monte al arrancar:\n# /etc/fstab\nhost_ip:/home               /srv/home      nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0",
+    "objectID": "tema09-comunicaciones/tema09-comunicaciones.html#referencias-1",
+    "href": "tema09-comunicaciones/tema09-comunicaciones.html#referencias-1",
+    "title": "Tema 9: Gestión de las comunicaciones",
+    "section": "Referencias",
+    "text": "Referencias\n\nEvi Nemeth, Garth Snyder, Trent R. Hein, Ben Whaley y Dan Mackin. Unix and Linux system administration handbook. Capítulo 17. Single Sign-On, Capítulo 21. The Network File System, Capítulo 22. SMB. Addison-Wesley. 5th Edition. 2018.\nAeleen Frisch. Essential system administration. Capítulo 10. Filesystems and disks. O’Reilly and Associates. Tercera edición. 2002.",
     "crumbs": [
-      "Tema 9: Receta NFS"
-    ]
-  },
-  {
-    "objectID": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#referencias",
-    "href": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#referencias",
-    "title": "Tema 09: Gestión de las comunicaciones. Tutorial NFS",
-    "section": "",
-    "text": "https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-debian-11",
-    "crumbs": [
-      "Tema 9: Receta NFS"
+      "Tema 9: Gestión de las comunicaciones"
     ]
   },
   {
@@ -5157,26 +5109,6 @@
     "text": "Marca todos los tipos de enlace que pueden establecerse en los siguientes casos (físico, simbólico o ambos).\n\nenlace hacia un archivo en el mismo directorio.\nenlace hacia un archivo en otro sistema de archivos.\nenlace hacia un directorio en el mismo sistema de archivos.\nenlace hacia un directorio en otro sistema de archivos.",
     "crumbs": [
       "Tema 2: Ejercicios permisos"
-    ]
-  },
-  {
-    "objectID": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#en-el-servidor",
-    "href": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#en-el-servidor",
-    "title": "Tema 09: Gestión de las comunicaciones. Tutorial NFS",
-    "section": "En el servidor",
-    "text": "En el servidor\nInstalamos el paquete de sorpote NFS:\nsudo apt update\nsudo apt install nfs-kernel-server\nVamos a exportar el /home. En /etc/exports añadimos:\n/home               client_ip(rw,sync,no_root_squash,no_subtree_check)\nEcha un vistazo a lo que significa cada una de estas opciones:\n\nrw: Esta opción da al ordenador cliente acceso de lectura y escritura al volumen.\nsync: Esta opción obliga a NFS a escribir los cambios en el disco antes de responder. El resultado es un entorno más estable y consistente, ya que la respuesta refleja el estado real del volumen remoto. Sin embargo, también reduce la velocidad de las operaciones de archivo.\nno_subtree_check: Esta opción evita la comprobación de subárboles, que es un proceso en el que el host debe comprobar si el archivo sigue realmente disponible en el árbol exportado para cada solicitud. Esto puede causar muchos problemas cuando se cambia el nombre de un archivo mientras el cliente lo tiene abierto. En casi todos los casos, es mejor desactivar la comprobación de subárboles.\nno_root_squash: Por defecto, NFS traduce las peticiones de un usuario root de forma remota a un usuario sin privilegios en el servidor. Esto está pensado como una característica de seguridad para evitar que una cuenta root en el cliente utilice el sistema de archivos del host/servidor como root. no_root_squash desactiva este comportamiento para ciertos recursos compartidos.\n\nPregunta: ¿Activamos o no no_root_squash?\nsudo systemctl restart nfs-kernel-server",
-    "crumbs": [
-      "Tema 9: Receta NFS"
-    ]
-  },
-  {
-    "objectID": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#en-el-cliente",
-    "href": "tema09-comunicaciones/tema09-Receta_NIS_NFS.html#en-el-cliente",
-    "title": "Tema 09: Gestión de las comunicaciones. Tutorial NFS",
-    "section": "En el cliente",
-    "text": "En el cliente\nInstalamos el paquete de funcionalidades NFS para el cliente:\nsudo apt update\nsudo apt install nfs-common\nCreación de puntos de montaje y montaje de directorios en el cliente.\nNota: Si hay archivos y directorios en su punto de montaje, se ocultarán en cuanto monte el recurso compartido NFS. Para evitar la pérdida de archivos importantes, asegurate de que, si monta en un directorio que ya existe, el directorio esté vacío.\n# Creamos directorio local\nsudo mkdir -p /srv/home\n# Montamos /home remoto en el local \nsudo mount host_ip:/home /srv/home\n# Comprobamos que se ha añadido a nuestro sistema de ficheros\ndf -h\nComprobación de que podemos escribir:\nsudo touch /srv/home/home.test\nls -l /srv/home/home.test\nPara hacer que el directorio NFS se monte al arrancar:\n# /etc/fstab\nhost_ip:/home               /srv/home      nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0",
-    "crumbs": [
-      "Tema 9: Receta NFS"
     ]
   }
 ]
